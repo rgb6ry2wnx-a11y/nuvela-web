@@ -3005,7 +3005,9 @@
 
     // ==== Render: "Productos" nav dropdown — agrupado por categoría (Colchones, ====
     // Almohadas, Accesorios para Cama, Camastrones) para que el cliente entre
-    // directo al producto que busca, más un acceso a Comparar Productos al final.
+    // directo al producto que busca. "Comparar Productos" va justo debajo del
+    // Examen de Productos (antes quedaba hasta el final, después de listar TODOS
+    // los productos, y era fácil que el cliente no lo viera sin hacer scroll).
     function renderNavProductsDropdown() {
       const targets = document.querySelectorAll('.js-nav-products-list');
       if (!targets.length) return;
@@ -3030,7 +3032,7 @@
           <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">${currentLang === 'es' ? 'Comparar Productos' : 'Compare Products'}</a>
         </div>
       `;
-      const html = quizHtml + groupsHtml + compareHtml;
+      const html = quizHtml + compareHtml + groupsHtml;
       targets.forEach(el => { el.innerHTML = html; });
     }
 
