@@ -782,6 +782,16 @@
     .drawer { transform: translateX(100%); transition: transform .45s cubic-bezier(.6,.05,.2,1); }
     .drawer.open { transform: translateX(0); }
 
+    /* Acordeon del menu "Productos" del navbar -- Eduardo pidio que las  */
+    /* categorias (Colchones, Almohadas, etc.) empiecen cerradas y solo   */
+    /* muestren sus modelos al hacer click, para que el menu no sea tan   */
+    /* largo. Ver renderNavProductsDropdown() y el listener de            */
+    /* .js-nav-cat-toggle en el <script>.                                 */
+    .nav-cat-body { overflow: hidden; max-height: 0; transition: max-height .35s ease; }
+    .nav-cat-section.open .nav-cat-body { max-height: 480px; }
+    .nav-cat-chevron { transition: transform .25s ease; }
+    .nav-cat-section.open .nav-cat-chevron { transform: rotate(180deg); }
+
     /* Toast "Agregado al carrito" -- Eduardo pidio un aviso con 2 botones */
     /* (Revisar Carrito / Seguir Comprando) cada vez que se agrega un      */
     /* producto. Se abre/cierra con showCartToast()/hideCartToast() en el  */
@@ -1187,7 +1197,9 @@
           </div>
         </div>
         <a class="nav-link" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
-        <a class="nav-link" data-page="carrito" data-en="My Cart" data-es="Mi Carrito">Mi Carrito</a>
+        <!-- Eduardo pidio quitar el link de texto "Mi Carrito" de aqui --
+             quedaba duplicado con el icono del carrito que ya esta siempre
+             visible a la derecha (ver boton con id="cart-badge" mas abajo). -->
         <a class="nav-link" data-page="cita" data-en="Book an Appointment" data-es="Agenda tu Cita">Agenda tu Cita</a>
         <div class="relative group">
           <a class="nav-link inline-flex items-center gap-1 cursor-default">
@@ -3095,8 +3107,15 @@
         const items = PRODUCTS.filter(p => p.category.es === cat.es);
         if (!items.length) return '';
         return `
-          <div class="px-5 pt-3 pb-1 text-[0.62rem] tracking-[0.2em] uppercase text-mist">${pick(cat)}</div>
-          ${items.map(p => `<button type="button" class="js-view-product block w-full text-left px-5 py-2 text-sm text-cream/90 hover:text-gold hover:bg-white/5 transition-colors" data-product-id="${p.id}">${pick(p.name)}</button>`).join('')}
+          <div class="nav-cat-section">
+            <button type="button" class="js-nav-cat-toggle w-full flex items-center justify-between gap-2 px-5 pt-3 pb-1 text-[0.62rem] tracking-[0.2em] uppercase text-mist hover:text-gold-light transition-colors" aria-expanded="false">
+              <span>${pick(cat)}</span>
+              <svg class="nav-cat-chevron flex-shrink-0" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="nav-cat-body">
+              ${items.map(p => `<button type="button" class="js-view-product block w-full text-left px-5 py-2 text-sm text-cream/90 hover:text-gold hover:bg-white/5 transition-colors" data-product-id="${p.id}">${pick(p.name)}</button>`).join('')}
+            </div>
+          </div>
         `;
       }).join('');
       const compareHtml = `
@@ -4671,6 +4690,19 @@
       if (e.target.closest('.js-cart-toast-review') || e.target.closest('.js-cart-toast-continue')) {
         hideCartToast();
       }
+    });
+
+    // Acordeon del menu "Productos" del navbar -- abre/cierra la categoria
+    // en la que se hizo click (Colchones, Almohadas, etc.). Empiezan todas
+    // cerradas; se puede tener varias abiertas a la vez.
+    document.addEventListener('click', (e) => {
+      const toggle = e.target.closest('.js-nav-cat-toggle');
+      if (!toggle) return;
+      e.preventDefault();
+      const section = toggle.closest('.nav-cat-section');
+      if (!section) return;
+      const isOpen = section.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
     document.addEventListener('click', (e) => {
