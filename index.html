@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colchones Premium en Guatemala | Tecnología Híbrida | Nuvela Italian Design</title>
 
+  <!-- Icono de la pestaña del navegador (favicon) -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+
 <meta
   name="description"
   content="Descubre Nuvela Italian Design. Colchones premium en Guatemala con tecnología híbrida, memory foam, resortes encapsulados, diseño italiano y 10 años de garantía. Visita nuestro showroom y mejora tu descanso."
@@ -5757,7 +5764,7 @@
       backdrop.addEventListener('click', () => closePopup(true));
       skipBtn.addEventListener('click', () => closePopup(true));
 
-      form.addEventListener('submit', async (e) => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
         const nombre = document.getElementById('lead-popup-nombre').value.trim();
         const apellido = document.getElementById('lead-popup-apellido').value.trim();
@@ -5769,15 +5776,15 @@
           return;
         }
         errorEl.classList.add('hidden');
-        submitBtn.disabled = true;
-        submitBtn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
 
-        try {
-          if (LEADS_WEBHOOK_URL && !LEADS_WEBHOOK_URL.startsWith('PEGA_AQUI')) {
-            // no-cors: no podemos leer la respuesta del Apps Script desde
-            // aquí, pero el envío sí llega y se guarda en la hoja (probado
-            // en vivo contra la hoja real de Eduardo).
-            await fetch(LEADS_WEBHOOK_URL, {
+        // No esperamos (no "await") a que el envío al Google Sheet termine
+        // antes de mostrar "Gracias": esa petición a veces tarda unos
+        // segundos, y de todas formas no podemos leer su respuesta desde
+        // aquí (no-cors), así que mostramos el mensaje al instante y el
+        // envío sigue solo en segundo plano.
+        if (LEADS_WEBHOOK_URL && !LEADS_WEBHOOK_URL.startsWith('PEGA_AQUI')) {
+          try {
+            fetch(LEADS_WEBHOOK_URL, {
               method: 'POST',
               mode: 'no-cors',
               headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -5787,12 +5794,12 @@
                 pagina: window.location.href,
                 fecha: new Date().toISOString(),
               }),
-            });
-          } else {
-            console.warn('Nuvela: falta configurar LEADS_WEBHOOK_URL para guardar los leads en Google Sheets.');
+            }).catch((err) => console.warn('Nuvela: no se pudo enviar el lead al webhook.', err));
+          } catch (err) {
+            console.warn('Nuvela: no se pudo enviar el lead al webhook.', err);
           }
-        } catch (err) {
-          console.warn('Nuvela: no se pudo enviar el lead al webhook.', err);
+        } else {
+          console.warn('Nuvela: falta configurar LEADS_WEBHOOK_URL para guardar los leads en Google Sheets.');
         }
 
         formWrap.classList.add('hidden');
