@@ -1322,6 +1322,50 @@
   </div>
 
   <!-- ====================================================== -->
+  <!-- ============ POPUP: CAPTURA DE LEADS =================== -->
+  <!-- ====================================================== -->
+  <!-- Eduardo pidió un popup que aparezca al cargar la página pidiendo    -->
+  <!-- nombre, apellido y correo, para ir armando una base de datos de     -->
+  <!-- clientes. Aparece UNA sola vez por visitante (se recuerda con       -->
+  <!-- localStorage, ver initLeadPopup() en el <script> de abajo) -- ni al -->
+  <!-- cerrarlo ni al enviarlo vuelve a aparecer en ese navegador.         -->
+  <!--                                                                     -->
+  <!-- IMPORTANTE PARA EDUARDO: todavía falta conectar esto a tu Google    -->
+  <!-- Sheet real -- pega la URL de tu Google Apps Script en la constante  -->
+  <!-- LEADS_WEBHOOK_URL (búscala en el <script> de abajo). Instrucciones  -->
+  <!-- completas en el chat.                                              -->
+  <div id="lead-popup-overlay" class="fixed inset-0 z-[95] hidden">
+    <div id="lead-popup-backdrop" class="absolute inset-0 bg-ink/60"></div>
+    <div class="relative h-full w-full flex items-center justify-center p-4 sm:p-6">
+      <div class="relative bg-white border-2 border-gold w-full max-w-md max-h-[90vh] overflow-y-auto p-8 sm:p-10 rounded-3xl">
+        <button type="button" id="lead-popup-close" class="absolute top-4 right-4 w-9 h-9 flex items-center justify-center text-ink hover:text-gold" aria-label="Cerrar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+        </button>
+        <div id="lead-popup-form-wrap">
+          <p class="eyebrow text-gold-light" data-en="Stay in Touch" data-es="Mantente al Tanto">Mantente al Tanto</p>
+          <span class="gold-rule mt-4"></span>
+          <h2 class="font-serif text-2xl sm:text-3xl text-ink mt-6 leading-tight" data-en="Want to receive more information?" data-es="¿Quieres recibir más información?">¿Quieres recibir más información?</h2>
+          <p class="text-graphite mt-3 leading-relaxed text-sm" data-en="Leave us your details and we'll keep you posted on new products, promotions and news from Nuvela." data-es="Déjanos tus datos y te mantendremos al tanto de nuevos productos, promociones y novedades de Nuvela.">Déjanos tus datos y te mantendremos al tanto de nuevos productos, promociones y novedades de Nuvela.</p>
+          <form id="lead-popup-form" class="mt-8 space-y-5" novalidate>
+            <div class="grid grid-cols-2 gap-4">
+              <input class="luxe-input" type="text" id="lead-popup-nombre" required placeholder="" data-en-placeholder="First name" data-es-placeholder="Nombre" />
+              <input class="luxe-input" type="text" id="lead-popup-apellido" required placeholder="" data-en-placeholder="Last name" data-es-placeholder="Apellido" />
+            </div>
+            <input class="luxe-input" type="email" id="lead-popup-correo" required placeholder="" data-en-placeholder="Email" data-es-placeholder="Correo electrónico" />
+            <p id="lead-popup-error" class="hidden text-sm" style="color:#B3261E;" data-en="Please fill in all fields with a valid email." data-es="Completa todos los campos con un correo válido.">Completa todos los campos con un correo válido.</p>
+            <button type="submit" id="lead-popup-submit" class="btn-gold w-full" data-en="Send" data-es="Enviar">Enviar</button>
+            <button type="button" id="lead-popup-skip" class="w-full text-center text-[0.68rem] text-mist hover:text-graphite tracking-[0.14em] uppercase mt-1" data-en="No thanks" data-es="No, gracias">No, gracias</button>
+          </form>
+        </div>
+        <div id="lead-popup-success" class="hidden text-center py-8">
+          <p class="font-serif text-2xl text-ink" data-en="Thank you!" data-es="¡Gracias!">¡Gracias!</p>
+          <p class="text-graphite mt-3 leading-relaxed text-sm" data-en="We've received your information. We'll be in touch soon." data-es="Recibimos tu información. Nos pondremos en contacto contigo pronto.">Recibimos tu información. Nos pondremos en contacto contigo pronto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
   <!-- ===================== HOME PAGE ====================== -->
   <!-- ====================================================== -->
   <main id="page-home" class="page active">
@@ -3152,7 +3196,13 @@
       `;
       return `
         <div class="bg-white border border-pearl reveal flex flex-col overflow-hidden rounded-2xl">
-          <div class="aspect-[4/3] sm:aspect-square overflow-hidden bg-cream">
+          <!-- Eduardo dijo que en pantallas grandes la foto seguia         -->
+          <!-- quedando muy alta -- comparo con verla en zoom 75% del        -->
+          <!-- navegador, donde sí cabe la foto completa junto con el texto. -->
+          <!-- En movil (2 columnas) 4:3 ya se veía bien, así que se queda   -->
+          <!-- igual ahí; en pantallas mas anchas (sm: en adelante) ahora es -->
+          <!-- mas baja (16:9) para que quepa mas contenido sin scroll.      -->
+          <div class="aspect-[4/3] sm:aspect-[16/9] overflow-hidden bg-cream">
             <img src="${p.mainImage}" alt="${pick(p.name)}" class="w-full h-full object-cover img-hover" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=85';" />
           </div>
           <div class="p-3 sm:p-8 flex flex-col flex-grow">
@@ -5663,6 +5713,95 @@
       }, { passive: true });
     }
 
+    // ==== Popup de captura de leads (nombre + apellido + correo) ====
+    // Eduardo pidió armar una base de datos de clientes: este popup
+    // aparece una sola vez por visitante (se guarda una bandera en
+    // localStorage) y manda los datos a una hoja de Google Sheets via un
+    // Google Apps Script publicado como "Web App".
+    //
+    const LEADS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzFaqgmnO_scqK-bSYkKUY_IrK8h3ELIwZl6er5gAPzHd7dSev_iZwJCLg098aXK6kl/exec';
+    // Debe ser EXACTAMENTE el mismo texto que SHARED_TOKEN en el Apps
+    // Script — es solo un filtro simple contra envíos basura al link.
+    const LEADS_SHARED_TOKEN = 'nuvela_2026_leads';
+
+    function initLeadPopup() {
+      const overlay = document.getElementById('lead-popup-overlay');
+      if (!overlay) return;
+      // Ya se mostró antes en este navegador (lo cerraron, lo enviaron o
+      // le dieron "No, gracias") -- no molestar de nuevo.
+      if (localStorage.getItem('nuvela-lead-popup-shown')) return;
+
+      const backdrop = document.getElementById('lead-popup-backdrop');
+      const closeBtn = document.getElementById('lead-popup-close');
+      const skipBtn = document.getElementById('lead-popup-skip');
+      const form = document.getElementById('lead-popup-form');
+      const errorEl = document.getElementById('lead-popup-error');
+      const submitBtn = document.getElementById('lead-popup-submit');
+      const formWrap = document.getElementById('lead-popup-form-wrap');
+      const successEl = document.getElementById('lead-popup-success');
+      if (!backdrop || !closeBtn || !skipBtn || !form || !submitBtn || !formWrap || !successEl) return;
+
+      function openPopup() {
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      function closePopup(markHandled) {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+        if (markHandled) localStorage.setItem('nuvela-lead-popup-shown', '1');
+      }
+
+      setTimeout(openPopup, 1500);
+
+      closeBtn.addEventListener('click', () => closePopup(true));
+      backdrop.addEventListener('click', () => closePopup(true));
+      skipBtn.addEventListener('click', () => closePopup(true));
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById('lead-popup-nombre').value.trim();
+        const apellido = document.getElementById('lead-popup-apellido').value.trim();
+        const correo = document.getElementById('lead-popup-correo').value.trim();
+        const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+
+        if (!nombre || !apellido || !correoValido) {
+          errorEl.classList.remove('hidden');
+          return;
+        }
+        errorEl.classList.add('hidden');
+        submitBtn.disabled = true;
+        submitBtn.textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+
+        try {
+          if (LEADS_WEBHOOK_URL && !LEADS_WEBHOOK_URL.startsWith('PEGA_AQUI')) {
+            // no-cors: no podemos leer la respuesta del Apps Script desde
+            // aquí, pero el envío sí llega y se guarda en la hoja (probado
+            // en vivo contra la hoja real de Eduardo).
+            await fetch(LEADS_WEBHOOK_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({
+                token: LEADS_SHARED_TOKEN,
+                nombre, apellido, correo,
+                pagina: window.location.href,
+                fecha: new Date().toISOString(),
+              }),
+            });
+          } else {
+            console.warn('Nuvela: falta configurar LEADS_WEBHOOK_URL para guardar los leads en Google Sheets.');
+          }
+        } catch (err) {
+          console.warn('Nuvela: no se pudo enviar el lead al webhook.', err);
+        }
+
+        formWrap.classList.add('hidden');
+        successEl.classList.remove('hidden');
+        localStorage.setItem('nuvela-lead-popup-shown', '1');
+        setTimeout(() => closePopup(false), 2500);
+      });
+    }
+
     // ==== Init ====
     applyLang(currentLang); // also renders the products grid, pricing, etc.
     initReveal();
@@ -5670,6 +5809,7 @@
     initConstructionScroll();
     initHero();
     initStarTrail();
+    initLeadPopup();
 
     // Mark home active by default
     document.querySelector('.nav-link[data-page="home"]')?.classList.add('active');
