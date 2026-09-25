@@ -540,6 +540,14 @@
     /* Hero ken-burns */
     @keyframes kenburns { from { transform: scale(1.04); } to { transform: scale(1.12);} }
     .kenburns { animation: kenburns 18s ease-in-out infinite alternate; }
+    @media (max-width: 640px) {
+      /* Solo la foto del hero (no las demas fotos con kenburns de otras */
+      /* secciones) -- evita el acercamiento/zoom excesivo en celular.  */
+      #hero-media .hero-layer {
+        object-fit: contain;
+        background: var(--ink);
+      }
+    }
 
     /* Float */
     @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
@@ -1991,10 +1999,24 @@
       </div>
     </section>
 
-    <!-- Brand tech infographic -->
+    <!-- Brand tech video (antes era la foto tech-layers.jpg; Eduardo pidió -->
+    <!-- reemplazarla por el video real del proceso de fabricación, SIN la   -->
+    <!-- foto tech-layers.jpg como poster -- solo el video se debe ver, ni   -->
+    <!-- siquiera antes de darle play). Usa preload="metadata" (no descarga  -->
+    <!-- el video completo, ~59MB, hasta que el visitante le da play) y      -->
+    <!-- controls, a diferencia del video de fondo de arriba (esta no es    -->
+    <!-- una animación ambiental, es contenido real que el cliente puede    -->
+    <!-- querer ver completo). Contenedor angosto (max-w-3xl, antes         -->
+    <!-- max-w-6xl) para que el video se vea a un tamaño normal en          -->
+    <!-- pantallas grandes -- si el cliente lo quiere más grande, usa el    -->
+    <!-- botón de pantalla completa de los controles nativos.               -->
     <section class="py-16 bg-ink">
-      <div class="max-w-6xl mx-auto px-6 reveal">
-        <img src="images/tech-layers.jpg" alt="Tecnología en cada capa Nuvela" class="w-full h-auto" onerror="this.style.display='none';" />
+      <!-- Eduardo pidió reducirlo aun mas (a la mitad de max-w-3xl) porque -->
+      <!-- seguia viendose muy grande. max-w-sm = la mitad de max-w-3xl.        -->
+      <div class="max-w-sm mx-auto px-6 reveal">
+        <video class="w-full h-auto" controls playsinline preload="metadata" aria-label="Proceso de fabricación del colchón Nuvela">
+          <source src="images/Fabricacion colchon.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
