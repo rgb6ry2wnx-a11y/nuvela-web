@@ -1610,6 +1610,7 @@ export default function App() {
                 <GoldRule className="mt-5 reveal reveal-delay-1" />
                 <h1 className="text-white font-serif text-5xl md:text-7xl leading-[1.05] mt-8 reveal reveal-delay-1">
                   {t(<>Colchones premium en Guatemala<br />con tecnología híbrida.</>, <>Premium mattresses in Guatemala<br />with hybrid technology.</>)}
+                  <span className="sr-only"> · Nuvela Italian Design</span>
                 </h1>
                 <p className="text-white/80 text-base md:text-lg mt-6 leading-relaxed max-w-xl reveal reveal-delay-2">
                   {t(
@@ -1652,7 +1653,7 @@ export default function App() {
               <div className="reveal order-2 lg:order-1">
                 <Eyebrow>{t('El Colchón', 'The Mattress')}</Eyebrow>
                 <GoldRule className="mt-4" />
-                <h2 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">Colchón Nuvela.</h2>
+                <h3 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">Colchón Nuvela.</h3>
                 <p className="font-serif italic text-mist text-lg mt-3">{t('Crafted in Italian Style.', 'Crafted in Italian style.')}</p>
                 <p className="text-graphite mt-6 leading-relaxed text-[0.98rem]">
                   {t(
@@ -1696,7 +1697,7 @@ export default function App() {
               <div className="text-center max-w-2xl mx-auto reveal">
                 <Eyebrow light>{t('Ingeniería del Descanso', 'Sleep Engineering')}</Eyebrow>
                 <GoldRule center className="mt-5" />
-                <h2 className="font-serif text-4xl md:text-5xl mt-8 leading-tight">{t('Cinco capas de confort puro.', 'Five layers of pure comfort.')}</h2>
+                <h3 className="font-serif text-4xl md:text-5xl mt-8 leading-tight">{t('Cinco capas de confort puro.', 'Five layers of pure comfort.')}</h3>
                 <p className="text-white/70 mt-6 leading-relaxed">
                   {t(
                     'Cada capa está diseñada con un único propósito: ofrecer alivio de presión, balance térmico y soporte duradero — noche tras noche.',
@@ -1729,7 +1730,7 @@ export default function App() {
               <div className="text-center max-w-2xl mx-auto reveal">
                 <Eyebrow>{t('Por qué Nuvela', 'Why Nuvela')}</Eyebrow>
                 <GoldRule center className="mt-5" />
-                <h2 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">{t('Un estándar, redefinido.', 'A standard, redefined.')}</h2>
+                <h3 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">{t('Un estándar, redefinido.', 'A standard, redefined.')}</h3>
               </div>
               <div className="grid md:grid-cols-3 gap-8 mt-16">
                 {whyNuvelaItems(t).map((it, i) => (
@@ -1751,9 +1752,9 @@ export default function App() {
               <div className="text-center max-w-2xl mx-auto reveal">
                 <Eyebrow>{t('Testimonios', 'Voices')}</Eyebrow>
                 <GoldRule center className="mt-5" />
-                <h2 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">
+                <h3 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">
                   {t('El descanso, contado por quienes lo viven.', 'Sleep, told by those who live it.')}
-                </h2>
+                </h3>
               </div>
               <div className="mt-16 relative overflow-hidden">
                 <div
@@ -1779,7 +1780,7 @@ export default function App() {
                 <div>
                   <Eyebrow>Instagram</Eyebrow>
                   <GoldRule className="mt-4" />
-                  <h2 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">{t('Sigue nuestra historia.', 'Follow our story.')}</h2>
+                  <h3 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">{t('Sigue nuestra historia.', 'Follow our story.')}</h3>
                   <a href="https://instagram.com/Nuvela.gt" target="_blank" rel="noopener noreferrer" className="link-gold mt-4 inline-block">@Nuvela.gt</a>
                 </div>
                 <a href="https://instagram.com/Nuvela.gt" target="_blank" rel="noopener noreferrer" className="btn-outline">{t('Seguir en Instagram', 'Follow on Instagram')}</a>
@@ -1815,9 +1816,9 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
               <Eyebrow light>{t('Listo para descansar', 'Ready to rest')}</Eyebrow>
               <GoldRule center className="mt-5" />
-              <h2 className="font-serif text-4xl md:text-6xl mt-8 leading-tight">
+              <h3 className="font-serif text-4xl md:text-6xl mt-8 leading-tight">
                 {t(<>Tu mejor noche<br />empieza esta noche.</>, <>Your best night<br />begins tonight.</>)}
-              </h2>
+              </h3>
               <p className="text-white/70 mt-6 max-w-xl mx-auto leading-relaxed">
                 {t(
                   'Habla con nuestro equipo concierge. Te ayudamos a encontrar la medida correcta, la firmeza correcta y el descanso correcto — para ti.',
@@ -1846,9 +1847,9 @@ export default function App() {
             <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
               <Eyebrow light className="reveal">{t('Historia', 'Our Story')}</Eyebrow>
               <GoldRule className="mt-5 reveal reveal-delay-1" />
-              <h1 className="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1">
+              <h2 className="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1">
                 {t('Una filosofía del descanso.', 'A philosophy of rest.')}
-              </h1>
+              </h2>
             </div>
           </section>
 
@@ -1857,9 +1858,9 @@ export default function App() {
               <div className="reveal">
                 <Eyebrow>{t('Visión', 'Vision')}</Eyebrow>
                 <GoldRule className="mt-4" />
-                <h2 className="font-serif text-3xl md:text-4xl text-ink mt-6 leading-tight">
+                <h3 className="font-serif text-3xl md:text-4xl text-ink mt-6 leading-tight">
                   {t('El descanso no es un lujo — es el fundamento de una vida bien vivida.', 'Sleep is not a luxury — it is the foundation of a well-lived life.')}
-                </h2>
+                </h3>
               </div>
               <p className="text-graphite mt-10 leading-loose text-lg reveal reveal-delay-1">
                 {t(
@@ -1910,7 +1911,7 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Nuestros Productos', 'Our Products')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Cada producto, un mismo estándar de descanso.', 'Every product, one standard of rest.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Cada producto, un mismo estándar de descanso.', 'Every product, one standard of rest.')}</h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">
                 {t('Elige una categoría para ver sus modelos, medidas, precios y ficha técnica completa.', 'Choose a category to see its models, sizes, prices and full specifications.')}
               </p>
@@ -1977,9 +1978,9 @@ export default function App() {
             <div ref={productsGridRef} className="max-w-7xl mx-auto px-6">
               {activeCategory !== null && (
                 <div className="text-center mb-8 md:mb-10">
-                  <h2 className="font-serif text-2xl sm:text-3xl text-ink">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-ink">
                     {activeCategory === 'all' ? t('Todos los Productos', 'All Products') : pick(getCategories().find((c) => c.es === activeCategory))}
-                  </h2>
+                  </h3>
                 </div>
               )}
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
@@ -2004,7 +2005,7 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Línea para Hoteles', 'Hotel Line')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Descanso, a la escala de la hospitalidad.', 'Rest, at hospitality scale.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Descanso, a la escala de la hospitalidad.', 'Rest, at hospitality scale.')}</h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">
                 {t('Colchones, almohadas, blancos de cama y camastrones para hoteles, Airbnbs y proyectos de remodelación — con precios por volumen y un concierge dedicado.', 'Mattresses, pillows, bedding and loungers for hotels, Airbnbs and renovation projects — with volume pricing and a dedicated concierge.')}
               </p>
@@ -2147,7 +2148,7 @@ export default function App() {
             <div className="max-w-2xl mx-auto px-6 reveal">
               <Eyebrow>{t('Proyectos de Hospitalidad', 'Hospitality Projects')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h2 className="font-serif text-3xl text-ink mt-6">{t('Habla con nuestro concierge hotelero.', 'Talk to our hotel concierge.')}</h2>
+              <h3 className="font-serif text-3xl text-ink mt-6">{t('Habla con nuestro concierge hotelero.', 'Talk to our hotel concierge.')}</h3>
               <p className="text-graphite mt-4 leading-relaxed">
                 {t('Pedidos por volumen, medidas a la carta y calendarios de entrega para proyectos de hospitalidad de cualquier tamaño.', 'Volume orders, custom sizing and delivery schedules for hospitality projects of any size.')}
               </p>
@@ -2168,7 +2169,7 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Comparar Productos', 'Compare Products')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Compara, lado a lado.', 'Compare, side by side.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Compara, lado a lado.', 'Compare, side by side.')}</h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">
                 {t('Elige hasta 3 productos de cualquier sección para comparar sus fotos y especificaciones.', 'Choose up to 3 products from any section to compare their photos and specifications.')}
               </p>
@@ -2182,7 +2183,7 @@ export default function App() {
                 return (
                   <div key={cat.es}>
                     <div className="flex items-center gap-4 mb-4">
-                      <h2 className="font-serif text-xl md:text-2xl text-ink whitespace-nowrap">{pick(cat)}</h2>
+                      <h3 className="font-serif text-xl md:text-2xl text-ink whitespace-nowrap">{pick(cat)}</h3>
                       <span className="gold-rule !w-full" />
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -2230,13 +2231,13 @@ export default function App() {
               {compareProducts.length === 0 ? (
                 <div className="text-center py-16">
                   <Eyebrow>{t('Tu comparación', 'Your comparison')}</Eyebrow>
-                  <h2 className="font-serif text-3xl text-ink mt-4">{t('Selecciona hasta 3 productos arriba para compararlos aquí.', 'Select up to 3 products above to compare them here.')}</h2>
+                  <h3 className="font-serif text-3xl text-ink mt-4">{t('Selecciona hasta 3 productos arriba para compararlos aquí.', 'Select up to 3 products above to compare them here.')}</h3>
                 </div>
               ) : (
                 <>
                   <div className="text-center mb-10">
                     <Eyebrow>{t('Tu comparación', 'Your comparison')}</Eyebrow>
-                    <h2 className="font-serif text-3xl md:text-4xl text-ink mt-3">{t('Especificaciones, lado a lado.', 'Specifications, side by side.')}</h2>
+                    <h3 className="font-serif text-3xl md:text-4xl text-ink mt-3">{t('Especificaciones, lado a lado.', 'Specifications, side by side.')}</h3>
                   </div>
                   <div className="overflow-x-auto">
                     <div className="min-w-[520px]" style={{ display: 'grid', gridTemplateColumns: `150px repeat(${compareProducts.length}, minmax(190px, 1fr))` }}>
@@ -2306,7 +2307,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Mi Carrito', 'My Cart')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Revisa tu pedido.', 'Review your order.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Revisa tu pedido.', 'Review your order.')}</h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">
                 {t('Agrega productos desde cualquier ficha, ajusta cantidades aquí y envíanos tu pedido directo por WhatsApp.', 'Add products from any product page, adjust quantities here, and send your order straight to us on WhatsApp.')}
               </p>
@@ -2559,7 +2560,7 @@ export default function App() {
                 <div className="reveal reveal-delay-1">
                   <Eyebrow>{pick(selectedProduct.eyebrow)}</Eyebrow>
                   <GoldRule className="mt-4" />
-                  <h1 className="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05]">{pick(selectedProduct.name)}</h1>
+                  <h2 className="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05]">{pick(selectedProduct.name)}</h2>
                   <p className="font-serif italic text-mist text-lg mt-3">{pick(selectedProduct.tagline)}</p>
 
                   <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-center">
@@ -2646,10 +2647,10 @@ export default function App() {
                   >
                     <Eyebrow>{t('Beneficios', 'Benefits')}</Eyebrow>
                     <GoldRule center className="mt-4" />
-                    <h2 className="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
+                    <h3 className="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
                       {t('Diseñado en torno a ti.', 'Designed around you.')}
                       <svg className="chevron w-5 h-5 md:hidden flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </h2>
+                    </h3>
                     <span className="md:hidden text-[0.65rem] tracking-[0.2em] uppercase text-gold mt-2">{t('Toca para ver', 'Tap to view')}</span>
                   </button>
                   <div className="mobile-collapse-body">
@@ -2679,10 +2680,10 @@ export default function App() {
                 >
                   <Eyebrow>{t('Especificaciones', 'Specifications')}</Eyebrow>
                   <GoldRule center className="mt-4" />
-                  <h2 className="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
+                  <h3 className="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
                     {t('Cada detalle, documentado.', 'Every detail, documented.')}
                     <svg className="chevron w-5 h-5 md:hidden flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </h2>
+                  </h3>
                   <span className="md:hidden text-[0.65rem] tracking-[0.2em] uppercase text-gold mt-2">{t('Toca para ver', 'Tap to view')}</span>
                 </button>
                 <div className="mobile-collapse-body">
@@ -2709,7 +2710,7 @@ export default function App() {
                 <div className="text-center reveal">
                   <Eyebrow>{t('Preguntas', 'Questions')}</Eyebrow>
                   <GoldRule center className="mt-4" />
-                  <h2 className="font-serif text-4xl text-ink mt-8">{t('Sobre este producto.', 'About this product.')}</h2>
+                  <h3 className="font-serif text-4xl text-ink mt-8">{t('Sobre este producto.', 'About this product.')}</h3>
                 </div>
                 <div className="mt-14">
                   {selectedProduct.faqs.map((f, i) => (
@@ -2742,9 +2743,9 @@ export default function App() {
             <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
               <Eyebrow light className="reveal">{t('Tecnología', 'Technology')}</Eyebrow>
               <GoldRule className="mt-5 reveal reveal-delay-1" />
-              <h1 className="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1">
+              <h2 className="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1">
                 {t('La ciencia del descanso, en capas.', 'The science of sleep, layered.')}
-              </h1>
+              </h2>
             </div>
           </section>
 
@@ -2753,7 +2754,7 @@ export default function App() {
               <div className="reveal">
                 <Eyebrow>{t('Construcción', 'Construction')}</Eyebrow>
                 <GoldRule className="mt-4" />
-                <h2 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">{t('Cinco capas, un único propósito.', 'Five layers, one purpose.')}</h2>
+                <h3 className="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight">{t('Cinco capas, un único propósito.', 'Five layers, one purpose.')}</h3>
                 <p className="text-graphite mt-6 leading-relaxed">
                   {t(
                     'Desde la tela de enfriamiento transpirable en la parte superior hasta el núcleo de resortes encapsulados en la base — cada capa está diseñada, probada y refinada para ofrecer un descanso perfecto.',
@@ -2790,7 +2791,7 @@ export default function App() {
               <div className="text-center max-w-2xl mx-auto reveal">
                 <Eyebrow light>{t('Certificaciones', 'Certifications')}</Eyebrow>
                 <GoldRule center className="mt-4" />
-                <h2 className="font-serif text-4xl mt-8">{t('Certificación internacional.', 'Internationally certified.')}</h2>
+                <h3 className="font-serif text-4xl mt-8">{t('Certificación internacional.', 'Internationally certified.')}</h3>
               </div>
               <div className="grid md:grid-cols-3 gap-8 mt-16">
                 {[
@@ -2818,9 +2819,9 @@ export default function App() {
             <div className="max-w-7xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Precios Transparentes', 'Transparent Pricing')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">
                 {t(<>Cada producto.<br />Cada medida perfecta.</>, <>Every product.<br />Every perfect size.</>)}
-              </h1>
+              </h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">
                 {t(
                   'Cada colchón Nuvela incluye entrega white-glove, prueba de 100 noches y garantía de 10 años — sin costo adicional.',
@@ -2840,7 +2841,7 @@ export default function App() {
               <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <div className="text-center mb-10">
                   <Eyebrow>{pick(p.eyebrow)}</Eyebrow>
-                  <h2 className="font-serif text-3xl md:text-4xl text-ink mt-3">{pick(p.name)}</h2>
+                  <h3 className="font-serif text-3xl md:text-4xl text-ink mt-3">{pick(p.name)}</h3>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {p.variants.map((v, i) => (
@@ -2888,7 +2889,7 @@ export default function App() {
               <div className="reveal">
                 <Eyebrow>{t('Financiamiento', 'Financing')}</Eyebrow>
                 <GoldRule className="mt-4" />
-                <h2 className="font-serif text-4xl text-ink mt-8 leading-tight">{t('Paga a tu manera.', 'Pay your way.')}</h2>
+                <h3 className="font-serif text-4xl text-ink mt-8 leading-tight">{t('Paga a tu manera.', 'Pay your way.')}</h3>
                 <p className="text-graphite mt-6 leading-relaxed">
                   {t(
                     'Opciones de financiamiento flexibles. Hasta 12 pagos mensuales sin intereses con bancos participantes. Habla con nuestro equipo concierge para conocer los términos completos.',
@@ -2922,9 +2923,9 @@ export default function App() {
             <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
               <Eyebrow light className="reveal">{t('Entregas', 'Delivery')}</Eyebrow>
               <GoldRule className="mt-5 reveal reveal-delay-1" />
-              <h1 className="text-white font-serif text-5xl md:text-6xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1">
+              <h2 className="text-white font-serif text-5xl md:text-6xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1">
                 {t(<>Servicio white-glove.<br />De nuestra puerta a la tuya.</>, <>White-glove service.<br />From our door to yours.</>)}
-              </h1>
+              </h2>
             </div>
           </section>
 
@@ -2949,7 +2950,7 @@ export default function App() {
               <div className="reveal">
                 <Eyebrow>{t('Empaque', 'Packaging')}</Eyebrow>
                 <GoldRule className="mt-4" />
-                <h2 className="font-serif text-4xl text-ink mt-8 leading-tight">{t('Una primera impresión que vale conservar.', 'A first impression worth keeping.')}</h2>
+                <h3 className="font-serif text-4xl text-ink mt-8 leading-tight">{t('Una primera impresión que vale conservar.', 'A first impression worth keeping.')}</h3>
                 <p className="text-graphite mt-6 leading-relaxed">
                   {t(
                     'Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, y elegante como un unboxing.',
@@ -2968,7 +2969,7 @@ export default function App() {
               <div className="text-center reveal">
                 <Eyebrow>{t('FAQ Entregas', 'Delivery FAQ')}</Eyebrow>
                 <GoldRule center className="mt-4" />
-                <h2 className="font-serif text-4xl text-ink mt-8">{t('Preguntas frecuentes.', 'Common questions.')}</h2>
+                <h3 className="font-serif text-4xl text-ink mt-8">{t('Preguntas frecuentes.', 'Common questions.')}</h3>
               </div>
               <div className="mt-12">
                 {[
@@ -2993,7 +2994,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Agenda tu Cita', 'Book an Appointment')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Visítanos o agenda una asesoría.', 'Visit us, or talk to an advisor.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Visítanos o agenda una asesoría.', 'Visit us, or talk to an advisor.')}</h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">
                 {t('Agenda tu horario con un clic — Lunes a Sábado, de 9:00am a 5:00pm, citas de una hora. Nos dices a qué asesor prefieres dentro del calendario.', "Book your time in one click — Monday to Saturday, 9:00am to 5:00pm, one-hour appointments. You'll tell us which advisor you prefer inside the calendar.")}
               </p>
@@ -3003,7 +3004,7 @@ export default function App() {
           {/* Meet the team, then ONE button -> the showroom's shared live Google Calendar */}
           <section className="pb-24 md:pb-32 bg-cream border-t border-pearl">
             <div className="max-w-4xl mx-auto px-6 pt-16">
-              <h2 className="font-serif text-2xl md:text-3xl text-ink mt-3">{t('Conoce a tu equipo y agenda tu horario', 'Meet your team, then book your time')}</h2>
+              <h3 className="font-serif text-2xl md:text-3xl text-ink mt-3">{t('Conoce a tu equipo y agenda tu horario', 'Meet your team, then book your time')}</h3>
               <p className="text-graphite text-sm mt-3 leading-relaxed">
                 {t('Lunes a Sábado, 9:00am – 5:00pm · Citas de una hora. Se abre en una pestaña nueva y recibirás un correo de confirmación apenas agendes.', "Monday to Saturday, 9:00am – 5:00pm · One-hour appointments. It opens in a new tab, and you'll get an email confirmation as soon as you book.")}
               </p>
@@ -3036,7 +3037,7 @@ export default function App() {
           {/* Sucursales -> mapa de Google Maps embebido, sin API key, más un botón "Cómo llegar" */}
           <section className="pb-24 md:pb-32 bg-white border-t border-pearl">
             <div className="max-w-4xl mx-auto px-6 pt-16">
-              <h2 className="font-serif text-2xl md:text-3xl text-ink">{t('Nuestras Sucursales', 'Our Locations')}</h2>
+              <h3 className="font-serif text-2xl md:text-3xl text-ink">{t('Nuestras Sucursales', 'Our Locations')}</h3>
               <p className="text-graphite text-sm mt-3 leading-relaxed">
                 {t('Encuéntranos en Google Maps y obtén cómo llegar con un toque.', 'Find us on Google Maps and get directions in one tap.')}
               </p>
@@ -3081,7 +3082,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Reseñas', 'Reviews')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Lo que dicen quienes ya duermen mejor.', 'What people already sleeping better are saying.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Lo que dicen quienes ya duermen mejor.', 'What people already sleeping better are saying.')}</h2>
               <p className="text-graphite mt-6 leading-relaxed max-w-xl mx-auto">{t('Reseñas reales, directo de nuestro perfil de Google.', 'Real reviews straight from our Google Business profile.')}</p>
             </div>
           </section>
@@ -3164,7 +3165,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Preguntas Frecuentes', 'Frequently Asked')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Respuestas, por adelantado.', 'Answers, in advance.')}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Respuestas, por adelantado.', 'Answers, in advance.')}</h2>
               <p className="text-graphite mt-6 max-w-xl mx-auto leading-relaxed">
                 {t('Todo lo que podrías querer saber — sobre Nuvela, nuestros materiales, nuestro servicio y nuestra promesa.', 'Everything you might want to know — about Nuvela, our materials, our service and our promise.')}
               </p>
@@ -3210,7 +3211,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 text-center reveal">
               <Eyebrow>{t('Contáctanos', 'Contact')}</Eyebrow>
               <GoldRule center className="mt-4" />
-              <h1 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Hablemos del descanso.', "Let's talk sleep.")}</h1>
+              <h2 className="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]">{t('Hablemos del descanso.', "Let's talk sleep.")}</h2>
               <p className="text-graphite mt-6 max-w-xl mx-auto leading-relaxed">
                 {t('Nuestro equipo concierge está aquí para ayudarte — por mensaje, llamada o en persona.', "Our concierge team is here to help — by message, by call, or in person.")}
               </p>
@@ -3319,7 +3320,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto px-6 reveal">
               <Eyebrow>Legal</Eyebrow>
               <GoldRule className="mt-4" />
-              <h1 className="font-serif text-5xl text-ink mt-8 leading-[1.05]">{t('Política de Privacidad', 'Privacy Policy')}</h1>
+              <h2 className="font-serif text-5xl text-ink mt-8 leading-[1.05]">{t('Política de Privacidad', 'Privacy Policy')}</h2>
               <p className="text-mist text-sm tracking-[0.18em] uppercase mt-6">{t('Última actualización · Mayo 2026', 'Last updated · May 2026')}</p>
             </div>
           </section>
@@ -3328,7 +3329,7 @@ export default function App() {
               <div className="space-y-8 text-graphite leading-loose">
                 {privacySections(t).map((s, i) => (
                   <div key={i}>
-                    <h2 className="font-serif text-2xl text-ink mb-3">{s.title}</h2>
+                    <h3 className="font-serif text-2xl text-ink mb-3">{s.title}</h3>
                     <p>{s.body}</p>
                   </div>
                 ))}
