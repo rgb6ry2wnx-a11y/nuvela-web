@@ -33,11 +33,17 @@
 />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.nuvelagt.com/" />
+<meta property="og:site_name" content="Nuvela Italian Design" />
 <meta property="og:locale" content="es_GT" />
 <meta property="og:locale:alternate" content="en_US" />
+<meta property="og:image" content="https://www.nuvelagt.com/images/og-nuvela.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Colchón Nuvela Italian Design" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.nuvelagt.com/images/og-nuvela.jpg" />
 <meta name="twitter:title" content="Colchones Premium en Guatemala | Tecnología Híbrida | Nuvela Italian Design" />
 <meta
   name="twitter:description"
@@ -52,8 +58,11 @@
       "@type": "FurnitureStore",
       "@id": "https://www.nuvelagt.com/#store",
       "name": "Nuvela",
-      "alternateName": "Nuvela Italian Design",
+      "alternateName": ["Nuvela Italian Design", "Nuvela GT", "nuvelagt"],
+      "legalName": "DISEÑO Y CONFORT, S.A.",
       "url": "https://www.nuvelagt.com/",
+      "logo": "https://www.nuvelagt.com/images/logo.png",
+      "image": "https://www.nuvelagt.com/images/og-nuvela.jpg",
       "description": "Tienda de colchones premium en Guatemala con tecnología híbrida, memory foam, resortes encapsulados y diseño italiano.",
       "telephone": "+50253984599",
       "email": "comercial@nuvelagt.com",
@@ -66,9 +75,16 @@
       },
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Zona 9",
         "addressLocality": "Ciudad de Guatemala",
         "addressRegion": "Guatemala",
         "addressCountry": "GT"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "11:00",
+        "closes": "17:00"
       },
       "sameAs": [
         "https://www.instagram.com/nuvela.gt",
@@ -117,6 +133,12 @@
           "name": "Colchón Nuvela Imperial",
           "size": "Imperial",
           "description": "Colchón premium Nuvela tamaño Imperial con tecnología híbrida, memory foam y resortes encapsulados.",
+          "image": [
+            "https://www.nuvelagt.com/images/colchon.jpg",
+            "https://www.nuvelagt.com/images/detalle.jpg",
+            "https://www.nuvelagt.com/images/estructura.jpg",
+            "https://www.nuvelagt.com/images/base.jpg"
+          ],
           "brand": {
             "@type": "Brand",
             "name": "Nuvela"
@@ -146,6 +168,38 @@
             "itemCondition": "https://schema.org/NewCondition",
             "seller": {
               "@id": "https://www.nuvelagt.com/#store"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "300",
+                "currency": "GTQ"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "GT"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 3,
+                  "maxValue": 10,
+                  "unitCode": "DAY"
+                }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+              "applicableCountry": "GT"
             }
           }
         },
@@ -155,6 +209,12 @@
           "name": "Colchón Nuvela Matrimonial",
           "size": "Matrimonial",
           "description": "Colchón premium Nuvela tamaño Matrimonial con tecnología híbrida, memory foam y resortes encapsulados.",
+          "image": [
+            "https://www.nuvelagt.com/images/colchon.jpg",
+            "https://www.nuvelagt.com/images/detalle.jpg",
+            "https://www.nuvelagt.com/images/estructura.jpg",
+            "https://www.nuvelagt.com/images/base.jpg"
+          ],
           "brand": {
             "@type": "Brand",
             "name": "Nuvela"
@@ -184,6 +244,38 @@
             "itemCondition": "https://schema.org/NewCondition",
             "seller": {
               "@id": "https://www.nuvelagt.com/#store"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "300",
+                "currency": "GTQ"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "GT"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 3,
+                  "maxValue": 10,
+                  "unitCode": "DAY"
+                }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+              "applicableCountry": "GT"
             }
           }
         },
@@ -193,6 +285,12 @@
           "name": "Colchón Nuvela Queen",
           "size": "Queen",
           "description": "Colchón premium Nuvela tamaño Queen con tecnología híbrida, memory foam y resortes encapsulados.",
+          "image": [
+            "https://www.nuvelagt.com/images/colchon.jpg",
+            "https://www.nuvelagt.com/images/detalle.jpg",
+            "https://www.nuvelagt.com/images/estructura.jpg",
+            "https://www.nuvelagt.com/images/base.jpg"
+          ],
           "brand": {
             "@type": "Brand",
             "name": "Nuvela"
@@ -222,6 +320,38 @@
             "itemCondition": "https://schema.org/NewCondition",
             "seller": {
               "@id": "https://www.nuvelagt.com/#store"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "300",
+                "currency": "GTQ"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "GT"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 3,
+                  "maxValue": 10,
+                  "unitCode": "DAY"
+                }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+              "applicableCountry": "GT"
             }
           }
         },
@@ -231,6 +361,12 @@
           "name": "Colchón Nuvela King",
           "size": "King",
           "description": "Colchón premium Nuvela tamaño King con tecnología híbrida, memory foam y resortes encapsulados.",
+          "image": [
+            "https://www.nuvelagt.com/images/colchon.jpg",
+            "https://www.nuvelagt.com/images/detalle.jpg",
+            "https://www.nuvelagt.com/images/estructura.jpg",
+            "https://www.nuvelagt.com/images/base.jpg"
+          ],
           "brand": {
             "@type": "Brand",
             "name": "Nuvela"
@@ -260,6 +396,38 @@
             "itemCondition": "https://schema.org/NewCondition",
             "seller": {
               "@id": "https://www.nuvelagt.com/#store"
+            },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "300",
+                "currency": "GTQ"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "GT"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 3,
+                  "maxValue": 10,
+                  "unitCode": "DAY"
+                }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+              "applicableCountry": "GT"
             }
           }
         }
@@ -1351,7 +1519,7 @@
         <div id="lead-popup-form-wrap">
           <p class="eyebrow text-gold-light" data-en="Stay in Touch" data-es="Mantente al Tanto">Mantente al Tanto</p>
           <span class="gold-rule mt-4"></span>
-          <h2 class="font-serif text-2xl sm:text-3xl text-ink mt-6 leading-tight" data-en="Want to receive more information?" data-es="¿Quieres recibir más información?">¿Quieres recibir más información?</h2>
+          <h3 class="font-serif text-2xl sm:text-3xl text-ink mt-6 leading-tight" data-en="Want to receive more information?" data-es="¿Quieres recibir más información?">¿Quieres recibir más información?</h3>
           <p class="text-graphite mt-3 leading-relaxed text-sm" data-en="Leave us your details and we'll keep you posted on new products, promotions and news from Nuvela." data-es="Déjanos tus datos y te mantendremos al tanto de nuevos productos, promociones y novedades de Nuvela.">Déjanos tus datos y te mantendremos al tanto de nuevos productos, promociones y novedades de Nuvela.</p>
           <form id="lead-popup-form" class="mt-8 space-y-5" novalidate>
             <div class="grid grid-cols-2 gap-4">
@@ -1397,7 +1565,7 @@
       </div>
       <div class="hero-content">
         <p class="eyebrow text-gold-light" data-en="Premium Mattresses · Italian Design" data-es="Colchones Premium · Diseño Italiano">Colchones Premium · Diseño Italiano</p>
-        <h1 id="hero-title" class="font-serif" data-en="Nuvela." data-es="Nuvela.">Nuvela.</h1>
+        <h1 id="hero-title" class="font-serif" data-en="<span class='sr-only'>Premium Mattresses in Guatemala &middot; </span>Nuvela." data-es="<span class='sr-only'>Colchones Premium en Guatemala &middot; </span>Nuvela."><span class="sr-only">Colchones Premium en Guatemala &middot; </span>Nuvela.</h1>
         <p id="hero-tagline" class="font-serif" data-en="Sleep well. Always." data-es="Duerme Bien Siempre.">Duerme Bien Siempre.</p>
         <div class="hero-actions">
           <button data-page="producto" class="btn-gold" data-en="Shop Now" data-es="Comprar Ahora">Comprar Ahora</button>
@@ -1450,7 +1618,7 @@
       <div class="max-w-7xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="The Collection" data-es="La Colección">La Colección</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h2 class="font-serif text-3xl md:text-4xl text-ink mt-6" data-en="One collection, every detail." data-es="Una colección, cada detalle.">Una colección, cada detalle.</h2>
+        <h3 class="font-serif text-3xl md:text-4xl text-ink mt-6" data-en="One collection, every detail." data-es="Una colección, cada detalle.">Una colección, cada detalle.</h3>
         <p class="text-graphite text-sm mt-3 max-w-xl mx-auto leading-relaxed" data-en="Scroll to explore. Tap a photo to see the product." data-es="Desliza para explorar. Toca una foto para ver el producto.">Desliza para explorar. Toca una foto para ver el producto.</p>
       </div>
       <div id="scroll-morph-container" class="relative w-full mt-10 overflow-hidden">
@@ -1480,7 +1648,7 @@
         <div class="reveal order-2 lg:order-1">
           <p class="eyebrow" data-en="The Mattress" data-es="El Colchón">El Colchón</p>
           <span class="gold-rule mt-4"></span>
-          <h2 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="Colchón Nuvela." data-es="Colchón Nuvela.">Colchón Nuvela.</h2>
+          <h3 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="Colchón Nuvela." data-es="Colchón Nuvela.">Colchón Nuvela.</h3>
           <p class="font-serif italic text-mist text-lg mt-3" data-en="Crafted in Italian style." data-es="Crafted in Italian Style.">Crafted in Italian Style.</p>
           <p class="text-graphite mt-6 leading-relaxed text-[0.98rem]" data-en="Five precision-engineered layers, individually encapsulated springs and breathable cooling fabrics — the Nuvela mattress is sleep distilled to its purest, most luxurious form." data-es="Cinco capas de ingeniería precisa, resortes encapsulados individuales y tejidos de enfriamiento transpirables — el colchón Nuvela es el descanso destilado a su forma más pura y lujosa.">Cinco capas de ingeniería precisa, resortes encapsulados individuales y tejidos de enfriamiento transpirables — el colchón Nuvela es el descanso destilado a su forma más pura y lujosa.</p>
 
@@ -1531,7 +1699,7 @@
         <div class="text-center max-w-2xl mx-auto reveal">
           <p class="eyebrow text-gold-light" data-en="Sleep Engineering" data-es="Ingeniería del Descanso">Ingeniería del Descanso</p>
           <span class="gold-rule gold-rule-center mt-5"></span>
-          <h2 class="font-serif text-4xl md:text-5xl mt-8 leading-tight" data-en="Five layers of pure comfort." data-es="Cinco capas de confort puro.">Cinco capas de confort puro.</h2>
+          <h3 class="font-serif text-4xl md:text-5xl mt-8 leading-tight" data-en="Five layers of pure comfort." data-es="Cinco capas de confort puro.">Cinco capas de confort puro.</h3>
           <p class="text-white/70 mt-6 leading-relaxed" data-en="Each layer is engineered with a single goal: to deliver pressure relief, thermal balance and lasting support — night after night." data-es="Cada capa está diseñada con un único propósito: ofrecer alivio de presión, balance térmico y soporte duradero — noche tras noche.">Cada capa está diseñada con un único propósito: ofrecer alivio de presión, balance térmico y soporte duradero — noche tras noche.</p>
         </div>
 
@@ -1573,7 +1741,7 @@
         <div class="text-center max-w-2xl mx-auto reveal">
           <p class="eyebrow" data-en="Why Nuvela" data-es="Por qué Nuvela">Por qué Nuvela</p>
           <span class="gold-rule gold-rule-center mt-5"></span>
-          <h2 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="A standard, redefined." data-es="Un estándar, redefinido.">Un estándar, redefinido.</h2>
+          <h3 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="A standard, redefined." data-es="Un estándar, redefinido.">Un estándar, redefinido.</h3>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mt-16">
@@ -1630,7 +1798,7 @@
         <div class="text-center max-w-2xl mx-auto reveal">
           <p class="eyebrow" data-en="Voices" data-es="Testimonios">Testimonios</p>
           <span class="gold-rule gold-rule-center mt-5"></span>
-          <h2 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="Sleep, told by those who live it." data-es="El descanso, contado por quienes lo viven.">El descanso, contado por quienes lo viven.</h2>
+          <h3 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="Sleep, told by those who live it." data-es="El descanso, contado por quienes lo viven.">El descanso, contado por quienes lo viven.</h3>
         </div>
 
         <div class="mt-16 relative overflow-hidden">
@@ -1653,7 +1821,7 @@
           <div>
             <p class="eyebrow">Instagram</p>
             <span class="gold-rule mt-4"></span>
-            <h2 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="Follow our story." data-es="Sigue nuestra historia.">Sigue nuestra historia.</h2>
+            <h3 class="font-serif text-4xl md:text-5xl text-ink mt-8 leading-tight" data-en="Follow our story." data-es="Sigue nuestra historia.">Sigue nuestra historia.</h3>
             <a href="https://instagram.com/Nuvela.gt" target="_blank" rel="noopener" class="link-gold mt-4 inline-block">@Nuvela.gt</a>
           </div>
           <a href="https://instagram.com/Nuvela.gt" target="_blank" rel="noopener" class="btn-outline" data-en="Follow on Instagram" data-es="Seguir en Instagram">Seguir en Instagram</a>
@@ -1681,7 +1849,7 @@
       <div class="max-w-4xl mx-auto px-6 text-center reveal">
         <p class="eyebrow text-gold-light" data-en="Ready to rest" data-es="Listo para descansar">Listo para descansar</p>
         <span class="gold-rule gold-rule-center mt-5"></span>
-        <h2 class="font-serif text-4xl md:text-6xl mt-8 leading-tight" data-en="Your best night<br/>begins tonight." data-es="Tu mejor noche<br/>empieza esta noche.">Tu mejor noche<br/>empieza esta noche.</h2>
+        <h3 class="font-serif text-4xl md:text-6xl mt-8 leading-tight" data-en="Your best night<br/>begins tonight." data-es="Tu mejor noche<br/>empieza esta noche.">Tu mejor noche<br/>empieza esta noche.</h3>
         <p class="text-white/70 mt-6 max-w-xl mx-auto leading-relaxed" data-en="Speak with our concierge team. We'll help you find the right size, the right firmness and the right sleep — for you." data-es="Habla con nuestro equipo concierge. Te ayudamos a encontrar la medida correcta, la firmeza correcta y el descanso correcto — para ti.">Habla con nuestro equipo concierge. Te ayudamos a encontrar la medida correcta, la firmeza correcta y el descanso correcto — para ti.</p>
         <div class="flex flex-wrap gap-4 justify-center mt-10">
           <button data-page="contacto" class="btn-gold" data-en="Contact Us" data-es="Contáctanos">Contáctanos</button>
@@ -1698,12 +1866,12 @@
   <main id="page-historia" class="page">
     <!-- Page header -->
     <section class="relative h-[10vh] min-h-[460px] overflow-hidden">
-      <img class="absolute inset-0 w-full h-full object-cover kenburns" src="images/pareja.jpg"/>
+      <img class="absolute inset-0 w-full h-full object-cover kenburns" src="images/pareja.jpg" alt="Pareja disfrutando de un descanso cómodo gracias a un colchón Nuvela"/>
       <div class="absolute inset-0 bg-black/40"></div>
       <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
         <p class="eyebrow text-gold-light reveal" data-en="Our Story" data-es="Historia">Historia</p>
         <span class="gold-rule mt-5 reveal reveal-delay-1"></span>
-        <h1 class="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1" data-en="A philosophy of rest." data-es="Una filosofía del descanso.">Una filosofía del descanso.</h1>
+        <h2 class="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1" data-en="A philosophy of rest." data-es="Una filosofía del descanso.">Una filosofía del descanso.</h2>
       </div>
     </section>
 
@@ -1712,7 +1880,7 @@
         <div class="reveal">
           <p class="eyebrow" data-en="Vision" data-es="Visión">Visión</p>
           <span class="gold-rule mt-4"></span>
-          <h2 class="font-serif text-3xl md:text-4xl text-ink mt-6 leading-tight" data-en="Sleep is not a luxury — it is the foundation of a well-lived life." data-es="El descanso no es un lujo — es el fundamento de una vida bien vivida.">El descanso no es un lujo — es el fundamento de una vida bien vivida.</h2>
+          <h3 class="font-serif text-3xl md:text-4xl text-ink mt-6 leading-tight" data-en="Sleep is not a luxury — it is the foundation of a well-lived life." data-es="El descanso no es un lujo — es el fundamento de una vida bien vivida.">El descanso no es un lujo — es el fundamento de una vida bien vivida.</h3>
         </div>
         <p class="text-graphite mt-10 leading-loose text-lg reveal reveal-delay-1" data-en="Nuvela was born from a simple conviction: that the way we rest defines how we live. Inspired by the Italian tradition of craftsmanship — where every detail is considered, every material chosen, every finish refined — we set out to build mattresses that don't just feel premium. They feel inevitable." data-es="Nuvela nació de una convicción simple: la forma en que descansamos define cómo vivimos. Inspirados por la tradición italiana del oficio — donde cada detalle se considera, cada material se elige, cada acabado se refina — nos propusimos crear colchones que no solo se sintieran premium. Se sintieran inevitables.">Nuvela nació de una convicción simple: la forma en que descansamos define cómo vivimos. Inspirados por la tradición italiana del oficio — donde cada detalle se considera, cada material se elige, cada acabado se refina — nos propusimos crear colchones que no solo se sintieran premium. Se sintieran inevitables.</p>
         <p class="text-graphite mt-6 leading-loose text-lg reveal reveal-delay-2" data-en="Every Nuvela mattress is the product of obsessive engineering. Each layer — from the cooling top fabric to the high-density 40D core to the hundreds of independently encapsulated springs — is calibrated to a single end: a sleep so deep, so complete, that morning becomes a celebration." data-es="Cada colchón Nuvela es producto de una ingeniería obsesiva. Cada capa — desde la tela superior de enfriamiento, pasando por el núcleo 40D de alta densidad, hasta los cientos de resortes encapsulados individualmente — está calibrada con un único fin: un descanso tan profundo, tan completo, que la mañana se convierte en una celebración.">Cada colchón Nuvela es producto de una ingeniería obsesiva. Cada capa — desde la tela superior de enfriamiento, pasando por el núcleo 40D de alta densidad, hasta los cientos de resortes encapsulados individualmente — está calibrada con un único fin: un descanso tan profundo, tan completo, que la mañana se convierte en una celebración.</p>
@@ -1755,7 +1923,7 @@
       <div class="max-w-7xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Our Products" data-es="Nuestros Productos">Nuestros Productos</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Every product, one standard of rest." data-es="Cada producto, un mismo estándar de descanso.">Cada producto, un mismo estándar de descanso.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Every product, one standard of rest." data-es="Cada producto, un mismo estándar de descanso.">Cada producto, un mismo estándar de descanso.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Choose a category to see its models, sizes, prices and full specifications." data-es="Elige una categoría para ver sus modelos, medidas, precios y ficha técnica completa.">Elige una categoría para ver sus modelos, medidas, precios y ficha técnica completa.</p>
       </div>
     </section>
@@ -1792,7 +1960,7 @@
       <div class="max-w-7xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Rest, at hospitality scale." data-es="Descanso, a la escala de la hospitalidad.">Descanso, a la escala de la hospitalidad.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Rest, at hospitality scale." data-es="Descanso, a la escala de la hospitalidad.">Descanso, a la escala de la hospitalidad.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Mattresses, pillows, bedding and loungers for hotels, Airbnbs and renovation projects — with volume pricing and a dedicated concierge." data-es="Colchones, almohadas, blancos de cama y camastrones para hoteles, Airbnbs y proyectos de remodelación — con precios por volumen y un concierge dedicado.">Colchones, almohadas, blancos de cama y camastrones para hoteles, Airbnbs y proyectos de remodelación — con precios por volumen y un concierge dedicado.</p>
       </div>
     </section>
@@ -1845,7 +2013,7 @@
       <div class="max-w-2xl mx-auto px-6 reveal">
         <p class="eyebrow" data-en="Hospitality Projects" data-es="Proyectos de Hospitalidad">Proyectos de Hospitalidad</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h2 class="font-serif text-3xl text-ink mt-6" data-en="Talk to our hotel concierge." data-es="Habla con nuestro concierge hotelero.">Habla con nuestro concierge hotelero.</h2>
+        <h3 class="font-serif text-3xl text-ink mt-6" data-en="Talk to our hotel concierge." data-es="Habla con nuestro concierge hotelero.">Habla con nuestro concierge hotelero.</h3>
         <p class="text-graphite mt-4 leading-relaxed" data-en="Volume orders, custom sizing and delivery schedules for hospitality projects of any size." data-es="Pedidos por volumen, medidas a la carta y calendarios de entrega para proyectos de hospitalidad de cualquier tamaño.">Pedidos por volumen, medidas a la carta y calendarios de entrega para proyectos de hospitalidad de cualquier tamaño.</p>
         <button data-page="contacto" class="btn-gold mt-8" data-en="Contact Concierge" data-es="Hablar con Concierge">Hablar con Concierge</button>
       </div>
@@ -1864,7 +2032,7 @@
       <div class="max-w-7xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Compare, side by side." data-es="Compara, lado a lado.">Compara, lado a lado.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Compare, side by side." data-es="Compara, lado a lado.">Compara, lado a lado.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Choose up to 3 products from any section to compare their photos and specifications." data-es="Elige hasta 3 productos de cualquier sección para comparar sus fotos y especificaciones.">Elige hasta 3 productos de cualquier sección para comparar sus fotos y especificaciones.</p>
       </div>
     </section>
@@ -1892,7 +2060,7 @@
       <div class="max-w-4xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="My Cart" data-es="Mi Carrito">Mi Carrito</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Review your order." data-es="Revisa tu pedido.">Revisa tu pedido.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Review your order." data-es="Revisa tu pedido.">Revisa tu pedido.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Add products from any product page, adjust quantities here, and send your order straight to us on WhatsApp." data-es="Agrega productos desde cualquier ficha, ajusta cantidades aquí y envíanos tu pedido directo por WhatsApp.">Agrega productos desde cualquier ficha, ajusta cantidades aquí y envíanos tu pedido directo por WhatsApp.</p>
       </div>
     </section>
@@ -1991,7 +2159,7 @@
           <div class="reveal reveal-delay-1">
             <p id="pd-eyebrow" class="eyebrow"></p>
             <span class="gold-rule mt-4"></span>
-            <h1 id="pd-title" class="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05]"></h1>
+            <h2 id="pd-title" class="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05]"></h2>
             <p id="pd-tagline" class="font-serif italic text-mist text-lg mt-3"></p>
 
             <div id="pd-stats" class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-center">
@@ -2030,10 +2198,10 @@
           <button type="button" class="js-mobile-collapse-toggle mobile-collapse-toggle w-full flex flex-col items-center text-center max-w-2xl mx-auto cursor-pointer md:cursor-default" aria-expanded="false">
             <p class="eyebrow" data-en="Benefits" data-es="Beneficios">Beneficios</p>
             <span class="gold-rule gold-rule-center mt-4"></span>
-            <h2 class="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
+            <h3 class="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
               <span data-en="Designed around you." data-es="Diseñado en torno a ti.">Diseñado en torno a ti.</span>
               <svg class="chevron w-5 h-5 md:hidden flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </h2>
+            </h3>
             <span class="md:hidden text-[0.65rem] tracking-[0.2em] uppercase text-gold mt-2" data-en="Tap to view" data-es="Toca para ver">Toca para ver</span>
           </button>
           <div class="mobile-collapse-body">
@@ -2053,10 +2221,10 @@
           <button type="button" class="js-mobile-collapse-toggle mobile-collapse-toggle w-full flex flex-col items-center text-center cursor-pointer md:cursor-default" aria-expanded="false">
             <p class="eyebrow" data-en="Specifications" data-es="Especificaciones">Especificaciones</p>
             <span class="gold-rule gold-rule-center mt-4"></span>
-            <h2 class="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
+            <h3 class="font-serif text-4xl text-ink mt-8 flex items-center gap-3">
               <span data-en="Every detail, documented." data-es="Cada detalle, documentado.">Cada detalle, documentado.</span>
               <svg class="chevron w-5 h-5 md:hidden flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </h2>
+            </h3>
             <span class="md:hidden text-[0.65rem] tracking-[0.2em] uppercase text-gold mt-2" data-en="Tap to view" data-es="Toca para ver">Toca para ver</span>
           </button>
 
@@ -2081,7 +2249,7 @@
         <div class="text-center reveal">
           <p class="eyebrow" data-en="Questions" data-es="Preguntas">Preguntas</p>
           <span class="gold-rule gold-rule-center mt-4"></span>
-          <h2 class="font-serif text-4xl text-ink mt-8" data-en="About this product." data-es="Sobre este producto.">Sobre este producto.</h2>
+          <h3 class="font-serif text-4xl text-ink mt-8" data-en="About this product." data-es="Sobre este producto.">Sobre este producto.</h3>
         </div>
         <div id="pd-faq" class="mt-14">
           <!-- faq items injected by renderProductDetail() -->
@@ -2095,12 +2263,12 @@
   <!-- ====================================================== -->
   <main id="page-tecnologia" class="page">
     <section class="relative h-[60vh] min-h-[460px] overflow-hidden">
-      <img class="absolute inset-0 w-full h-full object-cover kenburns" src="images/elasticidad.jpg"/>
+      <img class="absolute inset-0 w-full h-full object-cover kenburns" src="images/elasticidad.jpg" alt="Detalle de la elasticidad y las capas internas del colchón Nuvela"/>
       <div class="absolute inset-0 bg-black/60"></div>
       <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
         <p class="eyebrow text-gold-light reveal" data-en="Technology" data-es="Tecnología">Tecnología</p>
         <span class="gold-rule mt-5 reveal reveal-delay-1"></span>
-        <h1 class="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1" data-en="The science of sleep, layered." data-es="La ciencia del descanso, en capas.">La ciencia del descanso, en capas.</h1>
+        <h2 class="text-white font-serif text-5xl md:text-7xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1" data-en="The science of sleep, layered." data-es="La ciencia del descanso, en capas.">La ciencia del descanso, en capas.</h2>
       </div>
     </section>
 
@@ -2122,7 +2290,7 @@
       <div class="max-w-2xl mx-auto px-6 pb-10 text-center reveal">
         <p class="eyebrow text-gold-light" data-en="Behind the Scenes" data-es="Detrás de Escena">Detrás de Escena</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h2 class="text-white font-serif text-3xl md:text-4xl mt-6 leading-tight" data-en="This is how a Nuvela mattress is made." data-es="Así se fabrica un colchón Nuvela.">Así se fabrica un colchón Nuvela.</h2>
+        <h3 class="text-white font-serif text-3xl md:text-4xl mt-6 leading-tight" data-en="This is how a Nuvela mattress is made." data-es="Así se fabrica un colchón Nuvela.">Así se fabrica un colchón Nuvela.</h3>
       </div>
       <!-- Eduardo pidió reducirlo aun mas (a la mitad de max-w-3xl) porque -->
       <!-- seguia viendose muy grande. max-w-sm = la mitad de max-w-3xl.        -->
@@ -2206,7 +2374,7 @@
       <div class="max-w-3xl mx-auto px-6 pt-24 pb-2 text-center reveal">
         <p class="eyebrow text-gold-light" data-en="Construction" data-es="Construcción">Construcción</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h2 class="font-serif text-4xl md:text-5xl mt-6 leading-tight" data-en="Layer by layer, this is how Nuvela is built." data-es="Capa por capa, así se construye Nuvela.">Capa por capa, así se construye Nuvela.</h2>
+        <h3 class="font-serif text-4xl md:text-5xl mt-6 leading-tight" data-en="Layer by layer, this is how Nuvela is built." data-es="Capa por capa, así se construye Nuvela.">Capa por capa, así se construye Nuvela.</h3>
         <p class="text-white/70 mt-4 leading-relaxed text-sm" data-en="Scroll to discover every layer of the mattress — and what each one is for." data-es="Desliza para descubrir cada capa del colchón y para qué sirve.">Desliza para descubrir cada capa del colchón y para qué sirve.</p>
       </div>
 
@@ -2307,7 +2475,7 @@
         <div class="text-center max-w-2xl mx-auto reveal">
           <p class="eyebrow text-gold-light" data-en="Certifications" data-es="Certificaciones">Certificaciones</p>
           <span class="gold-rule gold-rule-center mt-4"></span>
-          <h2 class="font-serif text-4xl mt-8" data-en="Internationally certified." data-es="Certificación internacional.">Certificación internacional.</h2>
+          <h3 class="font-serif text-4xl mt-8" data-en="Internationally certified." data-es="Certificación internacional.">Certificación internacional.</h3>
         </div>
         <div class="grid md:grid-cols-3 gap-8 mt-16">
           <div class="border border-white/15 p-10 text-center reveal">
@@ -2342,7 +2510,7 @@
       <div class="max-w-7xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Mattress Prices" data-es="Precios Colchones">Precios Colchones</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Every product.<br/>Every perfect size." data-es="Cada producto.<br/>Cada medida perfecta.">Cada producto.<br/>Cada medida perfecta.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Every product.<br/>Every perfect size." data-es="Cada producto.<br/>Cada medida perfecta.">Cada producto.<br/>Cada medida perfecta.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Every Nuvela mattress includes a 10-year warranty. Shipping is calculated separately — from Q300 depending on your location." data-es="Cada colchón Nuvela incluye garantía de 10 años. El envío se cotiza por separado — desde Q300 según tu ubicación.">Cada colchón Nuvela incluye garantía de 10 años. El envío se cotiza por separado — desde Q300 según tu ubicación.</p>
       </div>
 </div>
@@ -2361,7 +2529,7 @@
         <div class="reveal">
           <p class="eyebrow" data-en="Financing" data-es="Financiamiento">Financiamiento</p>
           <span class="gold-rule mt-4"></span>
-          <h2 class="font-serif text-4xl text-ink mt-8 leading-tight" data-en="Pay your way." data-es="Paga a tu manera.">Paga a tu manera.</h2>
+          <h3 class="font-serif text-4xl text-ink mt-8 leading-tight" data-en="Pay your way." data-es="Paga a tu manera.">Paga a tu manera.</h3>
           <p class="text-graphite mt-6 leading-relaxed" data-en="Flexible monthly payments available — up to 12 installments. Interest rates vary depending on the term and the participating bank. Contact us via WhatsApp for the exact rate based on your preferred plan." data-es="Pagos mensuales flexibles disponibles — hasta 12 cuotas. Las tasas de interés varían según el plazo y el banco participante. Escríbenos por WhatsApp para conocer la tasa exacta según el plan que elijas.">Pagos mensuales flexibles disponibles — hasta 12 cuotas. Las tasas de interés varían según el plazo y el banco participante. Escríbenos por WhatsApp para conocer la tasa exacta según el plan que elijas.</p>
         </div>
         <div class="reveal reveal-delay-1">
@@ -2388,7 +2556,7 @@
       <div class="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center">
         <p class="eyebrow text-gold-light reveal" data-en="Delivery" data-es="Entregas">Entregas</p>
         <span class="gold-rule mt-5 reveal reveal-delay-1"></span>
-        <h1 class="text-white font-serif text-5xl md:text-6xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1" data-en="Nationwide delivery.<br/>From our door to yours." data-es="Envíos a todo Guatemala.<br/>De nuestra puerta a la tuya.">Envíos a todo Guatemala.<br/>De nuestra puerta a la tuya.</h1>
+        <h2 class="text-white font-serif text-5xl md:text-6xl mt-8 leading-[1.05] max-w-3xl reveal reveal-delay-1" data-en="Nationwide delivery.<br/>From our door to yours." data-es="Envíos a todo Guatemala.<br/>De nuestra puerta a la tuya.">Envíos a todo Guatemala.<br/>De nuestra puerta a la tuya.</h2>
       </div>
     </section>
 
@@ -2417,7 +2585,7 @@
         <div class="reveal">
           <p class="eyebrow" data-en="Packaging" data-es="Empaque">Empaque</p>
           <span class="gold-rule mt-4"></span>
-          <h2 class="font-serif text-4xl text-ink mt-8 leading-tight" data-en="A first impression worth keeping." data-es="Una primera impresión que vale conservar.">Una primera impresión que vale conservar.</h2>
+          <h3 class="font-serif text-4xl text-ink mt-8 leading-tight" data-en="A first impression worth keeping." data-es="Una primera impresión que vale conservar.">Una primera impresión que vale conservar.</h3>
           <p class="text-graphite mt-6 leading-relaxed" data-en="Each Nuvela mattress arrives in protective premium packaging — free of unnecessary plastics, designed to safeguard the product, and elegant enough to feel like an unboxing." data-es="Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, y elegante como un unboxing.">Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, y elegante como un unboxing.</p>
         </div>
         <div class="aspect-[4/3] overflow-hidden bg-white reveal reveal-delay-1">
@@ -2432,7 +2600,7 @@
         <div class="text-center reveal">
           <p class="eyebrow" data-en="Delivery FAQ" data-es="FAQ Entregas">FAQ Entregas</p>
           <span class="gold-rule gold-rule-center mt-4"></span>
-          <h2 class="font-serif text-4xl text-ink mt-8" data-en="Common questions." data-es="Preguntas frecuentes.">Preguntas frecuentes.</h2>
+          <h3 class="font-serif text-4xl text-ink mt-8" data-en="Common questions." data-es="Preguntas frecuentes.">Preguntas frecuentes.</h3>
         </div>
         <div class="mt-12">
           <div class="faq-item">
@@ -2474,7 +2642,7 @@
       <div class="max-w-4xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Book an Appointment" data-es="Agenda tu Cita">Agenda tu Cita</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Visit us, or talk to an advisor." data-es="Visítanos o agenda una asesoría.">Visítanos o agenda una asesoría.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Visit us, or talk to an advisor." data-es="Visítanos o agenda una asesoría.">Visítanos o agenda una asesoría.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Book your time in one click — Monday to Saturday, 9:00am to 5:00pm, one-hour appointments. You'll tell us which advisor you prefer inside the calendar." data-es="Agenda tu horario con un clic — Lunes a Sábado, de 9:00am a 5:00pm, citas de una hora. Nos dices a qué asesor prefieres dentro del calendario.">Agenda tu horario con un clic — Lunes a Sábado, de 9:00am a 5:00pm, citas de una hora. Nos dices a qué asesor prefieres dentro del calendario.</p>
       </div>
     </section>
@@ -2482,7 +2650,7 @@
     <!-- Conoce al equipo + un solo botón -> el calendario compartido del showroom en vivo -->
     <section class="pb-24 md:pb-32 bg-cream border-t border-pearl">
       <div class="max-w-4xl mx-auto px-6 pt-16">
-        <h2 class="font-serif text-2xl md:text-3xl text-ink" data-en="Meet your team, then book your time" data-es="Conoce a tu equipo y agenda tu horario">Conoce a tu equipo y agenda tu horario</h2>
+        <h3 class="font-serif text-2xl md:text-3xl text-ink" data-en="Meet your team, then book your time" data-es="Conoce a tu equipo y agenda tu horario">Conoce a tu equipo y agenda tu horario</h3>
         <p class="text-graphite text-sm mt-3 leading-relaxed" data-en="Monday to Saturday, 9:00am – 5:00pm · One-hour appointments. It opens in a new tab, and you'll get an email confirmation as soon as you book." data-es="Lunes a Sábado, 9:00am – 5:00pm · Citas de una hora. Se abre en una pestaña nueva y recibirás un correo de confirmación apenas agendes.">Lunes a Sábado, 9:00am – 5:00pm · Citas de una hora. Se abre en una pestaña nueva y recibirás un correo de confirmación apenas agendes.</p>
 
         <div id="cita-calendar-wrap" class="mt-8">
@@ -2498,7 +2666,7 @@
     <!-- sucursales fácilmente el día que abran otra.                     -->
     <section class="pb-24 md:pb-32 bg-white border-t border-pearl">
       <div class="max-w-4xl mx-auto px-6 pt-16">
-        <h2 class="font-serif text-2xl md:text-3xl text-ink" data-en="Our Locations" data-es="Nuestras Sucursales">Nuestras Sucursales</h2>
+        <h3 class="font-serif text-2xl md:text-3xl text-ink" data-en="Our Locations" data-es="Nuestras Sucursales">Nuestras Sucursales</h3>
         <p class="text-graphite text-sm mt-3 leading-relaxed" data-en="Find us on Google Maps and get directions in one tap." data-es="Encuéntranos en Google Maps y obtén cómo llegar con un toque.">Encuéntranos en Google Maps y obtén cómo llegar con un toque.</p>
 
         <div id="cita-sucursales" class="mt-8 grid gap-8">
@@ -2522,7 +2690,7 @@
       <div class="max-w-4xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Reviews" data-es="Reseñas">Reseñas</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="What people already sleeping better are saying." data-es="Lo que dicen quienes ya duermen mejor.">Lo que dicen quienes ya duermen mejor.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="What people already sleeping better are saying." data-es="Lo que dicen quienes ya duermen mejor.">Lo que dicen quienes ya duermen mejor.</h2>
         <p class="text-graphite mt-6 leading-relaxed max-w-xl mx-auto" data-en="Real reviews straight from our Google Business profile." data-es="Reseñas reales, directo de nuestro perfil de Google.">Reseñas reales, directo de nuestro perfil de Google.</p>
       </div>
     </section>
@@ -2544,7 +2712,7 @@
       <div class="max-w-4xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Frequently Asked" data-es="Preguntas Frecuentes">Preguntas Frecuentes</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Answers, in advance." data-es="Respuestas, por adelantado.">Respuestas, por adelantado.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Answers, in advance." data-es="Respuestas, por adelantado.">Respuestas, por adelantado.</h2>
         <p class="text-graphite mt-6 max-w-xl mx-auto leading-relaxed" data-en="Everything you might want to know — about Nuvela, our materials, our service and our promise." data-es="Todo lo que podrías querer saber — sobre Nuvela, nuestros materiales, nuestro servicio y nuestra promesa.">Todo lo que podrías querer saber — sobre Nuvela, nuestros materiales, nuestro servicio y nuestra promesa.</p>
       </div>
     </section>
@@ -2613,7 +2781,7 @@
       <div class="max-w-4xl mx-auto px-6 text-center reveal">
         <p class="eyebrow" data-en="Contact" data-es="Contáctanos">Contáctanos</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h1 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Let's talk sleep." data-es="Hablemos del descanso.">Hablemos del descanso.</h1>
+        <h2 class="font-serif text-5xl md:text-6xl text-ink mt-8 leading-[1.05]" data-en="Let's talk sleep." data-es="Hablemos del descanso.">Hablemos del descanso.</h2>
         <p class="text-graphite mt-6 max-w-xl mx-auto leading-relaxed" data-en="Our concierge team is here to help — by message, by call, or in person." data-es="Nuestro equipo concierge está aquí para ayudarte — por mensaje, llamada o en persona.">Nuestro equipo concierge está aquí para ayudarte — por mensaje, llamada o en persona.</p>
       </div>
     </section>
@@ -2684,7 +2852,7 @@
       <div class="max-w-5xl mx-auto px-6 text-center">
         <p class="eyebrow" data-en="Customer Service" data-es="Atención al Cliente">Atención al Cliente</p>
         <span class="gold-rule gold-rule-center mt-4"></span>
-        <h2 class="font-serif text-3xl md:text-4xl text-ink mt-8 leading-tight" data-en="We respond within hours, all week long." data-es="Te respondemos en horas, toda la semana.">Te respondemos en horas, toda la semana.</h2>
+        <h3 class="font-serif text-3xl md:text-4xl text-ink mt-8 leading-tight" data-en="We respond within hours, all week long." data-es="Te respondemos en horas, toda la semana.">Te respondemos en horas, toda la semana.</h3>
         <div class="grid md:grid-cols-3 gap-6 mt-12">
           <div class="bg-white p-8 rounded-2xl">
             <p class="eyebrow" data-en="Hours" data-es="Horario">Horario</p>
@@ -2712,7 +2880,7 @@
       <div class="max-w-4xl mx-auto px-6 reveal">
         <p class="eyebrow" data-en="Legal" data-es="Legal">Legal</p>
         <span class="gold-rule mt-4"></span>
-        <h1 class="font-serif text-5xl text-ink mt-8 leading-[1.05]" data-en="Privacy Policy" data-es="Política de Privacidad">Política de Privacidad</h1>
+        <h2 class="font-serif text-5xl text-ink mt-8 leading-[1.05]" data-en="Privacy Policy" data-es="Política de Privacidad">Política de Privacidad</h2>
         <p class="text-mist text-sm tracking-[0.18em] uppercase mt-6" data-en="Last updated · May 2026" data-es="Última actualización · Mayo 2026">Última actualización · Mayo 2026</p>
       </div>
     </section>
@@ -2721,27 +2889,27 @@
       <div class="max-w-3xl mx-auto px-6 prose prose-lg">
         <div class="space-y-8 text-graphite leading-loose">
           <div>
-            <h2 class="font-serif text-2xl text-ink mb-3" data-en="Introduction" data-es="Introducción">Introducción</h2>
+            <h3 class="font-serif text-2xl text-ink mb-3" data-en="Introduction" data-es="Introducción">Introducción</h3>
             <p data-en="Nuvela · Italian Design respects your privacy. This policy describes how we collect, use and protect personal information when you visit nuvela.com.gt or interact with our services." data-es="Nuvela · Italian Design respeta tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando visitas nuvela.com.gt o interactúas con nuestros servicios.">Nuvela · Italian Design respeta tu privacidad. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando visitas nuvela.com.gt o interactúas con nuestros servicios.</p>
           </div>
           <div>
-            <h2 class="font-serif text-2xl text-ink mb-3" data-en="Information we collect" data-es="Información que recopilamos">Información que recopilamos</h2>
+            <h3 class="font-serif text-2xl text-ink mb-3" data-en="Information we collect" data-es="Información que recopilamos">Información que recopilamos</h3>
             <p data-en="We collect information you provide directly (such as name, email, phone and delivery address) when you contact us, place an order or sign up for communications. We may also collect technical data such as browser type and pages visited to improve our services." data-es="Recopilamos la información que tú proporcionas directamente (como nombre, correo, teléfono y dirección de entrega) cuando nos contactas, realizas un pedido o te suscribes a nuestras comunicaciones. También podemos recopilar datos técnicos como tipo de navegador y páginas visitadas para mejorar nuestros servicios.">Recopilamos la información que tú proporcionas directamente (como nombre, correo, teléfono y dirección de entrega) cuando nos contactas, realizas un pedido o te suscribes a nuestras comunicaciones. También podemos recopilar datos técnicos como tipo de navegador y páginas visitadas para mejorar nuestros servicios.</p>
           </div>
           <div>
-            <h2 class="font-serif text-2xl text-ink mb-3" data-en="How we use your information" data-es="Uso de tu información">Uso de tu información</h2>
+            <h3 class="font-serif text-2xl text-ink mb-3" data-en="How we use your information" data-es="Uso de tu información">Uso de tu información</h3>
             <p data-en="We use your information to fulfill orders, communicate with you, provide customer service, process warranty claims and improve our products and website. We do not sell your personal information." data-es="Usamos tu información para procesar pedidos, comunicarnos contigo, brindar servicio al cliente, gestionar garantías y mejorar nuestros productos y sitio web. No vendemos tu información personal.">Usamos tu información para procesar pedidos, comunicarnos contigo, brindar servicio al cliente, gestionar garantías y mejorar nuestros productos y sitio web. No vendemos tu información personal.</p>
           </div>
           <div>
-            <h2 class="font-serif text-2xl text-ink mb-3" data-en="Data protection" data-es="Protección de datos">Protección de datos</h2>
+            <h3 class="font-serif text-2xl text-ink mb-3" data-en="Data protection" data-es="Protección de datos">Protección de datos</h3>
             <p data-en="We implement administrative, technical and physical safeguards to protect personal information against unauthorized access, disclosure or loss." data-es="Implementamos medidas administrativas, técnicas y físicas para proteger la información personal contra acceso no autorizado, divulgación o pérdida.">Implementamos medidas administrativas, técnicas y físicas para proteger la información personal contra acceso no autorizado, divulgación o pérdida.</p>
           </div>
           <div>
-            <h2 class="font-serif text-2xl text-ink mb-3" data-en="Your rights" data-es="Tus derechos">Tus derechos</h2>
+            <h3 class="font-serif text-2xl text-ink mb-3" data-en="Your rights" data-es="Tus derechos">Tus derechos</h3>
             <p data-en="You may request access, correction or deletion of your personal information at any time by contacting us at comercial@nuvela.gt." data-es="Puedes solicitar acceso, corrección o eliminación de tu información personal en cualquier momento escribiéndonos a commercial@nuvela.gt.">Puedes solicitar acceso, corrección o eliminación de tu información personal en cualquier momento escribiéndonos a commercial@nuvela.gt.</p>
           </div>
           <div>
-            <h2 class="font-serif text-2xl text-ink mb-3" data-en="Contact" data-es="Contacto">Contacto</h2>
+            <h3 class="font-serif text-2xl text-ink mb-3" data-en="Contact" data-es="Contacto">Contacto</h3>
             <p data-en="For questions regarding this privacy policy, please contact comercial@nuvelagt.com." data-es="Para preguntas sobre esta política de privacidad, por favor contacta comercial@nuvelagt.com.">Para preguntas sobre esta política de privacidad, por favor contacta nuvela.gt@hotmail.com.</p>
           </div>
         </div>
@@ -3240,7 +3408,7 @@
       if (heading) {
         const catObj = activeCategory === 'all' ? null : getCategories().find(c => c.es === activeCategory);
         const label = activeCategory === 'all' ? (currentLang === 'es' ? 'Todos los Productos' : 'All Products') : (catObj ? pick(catObj) : '');
-        heading.innerHTML = `<h2 class="font-serif text-2xl sm:text-3xl text-ink">${label}</h2>`;
+        heading.innerHTML = `<h3 class="font-serif text-2xl sm:text-3xl text-ink">${label}</h3>`;
       }
       if (!list.length) {
         grid.innerHTML = `<p class="col-span-full text-center text-mist py-10">${currentLang === 'es' ? 'Próximamente en esta categoría.' : 'Coming soon in this category.'}</p>`;
@@ -3736,7 +3904,7 @@
         return `
           <div>
             <div class="flex items-center gap-4 mb-4">
-              <h2 class="font-serif text-xl md:text-2xl text-ink whitespace-nowrap">${pick(cat)}</h2>
+              <h3 class="font-serif text-xl md:text-2xl text-ink whitespace-nowrap">${pick(cat)}</h3>
               <span class="gold-rule !w-full"></span>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -3778,7 +3946,7 @@
         wrap.innerHTML = `
           <div class="text-center py-16">
             <p class="eyebrow">${currentLang === 'es' ? 'Tu comparación' : 'Your comparison'}</p>
-            <h2 class="font-serif text-3xl text-ink mt-4">${currentLang === 'es' ? 'Selecciona hasta 3 productos arriba para compararlos aquí.' : 'Select up to 3 products above to compare them here.'}</h2>
+            <h3 class="font-serif text-3xl text-ink mt-4">${currentLang === 'es' ? 'Selecciona hasta 3 productos arriba para compararlos aquí.' : 'Select up to 3 products above to compare them here.'}</h3>
           </div>
         `;
         return;
@@ -3789,7 +3957,7 @@
       wrap.innerHTML = `
         <div class="text-center mb-10">
           <p class="eyebrow">${currentLang === 'es' ? 'Tu comparación' : 'Your comparison'}</p>
-          <h2 class="font-serif text-3xl md:text-4xl text-ink mt-3">${currentLang === 'es' ? 'Especificaciones, lado a lado.' : 'Specifications, side by side.'}</h2>
+          <h3 class="font-serif text-3xl md:text-4xl text-ink mt-3">${currentLang === 'es' ? 'Especificaciones, lado a lado.' : 'Specifications, side by side.'}</h3>
         </div>
         <div class="overflow-x-auto">
           <div class="min-w-[520px]">
@@ -4646,7 +4814,7 @@
           <div class="relative z-10 max-w-7xl mx-auto px-6">
             <div class="text-center mb-10">
               <p class="eyebrow">${pick(p.eyebrow)}</p>
-              <h2 class="font-serif text-3xl md:text-4xl text-ink mt-3">${pick(p.name)}</h2>
+              <h3 class="font-serif text-3xl md:text-4xl text-ink mt-3">${pick(p.name)}</h3>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               ${p.variants.map(v => `
