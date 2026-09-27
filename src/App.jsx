@@ -847,6 +847,7 @@ export default function App() {
   const CITA_ADVISORS = [
     { name: 'Manuel M.', role: { es: 'Ventas', en: 'Sales' } },
     { name: 'Eduardo R.', role: { es: 'Ventas y Asesoría', en: 'Sales & Advisory' } },
+    { name: 'Carlo C.', role: { es: 'Ventas', en: 'Sales' } },
     { name: 'Alvaro L.', role: { es: 'Administración', en: 'Administration' } },
   ];
 
