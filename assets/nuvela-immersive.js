@@ -653,7 +653,22 @@
         // --- Colchón desarmado: se abre solo una vez al llegar; luego es interactivo
         const layers = qa('.nv-layer[data-l]').sort((a, b) => a.dataset.l - b.dataset.l);
         const stage = q('.nv-layers-stage');
-        const spread = mobile ? [-0.36, -0.12, 0.12, 0.34] : [-0.36, -0.12, 0.12, 0.35];
+        const spread = [-0.36, -0.12, 0.12, 0.35];
+        // En el teléfono las capas se separan según el espacio libre que hay
+        // entre el título y el texto de abajo, para que no queden pegadas.
+        let offsets = () => spread.map((v) => v * stage.offsetWidth);
+        if (mobile) {
+          const head = q('.nv-layers-head'), caps = q('.nv-layer-captions');
+          const band = () => ({ top: head.offsetTop + head.offsetHeight + 18, bottom: caps.offsetTop - 6 });
+          const bd = band();
+          gsap.set(stage, { top: (bd.top + bd.bottom) / 2 });
+          offsets = () => {
+            const b = band();
+            const lh = Math.max.apply(null, layers.map((l) => l.offsetHeight)) * 0.9;
+            const span = Math.max(0.7 * stage.offsetWidth, (b.bottom - b.top - lh) / 0.9);
+            return [-0.5, -0.19, 0.15, 0.5].map((v) => v * span);
+          };
+        }
         layersReady = false;
         gsap.timeline({ scrollTrigger: { trigger: '#nv-layers', start: 'top 55%', once: true },
           onComplete: () => { layersReady = true; } })
@@ -661,7 +676,7 @@
           .fromTo('.nv-layer-full', { opacity: 0, scale: 0.9, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'expo.out' }, 0.1)
           .set(layers, { opacity: 1 }, 1.3)
           .set('.nv-layer-full', { opacity: 0 }, 1.32)
-          .to(layers, { y: (i) => spread[i] * stage.offsetWidth, duration: 1.6, ease: 'expo.inOut', stagger: 0.04 }, 1.32)
+          .to(layers, { y: (i) => offsets()[i], duration: 1.6, ease: 'expo.inOut', stagger: 0.04 }, 1.32)
           .to(stage, { scale: mobile ? 0.9 : 0.92, duration: 1.6, ease: 'expo.inOut' }, 1.32)
           .to('.nv-hot', { opacity: 1, duration: 0.6, stagger: 0.08 }, 2.6);
         const track = q('#nv-collection-track');
@@ -764,6 +779,7 @@
       const p = PRODUCTS.find((x) => x.id === currentProductId);
       if (!p) return;
       const v = p.variants.find((x) => x.name === pdSelectedVariant) || p.variants[0];
+      const tw = q('.nv-trust-warranty'); if (tw) tw.hidden = p.category.es !== 'Colchones';
       if (priceSize) priceSize.textContent = v ? v.name : '';
       if (!v || !v.price) { priceEl.textContent = typeof formatPrice === 'function' ? formatPrice(0) : ''; priceState.v = 0; return; }
       if (!hasGsap || reduce || !priceState.v) { priceState.v = v.price; priceEl.textContent = formatPrice(v.price); return; }
