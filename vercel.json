@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "nuvelagt.com"
+        }
+      ],
+      "destination": "https://www.nuvelagt.com/:path*",
+      "statusCode": 301
+    }
+  ]
+}
