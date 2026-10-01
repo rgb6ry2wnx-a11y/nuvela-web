@@ -1705,6 +1705,22 @@ const NUVELA_CSS = String.raw`
       .nv-ph { min-height: 54svh; }
     }
 
+    /* ---- Recorrido del cliente: confianza, qué sigue, después de la compra ---- */
+    .nv-trust { list-style: none; padding: 0; margin: 1.8rem 0 0; display: grid; gap: 0; border: 1px solid rgba(205, 174, 85, .28); border-radius: 18px; overflow: hidden; }
+    .nv-trust li { display: grid; gap: 2px; padding: .85rem 1.1rem; border-top: 1px solid rgba(252, 249, 245, .08); }
+    .nv-trust li[hidden] { display: none; }
+    .nv-trust li:first-child, .nv-trust li[hidden] + li { border-top: 0; }
+    .nv-trust b { font-size: .86rem; font-weight: 600; color: var(--nv-gold-2); }
+    .nv-trust span { font-size: .84rem; line-height: 1.5; color: rgba(252, 249, 245, .7); }
+    .nv-trust-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 1rem; }
+    .nv-trust-links > * { font-size: .8rem; font-weight: 600; color: rgba(252, 249, 245, .85); border-bottom: 1px solid rgba(205, 174, 85, .5); padding-bottom: 2px; cursor: pointer; transition: color .3s; }
+    .nv-trust-links > *:hover { color: var(--nv-gold-2); }
+    .nv-after-grid .nv-lcard > b { display: block; font-size: .8rem; letter-spacing: .2em; color: var(--nv-gold-d); font-weight: 600; margin-bottom: .6rem; }
+    .nv-after-grid h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -.02em; color: var(--nv-ink); }
+    .nv-after-grid p { margin-top: .5rem; font-size: .92rem; line-height: 1.6; }
+    .nv-owner-link { display: inline-block; margin-top: .9rem; font-size: .84rem; font-weight: 600; color: var(--nv-gold-d); border-bottom: 1px solid currentColor; }
+    @media (max-width: 900px) { .nv-after-grid { grid-template-columns: 1fr; } }
+
     /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */
@@ -1972,9 +1988,9 @@ const NUVELA_CSS = String.raw`
       .nv-stats { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
       .nv-reveal-content { padding-bottom: 4vh; }
       .nv-layers-head { top: 8vh; }
-      .nv-layers-stage { left: 48%; top: 50%; width: 80vw; }
+      .nv-layers-stage { left: 48%; top: 50%; width: min(80vw, 38svh); }
       .nv-hot { right: -6%; width: 36px; height: 36px; }
-      .nv-layer-captions { width: auto; right: 24px; bottom: 5vh; height: 150px; }
+      .nv-layer-captions { width: auto; right: 88px; bottom: 5vh; height: 150px; }
       .nv-collection-pin { height: auto; display: block; padding: 90px 0 60px; }
       .nv-collection-head { position: static; padding: 0 24px; }
       .nv-collection-track { padding-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -2628,7 +2644,7 @@ function PageHome() {
           {' '}
           <div className="nv-hero-photo" aria-hidden="true">
             {' '}
-            <img src="images/hero-frontal.jpg" alt="" />
+            <img src="images/hero-frontal.jpg" alt="Colchón híbrido Nuvela con pillow top y lateral negro, vista frontal" />
             {' '}
           </div>
           {' '}
@@ -2735,8 +2751,8 @@ function PageHome() {
                   {"Tuyo."}
                 </h2>
                 {' '}
-                <p className="nv-lead" data-en="Encapsulated springs, memory foam and Ice Cooling fabric in a 30 cm build — premium rest without paying for a label." data-es="Resortes encapsulados, memory foam y tela Ice Cooling en 30 cm de altura — descanso premium sin pagar por una etiqueta.">
-                  {"Resortes encapsulados, memory foam y tela Ice Cooling en 30 cm de altura — descanso premium sin pagar por una etiqueta."}
+                <p className="nv-lead" data-en="Encapsulated springs, memory foam and Ice Cooling fabric in a 30 cm build — premium rest in every detail." data-es="Resortes encapsulados, memory foam y tela Ice Cooling en 30 cm de altura — descanso premium en cada detalle.">
+                  {"Resortes encapsulados, memory foam y tela Ice Cooling en 30 cm de altura — descanso premium en cada detalle."}
                 </p>
                 {' '}
               </div>
@@ -2803,10 +2819,10 @@ function PageHome() {
                 {"Por dentro"}
               </p>
               {' '}
-              <h2 className="nv-h2" data-en={"What you can't see<br/>is what you feel."} data-es={"Lo que no se ve<br/>es lo que se siente."}>
-                {"Lo que no se ve"}
+              <h2 className="nv-h2" data-en={"What you can't see,<br/>you feel."} data-es={"Lo que no ves,<br/>lo sientes."}>
+                {"Lo que no ves,"}
                 <br />
-                {"es lo que se siente."}
+                {"lo sientes."}
               </h2>
               {' '}
             </div>
@@ -2819,28 +2835,28 @@ function PageHome() {
               <img className="nv-layer-full" src="images/home/nv-capa1.webp" alt="" aria-hidden="true" />
               {' '}
               <div className="nv-layer" data-l="3">
-                <img src="images/home/nv-capa5.webp" alt="" />
+                <img src="images/home/nv-capa5.webp" alt="Capa 4 del colchón Nuvela: base de soporte" />
                 <button type="button" className="nv-hot" data-l="3" aria-label="Capa 4: base de soporte">
                   {"04"}
                 </button>
               </div>
               {' '}
               <div className="nv-layer" data-l="2">
-                <img src="images/home/nv-capa7.webp" alt="" />
+                <img src="images/home/nv-capa7.webp" alt="Capa 3 del colchón Nuvela: resortes encapsulados" />
                 <button type="button" className="nv-hot" data-l="2" aria-label="Capa 3: resortes encapsulados">
                   {"03"}
                 </button>
               </div>
               {' '}
               <div className="nv-layer" data-l="1">
-                <img src="images/home/nv-capa4.webp" alt="" />
+                <img src="images/home/nv-capa4.webp" alt="Capa 2 del colchón Nuvela: memory foam de confort" />
                 <button type="button" className="nv-hot" data-l="1" aria-label="Capa 2: confort memory foam">
                   {"02"}
                 </button>
               </div>
               {' '}
               <div className="nv-layer" data-l="0">
-                <img src="images/home/nv-capa3.webp" alt="" />
+                <img src="images/home/nv-capa3.webp" alt="Capa 1 del colchón Nuvela: pillow top desfundable con tela Ice Cooling" />
                 <button type="button" className="nv-hot" data-l="0" aria-label="Capa 1: pillow top">
                   {"01"}
                 </button>
@@ -2942,14 +2958,14 @@ function PageHome() {
                 {"Pruébalo"}
               </p>
               {' '}
-              <h2 className="nv-h2" data-en={"Move.<br/>Your partner won't notice."} data-es={"Muévete.<br/>Tu pareja ni lo nota."}>
-                {"Muévete."}
+              <h2 className="nv-h2" data-en={"No perception<br/>of motion."} data-es={"Sin percepción<br/>de movimiento."}>
+                {"Sin percepción"}
                 <br />
-                {"Tu pareja ni lo nota."}
+                {"de movimiento."}
               </h2>
               {' '}
-              <p className="nv-lead" data-en="Move your cursor (or finger) over the left side of the bed. Switch to traditional springs and compare how far the motion travels." data-es="Pasa el cursor (o tu dedo) por el lado izquierdo de la cama. Cambia a resortes tradicionales y compara hasta dónde viaja el movimiento.">
-                {"Pasa el cursor (o tu dedo) por el lado izquierdo de la cama. Cambia a resortes tradicionales y compara hasta dónde viaja el movimiento."}
+              <p className="nv-lead" data-en="Move your cursor (or finger) over the left side of the bed. Switch to traditional springs and compare how far the motion travels." data-es="Desliza el cursor o el dedo sobre el lado izquierdo de la cama. Cambia a resortes tradicionales y compara hasta dónde llega el movimiento.">
+                {"Desliza el cursor o el dedo sobre el lado izquierdo de la cama. Cambia a resortes tradicionales y compara hasta dónde llega el movimiento."}
               </p>
               {' '}
               <div className="nv-toggle" role="group" aria-label="Tipo de resortes">
@@ -3154,8 +3170,8 @@ function PageHome() {
                   {"Descanso en pareja"}
                 </h3>
                 {' '}
-                <p data-en="Independent springs mean less motion transfer when your partner turns over." data-es="Resortes independientes: menos movimiento cuando tu pareja se da la vuelta.">
-                  {"Resortes independientes: menos movimiento cuando tu pareja se da la vuelta."}
+                <p data-en="Independent springs mean less motion transfer when your partner turns over." data-es="Resortes independientes: menos movimiento cuando tu pareja cambia de posición.">
+                  {"Resortes independientes: menos movimiento cuando tu pareja cambia de posición."}
                 </p>
                 {' '}
               </article>
@@ -3325,10 +3341,10 @@ function PageHome() {
               {"Listo para descansar"}
             </p>
             {' '}
-            <h2 className="nv-display" data-en={"Your best night<br/>starts tonight."} data-es={"Tu mejor noche<br/>empieza esta noche."}>
-              {"Tu mejor noche"}
+            <h2 className="nv-display" data-en={"Your best night<br/>starts here."} data-es={"Empieza tu<br/>mejor noche."}>
+              {"Empieza tu"}
               <br />
-              {"empieza esta noche."}
+              {"mejor noche."}
             </h2>
             {' '}
             <div className="nv-hero-actions">
@@ -3510,10 +3526,10 @@ function PageProductos() {
               {"La Colección"}
             </p>
             {' '}
-            <h2 className="nv-display nv-prod-title" data-en={"One standard<br/>of rest."} data-es={"Un mismo estándar<br/>de descanso."}>
-              {"Un mismo estándar"}
+            <h2 className="nv-display nv-prod-title" data-en={"Premium is the<br/>new standard."} data-es={"Premium es el<br/>nuevo estándar."}>
+              {"Premium es el"}
               <br />
-              {"de descanso."}
+              {"nuevo estándar."}
             </h2>
             {' '}
             <p className="nv-lead" data-en="Choose a category to see its models, sizes, prices and full specifications." data-es="Elige una categoría para ver sus modelos, medidas, precios y ficha técnica completa.">
@@ -3536,8 +3552,8 @@ function PageProductos() {
           {' '}
           <p className="nv-prod-all">
             {' '}
-            <button type="button" className="js-filter-category" data-category="all" data-en="or view all products →" data-es="o ver todos los productos →">
-              {"o ver todos los productos →"}
+            <button type="button" className="js-filter-category" data-category="all" data-en="View all products →" data-es="Ver todos los productos →">
+              {"Ver todos los productos →"}
             </button>
             {' '}
           </p>
@@ -3574,7 +3590,7 @@ function PageLineaHotelera() {
         <section className="nv-hotel-hero">
           {' '}
           <div className="nv-hotel-hero-bg" aria-hidden="true">
-            <img src="images/nuvela-hotel-vista-2.jpg" alt="" />
+            <img src="images/nuvela-hotel-vista-2.jpg" alt="Colchón Nuvela Diamond sobre base negra en una habitación de hotel" />
           </div>
           {' '}
           <div className="nv-hotel-hero-inner">
@@ -3668,7 +3684,7 @@ function PageLineaHotelera() {
             <div className="nv-who-grid">
               {' '}
               <article className="nv-who nv-tilt-h">
-                <img src="images/nuvela-hotel-vista-4.jpg" alt="" loading="lazy" />
+                <img src="images/nuvela-hotel-vista-4.jpg" alt="Detalle del pillow top del colchón Nuvela Diamond para hoteles y suites" loading="lazy" />
                 <div>
                   <h4 data-en="Hotels & suites" data-es="Hoteles y suites">
                     {"Hoteles y suites"}
@@ -3680,7 +3696,7 @@ function PageLineaHotelera() {
               </article>
               {' '}
               <article className="nv-who nv-tilt-h">
-                <img src="images/cama.jpg" alt="" loading="lazy" />
+                <img src="images/cama.jpg" alt="Habitación clara con cama vestida, ideal para Airbnb premium" loading="lazy" />
                 <div>
                   <h4 data-en="Premium Airbnb" data-es="Airbnb premium">
                     {"Airbnb premium"}
@@ -3692,7 +3708,7 @@ function PageLineaHotelera() {
               </article>
               {' '}
               <article className="nv-who nv-tilt-h">
-                <img src="images/atardecer.jpg" alt="" loading="lazy" />
+                <img src="images/atardecer.jpg" alt="Colchón Nuvela en una habitación con vista al atardecer" loading="lazy" />
                 <div>
                   <h4 data-en="Renovations & openings" data-es="Remodelaciones y aperturas">
                     {"Remodelaciones y aperturas"}
@@ -3704,7 +3720,7 @@ function PageLineaHotelera() {
               </article>
               {' '}
               <article className="nv-who nv-tilt-h">
-                <img src="images/entrega.jpg" alt="" loading="lazy" />
+                <img src="images/entrega.jpg" alt="Entrega a domicilio de un colchón Nuvela en su caja" loading="lazy" />
                 <div>
                   <h4 data-en="Architects & developers" data-es="Arquitectos y desarrolladoras">
                     {"Arquitectos y desarrolladoras"}
@@ -4200,6 +4216,64 @@ function PageCarrito() {
           {' '}
         </section>
         {' '}
+        {/* Qué pasa después de enviar el pedido */}
+        {' '}
+        <section className="nv-light nv-sec nv-after">
+          {' '}
+          <div className="nv-wrap">
+            {' '}
+            <p className="nv-eyebrow" data-en="After your order" data-es="Después de tu pedido">
+              {"Después de tu pedido"}
+            </p>
+            {' '}
+            <h3 className="nv-h2" data-en="What happens next." data-es="Qué sigue después.">
+              {"Qué sigue después."}
+            </h3>
+            {' '}
+            <div className="nv-del-stats nv-after-grid">
+              {' '}
+              <article className="nv-lcard">
+                <b>
+                  {"01"}
+                </b>
+                <h4 data-en="You send your order by WhatsApp" data-es="Envías tu pedido por WhatsApp">
+                  {"Envías tu pedido por WhatsApp"}
+                </h4>
+                <p data-en="With the products and details you filled in here." data-es="Con los productos y los datos que llenaste aquí.">
+                  {"Con los productos y los datos que llenaste aquí."}
+                </p>
+              </article>
+              {' '}
+              <article className="nv-lcard">
+                <b>
+                  {"02"}
+                </b>
+                <h4 data-en="An advisor confirms with you" data-es="Un asesor confirma contigo">
+                  {"Un asesor confirma contigo"}
+                </h4>
+                <p data-en="Availability, delivery address and payment method: bank transfer, Visa Cuotas or one-time card payment." data-es="Disponibilidad, dirección de entrega y forma de pago: transferencia bancaria, Visa Cuotas o pago de contado con tarjeta.">
+                  {"Disponibilidad, dirección de entrega y forma de pago: transferencia bancaria, Visa Cuotas o pago de contado con tarjeta."}
+                </p>
+              </article>
+              {' '}
+              <article className="nv-lcard">
+                <b>
+                  {"03"}
+                </b>
+                <h4 data-en="We schedule your delivery" data-es="Coordinamos tu entrega">
+                  {"Coordinamos tu entrega"}
+                </h4>
+                <p data-en="3–5 business days in the metropolitan area and 5–10 in the departments, in a window agreed with you." data-es="De 3 a 5 días hábiles en el área metropolitana y de 5 a 10 en departamentos, en una ventana acordada contigo.">
+                  {"De 3 a 5 días hábiles en el área metropolitana y de 5 a 10 en departamentos, en una ventana acordada contigo."}
+                </p>
+              </article>
+              {' '}
+            </div>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
       </main>
     </>
   );
@@ -4320,6 +4394,44 @@ function PageProductoDetalle() {
                   </button>
                   {' '}
                 </div>
+                {' '}
+                {/* Confianza junto al botón de compra (garantía solo se muestra en colchones: lo decide NV) */}
+                {' '}
+                <ul className="nv-trust">
+                  <li className="nv-trust-warranty">
+                    <b data-en="10-year warranty" data-es="Garantía de 10 años">
+                      {"Garantía de 10 años"}
+                    </b>
+                    <span data-en="Against manufacturing defects." data-es="Por defectos de fabricación.">
+                      {"Por defectos de fabricación."}
+                    </span>
+                  </li>
+                  <li>
+                    <b data-en="Delivery across Guatemala" data-es="Envío a todo Guatemala">
+                      {"Envío a todo Guatemala"}
+                    </b>
+                    <span data-en="From Q300 · 3–5 business days in the metropolitan area, 5–10 in the departments." data-es="Desde Q300 · 3–5 días hábiles en el área metropolitana, 5–10 en departamentos.">
+                      {"Desde Q300 · 3–5 días hábiles en el área metropolitana, 5–10 en departamentos."}
+                    </span>
+                  </li>
+                  <li>
+                    <b data-en="Payment methods" data-es="Formas de pago">
+                      {"Formas de pago"}
+                    </b>
+                    <span data-en="Bank transfer, Visa Cuotas installments or one-time card payment." data-es="Transferencia bancaria, Visa Cuotas o pago de contado con tarjeta.">
+                      {"Transferencia bancaria, Visa Cuotas o pago de contado con tarjeta."}
+                    </span>
+                  </li>
+                </ul>
+                {' '}
+                <p className="nv-trust-links">
+                  <button data-page="resenas" data-en="Customer reviews →" data-es="Opiniones de clientes →">
+                    {"Opiniones de clientes →"}
+                  </button>
+                  <button data-page="cita" data-en="Try it at the showroom →" data-es="Pruébalo en el showroom →">
+                    {"Pruébalo en el showroom →"}
+                  </button>
+                </p>
                 {' '}
               </div>
               {' '}
@@ -4502,7 +4614,7 @@ function PageTecnologia() {
         <section className="nv-tech-hero">
           {' '}
           <div className="nv-tech-hero-bg" aria-hidden="true">
-            <img src="images/elasticidad.jpg" alt="" />
+            <img src="images/elasticidad.jpg" alt="Superficie de memory foam de un colchón híbrido Nuvela" />
           </div>
           {' '}
           <canvas id="nv-tech-canvas" aria-hidden="true">
@@ -4611,8 +4723,8 @@ function PageTecnologia() {
                   <h4 data-en="encapsulated springs (King)" data-es="resortes encapsulados (King)">
                     {"resortes encapsulados (King)"}
                   </h4>
-                  <p data-en="Each one works on its own. Move your cursor over them." data-es="Cada uno trabaja solo. Pasa el cursor sobre ellos.">
-                    {"Cada uno trabaja solo. Pasa el cursor sobre ellos."}
+                  <p data-en="Each one works on its own. Move your cursor over them." data-es="Cada uno trabaja de forma independiente. Desliza el cursor sobre ellos.">
+                    {"Cada uno trabaja de forma independiente. Desliza el cursor sobre ellos."}
                   </p>
                 </div>
                 {' '}
@@ -4714,7 +4826,7 @@ function PageTecnologia() {
               {' '}
               <article className="nv-b nv-b-cool">
                 {' '}
-                <img src="images/ondas.jpg" alt="" loading="lazy" />
+                <img src="images/ondas.jpg" alt="Textura de la tela Ice Cooling del colchón Nuvela" loading="lazy" />
                 {' '}
                 <div className="nv-b-cool-glow" aria-hidden="true">
                 </div>
@@ -4732,7 +4844,7 @@ function PageTecnologia() {
               {' '}
               <article className="nv-b nv-b-zip">
                 {' '}
-                <img src="images/zipper.jpg" alt="" loading="lazy" />
+                <img src="images/zipper.jpg" alt="Pillow top desfundable con zipper del colchón Nuvela" loading="lazy" />
                 {' '}
                 <div className="nv-b-txt">
                   <h4 data-en="Removable pillow top" data-es="Pillow top desfundable">
@@ -4766,7 +4878,7 @@ function PageTecnologia() {
               {' '}
               <article className="nv-b nv-b-italy">
                 {' '}
-                <img src="images/detalle.jpg" alt="" loading="lazy" />
+                <img src="images/detalle.jpg" alt="Logo dorado bordado en el lateral del colchón Nuvela" loading="lazy" />
                 {' '}
                 <div className="nv-b-txt">
                   <h4 className="nv-b-mid">
@@ -5000,7 +5112,7 @@ function PageEntregas() {
         <section className="nv-ph nv-ph-photo">
           {' '}
           <div className="nv-ph-bg" aria-hidden="true">
-            <img src="images/entrega.jpg" alt="" />
+            <img src="images/entrega.jpg" alt="Entrega a domicilio de un colchón Nuvela en su caja" />
           </div>
           {' '}
           <div className="nv-ph-inner">
@@ -5154,8 +5266,8 @@ function PageEntregas() {
                 <h4 data-en="It travels protected" data-es="Viaja protegido">
                   {"Viaja protegido"}
                 </h4>
-                <p data-en="In its premium packaging, ready for an unboxing." data-es="En su empaque premium, listo para un unboxing.">
-                  {"En su empaque premium, listo para un unboxing."}
+                <p data-en="In its premium packaging, ready for an unboxing." data-es="En su empaque premium, cuidado en cada detalle.">
+                  {"En su empaque premium, cuidado en cada detalle."}
                 </p>
               </li>
               <li>
@@ -5193,8 +5305,8 @@ function PageEntregas() {
                 {"que vale conservar."}
               </h3>
               {' '}
-              <p className="nv-lead" data-en="Each Nuvela mattress arrives in protective premium packaging — free of unnecessary plastics, designed to safeguard the product, and elegant enough to feel like an unboxing." data-es="Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, y elegante como un unboxing.">
-                {"Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, y elegante como un unboxing."}
+              <p className="nv-lead" data-en="Each Nuvela mattress arrives in protective premium packaging — free of unnecessary plastics, designed to safeguard the product, and elegant enough to feel like an unboxing." data-es="Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, con una presentación a la altura del producto.">
+                {"Cada colchón Nuvela llega en un empaque premium protector — sin plásticos innecesarios, diseñado para resguardar el producto, con una presentación a la altura del producto."}
               </p>
               {' '}
             </div>
@@ -5273,12 +5385,66 @@ function PageEntregas() {
                 </div>
                 {' '}
                 <div className="faq-a">
-                  <div className="faq-a-inner" data-en="No problem. We'll coordinate a delivery window with you in advance via WhatsApp and reschedule if needed." data-es="No hay problema. Coordinamos contigo por WhatsApp una ventana de entrega y podemos reagendar si es necesario.">
-                    {"No hay problema. Coordinamos contigo por WhatsApp una ventana de entrega y podemos reagendar si es necesario."}
+                  <div className="faq-a-inner" data-en="No problem. We'll coordinate a delivery window with you in advance via WhatsApp and reschedule if needed." data-es="Con gusto lo resolvemos. Coordinamos contigo por WhatsApp una ventana de entrega y podemos reagendar si es necesario.">
+                    {"Con gusto lo resolvemos. Coordinamos contigo por WhatsApp una ventana de entrega y podemos reagendar si es necesario."}
                   </div>
                 </div>
                 {' '}
               </div>
+              {' '}
+            </div>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+        {/* Para quien ya recibió su colchón */}
+        {' '}
+        <section className="nv-light nv-sec nv-owner">
+          {' '}
+          <div className="nv-wrap">
+            {' '}
+            <p className="nv-eyebrow" data-en="Already sleeping on a Nuvela?" data-es="¿Ya recibiste tu Nuvela?">
+              {"¿Ya recibiste tu Nuvela?"}
+            </p>
+            {' '}
+            <h3 className="nv-h2" data-en={"We stay with you<br/>after delivery."} data-es={"Te acompañamos<br/>después de la entrega."}>
+              {"Te acompañamos"}
+              <br />
+              {"después de la entrega."}
+            </h3>
+            {' '}
+            <div className="nv-del-stats nv-after-grid">
+              {' '}
+              <article className="nv-lcard">
+                <h4 data-en="Care" data-es="Cuidado">
+                  {"Cuidado"}
+                </h4>
+                <p data-en="Use a quality mattress protector, vacuum it every few months and rotate it head-to-foot every 3 months for even wear." data-es="Usa un protector de colchón de calidad, aspíralo cada pocos meses y gíralo cabecera-pies cada 3 meses para un desgaste uniforme.">
+                  {"Usa un protector de colchón de calidad, aspíralo cada pocos meses y gíralo cabecera-pies cada 3 meses para un desgaste uniforme."}
+                </p>
+              </article>
+              {' '}
+              <article className="nv-lcard">
+                <h4 data-en="Warranty" data-es="Garantía">
+                  {"Garantía"}
+                </h4>
+                <p data-en="Your 10-year warranty is activated automatically on the delivery date. Keep your invoice as proof of purchase." data-es="Tu garantía de 10 años se activa automáticamente con la fecha de entrega. Conserva tu factura como prueba de compra.">
+                  {"Tu garantía de 10 años se activa automáticamente con la fecha de entrega. Conserva tu factura como prueba de compra."}
+                </p>
+              </article>
+              {' '}
+              <article className="nv-lcard">
+                <h4 data-en="Your opinion" data-es="Tu opinión">
+                  {"Tu opinión"}
+                </h4>
+                <p data-en="Your review helps other people decide." data-es="Tu reseña ayuda a otras personas a decidir.">
+                  {"Tu reseña ayuda a otras personas a decidir."}
+                </p>
+                <a className="nv-owner-link" href="https://maps.app.goo.gl/7jxuZavDRfuQANMd8" target="_blank" rel="noopener" data-en="Leave a review on Google →" data-es="Dejar una reseña en Google →">
+                  {"Dejar una reseña en Google →"}
+                </a>
+              </article>
               {' '}
             </div>
             {' '}
@@ -5436,8 +5602,8 @@ function PageCita() {
                 <span className="nv-card-num">
                   {"03"}
                 </span>
-                <h4 data-en="Decide without pressure" data-es="Decide sin presión">
-                  {"Decide sin presión"}
+                <h4 data-en="Decide without pressure" data-es="Decide a tu ritmo">
+                  {"Decide a tu ritmo"}
                 </h4>
                 <p data-en="We help you with size, delivery and payment options." data-es="Te ayudamos con la medida, el envío y las formas de pago.">
                   {"Te ayudamos con la medida, el envío y las formas de pago."}
@@ -5642,6 +5808,9 @@ function PageFaq() {
               <button type="button" className="nv-faq-chip" data-cat="envios" data-en="Shipping" data-es="Envíos">
                 {"Envíos"}
               </button>
+              <button type="button" className="nv-faq-chip" data-cat="pagos" data-en="Payments" data-es="Pagos">
+                {"Pagos"}
+              </button>
               <button type="button" className="nv-faq-chip" data-cat="firmeza" data-en="Firmness" data-es="Firmeza">
                 {"Firmeza"}
               </button>
@@ -5726,6 +5895,30 @@ function PageFaq() {
                   <div className="faq-a">
                     <div className="faq-a-inner" data-en="Delivery starts at Q300 and varies depending on your location. We deliver throughout Guatemala. Contact us via WhatsApp for an exact quote." data-es="El envío inicia desde Q300 y varía según tu ubicación. Realizamos envíos a todo Guatemala. Escríbenos por WhatsApp para cotizarte exacto.">
                       {"El envío inicia desde Q300 y varía según tu ubicación. Realizamos envíos a todo Guatemala. Escríbenos por WhatsApp para cotizarte exacto."}
+                    </div>
+                  </div>
+                  {' '}
+                </div>
+              </div>
+              {' '}
+              <div className="nv-faq-group" data-cat="pagos">
+                <p className="nv-faq-cat" data-en="Payments" data-es="Pagos">
+                  {"Pagos"}
+                </p>
+                <div className="faq-item">
+                  {' '}
+                  <div className="faq-q">
+                    <span data-en="What payment methods do you accept?" data-es="¿Qué formas de pago aceptan?">
+                      {"¿Qué formas de pago aceptan?"}
+                    </span>
+                    <span className="icon">
+                      {"+"}
+                    </span>
+                  </div>
+                  {' '}
+                  <div className="faq-a">
+                    <div className="faq-a-inner" data-en="We accept bank transfer, Visa Cuotas installments and one-time card payment. Your advisor confirms the payment method with you when confirming your order." data-es="Aceptamos transferencia bancaria, Visa Cuotas y pago de contado con tarjeta. Tu asesor confirma contigo la forma de pago al confirmar tu pedido.">
+                      {"Aceptamos transferencia bancaria, Visa Cuotas y pago de contado con tarjeta. Tu asesor confirma contigo la forma de pago al confirmar tu pedido."}
                     </div>
                   </div>
                   {' '}
@@ -5820,7 +6013,7 @@ function PageFaq() {
                   </div>
                   {' '}
                   <div className="faq-a">
-                    <div className="faq-a-inner" data-en="3–5 business days within the Guatemala City metropolitan area, 5–10 business days for departments. We'll confirm a specific window after your order." data-es="1-3 días hábiles en el área metropolitana de Ciudad de Guatemala, 5–10 días hábiles en los departamentos. Confirmaremos una ventana específica tras tu pedido.">
+                    <div className="faq-a-inner" data-en="3–5 business days within the Guatemala City metropolitan area, 5–10 business days for departments. We'll confirm a specific window after your order." data-es="3–5 días hábiles en el área metropolitana de Ciudad de Guatemala, 5–10 días hábiles en los departamentos. Confirmaremos una ventana específica tras tu pedido.">
                       {"3–5 días hábiles en el área metropolitana de Ciudad de Guatemala, 5–10 días hábiles en los departamentos. Confirmaremos una ventana específica tras tu pedido."}
                     </div>
                   </div>
@@ -10143,7 +10336,22 @@ function startNuvela() {
         // --- Colchón desarmado: se abre solo una vez al llegar; luego es interactivo
         const layers = qa('.nv-layer[data-l]').sort((a, b) => a.dataset.l - b.dataset.l);
         const stage = q('.nv-layers-stage');
-        const spread = mobile ? [-0.36, -0.12, 0.12, 0.34] : [-0.36, -0.12, 0.12, 0.35];
+        const spread = [-0.36, -0.12, 0.12, 0.35];
+        // En el teléfono las capas se separan según el espacio libre que hay
+        // entre el título y el texto de abajo, para que no queden pegadas.
+        let offsets = () => spread.map((v) => v * stage.offsetWidth);
+        if (mobile) {
+          const head = q('.nv-layers-head'), caps = q('.nv-layer-captions');
+          const band = () => ({ top: head.offsetTop + head.offsetHeight + 18, bottom: caps.offsetTop - 6 });
+          const bd = band();
+          gsap.set(stage, { top: (bd.top + bd.bottom) / 2 });
+          offsets = () => {
+            const b = band();
+            const lh = Math.max.apply(null, layers.map((l) => l.offsetHeight)) * 0.9;
+            const span = Math.max(0.7 * stage.offsetWidth, (b.bottom - b.top - lh) / 0.9);
+            return [-0.5, -0.19, 0.15, 0.5].map((v) => v * span);
+          };
+        }
         layersReady = false;
         gsap.timeline({ scrollTrigger: { trigger: '#nv-layers', start: 'top 55%', once: true },
           onComplete: () => { layersReady = true; } })
@@ -10151,7 +10359,7 @@ function startNuvela() {
           .fromTo('.nv-layer-full', { opacity: 0, scale: 0.9, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'expo.out' }, 0.1)
           .set(layers, { opacity: 1 }, 1.3)
           .set('.nv-layer-full', { opacity: 0 }, 1.32)
-          .to(layers, { y: (i) => spread[i] * stage.offsetWidth, duration: 1.6, ease: 'expo.inOut', stagger: 0.04 }, 1.32)
+          .to(layers, { y: (i) => offsets()[i], duration: 1.6, ease: 'expo.inOut', stagger: 0.04 }, 1.32)
           .to(stage, { scale: mobile ? 0.9 : 0.92, duration: 1.6, ease: 'expo.inOut' }, 1.32)
           .to('.nv-hot', { opacity: 1, duration: 0.6, stagger: 0.08 }, 2.6);
         const track = q('#nv-collection-track');
@@ -10254,6 +10462,7 @@ function startNuvela() {
       const p = PRODUCTS.find((x) => x.id === currentProductId);
       if (!p) return;
       const v = p.variants.find((x) => x.name === pdSelectedVariant) || p.variants[0];
+      const tw = q('.nv-trust-warranty'); if (tw) tw.hidden = p.category.es !== 'Colchones';
       if (priceSize) priceSize.textContent = v ? v.name : '';
       if (!v || !v.price) { priceEl.textContent = typeof formatPrice === 'function' ? formatPrice(0) : ''; priceState.v = 0; return; }
       if (!hasGsap || reduce || !priceState.v) { priceState.v = v.price; priceEl.textContent = formatPrice(v.price); return; }
