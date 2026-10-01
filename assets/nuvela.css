@@ -1637,6 +1637,22 @@
       .nv-ph { min-height: 54svh; }
     }
 
+    /* ---- Recorrido del cliente: confianza, qué sigue, después de la compra ---- */
+    .nv-trust { list-style: none; padding: 0; margin: 1.8rem 0 0; display: grid; gap: 0; border: 1px solid rgba(205, 174, 85, .28); border-radius: 18px; overflow: hidden; }
+    .nv-trust li { display: grid; gap: 2px; padding: .85rem 1.1rem; border-top: 1px solid rgba(252, 249, 245, .08); }
+    .nv-trust li[hidden] { display: none; }
+    .nv-trust li:first-child, .nv-trust li[hidden] + li { border-top: 0; }
+    .nv-trust b { font-size: .86rem; font-weight: 600; color: var(--nv-gold-2); }
+    .nv-trust span { font-size: .84rem; line-height: 1.5; color: rgba(252, 249, 245, .7); }
+    .nv-trust-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 1rem; }
+    .nv-trust-links > * { font-size: .8rem; font-weight: 600; color: rgba(252, 249, 245, .85); border-bottom: 1px solid rgba(205, 174, 85, .5); padding-bottom: 2px; cursor: pointer; transition: color .3s; }
+    .nv-trust-links > *:hover { color: var(--nv-gold-2); }
+    .nv-after-grid .nv-lcard > b { display: block; font-size: .8rem; letter-spacing: .2em; color: var(--nv-gold-d); font-weight: 600; margin-bottom: .6rem; }
+    .nv-after-grid h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: -.02em; color: var(--nv-ink); }
+    .nv-after-grid p { margin-top: .5rem; font-size: .92rem; line-height: 1.6; }
+    .nv-owner-link { display: inline-block; margin-top: .9rem; font-size: .84rem; font-weight: 600; color: var(--nv-gold-d); border-bottom: 1px solid currentColor; }
+    @media (max-width: 900px) { .nv-after-grid { grid-template-columns: 1fr; } }
+
     /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */
@@ -1904,9 +1920,9 @@
       .nv-stats { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
       .nv-reveal-content { padding-bottom: 4vh; }
       .nv-layers-head { top: 8vh; }
-      .nv-layers-stage { left: 48%; top: 50%; width: 80vw; }
+      .nv-layers-stage { left: 48%; top: 50%; width: min(80vw, 38svh); }
       .nv-hot { right: -6%; width: 36px; height: 36px; }
-      .nv-layer-captions { width: auto; right: 24px; bottom: 5vh; height: 150px; }
+      .nv-layer-captions { width: auto; right: 88px; bottom: 5vh; height: 150px; }
       .nv-collection-pin { height: auto; display: block; padding: 90px 0 60px; }
       .nv-collection-head { position: static; padding: 0 24px; }
       .nv-collection-track { padding-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -1995,6 +2011,9 @@
     .nv-size-table > div:first-child span { color: #CDAE55; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; }
     .nv-size-table > div > span:first-child { font-weight: 600; color: #1C1B19; }
     .nv-size-table > div:first-child > span:first-child { color: #CDAE55; }
+    .nv-size-table small { display: block; margin-top: 2px; font-size: .8rem; font-weight: 400; color: #6b6861; }
+    .nv-seo-cta { margin-top: 1.6rem; }
+    .nv-seo-cta .btn-gold { text-decoration: none; }
     .nv-size-note { font-size: .82rem !important; color: #6b6861 !important; margin-top: 1rem; max-width: 780px; line-height: 1.6; }
     .nv-size-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 2.4rem; max-width: 900px; }
     .nv-size-card { display: flex; flex-direction: column; overflow: hidden; padding: 0 !important; text-align: left; }
