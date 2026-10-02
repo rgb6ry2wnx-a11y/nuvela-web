@@ -1137,14 +1137,14 @@
     NV.onOtherPage = function (pageId) {
       if (pageCtx) { pageCtx.revert(); pageCtx = null; }
       if (txTween) { txTween.kill(); txTween = null; }
-      document.body.classList.toggle('nv-immersive', ['home', 'producto', 'producto-detalle', 'linea-hotelera', 'cita', 'comparar', 'tecnologia', 'entregas', 'resenas', 'faq', 'contacto', 'medida'].includes(pageId));
+      document.body.classList.toggle('nv-immersive', ['home', 'producto', 'producto-detalle', 'linea-hotelera', 'cita', 'comparar', 'tecnologia', 'entregas', 'resenas', 'faq', 'contacto', 'sorteo', 'medida'].includes(pageId));
       if (pageId === 'producto') setTimeout(enterProducts, 30);
       if (pageId === 'producto-detalle') setTimeout(enterDetail, 30);
       if (pageId === 'linea-hotelera') setTimeout(enterHotel, 30);
       if (pageId === 'cita') setTimeout(enterCita, 30);
       if (pageId === 'comparar') setTimeout(enterCompare, 30);
       if (pageId === 'tecnologia') setTimeout(enterTech, 30);
-      if (['entregas', 'resenas', 'faq', 'contacto', 'medida'].includes(pageId)) setTimeout(() => enterSimple(pageId), 30);
+      if (['entregas', 'resenas', 'faq', 'contacto', 'sorteo', 'medida'].includes(pageId)) setTimeout(() => enterSimple(pageId), 30);
     };
 
     // =====================================================================
@@ -1271,5 +1271,216 @@
     fontReady.then(start, start);
     // Cuando terminan de cargar todas las fotos, se vuelven a medir las secciones.
     window.addEventListener('load', () => { if (NV.active && hasGsap) ScrollTrigger.refresh(); });
+  })();
+
+  /* ====================================================================== */
+  /* ========================== SORTEO NUVELA ============================= */
+  /* ====================================================================== */
+  /* Inscripción, puntos y enlace personal del sorteo (página /sorteo).     */
+  /*  · SORTEO_WEBHOOK_URL: enlace del Apps Script de la hoja "Sorteo"      */
+  /*    (ver instrucciones en sorteo-google-apps-script.txt).               */
+  /*  · SORTEO_FIN: cierre de inscripciones (31/12/2026 23:59, Guatemala).  */
+  (function () {
+    'use strict';
+    const SORTEO_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzXJoBVwZcLeCn6SA2NAi4k4bC9a0cor71tAcIzFbEALjFJrabTtclh5NWbSlGbxF9R/exec';
+    const SORTEO_TOKEN = 'nuvela-sorteo-2026';
+    const SORTEO_FIN = new Date('2027-01-01T06:00:00Z'); // = 31 dic 2026, 24:00 en Guatemala
+    const PUNTOS_BASE = 1, PUNTOS_REFERIDO = 2;
+    const LINK_BASE = 'https://www.nuvelagt.com/sorteo?ref=';
+    const KEY = 'nuvela-sorteo', REFKEY = 'nuvela-sorteo-ref';
+    const $ = (id) => document.getElementById(id);
+    const es = () => (document.documentElement.lang || 'es') !== 'en';
+    const configurado = !!SORTEO_WEBHOOK_URL && !/^PEGA_AQUI/.test(SORTEO_WEBHOOK_URL);
+    const cerrado = () => Date.now() >= SORTEO_FIN.getTime();
+    const leer = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+    const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* modo privado */ } };
+
+    // 1) ¿Llegó con el enlace de un amigo? (…/sorteo?ref=CODIGO) — se recuerda para cuando se inscriba.
+    let refUrl = null;
+    try { refUrl = new URLSearchParams(window.location.search).get('ref'); } catch (e) { /* navegador antiguo */ }
+    if (refUrl && /^[A-Za-z0-9]{4,12}$/.test(refUrl)) {
+      guardar(REFKEY, refUrl.toUpperCase());
+      // En la versión de una sola página (React), abre directo la página del sorteo.
+      if (!document.body.dataset.nvPage && typeof showPage === 'function') setTimeout(() => showPage('sorteo'), 400);
+    }
+
+    // 2) Aviso flotante en el resto del sitio
+    if (!cerrado() && document.body.dataset.nvPage !== 'sorteo') {
+      let visto = false;
+      try { visto = sessionStorage.getItem('nv-sorteo-chip') === '1'; } catch (e) { /* modo privado */ }
+      if (!visto) {
+        const chip = document.createElement('div');
+        chip.className = 'nv-sorteo-chip';
+        chip.innerHTML = '<a href="/sorteo" data-page="sorteo"><b>' + (es() ? 'Sorteo Nuvela' : 'Nuvela Giveaway') + '</b><span>'
+          + (es() ? 'Gana un colchón King →' : 'Win a King mattress →') + '</span></a><button type="button" aria-label="' + (es() ? 'Cerrar' : 'Close') + '">×</button>';
+        document.body.appendChild(chip);
+        chip.querySelector('button').addEventListener('click', () => {
+          chip.classList.remove('is-on');
+          try { sessionStorage.setItem('nv-sorteo-chip', '1'); } catch (e) { /* modo privado */ }
+        });
+        setTimeout(() => chip.classList.add('is-on'), 7000);
+      }
+    }
+
+    // 3) Formulario, entrada para ver puntos y panel
+    const form = $('nv-sorteo-f'), login = $('nv-sorteo-login'), panel = $('nv-sorteo-panel'), closed = $('nv-sorteo-closed');
+    if (!form || !panel) return;
+    const T = (a, b) => (es() ? a : b);
+
+    function estado() { try { return JSON.parse(leer(KEY) || 'null'); } catch (e) { return null; } }
+    function ver(cual) { [form, login, panel].forEach((el) => { if (el) el.classList.toggle('hidden', el !== cual); }); }
+    function pintarPuntos(refs) {
+      $('nv-so-points').textContent = String(PUNTOS_BASE + refs * PUNTOS_REFERIDO);
+      $('nv-so-refs').textContent = es() ? (refs === 1 ? '1 persona inscrita con tu enlace' : refs + ' personas inscritas con tu enlace') : (refs === 1 ? '1 person signed up with your link' : refs + ' people signed up with your link');
+    }
+    // Pide algo a la hoja de Google y lee su respuesta.
+    function pedir(datos) {
+      datos.token = SORTEO_TOKEN;
+      return fetch(SORTEO_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(datos) }).then((r) => r.json());
+    }
+
+    function consultar(codigo, intentos) {
+      const note = $('nv-so-note');
+      if (!configurado) { if (note) note.textContent = T('Tus puntos se actualizan aquí conforme se inscriban las personas que invites.', 'Your points update here as the people you invite sign up.'); return; }
+      fetch(SORTEO_WEBHOOK_URL + '?codigo=' + encodeURIComponent(codigo))
+        .then((r) => r.json())
+        .then((d) => {
+          if (d && d.registrado) {
+            pintarPuntos(Number(d.referidos) || 0);
+            if (note) note.textContent = d.anulada ? T('Tu inscripción está en revisión: no encontramos que tu cuenta de Instagram siga a @nuvela.gt. Síguela y escríbenos por WhatsApp para reactivarla.', 'Your sign-up is under review: we could not confirm your Instagram account follows @nuvela.gt. Follow it and message us on WhatsApp to reactivate it.') : '';
+          } else if (intentos > 0) {
+            setTimeout(() => consultar(codigo, intentos - 1), 3000);
+          } else if (note) {
+            note.textContent = T('No encontramos esta inscripción. Si necesitas ayuda, escríbenos por WhatsApp.', 'We could not find this sign-up. Message us on WhatsApp if you need help.');
+          }
+        })
+        .catch(() => { if (note) note.textContent = T('No pudimos consultar tus puntos ahora. Intenta de nuevo en un momento.', 'We could not check your points right now. Please try again shortly.'); });
+    }
+
+    function mostrarPanel(st, intentos) {
+      ver(panel);
+      const link = LINK_BASE + st.codigo;
+      $('nv-so-name').textContent = st.nombre || '';
+      $('nv-so-link').value = link;
+      $('nv-so-points').textContent = String(PUNTOS_BASE);
+      $('nv-so-refs').textContent = '';
+      $('nv-so-wa').href = 'https://wa.me/?text=' + encodeURIComponent(T('Participa en el Sorteo Nuvela y gana un colchón King: ', 'Enter the Nuvela Giveaway and win a King mattress: ') + link);
+      consultar(st.codigo, intentos || 0);
+    }
+
+    if (cerrado()) {
+      ver(null);
+      if (closed) closed.classList.remove('hidden');
+      return;
+    }
+    const previo = estado();
+    if (previo && previo.codigo) mostrarPanel(previo, 0);
+
+    function nuevoCodigo() {
+      const abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // sin letras/números que se confunden
+      const arr = new Uint32Array(6);
+      (window.crypto || window.msCrypto).getRandomValues(arr);
+      return 'NV' + Array.from(arr, (n) => abc[n % abc.length]).join('');
+    }
+    function ocupado(btn, si, texto) { btn.disabled = si; if (si) { btn.dataset.txt = btn.textContent; btn.textContent = texto; } else if (btn.dataset.txt) btn.textContent = btn.dataset.txt; }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const err = $('nv-so-error'), btn = $('nv-so-submit');
+      const nombre = $('nv-so-nombre').value.trim(), apellido = $('nv-so-apellido').value.trim();
+      const correo = $('nv-so-correo').value.trim(), telefono = $('nv-so-telefono').value.trim();
+      const instagram = $('nv-so-ig').value.trim().replace(/^@+/, '').replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/[/?].*$/, '');
+      const digitos = telefono.replace(/\D/g, '');
+      let msg = '';
+      if (!nombre || !apellido) msg = T('Escribe tu nombre y tu apellido.', 'Enter your first and last name.');
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) msg = T('Revisa tu correo electrónico.', 'Check your email address.');
+      else if (digitos.length < 8) msg = T('Revisa tu número de teléfono (8 dígitos).', 'Check your phone number (8 digits).');
+      else if (!/^[A-Za-z0-9._]{1,30}$/.test(instagram)) msg = T('Escribe tu usuario de Instagram (por ejemplo: maria.lopez).', 'Enter your Instagram username (for example: maria.lopez).');
+      else if (!$('nv-so-edad').checked) msg = T('Para participar debes ser mayor de 18 años.', 'You must be 18 or older to enter.');
+      else if (!$('nv-so-sigue').checked) msg = T('Para participar debes seguir a @nuvela.gt en Instagram.', 'You must follow @nuvela.gt on Instagram to enter.');
+      else if (!$('nv-so-bases').checked) msg = T('Debes aceptar las bases del sorteo.', 'You must accept the giveaway rules.');
+      if (msg) { err.textContent = msg; err.classList.remove('hidden'); return; }
+      err.classList.add('hidden');
+
+      const codigo = nuevoCodigo();
+      const ref = leer(REFKEY) || '';
+      const datos = {
+        tipo: 'sorteo', nombre, apellido, correo, telefono, instagram, codigo,
+        referido_por: ref && ref !== codigo ? ref : '',
+        mayor18: 'sí', sigue: 'sí',
+        pagina: window.location.origin + window.location.pathname,
+        fecha: new Date().toISOString(),
+      };
+      const entrar = (st, intentos) => {
+        guardar(KEY, JSON.stringify(st));
+        mostrarPanel(st, intentos);
+        const sec = $('nv-sorteo-form');
+        if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+      const enSegundoPlano = (url) => {
+        try {
+          fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(datos) })
+            .catch((er) => console.warn('Nuvela: no se pudo enviar la inscripción del sorteo.', er));
+        } catch (er) { console.warn('Nuvela: no se pudo enviar la inscripción del sorteo.', er); }
+      };
+
+      if (configurado) {
+        // Con la hoja conectada: se espera su respuesta (así se rechazan las inscripciones repetidas).
+        ocupado(btn, true, T('Enviando…', 'Sending…'));
+        pedir(datos).then((d) => {
+          ocupado(btn, false);
+          if (d && d.ok) { entrar({ codigo, nombre }, 0); return; }
+          const motivo = d && d.motivo;
+          err.textContent = motivo === 'repetido' ? T('Ya existe una inscripción con este correo, teléfono o usuario de Instagram. Usa "Ver mis puntos" para entrar.', 'There is already a sign-up with this email, phone or Instagram username. Use "See my points" to sign in.')
+            : motivo === 'cerrado' ? T('Las inscripciones ya cerraron.', 'Sign-ups are closed.')
+            : T('No pudimos registrar tu inscripción. Revisa tus datos e intenta de nuevo.', 'We could not register your sign-up. Check your details and try again.');
+          err.classList.remove('hidden');
+        }).catch(() => {
+          // No se pudo leer la respuesta: se envía igual y se confirma después.
+          ocupado(btn, false);
+          datos.token = SORTEO_TOKEN;
+          enSegundoPlano(SORTEO_WEBHOOK_URL);
+          entrar({ codigo, nombre }, 3);
+        });
+      } else {
+        if (typeof LEADS_WEBHOOK_URL !== 'undefined' && LEADS_WEBHOOK_URL && !/^PEGA_AQUI/.test(LEADS_WEBHOOK_URL)) {
+          datos.token = typeof LEADS_SHARED_TOKEN !== 'undefined' ? LEADS_SHARED_TOKEN : '';
+          enSegundoPlano(LEADS_WEBHOOK_URL);
+          console.warn('Nuvela: falta configurar SORTEO_WEBHOOK_URL; la inscripción se envió a la hoja de contactos.');
+        }
+        entrar({ codigo, nombre }, 0);
+      }
+    });
+
+    // Entrar con correo + teléfono para ver los puntos desde cualquier dispositivo
+    $('nv-so-show-login').addEventListener('click', () => ver(login));
+    $('nv-so-show-form').addEventListener('click', () => ver(form));
+    $('nv-so-logout').addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch (e) { /* modo privado */ } ver(form); });
+    login.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const err = $('nv-lo-error'), btn = $('nv-lo-submit');
+      const correo = $('nv-lo-correo').value.trim(), telefono = $('nv-lo-telefono').value.trim();
+      const falla = (m) => { err.textContent = m; err.classList.remove('hidden'); };
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) || telefono.replace(/\D/g, '').length < 8) { falla(T('Revisa tu correo y tu teléfono.', 'Check your email and phone.')); return; }
+      if (!configurado) { falla(T('La consulta de puntos estará disponible muy pronto.', 'Points lookup will be available very soon.')); return; }
+      err.classList.add('hidden');
+      ocupado(btn, true, T('Buscando…', 'Searching…'));
+      pedir({ tipo: 'consulta', correo, telefono }).then((d) => {
+        ocupado(btn, false);
+        if (d && d.registrado && d.codigo) {
+          const st = { codigo: d.codigo, nombre: d.nombre || '' };
+          guardar(KEY, JSON.stringify(st));
+          mostrarPanel(st, 0);
+        } else falla(T('No encontramos una inscripción con ese correo y ese teléfono.', 'We could not find a sign-up with that email and phone.'));
+      }).catch(() => { ocupado(btn, false); falla(T('No pudimos consultar ahora. Intenta de nuevo en un momento.', 'We could not check right now. Please try again shortly.')); });
+    });
+
+    $('nv-so-copy').addEventListener('click', () => {
+      const inp = $('nv-so-link'), btn = $('nv-so-copy');
+      const listo = () => { btn.textContent = es() ? 'Copiado' : 'Copied'; setTimeout(() => { btn.textContent = es() ? 'Copiar' : 'Copy'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(inp.value).then(listo, () => { inp.select(); document.execCommand('copy'); listo(); });
+      else { inp.select(); document.execCommand('copy'); listo(); }
+    });
+    $('nv-so-refresh').addEventListener('click', () => { const st = estado(); if (st && st.codigo) consultar(st.codigo, 0); });
   })();
   
