@@ -1654,6 +1654,83 @@
     @media (max-width: 900px) { .nv-after-grid { grid-template-columns: 1fr; } }
 
     /* ================================================================== */
+    /* ======================== SORTEO NUVELA =========================== */
+    /* ================================================================== */
+    #page-sorteo.page.active { animation: nvPageFade .6s ease both; }
+    .nv-sorteo-prizes .nv-lcard > b { letter-spacing: .16em; text-transform: uppercase; }
+    .nv-sorteo-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+    .nv-form.nv-sorteo-form { padding: 0; max-width: none; }
+    .nv-form.nv-sorteo-form .form-fields { margin-top: 0; }
+    .nv-check { display: flex; align-items: flex-start; gap: 12px; font-size: .92rem; line-height: 1.5; color: var(--nv-ink-2); cursor: pointer; }
+    .nv-check input { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: #8E7430; cursor: pointer; }
+    .nv-check a { color: var(--nv-gold-d); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .nv-sorteo-error { color: #B3261E !important; font-size: .88rem; }
+    .nv-sorteo-panel { background: var(--nv-white); border: 1px solid rgba(142, 116, 48, .4); border-radius: 24px; padding: clamp(22px, 3vw, 36px); box-shadow: 0 30px 60px -45px rgba(28, 27, 25, .45); }
+    .nv-sorteo-hello { font-size: 1.15rem; color: var(--nv-ink) !important; margin-top: .6rem; line-height: 1.5; }
+    .nv-sorteo-points { display: flex; align-items: baseline; gap: 14px; margin-top: 1.2rem; padding: 1rem 0; border-top: 1px solid var(--nv-line); border-bottom: 1px solid var(--nv-line); }
+    .nv-sorteo-points > b { font-size: clamp(3rem, 6vw, 4.6rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; color: var(--nv-gold-d); }
+    .nv-sorteo-points > span { display: grid; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--nv-ink); }
+    .nv-sorteo-points em { font-style: normal; letter-spacing: 0; text-transform: none; font-weight: 400; font-size: .86rem; color: var(--nv-ink-2); margin-top: 4px; }
+    .nv-sorteo-label { font-size: .7rem !important; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--nv-gold-d) !important; margin-top: 1.4rem; }
+    .nv-sorteo-link { display: flex; gap: 8px; margin-top: .6rem; }
+    .nv-sorteo-link input { flex: 1; min-width: 0; border: 1px solid var(--nv-line); border-radius: 14px; padding: .8rem 1rem; font-size: .88rem; color: var(--nv-ink); background: #F5F0E9; outline: none; }
+    .nv-sorteo-link .btn-gold { padding: .8rem 1.3rem; font-size: .85rem; }
+    .nv-sorteo-share { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .8rem; }
+    .nv-sorteo-btn { display: inline-block; padding: .65rem 1.15rem; border: 1px solid rgba(28, 27, 25, .2); border-radius: 980px; font-size: .82rem; font-weight: 600; color: var(--nv-ink); cursor: pointer; transition: background .35s, color .35s, border-color .35s; }
+    .nv-sorteo-btn:hover { background: var(--nv-ink); color: #FCF9F5; border-color: var(--nv-ink); }
+    .nv-rules { margin-top: 2rem; padding-left: 1.2rem; list-style: decimal; display: grid; gap: .8rem; color: var(--nv-ink-2); font-size: .92rem; line-height: 1.65; }
+    .nv-rules li::marker { color: var(--nv-gold-d); font-weight: 600; }
+    /* Aviso flotante del sorteo (todas las páginas menos la del sorteo) */
+    .nv-sorteo-chip { position: fixed; left: 20px; bottom: 22px; z-index: 44; display: flex; align-items: stretch; background: rgba(13, 13, 13, .92); border: 1px solid rgba(205, 174, 85, .55); border-radius: 18px; backdrop-filter: blur(10px); box-shadow: 0 24px 50px -22px rgba(0, 0, 0, .8); opacity: 0; transform: translateY(24px); pointer-events: none; transition: opacity .6s var(--nv-ease), transform .6s var(--nv-ease); max-width: calc(100vw - 110px); }
+    .nv-sorteo-chip.is-on { opacity: 1; transform: none; pointer-events: auto; }
+    .nv-sorteo-chip a { display: grid; gap: 2px; padding: 12px 6px 12px 16px; }
+    .nv-sorteo-chip a b { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: #CDAE55; font-weight: 600; }
+    .nv-sorteo-chip a span { font-size: .92rem; font-weight: 600; color: #FCF9F5; }
+    .nv-sorteo-chip button { padding: 0 14px; color: rgba(252, 249, 245, .55); font-size: 1.1rem; cursor: pointer; }
+    .nv-sorteo-chip button:hover { color: #FCF9F5; }
+    body:has(#page-sorteo.active) .nv-sorteo-chip, body:has(#page-carrito.active) .nv-sorteo-chip { display: none; }
+    @media (max-width: 900px) {
+      .nv-sorteo-grid { grid-template-columns: 1fr; }
+      .nv-sorteo-chip { left: 14px; bottom: 16px; }
+      .nv-sorteo-link { flex-direction: column; }
+    }
+
+    /* Tarjetas de premios del sorteo */
+    .nv-prizes { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 20px; margin-top: 3rem; align-items: stretch; }
+    .nv-prize { display: flex; flex-direction: column; background: var(--nv-white); border: 1px solid var(--nv-line); border-radius: 26px; overflow: hidden; box-shadow: 0 30px 60px -45px rgba(28, 27, 25, .45); transition: transform .5s var(--nv-ease), box-shadow .5s; }
+    .nv-prize:hover { transform: translateY(-4px); box-shadow: 0 40px 70px -40px rgba(28, 27, 25, .5); }
+    .nv-prize-1 { border-color: rgba(142, 116, 48, .55); box-shadow: 0 0 0 1px rgba(205, 174, 85, .45), 0 34px 70px -40px rgba(142, 116, 48, .55); }
+    .nv-prize-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #0D0D0D; flex: 1 1 auto; min-height: 220px; }
+    .nv-prize-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none; transition: transform 1.2s var(--nv-ease); }
+    .nv-prize:hover .nv-prize-media img { transform: scale(1.05); }
+    .nv-prize-rank { position: absolute; left: 16px; top: 16px; padding: .45rem .9rem; border-radius: 980px; background: rgba(13, 13, 13, .82); border: 1px solid rgba(205, 174, 85, .7); color: #CDAE55; font-size: .66rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; backdrop-filter: blur(6px); }
+    .nv-prize-1 .nv-prize-rank { background: #CDAE55; color: #0D0D0D; border-color: #CDAE55; }
+    .nv-prize-amount { display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 40%, #2a2618 0%, #0D0D0D 70%); }
+    .nv-prize-amount b { font-size: clamp(3.4rem, 6vw, 5.2rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; color: #CDAE55; }
+    .nv-prize-amount i { font-style: normal; margin-top: .5rem; font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(252, 249, 245, .7); }
+    .nv-prize-body { padding: 1.4rem 1.5rem 1.6rem; }
+    .nv-prize-body h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: -.025em; line-height: 1.2; color: var(--nv-ink) !important; }
+    .nv-prize-1 .nv-prize-body h4 { font-size: 1.65rem; }
+    .nv-prize-body p { margin-top: .5rem; font-size: .95rem; line-height: 1.55; }
+    .nv-prize-note { margin-top: 1.6rem; font-size: .86rem; color: var(--nv-ink-2) !important; }
+    @media (max-width: 900px) { .nv-prizes { grid-template-columns: 1fr; } .nv-prize-media { min-height: 0; } }
+
+    .nv-so-hint { font-size: .82rem !important; line-height: 1.5; color: var(--nv-ink-2) !important; margin-top: -4px; }
+    .nv-so-hint a { color: var(--nv-gold-d); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+    .nv-so-textbtn { justify-self: start; font-size: .84rem; font-weight: 600; color: var(--nv-gold-d); border-bottom: 1px solid currentColor; padding-bottom: 1px; cursor: pointer; margin-top: .4rem; }
+    .nv-sorteo-panel .nv-so-textbtn { display: inline-block; margin-top: 1.2rem; }
+
+    /* Sorteo en el menú principal */
+    .nav-link.nv-nav-sorteo { color: #CDAE55 !important; position: relative; padding-left: 14px; }
+    .nav-link.nv-nav-sorteo::before { content: ''; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: #CDAE55; }
+    .drawer-link.nv-drawer-sorteo { color: #8E7430 !important; font-weight: 700; }
+    .nav-link { white-space: nowrap; }
+    @media (min-width: 1024px) and (max-width: 1260px) {
+      #navbar nav { gap: 1.15rem !important; }
+      #navbar .nav-link { letter-spacing: .12em !important; font-size: .68rem !important; }
+    }
+
+    /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */
     /* Colores oficiales de la guía de marca Nuvela.                      */
