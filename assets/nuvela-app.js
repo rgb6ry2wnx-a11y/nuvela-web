@@ -5,7 +5,7 @@
     const NV_PAGE = document.body.dataset.nvPage || 'home';
     const NV_PRODUCT = document.body.dataset.nvProduct || null;
     // Sitio multi-página: cada "página" ahora es una dirección propia.
-    const NV_ROUTES = {"home": "/", "producto": "/colchones", "precios": "/colchones", "linea-hotelera": "/linea-hotelera", "cita": "/showroom", "historia": "/historia", "tecnologia": "/colchon-hibrido", "entregas": "/envios", "resenas": "/resenas", "faq": "/preguntas-frecuentes", "contacto": "/contacto", "comparar": "/comparar", "carrito": "/carrito", "privacidad": "/privacidad"};
+    const NV_ROUTES = {"home": "/", "producto": "/colchones", "precios": "/colchones", "linea-hotelera": "/linea-hotelera", "cita": "/showroom", "historia": "/historia", "tecnologia": "/colchon-hibrido", "entregas": "/envios", "resenas": "/resenas", "faq": "/preguntas-frecuentes", "contacto": "/contacto", "comparar": "/comparar", "carrito": "/carrito", "privacidad": "/privacidad", "sorteo": "/sorteo"};
     const NV_PRODUCT_URLS = {"nuvela-clasico": "/colchones/colchon-nuvela", "nuvela-hotel": "/colchones/nuvela-diamond", "almohada-memory-foam-1": "/almohadas/ariana", "almohada-memory-foam-2": "/almohadas/amanda", "almohada-plumas": "/almohadas/almohada-de-plumas", "duvet-nuvela": "/accesorios-para-cama/duvet-nuvela", "protector-colchon": "/accesorios-para-cama/protector-de-colchon", "camastron-nuvela": "/camastrones/olivia-bed"};
     const NV_CAT_URLS = {"Colchones": "/colchones", "Almohadas": "/almohadas", "Accesorios para Cama": "/accesorios-para-cama", "Camastrones": "/camastrones"};
     function nvProductUrl(id) { return NV_PRODUCT_URLS[id] || '/colchones'; }
@@ -3057,7 +3057,7 @@
     nvSafe(initConstructionScroll);
     nvSafe(initHero);
     nvSafe(initStarTrail);
-    nvSafe(initLeadPopup);
+    if (NV_PAGE !== 'sorteo') nvSafe(initLeadPopup); // en la página del sorteo no se muestra el popup de contactos
 
     // Marca en el menú la página en la que estamos
     document.querySelectorAll('.nav-link').forEach(l => l.classList.toggle('active', l.dataset.page === NV_PAGE));
