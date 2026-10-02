@@ -1722,6 +1722,83 @@ const NUVELA_CSS = String.raw`
     @media (max-width: 900px) { .nv-after-grid { grid-template-columns: 1fr; } }
 
     /* ================================================================== */
+    /* ======================== SORTEO NUVELA =========================== */
+    /* ================================================================== */
+    #page-sorteo.page.active { animation: nvPageFade .6s ease both; }
+    .nv-sorteo-prizes .nv-lcard > b { letter-spacing: .16em; text-transform: uppercase; }
+    .nv-sorteo-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+    .nv-form.nv-sorteo-form { padding: 0; max-width: none; }
+    .nv-form.nv-sorteo-form .form-fields { margin-top: 0; }
+    .nv-check { display: flex; align-items: flex-start; gap: 12px; font-size: .92rem; line-height: 1.5; color: var(--nv-ink-2); cursor: pointer; }
+    .nv-check input { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: #8E7430; cursor: pointer; }
+    .nv-check a { color: var(--nv-gold-d); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+    .nv-sorteo-error { color: #B3261E !important; font-size: .88rem; }
+    .nv-sorteo-panel { background: var(--nv-white); border: 1px solid rgba(142, 116, 48, .4); border-radius: 24px; padding: clamp(22px, 3vw, 36px); box-shadow: 0 30px 60px -45px rgba(28, 27, 25, .45); }
+    .nv-sorteo-hello { font-size: 1.15rem; color: var(--nv-ink) !important; margin-top: .6rem; line-height: 1.5; }
+    .nv-sorteo-points { display: flex; align-items: baseline; gap: 14px; margin-top: 1.2rem; padding: 1rem 0; border-top: 1px solid var(--nv-line); border-bottom: 1px solid var(--nv-line); }
+    .nv-sorteo-points > b { font-size: clamp(3rem, 6vw, 4.6rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; color: var(--nv-gold-d); }
+    .nv-sorteo-points > span { display: grid; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; color: var(--nv-ink); }
+    .nv-sorteo-points em { font-style: normal; letter-spacing: 0; text-transform: none; font-weight: 400; font-size: .86rem; color: var(--nv-ink-2); margin-top: 4px; }
+    .nv-sorteo-label { font-size: .7rem !important; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--nv-gold-d) !important; margin-top: 1.4rem; }
+    .nv-sorteo-link { display: flex; gap: 8px; margin-top: .6rem; }
+    .nv-sorteo-link input { flex: 1; min-width: 0; border: 1px solid var(--nv-line); border-radius: 14px; padding: .8rem 1rem; font-size: .88rem; color: var(--nv-ink); background: #F5F0E9; outline: none; }
+    .nv-sorteo-link .btn-gold { padding: .8rem 1.3rem; font-size: .85rem; }
+    .nv-sorteo-share { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .8rem; }
+    .nv-sorteo-btn { display: inline-block; padding: .65rem 1.15rem; border: 1px solid rgba(28, 27, 25, .2); border-radius: 980px; font-size: .82rem; font-weight: 600; color: var(--nv-ink); cursor: pointer; transition: background .35s, color .35s, border-color .35s; }
+    .nv-sorteo-btn:hover { background: var(--nv-ink); color: #FCF9F5; border-color: var(--nv-ink); }
+    .nv-rules { margin-top: 2rem; padding-left: 1.2rem; list-style: decimal; display: grid; gap: .8rem; color: var(--nv-ink-2); font-size: .92rem; line-height: 1.65; }
+    .nv-rules li::marker { color: var(--nv-gold-d); font-weight: 600; }
+    /* Aviso flotante del sorteo (todas las páginas menos la del sorteo) */
+    .nv-sorteo-chip { position: fixed; left: 20px; bottom: 22px; z-index: 44; display: flex; align-items: stretch; background: rgba(13, 13, 13, .92); border: 1px solid rgba(205, 174, 85, .55); border-radius: 18px; backdrop-filter: blur(10px); box-shadow: 0 24px 50px -22px rgba(0, 0, 0, .8); opacity: 0; transform: translateY(24px); pointer-events: none; transition: opacity .6s var(--nv-ease), transform .6s var(--nv-ease); max-width: calc(100vw - 110px); }
+    .nv-sorteo-chip.is-on { opacity: 1; transform: none; pointer-events: auto; }
+    .nv-sorteo-chip a { display: grid; gap: 2px; padding: 12px 6px 12px 16px; }
+    .nv-sorteo-chip a b { font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: #CDAE55; font-weight: 600; }
+    .nv-sorteo-chip a span { font-size: .92rem; font-weight: 600; color: #FCF9F5; }
+    .nv-sorteo-chip button { padding: 0 14px; color: rgba(252, 249, 245, .55); font-size: 1.1rem; cursor: pointer; }
+    .nv-sorteo-chip button:hover { color: #FCF9F5; }
+    body:has(#page-sorteo.active) .nv-sorteo-chip, body:has(#page-carrito.active) .nv-sorteo-chip { display: none; }
+    @media (max-width: 900px) {
+      .nv-sorteo-grid { grid-template-columns: 1fr; }
+      .nv-sorteo-chip { left: 14px; bottom: 16px; }
+      .nv-sorteo-link { flex-direction: column; }
+    }
+
+    /* Tarjetas de premios del sorteo */
+    .nv-prizes { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 20px; margin-top: 3rem; align-items: stretch; }
+    .nv-prize { display: flex; flex-direction: column; background: var(--nv-white); border: 1px solid var(--nv-line); border-radius: 26px; overflow: hidden; box-shadow: 0 30px 60px -45px rgba(28, 27, 25, .45); transition: transform .5s var(--nv-ease), box-shadow .5s; }
+    .nv-prize:hover { transform: translateY(-4px); box-shadow: 0 40px 70px -40px rgba(28, 27, 25, .5); }
+    .nv-prize-1 { border-color: rgba(142, 116, 48, .55); box-shadow: 0 0 0 1px rgba(205, 174, 85, .45), 0 34px 70px -40px rgba(142, 116, 48, .55); }
+    .nv-prize-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #0D0D0D; flex: 1 1 auto; min-height: 220px; }
+    .nv-prize-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; max-width: none; transition: transform 1.2s var(--nv-ease); }
+    .nv-prize:hover .nv-prize-media img { transform: scale(1.05); }
+    .nv-prize-rank { position: absolute; left: 16px; top: 16px; padding: .45rem .9rem; border-radius: 980px; background: rgba(13, 13, 13, .82); border: 1px solid rgba(205, 174, 85, .7); color: #CDAE55; font-size: .66rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; backdrop-filter: blur(6px); }
+    .nv-prize-1 .nv-prize-rank { background: #CDAE55; color: #0D0D0D; border-color: #CDAE55; }
+    .nv-prize-amount { display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(ellipse at 50% 40%, #2a2618 0%, #0D0D0D 70%); }
+    .nv-prize-amount b { font-size: clamp(3.4rem, 6vw, 5.2rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; color: #CDAE55; }
+    .nv-prize-amount i { font-style: normal; margin-top: .5rem; font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: rgba(252, 249, 245, .7); }
+    .nv-prize-body { padding: 1.4rem 1.5rem 1.6rem; }
+    .nv-prize-body h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: -.025em; line-height: 1.2; color: var(--nv-ink) !important; }
+    .nv-prize-1 .nv-prize-body h4 { font-size: 1.65rem; }
+    .nv-prize-body p { margin-top: .5rem; font-size: .95rem; line-height: 1.55; }
+    .nv-prize-note { margin-top: 1.6rem; font-size: .86rem; color: var(--nv-ink-2) !important; }
+    @media (max-width: 900px) { .nv-prizes { grid-template-columns: 1fr; } .nv-prize-media { min-height: 0; } }
+
+    .nv-so-hint { font-size: .82rem !important; line-height: 1.5; color: var(--nv-ink-2) !important; margin-top: -4px; }
+    .nv-so-hint a { color: var(--nv-gold-d); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+    .nv-so-textbtn { justify-self: start; font-size: .84rem; font-weight: 600; color: var(--nv-gold-d); border-bottom: 1px solid currentColor; padding-bottom: 1px; cursor: pointer; margin-top: .4rem; }
+    .nv-sorteo-panel .nv-so-textbtn { display: inline-block; margin-top: 1.2rem; }
+
+    /* Sorteo en el menú principal */
+    .nav-link.nv-nav-sorteo { color: #CDAE55 !important; position: relative; padding-left: 14px; }
+    .nav-link.nv-nav-sorteo::before { content: ''; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: #CDAE55; }
+    .drawer-link.nv-drawer-sorteo { color: #8E7430 !important; font-weight: 700; }
+    .nav-link { white-space: nowrap; }
+    @media (min-width: 1024px) and (max-width: 1260px) {
+      #navbar nav { gap: 1.15rem !important; }
+      #navbar .nav-link { letter-spacing: .12em !important; font-size: .68rem !important; }
+    }
+
+    /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */
     /* Colores oficiales de la guía de marca Nuvela.                      */
@@ -2219,6 +2296,10 @@ function Chrome() {
               {"Agenda tu Cita"}
             </a>
             {' '}
+            <a className="nav-link nv-nav-sorteo" data-page="sorteo" data-en="Giveaway" data-es="Sorteo Nuvela">
+              {"Sorteo Nuvela"}
+            </a>
+            {' '}
             <div className="relative group">
               {' '}
               <a className="nav-link inline-flex items-center gap-1 cursor-default">
@@ -2365,6 +2446,10 @@ function Chrome() {
           {' '}
           <a className="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="home" data-en="Home" data-es="Inicio">
             {"Inicio"}
+          </a>
+          {' '}
+          <a className="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">
+            {"Sorteo Nuvela"}
           </a>
           {' '}
           <a className="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">
@@ -6304,6 +6389,515 @@ function PageContacto() {
   );
 }
 
+/* ---------- Página "sorteo" ---------- */
+function PageSorteo() {
+  return (
+    <>
+      <main id="page-sorteo" className="page nv-page nv-sorteo">
+        {' '}
+        <section className="nv-ph nv-ph-photo">
+          {' '}
+          <div className="nv-ph-bg" aria-hidden="true">
+            <img src="images/hero-frontal.jpg" alt="Colchón Nuvela King, primer premio del Sorteo Nuvela" />
+          </div>
+          {' '}
+          <div className="nv-ph-inner">
+            {' '}
+            <p className="nv-eyebrow" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">
+              {"Sorteo Nuvela"}
+            </p>
+            {' '}
+            <h2 className="nv-display nv-ph-title" data-en={"Win a<br/>King mattress."} data-es={"Gana un<br/>colchón King."}>
+              {"Gana un"}
+              <br />
+              {"colchón King."}
+            </h2>
+            {' '}
+            <ul className="nv-cita-chips">
+              <li data-en="Until December 31, 2026" data-es="Hasta el 31 de diciembre de 2026">
+                {"Hasta el 31 de diciembre de 2026"}
+              </li>
+              <li data-en="Free to enter" data-es="Participar es gratis">
+                {"Participar es gratis"}
+              </li>
+              <li data-en="3 prizes" data-es="3 premios">
+                {"3 premios"}
+              </li>
+            </ul>
+            {' '}
+            <div className="nv-hero-actions">
+              <a href="#nv-sorteo-form" className="btn-gold nv-magnetic js-nv-goto" data-target="#nv-sorteo-form" data-en="Enter now" data-es="Participar ahora">
+                {"Participar ahora"}
+              </a>
+            </div>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+        {/* Premios */}
+        {' '}
+        <section className="nv-light nv-sec">
+          {' '}
+          <div className="nv-wrap">
+            {' '}
+            <p className="nv-eyebrow" data-en="Prizes" data-es="Premios">
+              {"Premios"}
+            </p>
+            {' '}
+            <h3 className="nv-h2" data-en="Three winners." data-es="Tres ganadores.">
+              {"Tres ganadores."}
+            </h3>
+            {' '}
+            <div className="nv-prizes">
+              {' '}
+              <article className="nv-prize nv-prize-1">
+                {' '}
+                <div className="nv-prize-media">
+                  <img src="images/colchon.jpg" alt="Colchón Nuvela King con pillow top, primer premio del sorteo" loading="lazy" />
+                  <span className="nv-prize-rank" data-en="1st place" data-es="1.er lugar">
+                    {"1.er lugar"}
+                  </span>
+                </div>
+                {' '}
+                <div className="nv-prize-body">
+                  <h4 data-en="A King-size Nuvela Mattress" data-es="Un Colchón Nuvela King">
+                    {"Un Colchón Nuvela King"}
+                  </h4>
+                  <p data-en="30 cm hybrid, 1.93 × 2.03 m, with a 10-year warranty." data-es="Híbrido de 30 cm, 1.93 × 2.03 m, con 10 años de garantía.">
+                    {"Híbrido de 30 cm, 1.93 × 2.03 m, con 10 años de garantía."}
+                  </p>
+                </div>
+                {' '}
+              </article>
+              {' '}
+              <article className="nv-prize">
+                {' '}
+                <div className="nv-prize-media">
+                  <img src="images/almohada-memoryfoam-1-principal.jpg" alt="Almohada Nuvela de memory foam, segundo premio del sorteo" loading="lazy" />
+                  <span className="nv-prize-rank" data-en="2nd place" data-es="2.º lugar">
+                    {"2.º lugar"}
+                  </span>
+                </div>
+                {' '}
+                <div className="nv-prize-body">
+                  <h4 data-en="Two Nuvela pillows" data-es="Dos almohadas Nuvela">
+                    {"Dos almohadas Nuvela"}
+                  </h4>
+                  <p data-en="To complete your rest." data-es="Para completar tu descanso.">
+                    {"Para completar tu descanso."}
+                  </p>
+                </div>
+                {' '}
+              </article>
+              {' '}
+              <article className="nv-prize nv-prize-3">
+                {' '}
+                <div className="nv-prize-media nv-prize-amount" aria-hidden="true">
+                  <b>
+                    {"Q500"}
+                  </b>
+                  <i data-en="off" data-es="de descuento">
+                    {"de descuento"}
+                  </i>
+                  <span className="nv-prize-rank" data-en="3rd place" data-es="3.er lugar">
+                    {"3.er lugar"}
+                  </span>
+                </div>
+                {' '}
+                <div className="nv-prize-body">
+                  <h4 data-en="Q500 off a Nuvela Mattress" data-es="Q500 de descuento en un Colchón Nuvela">
+                    {"Q500 de descuento en un Colchón Nuvela"}
+                  </h4>
+                  <p data-en="Valid on the purchase of a Nuvela Mattress, in any size." data-es="Válido en la compra de un Colchón Nuvela, en cualquier medida.">
+                    {"Válido en la compra de un Colchón Nuvela, en cualquier medida."}
+                  </p>
+                </div>
+                {' '}
+              </article>
+              {' '}
+            </div>
+            {' '}
+            <p className="nv-prize-note" data-en="Prizes apply to the Nuvela Mattress only; the Nuvela Diamond is not included." data-es="Los premios aplican únicamente al Colchón Nuvela; no incluyen el Nuvela Diamond.">
+              {"Los premios aplican únicamente al Colchón Nuvela; no incluyen el Nuvela Diamond."}
+            </p>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+        {/* Cómo participar */}
+        {' '}
+        <section className="nv-dark nv-sec">
+          {' '}
+          <div className="nv-wrap">
+            {' '}
+            <p className="nv-eyebrow" data-en="How it works" data-es="Cómo participar">
+              {"Cómo participar"}
+            </p>
+            {' '}
+            <h3 className="nv-h2" data-en={"Three steps.<br/>More points, more chances."} data-es={"Tres pasos.<br/>Más puntos, más oportunidades."}>
+              {"Tres pasos."}
+              <br />
+              {"Más puntos, más oportunidades."}
+            </h3>
+            {' '}
+            <ol className="nv-steps nv-del-steps nv-sorteo-steps">
+              <i className="nv-steps-line" aria-hidden="true">
+                <i>
+                </i>
+              </i>
+              <li>
+                <span>
+                  {"01"}
+                </span>
+                <h4 data-en="Sign up" data-es="Inscríbete">
+                  {"Inscríbete"}
+                </h4>
+                <p data-en="Fill in the form on this page. You earn 1 point." data-es="Llena el formulario de esta página. Ganas 1 punto.">
+                  {"Llena el formulario de esta página. Ganas 1 punto."}
+                </p>
+              </li>
+              <li>
+                <span>
+                  {"02"}
+                </span>
+                <h4 data-en="Follow Nuvela" data-es="Sigue a Nuvela">
+                  {"Sigue a Nuvela"}
+                </h4>
+                <p data-en="Follow @nuvela.gt on Instagram. We verify it before awarding a prize." data-es="Sigue a @nuvela.gt en Instagram. Lo verificamos antes de entregar un premio.">
+                  {"Sigue a @nuvela.gt en Instagram. Lo verificamos antes de entregar un premio."}
+                </p>
+              </li>
+              <li>
+                <span>
+                  {"03"}
+                </span>
+                <h4 data-en="Share your link" data-es="Comparte tu enlace">
+                  {"Comparte tu enlace"}
+                </h4>
+                <p data-en="You earn 2 points for each person who signs up with your link." data-es="Ganas 2 puntos por cada persona que se inscriba con tu enlace.">
+                  {"Ganas 2 puntos por cada persona que se inscriba con tu enlace."}
+                </p>
+              </li>
+              <li>
+                <span>
+                  {"04"}
+                </span>
+                <h4 data-en="The draw" data-es="El sorteo">
+                  {"El sorteo"}
+                </h4>
+                <p data-en="Each point is one ticket. The more points, the more chances to win." data-es="Cada punto es un boleto. Mientras más puntos, más oportunidades de ganar.">
+                  {"Cada punto es un boleto. Mientras más puntos, más oportunidades de ganar."}
+                </p>
+              </li>
+            </ol>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+        {/* Formulario / panel del participante */}
+        {' '}
+        <section className="nv-light nv-sec" id="nv-sorteo-form">
+          {' '}
+          <div className="nv-wrap nv-sorteo-grid">
+            {' '}
+            <div>
+              {' '}
+              <p className="nv-eyebrow" data-en="Sign up" data-es="Inscripción">
+                {"Inscripción"}
+              </p>
+              {' '}
+              <h3 className="nv-h2" data-en={"Enter the<br/>Nuvela Giveaway."} data-es={"Participa en el<br/>Sorteo Nuvela."}>
+                {"Participa en el"}
+                <br />
+                {"Sorteo Nuvela."}
+              </h3>
+              {' '}
+              <p className="nv-lead" data-en="One sign-up per person. Your details are used only for the giveaway and to contact you about Nuvela." data-es="Una inscripción por persona. Tus datos se usan solo para el sorteo y para contactarte sobre Nuvela.">
+                {"Una inscripción por persona. Tus datos se usan solo para el sorteo y para contactarte sobre Nuvela."}
+              </p>
+              {' '}
+            </div>
+            {' '}
+            <div>
+              {' '}
+              {/* A) Formulario */}
+              {' '}
+              <form id="nv-sorteo-f" className="nv-form nv-sorteo-form" noValidate>
+                <div className="form-fields">
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="text" id="nv-so-nombre" autoComplete="given-name" placeholder=" " required />
+                    <span data-en="First name" data-es="Nombre">
+                      {"Nombre"}
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="text" id="nv-so-apellido" autoComplete="family-name" placeholder=" " required />
+                    <span data-en="Last name" data-es="Apellido">
+                      {"Apellido"}
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="email" id="nv-so-correo" autoComplete="email" placeholder=" " required />
+                    <span data-en="Email" data-es="Correo electrónico">
+                      {"Correo electrónico"}
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="tel" id="nv-so-telefono" autoComplete="tel" inputMode="tel" placeholder=" " required />
+                    <span data-en="Phone number" data-es="Número de teléfono">
+                      {"Número de teléfono"}
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="text" id="nv-so-ig" autoComplete="off" autoCapitalize="none" placeholder=" " required />
+                    <span data-en="Your Instagram username" data-es="Tu usuario de Instagram">
+                      {"Tu usuario de Instagram"}
+                    </span>
+                  </label>
+                  {' '}
+                  <p className="nv-so-hint">
+                    <span data-en="We check that this account follows @nuvela.gt. If it doesn't, the sign-up is voided." data-es="Revisamos que esta cuenta siga a @nuvela.gt. Si no la sigue, la inscripción se anula.">
+                      {"Revisamos que esta cuenta siga a @nuvela.gt. Si no la sigue, la inscripción se anula."}
+                    </span>
+                    {' '}
+                    <a href="https://instagram.com/Nuvela.gt" target="_blank" rel="noopener" data-en="Follow @nuvela.gt →" data-es="Seguir a @nuvela.gt →">
+                      {"Seguir a @nuvela.gt →"}
+                    </a>
+                  </p>
+                  {' '}
+                  <label className="nv-check">
+                    <input type="checkbox" id="nv-so-edad" required />
+                    <span data-en="I am 18 or older." data-es="Soy mayor de 18 años.">
+                      {"Soy mayor de 18 años."}
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-check">
+                    <input type="checkbox" id="nv-so-sigue" required />
+                    <span>
+                      <span data-en="I follow Nuvela on Instagram:" data-es="Sigo a Nuvela en Instagram:">
+                        {"Sigo a Nuvela en Instagram:"}
+                      </span>
+                      {' '}
+                      <a href="https://instagram.com/Nuvela.gt" target="_blank" rel="noopener">
+                        {"@nuvela.gt"}
+                      </a>
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-check">
+                    <input type="checkbox" id="nv-so-bases" required />
+                    <span data-en="I accept the giveaway rules and the use of my details to contact me." data-es="Acepto las bases del sorteo y el uso de mis datos para contactarme.">
+                      {"Acepto las bases del sorteo y el uso de mis datos para contactarme."}
+                    </span>
+                  </label>
+                  {' '}
+                  <p id="nv-so-error" className="nv-sorteo-error hidden" role="alert">
+                  </p>
+                  {' '}
+                  <button className="btn-gold nv-magnetic" type="submit" id="nv-so-submit" data-en="Enter the giveaway" data-es="Participar en el sorteo">
+                    {"Participar en el sorteo"}
+                  </button>
+                  {' '}
+                  <button type="button" id="nv-so-show-login" className="nv-so-textbtn" data-en="Already signed up? See my points" data-es="¿Ya te inscribiste? Ver mis puntos">
+                    {"¿Ya te inscribiste? Ver mis puntos"}
+                  </button>
+                  {' '}
+                </div>
+              </form>
+              {' '}
+              {/* A2) Entrar para ver mis puntos (correo + teléfono con los que se inscribió) */}
+              {' '}
+              <form id="nv-sorteo-login" className="nv-form nv-sorteo-form hidden" noValidate>
+                <div className="form-fields">
+                  {' '}
+                  <p className="nv-sorteo-hello" data-en="Enter the email and phone you signed up with." data-es="Escribe el correo y el teléfono con los que te inscribiste.">
+                    {"Escribe el correo y el teléfono con los que te inscribiste."}
+                  </p>
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="email" id="nv-lo-correo" autoComplete="email" placeholder=" " required />
+                    <span data-en="Email" data-es="Correo electrónico">
+                      {"Correo electrónico"}
+                    </span>
+                  </label>
+                  {' '}
+                  <label className="nv-field">
+                    <input className="luxe-input" type="tel" id="nv-lo-telefono" autoComplete="tel" inputMode="tel" placeholder=" " required />
+                    <span data-en="Phone number" data-es="Número de teléfono">
+                      {"Número de teléfono"}
+                    </span>
+                  </label>
+                  {' '}
+                  <p id="nv-lo-error" className="nv-sorteo-error hidden" role="alert">
+                  </p>
+                  {' '}
+                  <button className="btn-gold nv-magnetic" type="submit" id="nv-lo-submit" data-en="See my points" data-es="Ver mis puntos">
+                    {"Ver mis puntos"}
+                  </button>
+                  {' '}
+                  <button type="button" id="nv-so-show-form" className="nv-so-textbtn" data-en="← Back to sign-up" data-es="← Volver a la inscripción">
+                    {"← Volver a la inscripción"}
+                  </button>
+                  {' '}
+                </div>
+              </form>
+              {' '}
+              {/* B) Panel de quien ya está inscrito */}
+              {' '}
+              <div id="nv-sorteo-panel" className="nv-sorteo-panel hidden">
+                {' '}
+                <p className="nv-eyebrow" data-en="You're in" data-es="Ya estás participando">
+                  {"Ya estás participando"}
+                </p>
+                {' '}
+                <p className="nv-sorteo-hello">
+                  <span data-en="Good luck," data-es="Mucha suerte,">
+                    {"Mucha suerte,"}
+                  </span>
+                  {' '}
+                  <b id="nv-so-name">
+                  </b>
+                  {"."}
+                </p>
+                {' '}
+                <div className="nv-sorteo-points">
+                  <b id="nv-so-points">
+                    {"1"}
+                  </b>
+                  <span>
+                    <span data-en="points" data-es="puntos">
+                      {"puntos"}
+                    </span>
+                    <em id="nv-so-refs">
+                    </em>
+                  </span>
+                </div>
+                {' '}
+                <p className="nv-sorteo-label" data-en="Your link — 2 points for each person who signs up with it" data-es="Tu enlace — 2 puntos por cada persona que se inscriba con él">
+                  {"Tu enlace — 2 puntos por cada persona que se inscriba con él"}
+                </p>
+                {' '}
+                <div className="nv-sorteo-link">
+                  <input id="nv-so-link" type="text" readOnly aria-label="Tu enlace del sorteo" />
+                  <button type="button" id="nv-so-copy" className="btn-gold" data-en="Copy" data-es="Copiar">
+                    {"Copiar"}
+                  </button>
+                </div>
+                {' '}
+                <div className="nv-sorteo-share">
+                  {' '}
+                  <a id="nv-so-wa" className="nv-sorteo-btn" target="_blank" rel="noopener" data-en="Share on WhatsApp" data-es="Compartir por WhatsApp">
+                    {"Compartir por WhatsApp"}
+                  </a>
+                  {' '}
+                  <button type="button" id="nv-so-refresh" className="nv-sorteo-btn" data-en="Update my points" data-es="Actualizar mis puntos">
+                    {"Actualizar mis puntos"}
+                  </button>
+                  {' '}
+                </div>
+                {' '}
+                <p id="nv-so-note" className="nv-size-note">
+                </p>
+                {' '}
+                <button type="button" id="nv-so-logout" className="nv-so-textbtn" data-en="Not you? Sign out" data-es="¿No eres tú? Salir">
+                  {"¿No eres tú? Salir"}
+                </button>
+                {' '}
+              </div>
+              {' '}
+              {/* C) Sorteo cerrado */}
+              {' '}
+              <div id="nv-sorteo-closed" className="nv-sorteo-panel hidden">
+                {' '}
+                <p className="nv-eyebrow" data-en="Giveaway closed" data-es="Sorteo finalizado">
+                  {"Sorteo finalizado"}
+                </p>
+                {' '}
+                <p className="nv-sorteo-hello" data-en="Sign-ups closed on December 31, 2026. Winners are announced on Instagram @nuvela.gt." data-es="Las inscripciones cerraron el 31 de diciembre de 2026. Los ganadores se anuncian en Instagram @nuvela.gt.">
+                  {"Las inscripciones cerraron el 31 de diciembre de 2026. Los ganadores se anuncian en Instagram @nuvela.gt."}
+                </p>
+                {' '}
+              </div>
+              {' '}
+            </div>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+        {/* Bases */}
+        {' '}
+        <section className="nv-light nv-sec nv-sec-tight nv-sorteo-rules">
+          {' '}
+          <div className="nv-wrap nv-narrow">
+            {' '}
+            <p className="nv-eyebrow" data-en="Rules" data-es="Bases del sorteo">
+              {"Bases del sorteo"}
+            </p>
+            {' '}
+            <h3 className="nv-h2" data-en="Terms and conditions." data-es="Términos y condiciones.">
+              {"Términos y condiciones."}
+            </h3>
+            {' '}
+            <ol className="nv-rules">
+              <li data-en="Organizer: Nuvela (Diseño y Confort, S.A.), Guatemala City." data-es="Organizador: Nuvela (Diseño y Confort, S.A.), Ciudad de Guatemala.">
+                {"Organizador: Nuvela (Diseño y Confort, S.A.), Ciudad de Guatemala."}
+              </li>
+              <li data-en="Period: sign-ups are open until December 31, 2026 at 11:59 p.m. (Guatemala time)." data-es="Vigencia: las inscripciones están abiertas hasta el 31 de diciembre de 2026 a las 23:59 (hora de Guatemala).">
+                {"Vigencia: las inscripciones están abiertas hasta el 31 de diciembre de 2026 a las 23:59 (hora de Guatemala)."}
+              </li>
+              <li data-en="Who can enter: people aged 18 or older. One sign-up per person; duplicate sign-ups with the same email or phone are not counted." data-es="Quién participa: personas mayores de 18 años. Una inscripción por persona; las inscripciones repetidas con el mismo correo o teléfono no cuentan.">
+                {"Quién participa: personas mayores de 18 años. Una inscripción por persona; las inscripciones repetidas con el mismo correo o teléfono no cuentan."}
+              </li>
+              <li data-en="Requirement: follow Nuvela on Instagram (@nuvela.gt). When signing up you give your Instagram username; Nuvela checks that the account follows @nuvela.gt and voids sign-ups that do not. It is also verified before awarding each prize." data-es="Requisito: seguir a Nuvela en Instagram (@nuvela.gt). Al inscribirte indicas tu usuario de Instagram; Nuvela revisa que esa cuenta siga a @nuvela.gt y anula las inscripciones que no cumplan. También se verifica antes de entregar cada premio.">
+                {"Requisito: seguir a Nuvela en Instagram (@nuvela.gt). Al inscribirte indicas tu usuario de Instagram; Nuvela revisa que esa cuenta siga a @nuvela.gt y anula las inscripciones que no cumplan. También se verifica antes de entregar cada premio."}
+              </li>
+              <li data-en="Points: 1 point for signing up and 2 points for each person who signs up using your personal link. Referred people must be real, of legal age and with their own details." data-es="Puntos: 1 punto por inscribirte y 2 puntos por cada persona que se inscriba usando tu enlace personal. Las personas referidas deben ser reales, mayores de edad y con sus propios datos.">
+                {"Puntos: 1 punto por inscribirte y 2 puntos por cada persona que se inscriba usando tu enlace personal. Las personas referidas deben ser reales, mayores de edad y con sus propios datos."}
+              </li>
+              <li data-en="How winners are chosen: at random. Each point is one ticket, so more points mean more chances, but anyone signed up can win. Three different winners are drawn, in order: 1st, 2nd and 3rd place." data-es="Cómo se eligen los ganadores: al azar. Cada punto equivale a un boleto, así que más puntos dan más oportunidades, pero cualquier inscrito puede ganar. Se sortean tres ganadores distintos, en orden: 1.er, 2.º y 3.er lugar.">
+                {"Cómo se eligen los ganadores: al azar. Cada punto equivale a un boleto, así que más puntos dan más oportunidades, pero cualquier inscrito puede ganar. Se sortean tres ganadores distintos, en orden: 1.er, 2.º y 3.er lugar."}
+              </li>
+              <li data-en="Prizes: 1st place, a King-size Nuvela Mattress; 2nd place, two Nuvela pillows; 3rd place, Q500 off the purchase of a Nuvela Mattress. Prizes apply to the Nuvela Mattress only (not the Nuvela Diamond), cannot be exchanged for cash and are not transferable." data-es="Premios: 1.er lugar, un Colchón Nuvela King; 2.º lugar, dos almohadas Nuvela; 3.er lugar, Q500 de descuento en la compra de un Colchón Nuvela. Los premios aplican únicamente al Colchón Nuvela (no al Nuvela Diamond), no son canjeables por dinero y no son transferibles.">
+                {"Premios: 1.er lugar, un Colchón Nuvela King; 2.º lugar, dos almohadas Nuvela; 3.er lugar, Q500 de descuento en la compra de un Colchón Nuvela. Los premios aplican únicamente al Colchón Nuvela (no al Nuvela Diamond), no son canjeables por dinero y no son transferibles."}
+              </li>
+              <li data-en="Draw and announcement: the draw takes place in January 2027 and the winners are announced on Instagram @nuvela.gt. Each winner is contacted through the details they registered." data-es="Sorteo y anuncio: el sorteo se realiza en enero de 2027 y los ganadores se anuncian en Instagram @nuvela.gt. A cada ganador se le contacta por los datos que registró.">
+                {"Sorteo y anuncio: el sorteo se realiza en enero de 2027 y los ganadores se anuncian en Instagram @nuvela.gt. A cada ganador se le contacta por los datos que registró."}
+              </li>
+              <li data-en="Verification: to receive a prize, the winner must show an ID proving they are of legal age and that their details match the sign-up. Nuvela may void sign-ups with false details, duplicates or invented referrals." data-es="Verificación: para recibir un premio, el ganador debe presentar un documento de identificación que confirme que es mayor de edad y que sus datos coinciden con la inscripción. Nuvela puede anular inscripciones con datos falsos, duplicadas o con referidos inventados.">
+                {"Verificación: para recibir un premio, el ganador debe presentar un documento de identificación que confirme que es mayor de edad y que sus datos coinciden con la inscripción. Nuvela puede anular inscripciones con datos falsos, duplicadas o con referidos inventados."}
+              </li>
+              <li data-en="Delivery: prizes are delivered in Guatemala." data-es="Entrega: los premios se entregan en Guatemala.">
+                {"Entrega: los premios se entregan en Guatemala."}
+              </li>
+              <li data-en="Your details: they are used only to run the giveaway and to contact you about Nuvela. They are not sold or shared with third parties." data-es="Tus datos: se usan únicamente para administrar el sorteo y para contactarte sobre Nuvela. No se venden ni se comparten con terceros.">
+                {"Tus datos: se usan únicamente para administrar el sorteo y para contactarte sobre Nuvela. No se venden ni se comparten con terceros."}
+              </li>
+              <li data-en="This promotion is not sponsored, endorsed or administered by, or associated with, Instagram or Meta." data-es="Esta promoción no está patrocinada, avalada ni administrada por Instagram ni Meta, ni está asociada a ellos.">
+                {"Esta promoción no está patrocinada, avalada ni administrada por Instagram ni Meta, ni está asociada a ellos."}
+              </li>
+            </ol>
+            {' '}
+            {/* PENDIENTE: fecha exacta del sorteo en enero de 2027; vigencia del descuento de Q500 (hasta cuándo se puede usar); modelo de las dos almohadas del 2.º lugar. */}
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+      </main>
+    </>
+  );
+}
+
 /* ---------- Página "privacidad" ---------- */
 function PagePrivacidad() {
   return (
@@ -6505,6 +7099,11 @@ function FooterYFlotantes() {
             </p>
             {' '}
             <ul className="mt-6 space-y-3 text-white/70 text-sm">
+              <li>
+                <a className="footer-link hover:text-gold-light cursor-pointer" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">
+                  {"Sorteo Nuvela"}
+                </a>
+              </li>
               <li>
                 <a className="footer-link hover:text-gold-light cursor-pointer" data-page="entregas" data-en="Delivery" data-es="Entregas">
                   {"Entregas"}
@@ -10820,14 +11419,14 @@ function startNuvela() {
     NV.onOtherPage = function (pageId) {
       if (pageCtx) { pageCtx.revert(); pageCtx = null; }
       if (txTween) { txTween.kill(); txTween = null; }
-      document.body.classList.toggle('nv-immersive', ['home', 'producto', 'producto-detalle', 'linea-hotelera', 'cita', 'comparar', 'tecnologia', 'entregas', 'resenas', 'faq', 'contacto'].includes(pageId));
+      document.body.classList.toggle('nv-immersive', ['home', 'producto', 'producto-detalle', 'linea-hotelera', 'cita', 'comparar', 'tecnologia', 'entregas', 'resenas', 'faq', 'contacto', 'sorteo'].includes(pageId));
       if (pageId === 'producto') setTimeout(enterProducts, 30);
       if (pageId === 'producto-detalle') setTimeout(enterDetail, 30);
       if (pageId === 'linea-hotelera') setTimeout(enterHotel, 30);
       if (pageId === 'cita') setTimeout(enterCita, 30);
       if (pageId === 'comparar') setTimeout(enterCompare, 30);
       if (pageId === 'tecnologia') setTimeout(enterTech, 30);
-      if (['entregas', 'resenas', 'faq', 'contacto'].includes(pageId)) setTimeout(() => enterSimple(pageId), 30);
+      if (['entregas', 'resenas', 'faq', 'contacto', 'sorteo'].includes(pageId)) setTimeout(() => enterSimple(pageId), 30);
     };
 
     // =====================================================================
@@ -10955,6 +11554,217 @@ function startNuvela() {
     // Cuando terminan de cargar todas las fotos, se vuelven a medir las secciones.
     window.addEventListener('load', () => { if (NV.active && hasGsap) ScrollTrigger.refresh(); });
   })();
+
+  /* ====================================================================== */
+  /* ========================== SORTEO NUVELA ============================= */
+  /* ====================================================================== */
+  /* Inscripción, puntos y enlace personal del sorteo (página /sorteo).     */
+  /*  · SORTEO_WEBHOOK_URL: enlace del Apps Script de la hoja "Sorteo"      */
+  /*    (ver instrucciones en sorteo-google-apps-script.txt).               */
+  /*  · SORTEO_FIN: cierre de inscripciones (31/12/2026 23:59, Guatemala).  */
+  (function () {
+    'use strict';
+    const SORTEO_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzXJoBVwZcLeCn6SA2NAi4k4bC9a0cor71tAcIzFbEALjFJrabTtclh5NWbSlGbxF9R/exec';
+    const SORTEO_TOKEN = 'nuvela-sorteo-2026';
+    const SORTEO_FIN = new Date('2027-01-01T06:00:00Z'); // = 31 dic 2026, 24:00 en Guatemala
+    const PUNTOS_BASE = 1, PUNTOS_REFERIDO = 2;
+    const LINK_BASE = 'https://www.nuvelagt.com/sorteo?ref=';
+    const KEY = 'nuvela-sorteo', REFKEY = 'nuvela-sorteo-ref';
+    const $ = (id) => document.getElementById(id);
+    const es = () => (document.documentElement.lang || 'es') !== 'en';
+    const configurado = !!SORTEO_WEBHOOK_URL && !/^PEGA_AQUI/.test(SORTEO_WEBHOOK_URL);
+    const cerrado = () => Date.now() >= SORTEO_FIN.getTime();
+    const leer = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+    const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* modo privado */ } };
+
+    // 1) ¿Llegó con el enlace de un amigo? (…/sorteo?ref=CODIGO) — se recuerda para cuando se inscriba.
+    let refUrl = null;
+    try { refUrl = new URLSearchParams(window.location.search).get('ref'); } catch (e) { /* navegador antiguo */ }
+    if (refUrl && /^[A-Za-z0-9]{4,12}$/.test(refUrl)) {
+      guardar(REFKEY, refUrl.toUpperCase());
+      // En la versión de una sola página (React), abre directo la página del sorteo.
+      if (!document.body.dataset.nvPage && typeof showPage === 'function') setTimeout(() => showPage('sorteo'), 400);
+    }
+
+    // 2) Aviso flotante en el resto del sitio
+    if (!cerrado() && document.body.dataset.nvPage !== 'sorteo') {
+      let visto = false;
+      try { visto = sessionStorage.getItem('nv-sorteo-chip') === '1'; } catch (e) { /* modo privado */ }
+      if (!visto) {
+        const chip = document.createElement('div');
+        chip.className = 'nv-sorteo-chip';
+        chip.innerHTML = '<a href="/sorteo" data-page="sorteo"><b>' + (es() ? 'Sorteo Nuvela' : 'Nuvela Giveaway') + '</b><span>'
+          + (es() ? 'Gana un colchón King →' : 'Win a King mattress →') + '</span></a><button type="button" aria-label="' + (es() ? 'Cerrar' : 'Close') + '">×</button>';
+        document.body.appendChild(chip);
+        chip.querySelector('button').addEventListener('click', () => {
+          chip.classList.remove('is-on');
+          try { sessionStorage.setItem('nv-sorteo-chip', '1'); } catch (e) { /* modo privado */ }
+        });
+        setTimeout(() => chip.classList.add('is-on'), 7000);
+      }
+    }
+
+    // 3) Formulario, entrada para ver puntos y panel
+    const form = $('nv-sorteo-f'), login = $('nv-sorteo-login'), panel = $('nv-sorteo-panel'), closed = $('nv-sorteo-closed');
+    if (!form || !panel) return;
+    const T = (a, b) => (es() ? a : b);
+
+    function estado() { try { return JSON.parse(leer(KEY) || 'null'); } catch (e) { return null; } }
+    function ver(cual) { [form, login, panel].forEach((el) => { if (el) el.classList.toggle('hidden', el !== cual); }); }
+    function pintarPuntos(refs) {
+      $('nv-so-points').textContent = String(PUNTOS_BASE + refs * PUNTOS_REFERIDO);
+      $('nv-so-refs').textContent = es() ? (refs === 1 ? '1 persona inscrita con tu enlace' : refs + ' personas inscritas con tu enlace') : (refs === 1 ? '1 person signed up with your link' : refs + ' people signed up with your link');
+    }
+    // Pide algo a la hoja de Google y lee su respuesta.
+    function pedir(datos) {
+      datos.token = SORTEO_TOKEN;
+      return fetch(SORTEO_WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(datos) }).then((r) => r.json());
+    }
+
+    function consultar(codigo, intentos) {
+      const note = $('nv-so-note');
+      if (!configurado) { if (note) note.textContent = T('Tus puntos se actualizan aquí conforme se inscriban las personas que invites.', 'Your points update here as the people you invite sign up.'); return; }
+      fetch(SORTEO_WEBHOOK_URL + '?codigo=' + encodeURIComponent(codigo))
+        .then((r) => r.json())
+        .then((d) => {
+          if (d && d.registrado) {
+            pintarPuntos(Number(d.referidos) || 0);
+            if (note) note.textContent = d.anulada ? T('Tu inscripción está en revisión: no encontramos que tu cuenta de Instagram siga a @nuvela.gt. Síguela y escríbenos por WhatsApp para reactivarla.', 'Your sign-up is under review: we could not confirm your Instagram account follows @nuvela.gt. Follow it and message us on WhatsApp to reactivate it.') : '';
+          } else if (intentos > 0) {
+            setTimeout(() => consultar(codigo, intentos - 1), 3000);
+          } else if (note) {
+            note.textContent = T('No encontramos esta inscripción. Si necesitas ayuda, escríbenos por WhatsApp.', 'We could not find this sign-up. Message us on WhatsApp if you need help.');
+          }
+        })
+        .catch(() => { if (note) note.textContent = T('No pudimos consultar tus puntos ahora. Intenta de nuevo en un momento.', 'We could not check your points right now. Please try again shortly.'); });
+    }
+
+    function mostrarPanel(st, intentos) {
+      ver(panel);
+      const link = LINK_BASE + st.codigo;
+      $('nv-so-name').textContent = st.nombre || '';
+      $('nv-so-link').value = link;
+      $('nv-so-points').textContent = String(PUNTOS_BASE);
+      $('nv-so-refs').textContent = '';
+      $('nv-so-wa').href = 'https://wa.me/?text=' + encodeURIComponent(T('Participa en el Sorteo Nuvela y gana un colchón King: ', 'Enter the Nuvela Giveaway and win a King mattress: ') + link);
+      consultar(st.codigo, intentos || 0);
+    }
+
+    if (cerrado()) {
+      ver(null);
+      if (closed) closed.classList.remove('hidden');
+      return;
+    }
+    const previo = estado();
+    if (previo && previo.codigo) mostrarPanel(previo, 0);
+
+    function nuevoCodigo() {
+      const abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // sin letras/números que se confunden
+      const arr = new Uint32Array(6);
+      (window.crypto || window.msCrypto).getRandomValues(arr);
+      return 'NV' + Array.from(arr, (n) => abc[n % abc.length]).join('');
+    }
+    function ocupado(btn, si, texto) { btn.disabled = si; if (si) { btn.dataset.txt = btn.textContent; btn.textContent = texto; } else if (btn.dataset.txt) btn.textContent = btn.dataset.txt; }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const err = $('nv-so-error'), btn = $('nv-so-submit');
+      const nombre = $('nv-so-nombre').value.trim(), apellido = $('nv-so-apellido').value.trim();
+      const correo = $('nv-so-correo').value.trim(), telefono = $('nv-so-telefono').value.trim();
+      const instagram = $('nv-so-ig').value.trim().replace(/^@+/, '').replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/[/?].*$/, '');
+      const digitos = telefono.replace(/\D/g, '');
+      let msg = '';
+      if (!nombre || !apellido) msg = T('Escribe tu nombre y tu apellido.', 'Enter your first and last name.');
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) msg = T('Revisa tu correo electrónico.', 'Check your email address.');
+      else if (digitos.length < 8) msg = T('Revisa tu número de teléfono (8 dígitos).', 'Check your phone number (8 digits).');
+      else if (!/^[A-Za-z0-9._]{1,30}$/.test(instagram)) msg = T('Escribe tu usuario de Instagram (por ejemplo: maria.lopez).', 'Enter your Instagram username (for example: maria.lopez).');
+      else if (!$('nv-so-edad').checked) msg = T('Para participar debes ser mayor de 18 años.', 'You must be 18 or older to enter.');
+      else if (!$('nv-so-sigue').checked) msg = T('Para participar debes seguir a @nuvela.gt en Instagram.', 'You must follow @nuvela.gt on Instagram to enter.');
+      else if (!$('nv-so-bases').checked) msg = T('Debes aceptar las bases del sorteo.', 'You must accept the giveaway rules.');
+      if (msg) { err.textContent = msg; err.classList.remove('hidden'); return; }
+      err.classList.add('hidden');
+
+      const codigo = nuevoCodigo();
+      const ref = leer(REFKEY) || '';
+      const datos = {
+        tipo: 'sorteo', nombre, apellido, correo, telefono, instagram, codigo,
+        referido_por: ref && ref !== codigo ? ref : '',
+        mayor18: 'sí', sigue: 'sí',
+        pagina: window.location.origin + window.location.pathname,
+        fecha: new Date().toISOString(),
+      };
+      const entrar = (st, intentos) => {
+        guardar(KEY, JSON.stringify(st));
+        mostrarPanel(st, intentos);
+        const sec = $('nv-sorteo-form');
+        if (sec && sec.scrollIntoView) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+      const enSegundoPlano = (url) => {
+        try {
+          fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(datos) })
+            .catch((er) => console.warn('Nuvela: no se pudo enviar la inscripción del sorteo.', er));
+        } catch (er) { console.warn('Nuvela: no se pudo enviar la inscripción del sorteo.', er); }
+      };
+
+      if (configurado) {
+        // Con la hoja conectada: se espera su respuesta (así se rechazan las inscripciones repetidas).
+        ocupado(btn, true, T('Enviando…', 'Sending…'));
+        pedir(datos).then((d) => {
+          ocupado(btn, false);
+          if (d && d.ok) { entrar({ codigo, nombre }, 0); return; }
+          const motivo = d && d.motivo;
+          err.textContent = motivo === 'repetido' ? T('Ya existe una inscripción con este correo, teléfono o usuario de Instagram. Usa "Ver mis puntos" para entrar.', 'There is already a sign-up with this email, phone or Instagram username. Use "See my points" to sign in.')
+            : motivo === 'cerrado' ? T('Las inscripciones ya cerraron.', 'Sign-ups are closed.')
+            : T('No pudimos registrar tu inscripción. Revisa tus datos e intenta de nuevo.', 'We could not register your sign-up. Check your details and try again.');
+          err.classList.remove('hidden');
+        }).catch(() => {
+          // No se pudo leer la respuesta: se envía igual y se confirma después.
+          ocupado(btn, false);
+          datos.token = SORTEO_TOKEN;
+          enSegundoPlano(SORTEO_WEBHOOK_URL);
+          entrar({ codigo, nombre }, 3);
+        });
+      } else {
+        if (typeof LEADS_WEBHOOK_URL !== 'undefined' && LEADS_WEBHOOK_URL && !/^PEGA_AQUI/.test(LEADS_WEBHOOK_URL)) {
+          datos.token = typeof LEADS_SHARED_TOKEN !== 'undefined' ? LEADS_SHARED_TOKEN : '';
+          enSegundoPlano(LEADS_WEBHOOK_URL);
+          console.warn('Nuvela: falta configurar SORTEO_WEBHOOK_URL; la inscripción se envió a la hoja de contactos.');
+        }
+        entrar({ codigo, nombre }, 0);
+      }
+    });
+
+    // Entrar con correo + teléfono para ver los puntos desde cualquier dispositivo
+    $('nv-so-show-login').addEventListener('click', () => ver(login));
+    $('nv-so-show-form').addEventListener('click', () => ver(form));
+    $('nv-so-logout').addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch (e) { /* modo privado */ } ver(form); });
+    login.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const err = $('nv-lo-error'), btn = $('nv-lo-submit');
+      const correo = $('nv-lo-correo').value.trim(), telefono = $('nv-lo-telefono').value.trim();
+      const falla = (m) => { err.textContent = m; err.classList.remove('hidden'); };
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo) || telefono.replace(/\D/g, '').length < 8) { falla(T('Revisa tu correo y tu teléfono.', 'Check your email and phone.')); return; }
+      if (!configurado) { falla(T('La consulta de puntos estará disponible muy pronto.', 'Points lookup will be available very soon.')); return; }
+      err.classList.add('hidden');
+      ocupado(btn, true, T('Buscando…', 'Searching…'));
+      pedir({ tipo: 'consulta', correo, telefono }).then((d) => {
+        ocupado(btn, false);
+        if (d && d.registrado && d.codigo) {
+          const st = { codigo: d.codigo, nombre: d.nombre || '' };
+          guardar(KEY, JSON.stringify(st));
+          mostrarPanel(st, 0);
+        } else falla(T('No encontramos una inscripción con ese correo y ese teléfono.', 'We could not find a sign-up with that email and phone.'));
+      }).catch(() => { ocupado(btn, false); falla(T('No pudimos consultar ahora. Intenta de nuevo en un momento.', 'We could not check right now. Please try again shortly.')); });
+    });
+
+    $('nv-so-copy').addEventListener('click', () => {
+      const inp = $('nv-so-link'), btn = $('nv-so-copy');
+      const listo = () => { btn.textContent = es() ? 'Copiado' : 'Copied'; setTimeout(() => { btn.textContent = es() ? 'Copiar' : 'Copy'; }, 1800); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(inp.value).then(listo, () => { inp.select(); document.execCommand('copy'); listo(); });
+      else { inp.select(); document.execCommand('copy'); listo(); }
+    });
+    $('nv-so-refresh').addEventListener('click', () => { const st = estado(); if (st && st.codigo) consultar(st.codigo, 0); });
+  })();
   
 }
 
@@ -11011,6 +11821,7 @@ export default function App() {
       <PageResenas />
       <PageFaq />
       <PageContacto />
+      <PageSorteo />
       <PagePrivacidad />
       <FooterYFlotantes />
     </>
