@@ -1282,7 +1282,7 @@
   /*  · SORTEO_FIN: cierre de inscripciones (31/12/2026 23:59, Guatemala).  */
   (function () {
     'use strict';
-    const SORTEO_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzXJoBVwZcLeCn6SA2NAi4k4bC9a0cor71tAcIzFbEALjFJrabTtclh5NWbSlGbxF9R/exec';
+    const SORTEO_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzL-E4m5NKZAGCHLpyTtPngz4Q3xgEmt7YdW88ogDdXEyKscjicpVCve7xCBW6Gy7SA/exec';
     const SORTEO_TOKEN = 'nuvela-sorteo-2026';
     const SORTEO_FIN = new Date('2027-01-01T06:00:00Z'); // = 31 dic 2026, 24:00 en Guatemala
     const PUNTOS_BASE = 1, PUNTOS_REFERIDO = 2;
