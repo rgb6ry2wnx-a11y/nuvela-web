@@ -11783,12 +11783,21 @@ function loadFont(href) {
   const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = href; document.head.appendChild(l);
 }
 
+/* Meta Pixel (solo si la página no lo trae ya en su <head>) */
+function loadMetaPixel() {
+  if (window.fbq) return;
+  const s = document.createElement('script');
+  s.text = "  !function(f,b,e,v,n,t,s)\n  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?\n  n.callMethod.apply(n,arguments):n.queue.push(arguments)};\n  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';\n  n.queue=[];t=b.createElement(e);t.async=!0;\n  t.src=v;s=b.getElementsByTagName(e)[0];\n  s.parentNode.insertBefore(t,s)}(window, document,'script',\n  'https://connect.facebook.net/en_US/fbevents.js');\n  fbq('init', '1661406725511677');\n  fbq('track', 'PageView');\n\n  // Registra un evento \"Contact\" cuando alguien escribe a Nuvela por WhatsApp.\n  // (No cuenta el bot\u00f3n de \"compartir por WhatsApp\" del sorteo: ese no es un contacto con Nuvela.)\n  (function () {\n    function esContacto(url) { return /wa\\.me\\/\\d|whatsapp\\.com\\/send\\?phone=\\d/.test(String(url || '')); }\n    document.addEventListener('click', function (e) {\n      var link = e.target && e.target.closest && e.target.closest('a[href*=\"wa.me\"], a[href*=\"whatsapp\"]');\n      if (link && esContacto(link.href)) fbq('track', 'Contact');\n    });\n    // Los pedidos del carrito abren WhatsApp con window.open: tambi\u00e9n se cuentan.\n    var abrir = window.open;\n    window.open = function (url) {\n      try { if (esContacto(url)) fbq('track', 'Contact'); } catch (err) {}\n      return abrir.apply(window, arguments);\n    };\n  })();\n  ";
+  document.head.appendChild(s);
+}
+
 let nuvelaStarted = false;
 
 export default function App() {
   useEffect(() => {
     if (nuvelaStarted) return; // en modo desarrollo React llama dos veces: solo arrancamos una
     nuvelaStarted = true;
+    loadMetaPixel();
     document.documentElement.lang = 'es';
     document.body.classList.add('bg-white', 'text-graphite');
     loadFont('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
