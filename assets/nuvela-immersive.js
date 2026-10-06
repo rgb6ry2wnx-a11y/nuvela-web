@@ -504,6 +504,9 @@
       if (!track || typeof PRODUCTS === 'undefined') return;
       const es = lang() === 'es';
       const list = PRODUCTS.filter((p) => p.mainImage && !/logosinfondo/.test(p.mainImage));
+      // Precio de la portada ("Desde Q…"): siempre igual al precio más bajo del primer colchón del catálogo.
+      const hp = q('#nv-hero-price'), pf0 = typeof priceFrom === 'function' && PRODUCTS[0] ? priceFrom(PRODUCTS[0]) : '';
+      if (hp && /^Q/.test(pf0)) hp.textContent = pf0;
       track.innerHTML = list.map((p, i) => {
         const pf = typeof priceFrom === 'function' ? priceFrom(p) : '';
         const price = /^Q/.test(pf) ? (es ? 'Desde ' : 'From ') + pf : pf;
@@ -625,6 +628,22 @@
         gsap.to('.nv-hero-photo', { scale: 1.35, yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#nv-hero', start: 'top top', end: 'bottom top', scrub: true } });
         gsap.to('.nv-hero-copy, .nv-scroll-cue', { opacity: 0, y: -80, ease: 'none', scrollTrigger: { trigger: '#nv-hero', start: 'top top', end: '55% top', scrub: true } });
 
+        // --- Colección (va justo después de la portada: debe crearse antes que las secciones de abajo)
+        const track = q('#nv-collection-track');
+        if (track && !mobile) {
+          const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+          const htw = gsap.to(track, { x: () => -dist(), ease: 'none',
+            scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + dist(), pin: '.nv-collection-pin', scrub: 0.8, invalidateOnRefresh: true } });
+          qa('.nv-pcard-media img', track).forEach((img) => {
+            gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.nv-pcard'), containerAnimation: htw, start: 'left right', end: 'right left', scrub: true } });
+          });
+          // El título se desvanece cuando las tarjetas pasan por debajo
+          gsap.to('.nv-collection-head', { opacity: 0, x: -40, ease: 'none', scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + window.innerWidth * 0.3, scrub: true } });
+          gsap.from('.nv-collection-head > *', { opacity: 0, y: 40, stagger: 0.1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '#nv-collection', start: 'top 70%' } });
+        } else if (track) {
+          gsap.from('.nv-pcard', { opacity: 0, x: 60, stagger: 0.08, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: track, start: 'top 85%' } });
+        }
+
         // --- Manifiesto: palabras que se encienden
         const mWords = qa('#nv-manifesto .nv-w');
         if (mWords.length) {
@@ -653,22 +672,41 @@
         // --- Colchón desarmado: se abre solo una vez al llegar; luego es interactivo
         const layers = qa('.nv-layer[data-l]').sort((a, b) => a.dataset.l - b.dataset.l);
         const stage = q('.nv-layers-stage');
-        const spread = [-0.36, -0.12, 0.12, 0.35];
-        // En el teléfono las capas se separan según el espacio libre que hay
-        // entre el título y el texto de abajo, para que no queden pegadas.
-        let offsets = () => spread.map((v) => v * stage.offsetWidth);
-        if (mobile) {
-          const head = q('.nv-layers-head'), caps = q('.nv-layer-captions');
-          const band = () => ({ top: head.offsetTop + head.offsetHeight + 18, bottom: caps.offsetTop - 6 });
-          const bd = band();
-          gsap.set(stage, { top: (bd.top + bd.bottom) / 2 });
-          offsets = () => {
-            const b = band();
-            const lh = Math.max.apply(null, layers.map((l) => l.offsetHeight)) * 0.9;
-            const span = Math.max(0.7 * stage.offsetWidth, (b.bottom - b.top - lh) / 0.9);
-            return [-0.5, -0.19, 0.15, 0.5].map((v) => v * span);
-          };
-        }
+        // Separación PAREJA entre capas. Cada foto tiene un alto distinto porque cada capa tiene
+        // un grosor distinto; por eso no se reparten por su centro, sino dejando el mismo hueco
+        // visible entre la cara de abajo de una capa y la cara de arriba de la siguiente.
+        //   LH = alto de cada foto (para 1200 px de ancho) · FACE = alto de la cara superior.
+        const LH = [499, 592, 541, 529], FACE = 430;
+        const THICK = LH.map((h) => h - FACE);          // grosor visible de cada capa
+        const pin = q('.nv-layers-pin');
+        // Franja libre donde debe caber el colchón abierto (en computadora: todo el alto visible;
+        // en el teléfono: entre el título y el texto de abajo).
+        const band = () => {
+          if (mobile) {
+            const head = q('.nv-layers-head'), caps = q('.nv-layer-captions');
+            return { top: head.offsetTop + head.offsetHeight + 14, bottom: caps.offsetTop - 4 };
+          }
+          const pad = Math.max(22, pin.offsetHeight * 0.05);
+          return { top: pad, bottom: pin.offsetHeight - pad };
+        };
+        const fit = () => {
+          const b = band(), room = b.bottom - b.top;
+          const solid = THICK[0] + THICK[1] + THICK[2] + LH[3];   // alto del colchón sin huecos
+          gsap.set(stage, { clearProps: 'width' });
+          const SC = mobile ? 0.9 : 0.92;               // el colchón se encoge un poco al abrirse
+          let k = (stage.offsetWidth / 1200) * SC;
+          const minGap = mobile ? 34 : 60, maxGap = 150;
+          // Si no cabe ni con el hueco mínimo, el colchón se hace un poco más pequeño.
+          if ((solid + 3 * minGap) * k > room) { k = room / (solid + 3 * minGap); gsap.set(stage, { width: (k / SC) * 1200 }); }
+          const gap = Math.max(minGap, Math.min(maxGap, (room / k - solid) / 3));
+          const total = (solid + 3 * gap) * k;
+          const top0 = b.top + (room - total) / 2;      // centrado en la franja
+          const mid = stage.offsetTop;                  // línea central actual del colchón
+          let t = top0;
+          return LH.map((h, i) => { const y = (t + (h * k) / 2 - mid) / SC; t += (THICK[i] + gap) * k; return y; });
+        };
+        if (mobile) { const bd = band(); gsap.set(stage, { top: (bd.top + bd.bottom) / 2 }); }
+        let offsets = fit;
         layersReady = false;
         gsap.timeline({ scrollTrigger: { trigger: '#nv-layers', start: 'top 55%', once: true },
           onComplete: () => { layersReady = true; } })
@@ -679,21 +717,6 @@
           .to(layers, { y: (i) => offsets()[i], duration: 1.6, ease: 'expo.inOut', stagger: 0.04 }, 1.32)
           .to(stage, { scale: mobile ? 0.9 : 0.92, duration: 1.6, ease: 'expo.inOut' }, 1.32)
           .to('.nv-hot', { opacity: 1, duration: 0.6, stagger: 0.08 }, 2.6);
-        const track = q('#nv-collection-track');
-        if (track && !mobile) {
-          const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-          const htw = gsap.to(track, { x: () => -dist(), ease: 'none',
-            scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + dist(), pin: '.nv-collection-pin', scrub: 0.8, invalidateOnRefresh: true } });
-          qa('.nv-pcard-media img', track).forEach((img) => {
-            gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.nv-pcard'), containerAnimation: htw, start: 'left right', end: 'right left', scrub: true } });
-          });
-          // El título se desvanece cuando las tarjetas pasan por debajo
-          gsap.to('.nv-collection-head', { opacity: 0, x: -40, ease: 'none', scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + window.innerWidth * 0.3, scrub: true } });
-          gsap.from('.nv-collection-head > *', { opacity: 0, y: 40, stagger: 0.1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '#nv-collection', start: 'top 70%' } });
-        } else if (track) {
-          gsap.from('.nv-pcard', { opacity: 0, x: 60, stagger: 0.08, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: track, start: 'top 85%' } });
-        }
-
         // --- Marquesina: acelera con la velocidad del scroll
         const rows = qa('.nv-marquee-row');
         const tweens = rows.map((row) => {
@@ -787,8 +810,41 @@
         onUpdate: () => { priceEl.textContent = formatPrice(Math.round(priceState.v / 10) * 10); },
         onComplete: () => { priceEl.textContent = formatPrice(v.price); } });
     }
+    // ---- Barra de compra del celular (precio + botón siempre visibles) ----
+    // Aparece solo en celular y solo mientras el botón grande de compra no está en pantalla.
+    const buybar = q('#nv-buybar'), buybarBtn = q('#nv-buybar-btn'), pdPurchase = q('#pd-purchase');
+    function updateBuybar() {
+      if (!buybar || typeof PRODUCTS === 'undefined' || typeof currentProductId === 'undefined') return;
+      const p = PRODUCTS.find((x) => x.id === currentProductId);
+      if (!p) return;
+      const v = p.variants.find((x) => x.name === pdSelectedVariant) || p.variants[0];
+      const es = lang() === 'es';
+      q('#nv-buybar-price').textContent = formatPrice(v ? v.price : 0);
+      q('#nv-buybar-size').textContent = p.variants.length > 1 && v ? v.name : pick(p.name);
+      buybarBtn.textContent = v && v.price ? (es ? 'Añadir al Carrito' : 'Add to Cart') : (es ? 'Consultar por WhatsApp' : 'Ask on WhatsApp');
+    }
+    if (buybar && buybarBtn && pdPurchase) {
+      buybarBtn.addEventListener('click', () => {
+        const real = q('.js-pd-add-cart, .nv-pd-ask', pdPurchase);
+        if (!real) return;
+        const esCarrito = real.classList.contains('js-pd-add-cart');
+        real.click(); // hace exactamente lo mismo que el botón grande
+        if (esCarrito) {
+          buybarBtn.textContent = lang() === 'es' ? '✓ Agregado' : '✓ Added';
+          setTimeout(updateBuybar, 1500);
+        }
+      });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          const fuera = !entries[0].isIntersecting;
+          buybar.classList.toggle('is-on', fuera);
+          buybarBtn.tabIndex = fuera ? 0 : -1;
+          document.body.classList.toggle('nv-buybar-on', fuera && !!q('#page-producto-detalle.active'));
+        }, { threshold: 0.25 }).observe(pdPurchase);
+      }
+    }
     const pdSizes = q('#pd-sizes');
-    if (pdSizes && 'MutationObserver' in window) new MutationObserver(updatePrice).observe(pdSizes, { childList: true });
+    if (pdSizes && 'MutationObserver' in window) new MutationObserver(() => { updatePrice(); updateBuybar(); }).observe(pdSizes, { childList: true });
 
     function enterProducts() {
       if (prodWaves) prodWaves.build();
@@ -800,14 +856,14 @@
       }, '#page-producto');
     }
     function enterDetail() {
-      priceState.v = 0; updatePrice();
+      priceState.v = 0; updatePrice(); updateBuybar();
       if (!hasGsap || reduce) return;
       pageCtx = gsap.context(() => {
         gsap.fromTo('.nv-pd-zoom', { opacity: 0, scale: 0.94, clipPath: 'inset(6% 6% 6% 6% round 28px)' }, { opacity: 1, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.4, ease: 'expo.out' });
         gsap.fromTo('#pd-thumbs .thumb', { opacity: 0, y: 20 }, { opacity: (i, el) => (el.classList.contains('border-gold') ? 1 : 0.55), y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.05, delay: 0.3, clearProps: 'opacity' });
         gsap.fromTo('#pd-eyebrow, #pd-title, #pd-tagline', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.1 });
         gsap.fromTo('#pd-stats > div', { opacity: 0, y: 24, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out', stagger: 0.04, delay: 0.35 });
-        gsap.fromTo('.nv-pd-price, #pd-sizes > *, #pd-purchase', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.05, delay: 0.5 });
+        gsap.fromTo('.nv-pd-price, #pd-sizes > *, #pd-purchase', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.05, delay: 0.15 });
         qa('#pd-benefits > div, #pd-specs-table, #pd-faq .faq-item').forEach((el) => {
           gsap.from(el, { opacity: 0, y: 50, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' } });
         });
@@ -1154,6 +1210,8 @@
     function sizeAll() {
       // Alto del menú de arriba, para que el hero ocupe justo la pantalla visible
       const hs = q('#nv-hero');
+      // Alto del encabezado fijo: la sección de las capas lo descuenta para caber completa en pantalla.
+      const nb = q('#navbar'); if (nb) document.documentElement.style.setProperty('--nv-navh', nb.offsetHeight + 'px');
       if (hs) document.documentElement.style.setProperty('--nv-nav', Math.max(0, hs.getBoundingClientRect().top + window.scrollY) + 'px');
       if (hero) hero.build();
       if (manifestoWaves) manifestoWaves.build();
@@ -1279,12 +1337,12 @@
   /* Inscripción, puntos y enlace personal del sorteo (página /sorteo).     */
   /*  · SORTEO_WEBHOOK_URL: enlace del Apps Script de la hoja "Sorteo"      */
   /*    (ver instrucciones en sorteo-google-apps-script.txt).               */
-  /*  · SORTEO_FIN: cierre de inscripciones (31/12/2026 23:59, Guatemala).  */
+  /*  · SORTEO_FIN: cierre de inscripciones (15/12/2026 19:00, Guatemala). */
   (function () {
     'use strict';
     const SORTEO_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzL-E4m5NKZAGCHLpyTtPngz4Q3xgEmt7YdW88ogDdXEyKscjicpVCve7xCBW6Gy7SA/exec';
     const SORTEO_TOKEN = 'nuvela-sorteo-2026';
-    const SORTEO_FIN = new Date('2027-01-01T06:00:00Z'); // = 31 dic 2026, 24:00 en Guatemala
+    const SORTEO_FIN = new Date('2026-12-16T01:00:00Z'); // = 15 dic 2026, 7:00 p. m. en Guatemala (Guatemala va 6 horas detrás de la hora Z)
     const PUNTOS_BASE = 1, PUNTOS_REFERIDO = 2;
     const LINK_BASE = 'https://www.nuvelagt.com/sorteo?ref=';
     const KEY = 'nuvela-sorteo', REFKEY = 'nuvela-sorteo-ref';
@@ -1315,12 +1373,57 @@
           + (es() ? 'Gana un colchón King →' : 'Win a King mattress →') + '</span></a><button type="button" aria-label="' + (es() ? 'Cerrar' : 'Close') + '">×</button>';
         document.body.appendChild(chip);
         chip.querySelector('button').addEventListener('click', () => {
-          chip.classList.remove('is-on');
+          chip.remove(); // cerrado: no vuelve a salir durante esta visita
           try { sessionStorage.setItem('nv-sorteo-chip', '1'); } catch (e) { /* modo privado */ }
         });
         setTimeout(() => chip.classList.add('is-on'), 7000);
+        // Si el aviso queda encima de una tabla, un formulario, un botón o un enlace, se aparta solo
+        // (así no tapa precios ni botones) y vuelve cuando ya no estorba.
+        const TAPA = 'table, .nv-size-table, #pd-specs-table, #pd-sizes, #pd-purchase, form, button, a, input, select, textarea, label';
+        let pend = false;
+        const revisar = () => {
+          pend = false;
+          if (!chip.isConnected || !chip.classList.contains('is-on')) return;
+          const r = chip.getBoundingClientRect();
+          const pts = [[r.left + 6, r.top + 6], [r.right - 6, r.top + 6], [r.left + 6, r.bottom - 6], [r.right - 6, r.bottom - 6], [r.left + r.width / 2, r.top + r.height / 2]];
+          const tapa = pts.some(([x, y]) => (document.elementsFromPoint(x, y) || []).some((el) => !chip.contains(el) && el.closest && el.closest(TAPA) && !el.closest('#navbar, .float-wa')));
+          chip.classList.toggle('is-away', tapa);
+        };
+        const pedir = () => { if (!pend) { pend = true; setTimeout(revisar, 140); } };
+        window.addEventListener('scroll', pedir, { passive: true });
+        window.addEventListener('resize', pedir);
+        setTimeout(revisar, 7100);
       }
     }
+
+    // 2b) Reloj de la página del sorteo: cuenta el tiempo que falta para SORTEO_FIN.
+    (function () {
+      const box = $('nv-countdown');
+      if (!box) return;
+      const cel = {}; box.querySelectorAll('b[data-u]').forEach((b) => { cel[b.dataset.u] = b; });
+      const dos = (n) => String(n).padStart(2, '0');
+      const abiertoAlEntrar = !cerrado();
+      let reloj = null;
+      function pintar() {
+        const falta = SORTEO_FIN.getTime() - Date.now();
+        if (falta <= 0) {
+          if (reloj) clearInterval(reloj);
+          box.classList.add('is-closed');
+          const lab = box.querySelector('.nv-countdown-label');
+          if (lab) { lab.removeAttribute('data-en'); lab.removeAttribute('data-es'); lab.textContent = es() ? 'Inscripciones cerradas' : 'Sign-ups are closed'; }
+          // Si se cerró mientras la persona tenía la página abierta, se recarga para mostrar el aviso de cierre.
+          if (abiertoAlEntrar && document.body.dataset.nvPage === 'sorteo') setTimeout(() => window.location.reload(), 1200);
+          return;
+        }
+        const seg = Math.floor(falta / 1000);
+        cel.d.textContent = String(Math.floor(seg / 86400));
+        cel.h.textContent = dos(Math.floor((seg % 86400) / 3600));
+        cel.m.textContent = dos(Math.floor((seg % 3600) / 60));
+        cel.s.textContent = dos(seg % 60);
+      }
+      pintar();
+      if (!cerrado()) reloj = setInterval(pintar, 1000);
+    })();
 
     // 3) Formulario, entrada para ver puntos y panel
     const form = $('nv-sorteo-f'), login = $('nv-sorteo-login'), panel = $('nv-sorteo-panel'), closed = $('nv-sorteo-closed');

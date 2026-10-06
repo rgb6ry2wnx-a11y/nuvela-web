@@ -1,4 +1,4 @@
-/* Nuvela — estilos de todo el sitio. Generado el 2026-10-01 */
+/* Nuvela — estilos de todo el sitio. Generado el 2026-10-05 */
 
     :root {
       --gold: #B8963E;
@@ -1731,6 +1731,126 @@
     }
 
     /* ================================================================== */
+    /* MEJORAS 5/10/26 — precio y botón de compra más fáciles de encontrar */
+    /* ================================================================== */
+
+    /* --- Barra de envíos en celular: una sola línea delgada --- */
+    .nv-topbar-m { text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 6px 10px; font-size: min(.58rem, 2.28vw); letter-spacing: .1em; line-height: 1.35; color: rgba(252, 249, 245, .88); }
+
+    /* --- Encabezado en celular: botón "Comprar" siempre visible junto al carrito --- */
+    @media (max-width: 767px) {
+      .nv-nav-row { padding: 12px 10px 12px 16px !important; }
+      .nv-nav-row > div:last-child { gap: 2px !important; }
+      .nv-nav-buy { padding: 0 1rem !important; min-height: 40px; font-size: .68rem !important; margin-right: 4px; }
+    }
+
+    /* --- Página de producto: nombre → precio → tamaños → carrito, sin espacio vacío arriba --- */
+    .nv-pd-head .nv-pd-price { margin-top: 1.4rem; padding-top: 1.2rem; }
+    .nv-pd-info > .mt-8:first-of-type { margin-top: 1.6rem; }
+    .nv-pd-more { margin-top: 2.4rem; border-top: 1px solid rgba(252, 249, 245, .1); }
+    .nv-pd-ask { display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+    @media (min-width: 1024px) {
+      /* En computadora los tamaños van en fila para que "Añadir al Carrito" quede en la primera pantalla */
+      #pd-sizes { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-top: 1rem; }
+      #pd-sizes .js-pd-size { padding: .8rem .9rem; }
+      #pd-sizes .js-pd-size:only-child { max-width: 340px; }
+      #pd-title { font-size: clamp(2.6rem, 3.6vw, 3.4rem) !important; margin-top: 1.1rem !important; }
+      .nv-pd-head .gold-rule { margin-top: .8rem; }
+    }
+    @media (max-width: 1023px) {
+      /* En celular: nombre y precio ANTES de la foto. La columna de datos se "disuelve"  */
+      /* (display: contents) para poder ordenar sus piezas una por una.                   */
+      .nv-pd-grid { display: flex !important; flex-direction: column; gap: 0 !important; }
+      .nv-pd-info { display: contents; }
+      .nv-pd-head { order: -1; }
+      .nv-pd-gallery { order: 0; margin-top: 1.1rem; }
+      .nv-pd-info > *:not(.nv-pd-head) { order: 1; }
+      .nv-pd-head .gold-rule { display: none; }
+      #pd-title { font-size: clamp(1.9rem, 8.4vw, 2.6rem) !important; margin-top: .6rem !important; }
+      #pd-tagline { margin-top: .45rem !important; font-size: .92rem !important; }
+      .nv-pd-head .nv-pd-price { margin-top: .8rem; padding-top: .75rem; }
+      .nv-pd-price { flex-wrap: wrap; gap: 4px 12px; }
+      .nv-pd-price b { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+      .nv-pd-zoom { max-height: 34vh; }
+      .nv-pd-zoom.is-portrait { height: min(40vh, 400px); }
+      #pd-thumbs { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+      #pd-sizes { margin-top: .8rem; }
+      #pd-sizes .js-pd-size { padding: .7rem .85rem; }
+      .nv-pd-info > .mt-8 { margin-top: 1.4rem; }
+    }
+
+    /* --- Barra de compra del celular: precio + botón siempre a la vista --- */
+    .nv-buybar { display: none; }
+    @media (max-width: 1023px) {
+      .nv-buybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(13, 13, 13, .94); border-top: 1px solid rgba(205, 174, 85, .35); backdrop-filter: blur(12px); box-shadow: 0 -18px 40px -22px rgba(0, 0, 0, .9); transform: translateY(110%); transition: transform .45s var(--nv-ease); }
+      .nv-buybar.is-on { transform: none; }
+      .nv-buybar p { display: grid; gap: 1px; min-width: 0; }
+      .nv-buybar b { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: -.03em; color: var(--nv-gold-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .nv-buybar span { font-size: .74rem; color: rgba(252, 249, 245, .6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .nv-buybar .btn-gold { flex: 0 0 auto; padding: 0 1.3rem !important; min-height: 46px; font-size: .86rem !important; white-space: nowrap; }
+      /* Mientras la barra está a la vista, el botón de WhatsApp sube y el aviso del sorteo se aparta */
+      body.nv-buybar-on .float-wa { bottom: calc(82px + env(safe-area-inset-bottom, 0px)); }
+      body.nv-buybar-on .nv-sorteo-chip { opacity: 0 !important; pointer-events: none !important; }
+    }
+
+    /* --- Aviso flotante del sorteo: más pequeño y se aparta cuando queda sobre una tabla o un botón --- */
+    .nv-sorteo-chip { left: 16px; bottom: 18px; border-radius: 980px; max-width: calc(100vw - 108px); align-items: center; }
+    .nv-sorteo-chip a { display: flex; align-items: center; gap: 9px; padding: 0 2px 0 14px; min-height: 40px; white-space: nowrap; }
+    .nv-sorteo-chip a b { font-size: .54rem; letter-spacing: .2em; }
+    .nv-sorteo-chip a span { font-size: .78rem; }
+    .nv-sorteo-chip button { padding: 0; width: 38px; min-height: 40px; font-size: 1rem; }
+    .nv-sorteo-chip.is-on.is-away { opacity: 0; transform: translateY(14px); pointer-events: none; transition-duration: .3s; }
+    @media (max-width: 720px) {
+      .nv-sorteo-chip { left: 12px; bottom: 14px; }
+      .nv-sorteo-chip a b { display: none; }
+      .nv-sorteo-chip a span { font-size: .74rem; }
+    }
+
+    /* --- Celular: área para tocar de 44 px como mínimo (sin cambiar cómo se ve) --- */
+    @media (max-width: 1023px) {
+      #navbar button, #drawer-close { min-width: 44px; min-height: 44px; }
+      #navbar button[data-page="carrito"], #drawer-close { display: inline-flex; align-items: center; justify-content: center; }
+      #burger { justify-content: center; align-items: center; }
+      #burger span { flex: 0 0 auto; }
+      #burger span:last-child { margin-left: 8px; }
+      #navbar a[data-page="home"], #navbar .nv-nav-row > a { min-height: 44px; }
+      .nv-crumbs a { display: inline-flex; align-items: center; min-height: 44px; margin: -15px 0; }
+      footer ul.space-y-3 > li, footer ul.space-y-2 > li { margin-top: 0 !important; }
+      footer ul li > a, footer .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
+      footer a, footer button { min-height: 44px; }
+      footer a:not(.btn-gold):not(.btn-outline) { display: inline-flex; align-items: center; }
+      /* Enlaces de texto subrayados: se agranda solo la zona que responde al dedo (invisible), no el enlace */
+      .link-gold, .nv-link, .nv-trust-links > *, .nv-so-textbtn, .nv-so-hint a[data-en], button.js-filter-category[data-category="all"] { position: relative; }
+      .link-gold::before, .nv-link::before, .nv-trust-links > *::before, .nv-so-textbtn::before, .nv-so-hint a[data-en]::before, button.js-filter-category[data-category="all"]::before { content: ''; position: absolute; left: -8px; right: -8px; top: 50%; height: 44px; transform: translateY(-50%); }
+      .nv-trust-links { gap: 14px 24px; }
+      .nv-pd-back { margin-bottom: 1rem !important; }
+      #pd-purchase .js-pd-qty-minus, #pd-purchase .js-pd-qty-plus { width: 44px; height: 44px; }
+      .btn-gold, .btn-outline, .nv-btn-ghost { min-height: 44px; }
+      .lang-btn { min-width: 44px; min-height: 44px; }
+      body #navbar [data-page="carrito"], body .lang-btn-m { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+      body .nv-toggle button { min-height: 44px; }
+      body .nv-seo-links a { display: inline-flex; align-items: center; min-height: 44px; }
+      body .nv-sorteo-chip a, body .nv-sorteo-chip button { min-height: 44px; }
+      body .nv-sorteo-chip button { width: 44px; }
+    }
+
+    /* --- Sorteo: reloj con el tiempo restante para participar --- */
+    .nv-sorteo .nv-ph { padding-top: 7vh; }
+    .nv-sorteo .nv-ph .nv-hero-actions { justify-content: flex-start; margin-top: 1.5rem; }
+    .nv-countdown { margin-top: 1.6rem; }
+    .nv-countdown-label { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--nv-gold-2); font-weight: 600; }
+    .nv-countdown-grid { display: inline-grid; grid-template-columns: repeat(4, minmax(64px, 96px)); gap: 10px; margin-top: .8rem; }
+    .nv-countdown-grid > div { display: grid; gap: 4px; justify-items: center; padding: .8rem .4rem .7rem; border-radius: 16px; background: rgba(13, 13, 13, .62); border: 1px solid rgba(205, 174, 85, .4); backdrop-filter: blur(8px); }
+    .nv-countdown-grid b { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1; letter-spacing: -.03em; color: #FCF9F5; font-variant-numeric: tabular-nums; }
+    .nv-countdown-grid span { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(252, 249, 245, .6); }
+    .nv-countdown-note { margin-top: .7rem; font-size: .8rem; color: rgba(252, 249, 245, .7); }
+    .nv-countdown.is-closed .nv-countdown-grid, .nv-countdown.is-closed .nv-countdown-note { display: none; }
+    @media (max-width: 480px) {
+      .nv-countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+      .nv-countdown-grid span { font-size: .5rem; letter-spacing: .12em; }
+    }
+
+    /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */
     /* Colores oficiales de la guía de marca Nuvela.                      */
@@ -1845,7 +1965,13 @@
     .nv-hero-sub { font-size: .68rem; letter-spacing: .5em; text-transform: uppercase; color: rgba(252, 249, 245, .7); margin-top: .2rem; }
     .nv-hero-tagline { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: -.02em; font-size: clamp(1.15rem, 2.2vw, 1.6rem); color: var(--nv-white); margin-top: 1.4rem; }
     .nv-hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; margin-top: 2rem; }
-    .nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, .nv-hero-actions > * { opacity: 0; }
+    /* Precio en la portada, encima de los dos botones */
+    .nv-hero-price { flex: 0 0 100%; text-align: center; font-family: 'Inter', sans-serif; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(252, 249, 245, .82); margin-bottom: .1rem; }
+    .nv-hero-price-pill { display: inline-flex; align-items: baseline; gap: .2rem; padding: .42rem 1.15rem .46rem; border-radius: 980px; background: rgba(13, 13, 13, .62); border: 1px solid rgba(205, 174, 85, .4); backdrop-filter: blur(6px); text-shadow: none; }
+    .nv-hero-price b { font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; color: var(--nv-gold-2); margin-left: .35rem; font-variant-numeric: tabular-nums; vertical-align: -.08em; }
+    .nv-pcard-price { color: var(--nv-gold-2) !important; font-weight: 600; }
+    /* Solo la portada del inicio entra animada; en las demás páginas los botones se ven desde el principio */
+    .nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, #nv-hero .nv-hero-actions > * { opacity: 0; }
     .nv-scroll-cue { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(252, 249, 245, .55); }
     .nv-scroll-cue i { width: 1px; height: 44px; background: linear-gradient(var(--nv-gold-2), transparent); transform-origin: top; animation: nvCue 2.2s var(--nv-ease) infinite; }
     @keyframes nvCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
@@ -1874,11 +2000,12 @@
 
     /* ---------- 4. Colchón desarmado (interactivo: tocar una capa) ---------- */
     #nv-layers { background: radial-gradient(ellipse at 60% 50%, #1f1d18 0%, var(--nv-black) 65%); }
-    .nv-layers-pin { position: relative; height: 100svh; min-height: 620px; overflow: hidden; }
+    .nv-layers-pin { position: relative; height: calc(100svh - var(--nv-navh, 0px)); min-height: 560px; overflow: hidden; }
     .nv-layers-head { position: absolute; left: max(24px, 6vw); top: 12vh; z-index: 3; max-width: 560px; }
     .nv-layers-stage { position: absolute; left: 60%; top: 54%; width: min(50vw, 720px, 70vh); aspect-ratio: 1.1 / 1; translate: -50% -50%; cursor: pointer; }
     .nv-layers-glow { position: absolute; inset: 10% 5%; background: radial-gradient(ellipse at center, rgba(205, 174, 85, .2), transparent 65%); filter: blur(30px); pointer-events: none; }
-    .nv-layer-full, .nv-layer { position: absolute; left: 0; width: 100%; top: 50%; translate: 0 -50%; will-change: transform, opacity; }
+    /* Centradas con márgenes (no con 'translate'): así la animación mueve TODAS las capas desde el mismo punto. */
+    .nv-layer-full, .nv-layer { position: absolute; left: 0; width: 100%; top: 0; bottom: 0; margin-block: auto; height: fit-content; will-change: transform, opacity; }
     .nv-layer-full { filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); pointer-events: none; }
     .nv-layer { opacity: 0; pointer-events: none; }
     .nv-layer img { display: block; width: 100%; max-width: none; transition: filter .7s var(--nv-ease); filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); }

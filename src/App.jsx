@@ -1799,6 +1799,126 @@ const NUVELA_CSS = String.raw`
     }
 
     /* ================================================================== */
+    /* MEJORAS 5/10/26 — precio y botón de compra más fáciles de encontrar */
+    /* ================================================================== */
+
+    /* --- Barra de envíos en celular: una sola línea delgada --- */
+    .nv-topbar-m { text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 6px 10px; font-size: min(.58rem, 2.28vw); letter-spacing: .1em; line-height: 1.35; color: rgba(252, 249, 245, .88); }
+
+    /* --- Encabezado en celular: botón "Comprar" siempre visible junto al carrito --- */
+    @media (max-width: 767px) {
+      .nv-nav-row { padding: 12px 10px 12px 16px !important; }
+      .nv-nav-row > div:last-child { gap: 2px !important; }
+      .nv-nav-buy { padding: 0 1rem !important; min-height: 40px; font-size: .68rem !important; margin-right: 4px; }
+    }
+
+    /* --- Página de producto: nombre → precio → tamaños → carrito, sin espacio vacío arriba --- */
+    .nv-pd-head .nv-pd-price { margin-top: 1.4rem; padding-top: 1.2rem; }
+    .nv-pd-info > .mt-8:first-of-type { margin-top: 1.6rem; }
+    .nv-pd-more { margin-top: 2.4rem; border-top: 1px solid rgba(252, 249, 245, .1); }
+    .nv-pd-ask { display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+    @media (min-width: 1024px) {
+      /* En computadora los tamaños van en fila para que "Añadir al Carrito" quede en la primera pantalla */
+      #pd-sizes { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin-top: 1rem; }
+      #pd-sizes .js-pd-size { padding: .8rem .9rem; }
+      #pd-sizes .js-pd-size:only-child { max-width: 340px; }
+      #pd-title { font-size: clamp(2.6rem, 3.6vw, 3.4rem) !important; margin-top: 1.1rem !important; }
+      .nv-pd-head .gold-rule { margin-top: .8rem; }
+    }
+    @media (max-width: 1023px) {
+      /* En celular: nombre y precio ANTES de la foto. La columna de datos se "disuelve"  */
+      /* (display: contents) para poder ordenar sus piezas una por una.                   */
+      .nv-pd-grid { display: flex !important; flex-direction: column; gap: 0 !important; }
+      .nv-pd-info { display: contents; }
+      .nv-pd-head { order: -1; }
+      .nv-pd-gallery { order: 0; margin-top: 1.1rem; }
+      .nv-pd-info > *:not(.nv-pd-head) { order: 1; }
+      .nv-pd-head .gold-rule { display: none; }
+      #pd-title { font-size: clamp(1.9rem, 8.4vw, 2.6rem) !important; margin-top: .6rem !important; }
+      #pd-tagline { margin-top: .45rem !important; font-size: .92rem !important; }
+      .nv-pd-head .nv-pd-price { margin-top: .8rem; padding-top: .75rem; }
+      .nv-pd-price { flex-wrap: wrap; gap: 4px 12px; }
+      .nv-pd-price b { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+      .nv-pd-zoom { max-height: 34vh; }
+      .nv-pd-zoom.is-portrait { height: min(40vh, 400px); }
+      #pd-thumbs { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+      #pd-sizes { margin-top: .8rem; }
+      #pd-sizes .js-pd-size { padding: .7rem .85rem; }
+      .nv-pd-info > .mt-8 { margin-top: 1.4rem; }
+    }
+
+    /* --- Barra de compra del celular: precio + botón siempre a la vista --- */
+    .nv-buybar { display: none; }
+    @media (max-width: 1023px) {
+      .nv-buybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(13, 13, 13, .94); border-top: 1px solid rgba(205, 174, 85, .35); backdrop-filter: blur(12px); box-shadow: 0 -18px 40px -22px rgba(0, 0, 0, .9); transform: translateY(110%); transition: transform .45s var(--nv-ease); }
+      .nv-buybar.is-on { transform: none; }
+      .nv-buybar p { display: grid; gap: 1px; min-width: 0; }
+      .nv-buybar b { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: -.03em; color: var(--nv-gold-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .nv-buybar span { font-size: .74rem; color: rgba(252, 249, 245, .6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .nv-buybar .btn-gold { flex: 0 0 auto; padding: 0 1.3rem !important; min-height: 46px; font-size: .86rem !important; white-space: nowrap; }
+      /* Mientras la barra está a la vista, el botón de WhatsApp sube y el aviso del sorteo se aparta */
+      body.nv-buybar-on .float-wa { bottom: calc(82px + env(safe-area-inset-bottom, 0px)); }
+      body.nv-buybar-on .nv-sorteo-chip { opacity: 0 !important; pointer-events: none !important; }
+    }
+
+    /* --- Aviso flotante del sorteo: más pequeño y se aparta cuando queda sobre una tabla o un botón --- */
+    .nv-sorteo-chip { left: 16px; bottom: 18px; border-radius: 980px; max-width: calc(100vw - 108px); align-items: center; }
+    .nv-sorteo-chip a { display: flex; align-items: center; gap: 9px; padding: 0 2px 0 14px; min-height: 40px; white-space: nowrap; }
+    .nv-sorteo-chip a b { font-size: .54rem; letter-spacing: .2em; }
+    .nv-sorteo-chip a span { font-size: .78rem; }
+    .nv-sorteo-chip button { padding: 0; width: 38px; min-height: 40px; font-size: 1rem; }
+    .nv-sorteo-chip.is-on.is-away { opacity: 0; transform: translateY(14px); pointer-events: none; transition-duration: .3s; }
+    @media (max-width: 720px) {
+      .nv-sorteo-chip { left: 12px; bottom: 14px; }
+      .nv-sorteo-chip a b { display: none; }
+      .nv-sorteo-chip a span { font-size: .74rem; }
+    }
+
+    /* --- Celular: área para tocar de 44 px como mínimo (sin cambiar cómo se ve) --- */
+    @media (max-width: 1023px) {
+      #navbar button, #drawer-close { min-width: 44px; min-height: 44px; }
+      #navbar button[data-page="carrito"], #drawer-close { display: inline-flex; align-items: center; justify-content: center; }
+      #burger { justify-content: center; align-items: center; }
+      #burger span { flex: 0 0 auto; }
+      #burger span:last-child { margin-left: 8px; }
+      #navbar a[data-page="home"], #navbar .nv-nav-row > a { min-height: 44px; }
+      .nv-crumbs a { display: inline-flex; align-items: center; min-height: 44px; margin: -15px 0; }
+      footer ul.space-y-3 > li, footer ul.space-y-2 > li { margin-top: 0 !important; }
+      footer ul li > a, footer .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
+      footer a, footer button { min-height: 44px; }
+      footer a:not(.btn-gold):not(.btn-outline) { display: inline-flex; align-items: center; }
+      /* Enlaces de texto subrayados: se agranda solo la zona que responde al dedo (invisible), no el enlace */
+      .link-gold, .nv-link, .nv-trust-links > *, .nv-so-textbtn, .nv-so-hint a[data-en], button.js-filter-category[data-category="all"] { position: relative; }
+      .link-gold::before, .nv-link::before, .nv-trust-links > *::before, .nv-so-textbtn::before, .nv-so-hint a[data-en]::before, button.js-filter-category[data-category="all"]::before { content: ''; position: absolute; left: -8px; right: -8px; top: 50%; height: 44px; transform: translateY(-50%); }
+      .nv-trust-links { gap: 14px 24px; }
+      .nv-pd-back { margin-bottom: 1rem !important; }
+      #pd-purchase .js-pd-qty-minus, #pd-purchase .js-pd-qty-plus { width: 44px; height: 44px; }
+      .btn-gold, .btn-outline, .nv-btn-ghost { min-height: 44px; }
+      .lang-btn { min-width: 44px; min-height: 44px; }
+      body #navbar [data-page="carrito"], body .lang-btn-m { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+      body .nv-toggle button { min-height: 44px; }
+      body .nv-seo-links a { display: inline-flex; align-items: center; min-height: 44px; }
+      body .nv-sorteo-chip a, body .nv-sorteo-chip button { min-height: 44px; }
+      body .nv-sorteo-chip button { width: 44px; }
+    }
+
+    /* --- Sorteo: reloj con el tiempo restante para participar --- */
+    .nv-sorteo .nv-ph { padding-top: 7vh; }
+    .nv-sorteo .nv-ph .nv-hero-actions { justify-content: flex-start; margin-top: 1.5rem; }
+    .nv-countdown { margin-top: 1.6rem; }
+    .nv-countdown-label { font-size: .68rem; letter-spacing: .3em; text-transform: uppercase; color: var(--nv-gold-2); font-weight: 600; }
+    .nv-countdown-grid { display: inline-grid; grid-template-columns: repeat(4, minmax(64px, 96px)); gap: 10px; margin-top: .8rem; }
+    .nv-countdown-grid > div { display: grid; gap: 4px; justify-items: center; padding: .8rem .4rem .7rem; border-radius: 16px; background: rgba(13, 13, 13, .62); border: 1px solid rgba(205, 174, 85, .4); backdrop-filter: blur(8px); }
+    .nv-countdown-grid b { font-family: 'Inter', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.3rem); line-height: 1; letter-spacing: -.03em; color: #FCF9F5; font-variant-numeric: tabular-nums; }
+    .nv-countdown-grid span { font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(252, 249, 245, .6); }
+    .nv-countdown-note { margin-top: .7rem; font-size: .8rem; color: rgba(252, 249, 245, .7); }
+    .nv-countdown.is-closed .nv-countdown-grid, .nv-countdown.is-closed .nv-countdown-note { display: none; }
+    @media (max-width: 480px) {
+      .nv-countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+      .nv-countdown-grid span { font-size: .5rem; letter-spacing: .12em; }
+    }
+
+    /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */
     /* Colores oficiales de la guía de marca Nuvela.                      */
@@ -1913,7 +2033,13 @@ const NUVELA_CSS = String.raw`
     .nv-hero-sub { font-size: .68rem; letter-spacing: .5em; text-transform: uppercase; color: rgba(252, 249, 245, .7); margin-top: .2rem; }
     .nv-hero-tagline { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: -.02em; font-size: clamp(1.15rem, 2.2vw, 1.6rem); color: var(--nv-white); margin-top: 1.4rem; }
     .nv-hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; margin-top: 2rem; }
-    .nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, .nv-hero-actions > * { opacity: 0; }
+    /* Precio en la portada, encima de los dos botones */
+    .nv-hero-price { flex: 0 0 100%; text-align: center; font-family: 'Inter', sans-serif; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(252, 249, 245, .82); margin-bottom: .1rem; }
+    .nv-hero-price-pill { display: inline-flex; align-items: baseline; gap: .2rem; padding: .42rem 1.15rem .46rem; border-radius: 980px; background: rgba(13, 13, 13, .62); border: 1px solid rgba(205, 174, 85, .4); backdrop-filter: blur(6px); text-shadow: none; }
+    .nv-hero-price b { font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; color: var(--nv-gold-2); margin-left: .35rem; font-variant-numeric: tabular-nums; vertical-align: -.08em; }
+    .nv-pcard-price { color: var(--nv-gold-2) !important; font-weight: 600; }
+    /* Solo la portada del inicio entra animada; en las demás páginas los botones se ven desde el principio */
+    .nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, #nv-hero .nv-hero-actions > * { opacity: 0; }
     .nv-scroll-cue { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(252, 249, 245, .55); }
     .nv-scroll-cue i { width: 1px; height: 44px; background: linear-gradient(var(--nv-gold-2), transparent); transform-origin: top; animation: nvCue 2.2s var(--nv-ease) infinite; }
     @keyframes nvCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
@@ -1942,11 +2068,12 @@ const NUVELA_CSS = String.raw`
 
     /* ---------- 4. Colchón desarmado (interactivo: tocar una capa) ---------- */
     #nv-layers { background: radial-gradient(ellipse at 60% 50%, #1f1d18 0%, var(--nv-black) 65%); }
-    .nv-layers-pin { position: relative; height: 100svh; min-height: 620px; overflow: hidden; }
+    .nv-layers-pin { position: relative; height: calc(100svh - var(--nv-navh, 0px)); min-height: 560px; overflow: hidden; }
     .nv-layers-head { position: absolute; left: max(24px, 6vw); top: 12vh; z-index: 3; max-width: 560px; }
     .nv-layers-stage { position: absolute; left: 60%; top: 54%; width: min(50vw, 720px, 70vh); aspect-ratio: 1.1 / 1; translate: -50% -50%; cursor: pointer; }
     .nv-layers-glow { position: absolute; inset: 10% 5%; background: radial-gradient(ellipse at center, rgba(205, 174, 85, .2), transparent 65%); filter: blur(30px); pointer-events: none; }
-    .nv-layer-full, .nv-layer { position: absolute; left: 0; width: 100%; top: 50%; translate: 0 -50%; will-change: transform, opacity; }
+    /* Centradas con márgenes (no con 'translate'): así la animación mueve TODAS las capas desde el mismo punto. */
+    .nv-layer-full, .nv-layer { position: absolute; left: 0; width: 100%; top: 0; bottom: 0; margin-block: auto; height: fit-content; will-change: transform, opacity; }
     .nv-layer-full { filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); pointer-events: none; }
     .nv-layer { opacity: 0; pointer-events: none; }
     .nv-layer img { display: block; width: 100%; max-width: none; transition: filter .7s var(--nv-ease); filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); }
@@ -2216,9 +2343,15 @@ function Chrome() {
       <canvas id="star-trail-canvas" aria-hidden="true">
       </canvas>
       {/* =================== TOP BAR =================== */}
-      <div className="hidden md:block w-full bg-ink text-cream text-[0.68rem] tracking-[0.32em] uppercase">
+      <div className="nv-topbar w-full bg-ink text-cream text-[0.68rem] tracking-[0.32em] uppercase">
         {' '}
-        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+        {/* Celular: versión delgada de una línea */}
+        {' '}
+        <p className="nv-topbar-m md:hidden" data-en="Delivery across Guatemala · From Q300 · 10-Year Warranty" data-es="Envíos a todo Guatemala · Desde Q300 · Garantía 10 años">
+          {"Envíos a todo Guatemala · Desde Q300 · Garantía 10 años"}
+        </p>
+        {' '}
+        <div className="hidden md:flex max-w-7xl mx-auto px-6 py-2 items-center justify-between">
           {' '}
           <span data-en="Nationwide delivery in Guatemala · From Q300" data-es="Envíos a todo Guatemala · Desde Q300">
             {"Envíos a todo Guatemala · Desde Q300"}
@@ -2234,7 +2367,7 @@ function Chrome() {
       {/* =================== NAVBAR =================== */}
       <header id="navbar" className="sticky top-0 z-50 bg-[#0D0D0D] backdrop-blur-md border-b border-white/10 transition-all">
         {' '}
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="nv-nav-row max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
           {' '}
           {/* Logo */}
           {' '}
@@ -2376,7 +2509,7 @@ function Chrome() {
             {' '}
             {/* Shop CTA */}
             {' '}
-            <button data-page="producto" className="hidden md:inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">
+            <button data-page="producto" className="nv-nav-buy inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">
               {"Comprar"}
             </button>
             {' '}
@@ -2448,16 +2581,16 @@ function Chrome() {
             {"Inicio"}
           </a>
           {' '}
+          <a className="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">
+            {"Productos"}
+          </a>
+          {' '}
           <a className="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">
             {"Sorteo Nuvela"}
           </a>
           {' '}
           <a className="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">
             {"Historia"}
-          </a>
-          {' '}
-          <a className="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">
-            {"Productos"}
           </a>
           {' '}
           <a className="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">
@@ -2758,6 +2891,20 @@ function PageHome() {
             {' '}
             <div className="nv-hero-actions">
               {' '}
+              {/* Precio visible desde la primera pantalla (NV lo mantiene igual al precio más bajo del Colchón Nuvela) */}
+              {' '}
+              <p className="nv-hero-price">
+                <span className="nv-hero-price-pill">
+                  <span data-en="From" data-es="Desde">
+                    {"Desde"}
+                  </span>
+                  {' '}
+                  <b id="nv-hero-price">
+                    {"Q4,900"}
+                  </b>
+                </span>
+              </p>
+              {' '}
               <button data-page="producto" className="btn-gold nv-magnetic" data-en="Shop Now" data-es="Comprar Ahora">
                 {"Comprar Ahora"}
               </button>
@@ -2778,6 +2925,43 @@ function PageHome() {
             {' '}
             <i>
             </i>
+            {' '}
+          </div>
+          {' '}
+        </section>
+        {' '}
+        {/* COLECCIÓN (subida a la pantalla 2 para que los precios se vean pronto) */}
+        {' '}
+        {/* Carrusel horizontal que avanza con el scroll. */}
+        {' '}
+        {/* Las tarjetas salen solas del arreglo PRODUCTS (solo productos con */}
+        {' '}
+        {/* foto real). Ver NV.renderCollection(). */}
+        {' '}
+        <section id="nv-collection" className="nv-dark">
+          {' '}
+          <div className="nv-collection-pin">
+            {' '}
+            <div className="nv-collection-head">
+              {' '}
+              <p className="nv-eyebrow" data-en="The Collection" data-es="La Colección">
+                {"La Colección"}
+              </p>
+              {' '}
+              <h2 className="nv-h2" data-en={"Everything for<br/>your rest."} data-es={"Todo para<br/>tu descanso."}>
+                {"Todo para"}
+                <br />
+                {"tu descanso."}
+              </h2>
+              {' '}
+              <button data-page="producto" className="nv-link" data-en="View full catalog →" data-es="Ver catálogo completo →">
+                {"Ver catálogo completo →"}
+              </button>
+              {' '}
+            </div>
+            {' '}
+            <div className="nv-collection-track" id="nv-collection-track">
+            </div>
             {' '}
           </div>
           {' '}
@@ -3105,41 +3289,6 @@ function PageHome() {
                 {"Tu pareja"}
               </span>
               {' '}
-            </div>
-            {' '}
-          </div>
-          {' '}
-        </section>
-        {' '}
-        {/* 6. COLECCIÓN — carrusel horizontal que avanza con el scroll. */}
-        {' '}
-        {/* Las tarjetas salen solas del arreglo PRODUCTS (solo productos con */}
-        {' '}
-        {/* foto real). Ver NV.renderCollection(). */}
-        {' '}
-        <section id="nv-collection" className="nv-dark">
-          {' '}
-          <div className="nv-collection-pin">
-            {' '}
-            <div className="nv-collection-head">
-              {' '}
-              <p className="nv-eyebrow" data-en="The Collection" data-es="La Colección">
-                {"La Colección"}
-              </p>
-              {' '}
-              <h2 className="nv-h2" data-en={"Everything for<br/>your rest."} data-es={"Todo para<br/>tu descanso."}>
-                {"Todo para"}
-                <br />
-                {"tu descanso."}
-              </h2>
-              {' '}
-              <button data-page="producto" className="nv-link" data-en="View full catalog →" data-es="Ver catálogo completo →">
-                {"Ver catálogo completo →"}
-              </button>
-              {' '}
-            </div>
-            {' '}
-            <div className="nv-collection-track" id="nv-collection-track">
             </div>
             {' '}
           </div>
@@ -4370,29 +4519,19 @@ function PageProductoDetalle() {
     <>
       <main id="page-producto-detalle" className="page">
         {' '}
-        <section className="bg-cream pt-28 pb-12 md:pb-20">
+        <section className="nv-pd-top bg-cream pt-6 md:pt-9 pb-12 md:pb-20">
           {' '}
           <div className="max-w-7xl mx-auto px-6">
             {' '}
-            <button data-page="producto" className="link-gold mb-6 md:mb-10" data-en="← Back to Products" data-es="← Volver a Productos">
+            <button data-page="producto" className="link-gold nv-pd-back mb-4 md:mb-7" data-en="← Back to Products" data-es="← Volver a Productos">
               {"← Volver a Productos"}
             </button>
             {' '}
-            {/* Botón principal centrado: hace lo mismo que "Comparar Productos" del menú */}
-            {' '}
-            <div className="flex justify-center mb-6 md:mb-10">
-              {' '}
-              <button data-page="comparar" className="btn-gold !px-8" data-en="Compare Products" data-es="Comparar Productos">
-                {"Comparar Productos"}
-              </button>
-              {' '}
-            </div>
-            {' '}
-            <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
+            <div className="nv-pd-grid grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
               {' '}
               {/* Gallery */}
               {' '}
-              <div className="reveal">
+              <div className="nv-pd-gallery reveal">
                 {' '}
                 {/* nv-pd-zoom: foto principal en formato horizontal y tamaño contenido */}
                 {' '}
@@ -4412,40 +4551,39 @@ function PageProductoDetalle() {
               {' '}
               {/* Info */}
               {' '}
-              <div className="reveal reveal-delay-1">
+              {/* Orden: nombre y precio → tamaños → carrito → confianza → ficha y descripción. */}
+              {' '}
+              {/* En celular, "nv-pd-head" (nombre y precio) sube arriba de la foto (ver .nv-pd-grid en el CSS). */}
+              {' '}
+              <div className="nv-pd-info reveal reveal-delay-1">
                 {' '}
-                <p id="pd-eyebrow" className="eyebrow">
-                </p>
-                {' '}
-                <span className="gold-rule mt-4">
-                </span>
-                {' '}
-                <h2 id="pd-title" className="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05]">
-                </h2>
-                {' '}
-                <p id="pd-tagline" className="font-serif italic text-mist text-lg mt-3">
-                </p>
-                {' '}
-                <div id="pd-stats" className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-center">
+                <div className="nv-pd-head">
                   {' '}
-                  {/* stat tiles injected by renderProductDetail() */}
+                  <p id="pd-eyebrow" className="eyebrow">
+                  </p>
                   {' '}
-                </div>
-                {' '}
-                <p id="pd-description" className="text-graphite mt-8 leading-relaxed">
-                </p>
-                {' '}
-                {/* Precio grande del tamaño elegido (lo actualiza NV) */}
-                {' '}
-                <div className="nv-pd-price">
-                  <span data-en="Price" data-es="Precio">
-                    {"Precio"}
+                  <span className="gold-rule mt-4">
                   </span>
-                  <b id="nv-pd-price">
-                    {"—"}
-                  </b>
-                  <em id="nv-pd-price-size">
-                  </em>
+                  {' '}
+                  <h2 id="pd-title" className="font-serif text-5xl md:text-6xl text-ink mt-6 leading-[1.05]">
+                  </h2>
+                  {' '}
+                  <p id="pd-tagline" className="font-serif italic text-mist text-lg mt-3">
+                  </p>
+                  {' '}
+                  {/* Precio grande del tamaño elegido (lo actualiza NV) */}
+                  {' '}
+                  <div className="nv-pd-price">
+                    <span data-en="Price" data-es="Precio">
+                      {"Precio"}
+                    </span>
+                    <b id="nv-pd-price">
+                      {"—"}
+                    </b>
+                    <em id="nv-pd-price-size">
+                    </em>
+                  </div>
+                  {' '}
                 </div>
                 {' '}
                 {/* Sizes */}
@@ -4516,7 +4654,25 @@ function PageProductoDetalle() {
                   <button data-page="cita" data-en="Try it at the showroom →" data-es="Pruébalo en el showroom →">
                     {"Pruébalo en el showroom →"}
                   </button>
+                  <button data-page="comparar" data-en="Compare products →" data-es="Comparar productos →">
+                    {"Comparar productos →"}
+                  </button>
                 </p>
+                {' '}
+                {/* Ficha rápida y descripción (antes estaban arriba del precio) */}
+                {' '}
+                <div className="nv-pd-more">
+                  {' '}
+                  <div id="pd-stats" className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-center">
+                    {' '}
+                    {/* stat tiles injected by renderProductDetail() */}
+                    {' '}
+                  </div>
+                  {' '}
+                  <p id="pd-description" className="text-graphite mt-8 leading-relaxed">
+                  </p>
+                  {' '}
+                </div>
                 {' '}
               </div>
               {' '}
@@ -4684,6 +4840,24 @@ function PageProductoDetalle() {
           </div>
           {' '}
         </section>
+        {' '}
+        {/* Barra de compra del celular: precio + botón siempre a la vista mientras el botón grande */}
+        {' '}
+        {/* "Añadir al Carrito" no está en pantalla. La llena y la muestra NV (busca "nv-buybar"). */}
+        {' '}
+        <div id="nv-buybar" className="nv-buybar" aria-hidden="true">
+          {' '}
+          <p>
+            <b id="nv-buybar-price">
+            </b>
+            <span id="nv-buybar-size">
+            </span>
+          </p>
+          {' '}
+          <button type="button" id="nv-buybar-btn" className="btn-gold" tabIndex="-1">
+          </button>
+          {' '}
+        </div>
         {' '}
       </main>
     </>
@@ -6414,8 +6588,8 @@ function PageSorteo() {
             </h2>
             {' '}
             <ul className="nv-cita-chips">
-              <li data-en="Until December 31, 2026" data-es="Hasta el 31 de diciembre de 2026">
-                {"Hasta el 31 de diciembre de 2026"}
+              <li data-en="Until December 15, 2026 · 7:00 p.m." data-es="Hasta el 15 de diciembre de 2026 · 7:00 p. m.">
+                {"Hasta el 15 de diciembre de 2026 · 7:00 p. m."}
               </li>
               <li data-en="Free to enter" data-es="Participar es gratis">
                 {"Participar es gratis"}
@@ -6424,6 +6598,62 @@ function PageSorteo() {
                 {"3 premios"}
               </li>
             </ul>
+            {' '}
+            {/* Reloj: tiempo que falta para el cierre (15/12/2026, 7:00 p. m. hora de Guatemala). */}
+            {' '}
+            {/* La fecha se cambia en un solo lugar: SORTEO_FIN, en el script (busca "SORTEO NUVELA"). */}
+            {' '}
+            <div className="nv-countdown" id="nv-countdown" role="timer">
+              {' '}
+              <p className="nv-countdown-label" data-en="Time left to enter" data-es="Tiempo restante para participar">
+                {"Tiempo restante para participar"}
+              </p>
+              {' '}
+              <div className="nv-countdown-grid">
+                {' '}
+                <div>
+                  <b data-u="d">
+                    {"--"}
+                  </b>
+                  <span data-en="days" data-es="días">
+                    {"días"}
+                  </span>
+                </div>
+                {' '}
+                <div>
+                  <b data-u="h">
+                    {"--"}
+                  </b>
+                  <span data-en="hours" data-es="horas">
+                    {"horas"}
+                  </span>
+                </div>
+                {' '}
+                <div>
+                  <b data-u="m">
+                    {"--"}
+                  </b>
+                  <span data-en="minutes" data-es="minutos">
+                    {"minutos"}
+                  </span>
+                </div>
+                {' '}
+                <div>
+                  <b data-u="s">
+                    {"--"}
+                  </b>
+                  <span data-en="seconds" data-es="segundos">
+                    {"segundos"}
+                  </span>
+                </div>
+                {' '}
+              </div>
+              {' '}
+              <p className="nv-countdown-note" data-en="Closes December 15, 2026 at 7:00 p.m., Guatemala time." data-es="Cierra el 15 de diciembre de 2026 a las 7:00 p. m., hora de Guatemala.">
+                {"Cierra el 15 de diciembre de 2026 a las 7:00 p. m., hora de Guatemala."}
+              </p>
+              {' '}
+            </div>
             {' '}
             <div className="nv-hero-actions">
               <a href="#nv-sorteo-form" className="btn-gold nv-magnetic js-nv-goto" data-target="#nv-sorteo-form" data-en="Enter now" data-es="Participar ahora">
@@ -6822,8 +7052,8 @@ function PageSorteo() {
                   {"Sorteo finalizado"}
                 </p>
                 {' '}
-                <p className="nv-sorteo-hello" data-en="Sign-ups closed on December 31, 2026. Winners are announced on Instagram @nuvela.gt." data-es="Las inscripciones cerraron el 31 de diciembre de 2026. Los ganadores se anuncian en Instagram @nuvela.gt.">
-                  {"Las inscripciones cerraron el 31 de diciembre de 2026. Los ganadores se anuncian en Instagram @nuvela.gt."}
+                <p className="nv-sorteo-hello" data-en="Sign-ups closed on December 15, 2026 at 7:00 p.m. Winners are announced on Instagram @nuvela.gt." data-es="Las inscripciones cerraron el 15 de diciembre de 2026 a las 7:00 p. m. Los ganadores se anuncian en Instagram @nuvela.gt.">
+                  {"Las inscripciones cerraron el 15 de diciembre de 2026 a las 7:00 p. m. Los ganadores se anuncian en Instagram @nuvela.gt."}
                 </p>
                 {' '}
               </div>
@@ -6852,8 +7082,8 @@ function PageSorteo() {
               <li data-en="Organizer: Nuvela (Diseño y Confort, S.A.), Guatemala City." data-es="Organizador: Nuvela (Diseño y Confort, S.A.), Ciudad de Guatemala.">
                 {"Organizador: Nuvela (Diseño y Confort, S.A.), Ciudad de Guatemala."}
               </li>
-              <li data-en="Period: sign-ups are open until December 31, 2026 at 11:59 p.m. (Guatemala time)." data-es="Vigencia: las inscripciones están abiertas hasta el 31 de diciembre de 2026 a las 23:59 (hora de Guatemala).">
-                {"Vigencia: las inscripciones están abiertas hasta el 31 de diciembre de 2026 a las 23:59 (hora de Guatemala)."}
+              <li data-en="Period: sign-ups are open until December 15, 2026 at 7:00 p.m. (Guatemala time)." data-es="Vigencia: las inscripciones están abiertas hasta el 15 de diciembre de 2026 a las 7:00 p. m. (hora de Guatemala).">
+                {"Vigencia: las inscripciones están abiertas hasta el 15 de diciembre de 2026 a las 7:00 p. m. (hora de Guatemala)."}
               </li>
               <li data-en="Who can enter: people aged 18 or older. One sign-up per person; duplicate sign-ups with the same email or phone are not counted." data-es="Quién participa: personas mayores de 18 años. Una inscripción por persona; las inscripciones repetidas con el mismo correo o teléfono no cuentan.">
                 {"Quién participa: personas mayores de 18 años. Una inscripción por persona; las inscripciones repetidas con el mismo correo o teléfono no cuentan."}
@@ -7555,7 +7785,7 @@ function startNuvela() {
       const targets = document.querySelectorAll('.js-nav-products-list');
       if (!targets.length) return;
       const quizHtml = `
-        <div class="pb-2 mb-1 border-b border-white/10">
+        <div class="border-t border-white/10 mt-2 pt-2">
           <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"/></svg>
             ${currentLang === 'es' ? 'Examen de Productos' : 'Product Quiz'}
@@ -7578,11 +7808,11 @@ function startNuvela() {
         `;
       }).join('');
       const compareHtml = `
-        <div class="border-t border-white/10 mt-2 pt-2">
+        <div class="pb-1">
           <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">${currentLang === 'es' ? 'Comparar Productos' : 'Compare Products'}</a>
         </div>
       `;
-      const html = quizHtml + compareHtml + groupsHtml;
+      const html = groupsHtml + quizHtml + compareHtml; // primero las categorías; examen y comparar al final
       targets.forEach(el => { el.innerHTML = html; });
     }
 
@@ -9005,13 +9235,28 @@ function startNuvela() {
     }
 
     // ==== Render: quantity stepper + "Añadir al Carrito" on the product detail page ====
+    // Productos sin precio publicado: en lugar de "Añadir al Carrito" se ofrece consultar por WhatsApp.
+    function nvAskUrl(p, variant) {
+      const name = pick(p.name) + (p.variants.length > 1 && variant ? ' (' + variant.name + ')' : '');
+      const text = currentLang === 'es'
+        ? 'Hola, quisiera consultar el precio y la disponibilidad de ' + name + '.'
+        : 'Hello, I would like to ask about the price and availability of ' + name + '.';
+      return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+    }
     function renderPdPurchase() {
       const wrap = document.getElementById('pd-purchase');
       if (!wrap) return;
       const p = PRODUCTS.find(x => x.id === currentProductId);
       if (!p) { wrap.innerHTML = ''; return; }
       const variant = p.variants.find(v => v.name === pdSelectedVariant) || p.variants[0];
-      const subtotal = variant.price ? formatPrice(variant.price * pdQty) : formatPrice(0);
+      if (!variant.price) {
+        wrap.innerHTML = `
+        <a class="btn-gold nv-pd-ask" href="${nvAskUrl(p, variant)}" target="_blank" rel="noopener">${currentLang === 'es' ? 'Consultar por WhatsApp' : 'Ask on WhatsApp'}</a>
+        <p class="text-mist text-sm mt-3">${currentLang === 'es' ? 'Te confirmamos precio y disponibilidad por WhatsApp.' : 'We will confirm price and availability on WhatsApp.'}</p>
+      `;
+        return;
+      }
+      const subtotal = formatPrice(variant.price * pdQty);
       wrap.innerHTML = `
         <div class="flex flex-wrap items-center gap-4">
           <div class="flex items-center border border-pearl">
@@ -9070,7 +9315,7 @@ function startNuvela() {
                     <li class="flex gap-2"><span class="text-gold">◆</span><span>${pick(v.detail)}</span></li>
                     ${p.stats.map(s => `<li class="flex gap-2"><span class="text-gold">◆</span><span><strong class="text-ink">${pick(s.label)}:</strong> ${statVal(s.value)}</span></li>`).join('')}
                   </ul>
-                  <button class="js-add-cart-variant ${v.featured ? 'btn-gold' : 'btn-outline'} mt-8 w-full" data-product-id="${p.id}" data-variant="${v.name}">${currentLang === 'es' ? 'Añadir al Carrito' : 'Add to Cart'}</button>
+                  ${v.price ? `<button class="js-add-cart-variant ${v.featured ? 'btn-gold' : 'btn-outline'} mt-8 w-full" data-product-id="${p.id}" data-variant="${v.name}">${currentLang === 'es' ? 'Añadir al Carrito' : 'Add to Cart'}</button>` : `<a class="${v.featured ? 'btn-gold' : 'btn-outline'} mt-8 w-full text-center" href="${nvAskUrl(p, v)}" target="_blank" rel="noopener">${currentLang === 'es' ? 'Consultar por WhatsApp' : 'Ask on WhatsApp'}</a>`}
                   <button data-page="carrito" class="btn-outline mt-3 w-full">${currentLang === 'es' ? 'Ver mi Carrito' : 'View My Cart'}</button>
                 </div>
               `).join('')}
@@ -10786,6 +11031,9 @@ function startNuvela() {
       if (!track || typeof PRODUCTS === 'undefined') return;
       const es = lang() === 'es';
       const list = PRODUCTS.filter((p) => p.mainImage && !/logosinfondo/.test(p.mainImage));
+      // Precio de la portada ("Desde Q…"): siempre igual al precio más bajo del primer colchón del catálogo.
+      const hp = q('#nv-hero-price'), pf0 = typeof priceFrom === 'function' && PRODUCTS[0] ? priceFrom(PRODUCTS[0]) : '';
+      if (hp && /^Q/.test(pf0)) hp.textContent = pf0;
       track.innerHTML = list.map((p, i) => {
         const pf = typeof priceFrom === 'function' ? priceFrom(p) : '';
         const price = /^Q/.test(pf) ? (es ? 'Desde ' : 'From ') + pf : pf;
@@ -10907,6 +11155,22 @@ function startNuvela() {
         gsap.to('.nv-hero-photo', { scale: 1.35, yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#nv-hero', start: 'top top', end: 'bottom top', scrub: true } });
         gsap.to('.nv-hero-copy, .nv-scroll-cue', { opacity: 0, y: -80, ease: 'none', scrollTrigger: { trigger: '#nv-hero', start: 'top top', end: '55% top', scrub: true } });
 
+        // --- Colección (va justo después de la portada: debe crearse antes que las secciones de abajo)
+        const track = q('#nv-collection-track');
+        if (track && !mobile) {
+          const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
+          const htw = gsap.to(track, { x: () => -dist(), ease: 'none',
+            scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + dist(), pin: '.nv-collection-pin', scrub: 0.8, invalidateOnRefresh: true } });
+          qa('.nv-pcard-media img', track).forEach((img) => {
+            gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.nv-pcard'), containerAnimation: htw, start: 'left right', end: 'right left', scrub: true } });
+          });
+          // El título se desvanece cuando las tarjetas pasan por debajo
+          gsap.to('.nv-collection-head', { opacity: 0, x: -40, ease: 'none', scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + window.innerWidth * 0.3, scrub: true } });
+          gsap.from('.nv-collection-head > *', { opacity: 0, y: 40, stagger: 0.1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '#nv-collection', start: 'top 70%' } });
+        } else if (track) {
+          gsap.from('.nv-pcard', { opacity: 0, x: 60, stagger: 0.08, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: track, start: 'top 85%' } });
+        }
+
         // --- Manifiesto: palabras que se encienden
         const mWords = qa('#nv-manifesto .nv-w');
         if (mWords.length) {
@@ -10935,22 +11199,41 @@ function startNuvela() {
         // --- Colchón desarmado: se abre solo una vez al llegar; luego es interactivo
         const layers = qa('.nv-layer[data-l]').sort((a, b) => a.dataset.l - b.dataset.l);
         const stage = q('.nv-layers-stage');
-        const spread = [-0.36, -0.12, 0.12, 0.35];
-        // En el teléfono las capas se separan según el espacio libre que hay
-        // entre el título y el texto de abajo, para que no queden pegadas.
-        let offsets = () => spread.map((v) => v * stage.offsetWidth);
-        if (mobile) {
-          const head = q('.nv-layers-head'), caps = q('.nv-layer-captions');
-          const band = () => ({ top: head.offsetTop + head.offsetHeight + 18, bottom: caps.offsetTop - 6 });
-          const bd = band();
-          gsap.set(stage, { top: (bd.top + bd.bottom) / 2 });
-          offsets = () => {
-            const b = band();
-            const lh = Math.max.apply(null, layers.map((l) => l.offsetHeight)) * 0.9;
-            const span = Math.max(0.7 * stage.offsetWidth, (b.bottom - b.top - lh) / 0.9);
-            return [-0.5, -0.19, 0.15, 0.5].map((v) => v * span);
-          };
-        }
+        // Separación PAREJA entre capas. Cada foto tiene un alto distinto porque cada capa tiene
+        // un grosor distinto; por eso no se reparten por su centro, sino dejando el mismo hueco
+        // visible entre la cara de abajo de una capa y la cara de arriba de la siguiente.
+        //   LH = alto de cada foto (para 1200 px de ancho) · FACE = alto de la cara superior.
+        const LH = [499, 592, 541, 529], FACE = 430;
+        const THICK = LH.map((h) => h - FACE);          // grosor visible de cada capa
+        const pin = q('.nv-layers-pin');
+        // Franja libre donde debe caber el colchón abierto (en computadora: todo el alto visible;
+        // en el teléfono: entre el título y el texto de abajo).
+        const band = () => {
+          if (mobile) {
+            const head = q('.nv-layers-head'), caps = q('.nv-layer-captions');
+            return { top: head.offsetTop + head.offsetHeight + 14, bottom: caps.offsetTop - 4 };
+          }
+          const pad = Math.max(22, pin.offsetHeight * 0.05);
+          return { top: pad, bottom: pin.offsetHeight - pad };
+        };
+        const fit = () => {
+          const b = band(), room = b.bottom - b.top;
+          const solid = THICK[0] + THICK[1] + THICK[2] + LH[3];   // alto del colchón sin huecos
+          gsap.set(stage, { clearProps: 'width' });
+          const SC = mobile ? 0.9 : 0.92;               // el colchón se encoge un poco al abrirse
+          let k = (stage.offsetWidth / 1200) * SC;
+          const minGap = mobile ? 34 : 60, maxGap = 150;
+          // Si no cabe ni con el hueco mínimo, el colchón se hace un poco más pequeño.
+          if ((solid + 3 * minGap) * k > room) { k = room / (solid + 3 * minGap); gsap.set(stage, { width: (k / SC) * 1200 }); }
+          const gap = Math.max(minGap, Math.min(maxGap, (room / k - solid) / 3));
+          const total = (solid + 3 * gap) * k;
+          const top0 = b.top + (room - total) / 2;      // centrado en la franja
+          const mid = stage.offsetTop;                  // línea central actual del colchón
+          let t = top0;
+          return LH.map((h, i) => { const y = (t + (h * k) / 2 - mid) / SC; t += (THICK[i] + gap) * k; return y; });
+        };
+        if (mobile) { const bd = band(); gsap.set(stage, { top: (bd.top + bd.bottom) / 2 }); }
+        let offsets = fit;
         layersReady = false;
         gsap.timeline({ scrollTrigger: { trigger: '#nv-layers', start: 'top 55%', once: true },
           onComplete: () => { layersReady = true; } })
@@ -10961,21 +11244,6 @@ function startNuvela() {
           .to(layers, { y: (i) => offsets()[i], duration: 1.6, ease: 'expo.inOut', stagger: 0.04 }, 1.32)
           .to(stage, { scale: mobile ? 0.9 : 0.92, duration: 1.6, ease: 'expo.inOut' }, 1.32)
           .to('.nv-hot', { opacity: 1, duration: 0.6, stagger: 0.08 }, 2.6);
-        const track = q('#nv-collection-track');
-        if (track && !mobile) {
-          const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-          const htw = gsap.to(track, { x: () => -dist(), ease: 'none',
-            scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + dist(), pin: '.nv-collection-pin', scrub: 0.8, invalidateOnRefresh: true } });
-          qa('.nv-pcard-media img', track).forEach((img) => {
-            gsap.fromTo(img, { xPercent: -6 }, { xPercent: 6, ease: 'none', scrollTrigger: { trigger: img.closest('.nv-pcard'), containerAnimation: htw, start: 'left right', end: 'right left', scrub: true } });
-          });
-          // El título se desvanece cuando las tarjetas pasan por debajo
-          gsap.to('.nv-collection-head', { opacity: 0, x: -40, ease: 'none', scrollTrigger: { trigger: '#nv-collection', start: 'top top', end: () => '+=' + window.innerWidth * 0.3, scrub: true } });
-          gsap.from('.nv-collection-head > *', { opacity: 0, y: 40, stagger: 0.1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '#nv-collection', start: 'top 70%' } });
-        } else if (track) {
-          gsap.from('.nv-pcard', { opacity: 0, x: 60, stagger: 0.08, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: track, start: 'top 85%' } });
-        }
-
         // --- Marquesina: acelera con la velocidad del scroll
         const rows = qa('.nv-marquee-row');
         const tweens = rows.map((row) => {
@@ -11069,8 +11337,41 @@ function startNuvela() {
         onUpdate: () => { priceEl.textContent = formatPrice(Math.round(priceState.v / 10) * 10); },
         onComplete: () => { priceEl.textContent = formatPrice(v.price); } });
     }
+    // ---- Barra de compra del celular (precio + botón siempre visibles) ----
+    // Aparece solo en celular y solo mientras el botón grande de compra no está en pantalla.
+    const buybar = q('#nv-buybar'), buybarBtn = q('#nv-buybar-btn'), pdPurchase = q('#pd-purchase');
+    function updateBuybar() {
+      if (!buybar || typeof PRODUCTS === 'undefined' || typeof currentProductId === 'undefined') return;
+      const p = PRODUCTS.find((x) => x.id === currentProductId);
+      if (!p) return;
+      const v = p.variants.find((x) => x.name === pdSelectedVariant) || p.variants[0];
+      const es = lang() === 'es';
+      q('#nv-buybar-price').textContent = formatPrice(v ? v.price : 0);
+      q('#nv-buybar-size').textContent = p.variants.length > 1 && v ? v.name : pick(p.name);
+      buybarBtn.textContent = v && v.price ? (es ? 'Añadir al Carrito' : 'Add to Cart') : (es ? 'Consultar por WhatsApp' : 'Ask on WhatsApp');
+    }
+    if (buybar && buybarBtn && pdPurchase) {
+      buybarBtn.addEventListener('click', () => {
+        const real = q('.js-pd-add-cart, .nv-pd-ask', pdPurchase);
+        if (!real) return;
+        const esCarrito = real.classList.contains('js-pd-add-cart');
+        real.click(); // hace exactamente lo mismo que el botón grande
+        if (esCarrito) {
+          buybarBtn.textContent = lang() === 'es' ? '✓ Agregado' : '✓ Added';
+          setTimeout(updateBuybar, 1500);
+        }
+      });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          const fuera = !entries[0].isIntersecting;
+          buybar.classList.toggle('is-on', fuera);
+          buybarBtn.tabIndex = fuera ? 0 : -1;
+          document.body.classList.toggle('nv-buybar-on', fuera && !!q('#page-producto-detalle.active'));
+        }, { threshold: 0.25 }).observe(pdPurchase);
+      }
+    }
     const pdSizes = q('#pd-sizes');
-    if (pdSizes && 'MutationObserver' in window) new MutationObserver(updatePrice).observe(pdSizes, { childList: true });
+    if (pdSizes && 'MutationObserver' in window) new MutationObserver(() => { updatePrice(); updateBuybar(); }).observe(pdSizes, { childList: true });
 
     function enterProducts() {
       if (prodWaves) prodWaves.build();
@@ -11082,14 +11383,14 @@ function startNuvela() {
       }, '#page-producto');
     }
     function enterDetail() {
-      priceState.v = 0; updatePrice();
+      priceState.v = 0; updatePrice(); updateBuybar();
       if (!hasGsap || reduce) return;
       pageCtx = gsap.context(() => {
         gsap.fromTo('.nv-pd-zoom', { opacity: 0, scale: 0.94, clipPath: 'inset(6% 6% 6% 6% round 28px)' }, { opacity: 1, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.4, ease: 'expo.out' });
         gsap.fromTo('#pd-thumbs .thumb', { opacity: 0, y: 20 }, { opacity: (i, el) => (el.classList.contains('border-gold') ? 1 : 0.55), y: 0, duration: 0.8, ease: 'expo.out', stagger: 0.05, delay: 0.3, clearProps: 'opacity' });
         gsap.fromTo('#pd-eyebrow, #pd-title, #pd-tagline', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08, delay: 0.1 });
         gsap.fromTo('#pd-stats > div', { opacity: 0, y: 24, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out', stagger: 0.04, delay: 0.35 });
-        gsap.fromTo('.nv-pd-price, #pd-sizes > *, #pd-purchase', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.05, delay: 0.5 });
+        gsap.fromTo('.nv-pd-price, #pd-sizes > *, #pd-purchase', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', stagger: 0.05, delay: 0.15 });
         qa('#pd-benefits > div, #pd-specs-table, #pd-faq .faq-item').forEach((el) => {
           gsap.from(el, { opacity: 0, y: 50, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none reverse' } });
         });
@@ -11436,6 +11737,8 @@ function startNuvela() {
     function sizeAll() {
       // Alto del menú de arriba, para que el hero ocupe justo la pantalla visible
       const hs = q('#nv-hero');
+      // Alto del encabezado fijo: la sección de las capas lo descuenta para caber completa en pantalla.
+      const nb = q('#navbar'); if (nb) document.documentElement.style.setProperty('--nv-navh', nb.offsetHeight + 'px');
       if (hs) document.documentElement.style.setProperty('--nv-nav', Math.max(0, hs.getBoundingClientRect().top + window.scrollY) + 'px');
       if (hero) hero.build();
       if (manifestoWaves) manifestoWaves.build();
@@ -11561,12 +11864,12 @@ function startNuvela() {
   /* Inscripción, puntos y enlace personal del sorteo (página /sorteo).     */
   /*  · SORTEO_WEBHOOK_URL: enlace del Apps Script de la hoja "Sorteo"      */
   /*    (ver instrucciones en sorteo-google-apps-script.txt).               */
-  /*  · SORTEO_FIN: cierre de inscripciones (31/12/2026 23:59, Guatemala).  */
+  /*  · SORTEO_FIN: cierre de inscripciones (15/12/2026 19:00, Guatemala). */
   (function () {
     'use strict';
     const SORTEO_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzL-E4m5NKZAGCHLpyTtPngz4Q3xgEmt7YdW88ogDdXEyKscjicpVCve7xCBW6Gy7SA/exec';
     const SORTEO_TOKEN = 'nuvela-sorteo-2026';
-    const SORTEO_FIN = new Date('2027-01-01T06:00:00Z'); // = 31 dic 2026, 24:00 en Guatemala
+    const SORTEO_FIN = new Date('2026-12-16T01:00:00Z'); // = 15 dic 2026, 7:00 p. m. en Guatemala (Guatemala va 6 horas detrás de la hora Z)
     const PUNTOS_BASE = 1, PUNTOS_REFERIDO = 2;
     const LINK_BASE = 'https://www.nuvelagt.com/sorteo?ref=';
     const KEY = 'nuvela-sorteo', REFKEY = 'nuvela-sorteo-ref';
@@ -11597,12 +11900,57 @@ function startNuvela() {
           + (es() ? 'Gana un colchón King →' : 'Win a King mattress →') + '</span></a><button type="button" aria-label="' + (es() ? 'Cerrar' : 'Close') + '">×</button>';
         document.body.appendChild(chip);
         chip.querySelector('button').addEventListener('click', () => {
-          chip.classList.remove('is-on');
+          chip.remove(); // cerrado: no vuelve a salir durante esta visita
           try { sessionStorage.setItem('nv-sorteo-chip', '1'); } catch (e) { /* modo privado */ }
         });
         setTimeout(() => chip.classList.add('is-on'), 7000);
+        // Si el aviso queda encima de una tabla, un formulario, un botón o un enlace, se aparta solo
+        // (así no tapa precios ni botones) y vuelve cuando ya no estorba.
+        const TAPA = 'table, .nv-size-table, #pd-specs-table, #pd-sizes, #pd-purchase, form, button, a, input, select, textarea, label';
+        let pend = false;
+        const revisar = () => {
+          pend = false;
+          if (!chip.isConnected || !chip.classList.contains('is-on')) return;
+          const r = chip.getBoundingClientRect();
+          const pts = [[r.left + 6, r.top + 6], [r.right - 6, r.top + 6], [r.left + 6, r.bottom - 6], [r.right - 6, r.bottom - 6], [r.left + r.width / 2, r.top + r.height / 2]];
+          const tapa = pts.some(([x, y]) => (document.elementsFromPoint(x, y) || []).some((el) => !chip.contains(el) && el.closest && el.closest(TAPA) && !el.closest('#navbar, .float-wa')));
+          chip.classList.toggle('is-away', tapa);
+        };
+        const pedir = () => { if (!pend) { pend = true; setTimeout(revisar, 140); } };
+        window.addEventListener('scroll', pedir, { passive: true });
+        window.addEventListener('resize', pedir);
+        setTimeout(revisar, 7100);
       }
     }
+
+    // 2b) Reloj de la página del sorteo: cuenta el tiempo que falta para SORTEO_FIN.
+    (function () {
+      const box = $('nv-countdown');
+      if (!box) return;
+      const cel = {}; box.querySelectorAll('b[data-u]').forEach((b) => { cel[b.dataset.u] = b; });
+      const dos = (n) => String(n).padStart(2, '0');
+      const abiertoAlEntrar = !cerrado();
+      let reloj = null;
+      function pintar() {
+        const falta = SORTEO_FIN.getTime() - Date.now();
+        if (falta <= 0) {
+          if (reloj) clearInterval(reloj);
+          box.classList.add('is-closed');
+          const lab = box.querySelector('.nv-countdown-label');
+          if (lab) { lab.removeAttribute('data-en'); lab.removeAttribute('data-es'); lab.textContent = es() ? 'Inscripciones cerradas' : 'Sign-ups are closed'; }
+          // Si se cerró mientras la persona tenía la página abierta, se recarga para mostrar el aviso de cierre.
+          if (abiertoAlEntrar && document.body.dataset.nvPage === 'sorteo') setTimeout(() => window.location.reload(), 1200);
+          return;
+        }
+        const seg = Math.floor(falta / 1000);
+        cel.d.textContent = String(Math.floor(seg / 86400));
+        cel.h.textContent = dos(Math.floor((seg % 86400) / 3600));
+        cel.m.textContent = dos(Math.floor((seg % 3600) / 60));
+        cel.s.textContent = dos(seg % 60);
+      }
+      pintar();
+      if (!cerrado()) reloj = setInterval(pintar, 1000);
+    })();
 
     // 3) Formulario, entrada para ver puntos y panel
     const form = $('nv-sorteo-f'), login = $('nv-sorteo-login'), panel = $('nv-sorteo-panel'), closed = $('nv-sorteo-closed');

@@ -3,7 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sorteo Nuvela: gana un colchón King | Nuvela</title>
-  <meta name="description" content="Participa en el Sorteo Nuvela hasta el 31 de diciembre de 2026 y gana un Colchón Nuvela King. Inscríbete gratis y suma puntos al compartir tu enlace.">
+  <meta name="description" content="Participa en el Sorteo Nuvela hasta el 15 de diciembre de 2026 y gana un Colchón Nuvela King. Inscríbete gratis y suma puntos al compartir tu enlace.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.nuvelagt.com/sorteo">
   <meta name="author" content="Nuvela">
@@ -16,7 +16,7 @@
 
   <!-- Cómo se ve al compartir en WhatsApp, Facebook, etc. (Open Graph) -->
   <meta property="og:title" content="Sorteo Nuvela: gana un colchón King | Nuvela">
-  <meta property="og:description" content="Participa en el Sorteo Nuvela hasta el 31 de diciembre de 2026 y gana un Colchón Nuvela King. Inscríbete gratis y suma puntos al compartir tu enlace.">
+  <meta property="og:description" content="Participa en el Sorteo Nuvela hasta el 15 de diciembre de 2026 y gana un Colchón Nuvela King. Inscríbete gratis y suma puntos al compartir tu enlace.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.nuvelagt.com/sorteo">
   <meta property="og:site_name" content="Nuvela">
@@ -25,7 +25,7 @@
   <meta property="og:image:alt" content="Colchón Nuvela King, primer premio del Sorteo Nuvela">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sorteo Nuvela: gana un colchón King | Nuvela">
-  <meta name="twitter:description" content="Participa en el Sorteo Nuvela hasta el 31 de diciembre de 2026 y gana un Colchón Nuvela King. Inscríbete gratis y suma puntos al compartir tu enlace.">
+  <meta name="twitter:description" content="Participa en el Sorteo Nuvela hasta el 15 de diciembre de 2026 y gana un Colchón Nuvela King. Inscríbete gratis y suma puntos al compartir tu enlace.">
   <meta name="twitter:image" content="https://www.nuvelagt.com/images/hero-frontal.jpg">
 
   <!-- Datos estructurados para Google (JSON-LD) -->
@@ -90,7 +90,7 @@
 
   
   <!-- Estilos de todo el sitio (un solo archivo compartido por todas las páginas) -->
-  <link rel="stylesheet" href="/assets/nuvela.css?v=20261001">
+  <link rel="stylesheet" href="/assets/nuvela.css?v=20261005b">
   <!-- Meta Pixel Code (el código vive en /assets/nuvela-pixel.js) -->
   <script src="/assets/nuvela-pixel.js?v=20261005"></script>
   <noscript><img height="1" width="1" style="display:none"
@@ -110,8 +110,10 @@
   <canvas id="star-trail-canvas" aria-hidden="true"></canvas>
 
   <!-- =================== TOP BAR =================== -->
-  <div class="hidden md:block w-full bg-ink text-cream text-[0.68rem] tracking-[0.32em] uppercase">
-    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+  <div class="nv-topbar w-full bg-ink text-cream text-[0.68rem] tracking-[0.32em] uppercase">
+    <!-- Celular: versión delgada de una línea -->
+    <p class="nv-topbar-m md:hidden" data-en="Delivery across Guatemala · From Q300 · 10-Year Warranty" data-es="Envíos a todo Guatemala · Desde Q300 · Garantía 10 años">Envíos a todo Guatemala · Desde Q300 · Garantía 10 años</p>
+    <div class="hidden md:flex max-w-7xl mx-auto px-6 py-2 items-center justify-between">
       <span data-en="Nationwide delivery in Guatemala · From Q300" data-es="Envíos a todo Guatemala · Desde Q300">Envíos a todo Guatemala · Desde Q300</span>
       <span class="text-gold-light" data-en="10-Year Warranty · ISO 9001 · OEKO-TEX®" data-es="Garantía 10 años · ISO 9001 · OEKO-TEX®">Garantía 10 años · ISO 9001 · OEKO-TEX®</span>
     </div>
@@ -119,7 +121,7 @@
 
   <!-- =================== NAVBAR =================== -->
   <header id="navbar" class="sticky top-0 z-50 bg-[#0D0D0D] backdrop-blur-md border-b border-white/10 transition-all">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div class="nv-nav-row max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
       <!-- Logo -->
       <a href="/" data-page="home" class="flex items-center">
     <img src="/images/logo-navbar-blanco.png" alt="Nuvela Logo" class="h-10 w-auto md:h-14 lg:h-16">
@@ -138,17 +140,6 @@
           <!-- Subpestaña de productos: aparece al pasar el cursor sobre "Productos" -->
           <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
             <div class="js-nav-products-list bg-[#0D0D0D] border border-white/10 min-w-[260px] max-h-[70vh] overflow-y-auto py-2 shadow-2xl">
-        <div class="pb-2 mb-1 border-b border-white/10">
-          <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"></circle></svg>
-            Examen de Productos
-          </button>
-        </div>
-      
-        <div class="border-t border-white/10 mt-2 pt-2">
-          <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">Comparar Productos</a>
-        </div>
-      
           <div class="nav-cat-section">
             <button type="button" class="js-nav-cat-toggle w-full flex items-center justify-between gap-2 px-5 pt-3 pb-1 text-[0.62rem] tracking-[0.2em] uppercase text-mist hover:text-gold-light transition-colors" aria-expanded="false">
               <span>Colchones</span>
@@ -188,7 +179,18 @@
               <a href="/camastrones/olivia-bed" class="js-view-product nv-abtn block w-full text-left px-5 py-2 text-sm text-cream/90 hover:text-gold hover:bg-white/5 transition-colors" data-product-id="camastron-nuvela">Olivia Bed</a>
             </div>
           </div>
+        
+        <div class="border-t border-white/10 mt-2 pt-2">
+          <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"></circle></svg>
+            Examen de Productos
+          </button>
         </div>
+      
+        <div class="pb-1">
+          <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">Comparar Productos</a>
+        </div>
+      </div>
           </div>
         </div>
         <a href="/linea-hotelera" class="nav-link" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
@@ -225,7 +227,7 @@
           <button id="lang-en" class="lang-btn px-2 py-1 text-mist">EN</button>
         </div>
         <!-- Shop CTA -->
-        <a href="/colchones" data-page="producto" class="nv-abtn hidden md:inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">Comprar</a>
+        <a href="/colchones" data-page="producto" class="nv-abtn nv-nav-buy inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">Comprar</a>
         <!-- Cart icon (always visible, so it's reachable even with the menu closed) -->
         <a href="/carrito" data-page="carrito" class="nv-abtn relative p-2 text-white" aria-label="Carrito">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -258,9 +260,9 @@
     </div>
     <nav class="flex flex-col py-4">
       <a href="/" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
+      <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
       <a href="/sorteo" class="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
       <a href="/historia" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">Historia</a>
-      <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
       <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
       <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
       <a href="/colchon-hibrido" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="tecnologia" data-en="Technology" data-es="Tecnología">Tecnología</a>
@@ -375,10 +377,22 @@
         <h1 class="nv-eyebrow" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</h1>
         <h2 class="nv-display nv-ph-title" data-en="Win a&lt;br/&gt;King mattress." data-es="Gana un&lt;br/&gt;colchón King.">Gana un<br>colchón King.</h2>
         <ul class="nv-cita-chips">
-          <li data-en="Until December 31, 2026" data-es="Hasta el 31 de diciembre de 2026">Hasta el 31 de diciembre de 2026</li>
+          <li data-en="Until December 15, 2026 · 7:00 p.m." data-es="Hasta el 15 de diciembre de 2026 · 7:00 p. m.">Hasta el 15 de diciembre de 2026 · 7:00 p. m.</li>
           <li data-en="Free to enter" data-es="Participar es gratis">Participar es gratis</li>
           <li data-en="3 prizes" data-es="3 premios">3 premios</li>
         </ul>
+        <!-- Reloj: tiempo que falta para el cierre (15/12/2026, 7:00 p. m. hora de Guatemala). -->
+        <!-- La fecha se cambia en un solo lugar: SORTEO_FIN, en el script (busca "SORTEO NUVELA"). -->
+        <div class="nv-countdown" id="nv-countdown" role="timer">
+          <p class="nv-countdown-label" data-en="Time left to enter" data-es="Tiempo restante para participar">Tiempo restante para participar</p>
+          <div class="nv-countdown-grid">
+            <div><b data-u="d">--</b><span data-en="days" data-es="días">días</span></div>
+            <div><b data-u="h">--</b><span data-en="hours" data-es="horas">horas</span></div>
+            <div><b data-u="m">--</b><span data-en="minutes" data-es="minutos">minutos</span></div>
+            <div><b data-u="s">--</b><span data-en="seconds" data-es="segundos">segundos</span></div>
+          </div>
+          <p class="nv-countdown-note" data-en="Closes December 15, 2026 at 7:00 p.m., Guatemala time." data-es="Cierra el 15 de diciembre de 2026 a las 7:00 p. m., hora de Guatemala.">Cierra el 15 de diciembre de 2026 a las 7:00 p. m., hora de Guatemala.</p>
+        </div>
         <div class="nv-hero-actions"><a href="#nv-sorteo-form" class="btn-gold nv-magnetic js-nv-goto" data-target="#nv-sorteo-form" data-en="Enter now" data-es="Participar ahora">Participar ahora</a></div>
       </div>
     </section>
@@ -479,7 +493,7 @@
           <!-- C) Sorteo cerrado -->
           <div id="nv-sorteo-closed" class="nv-sorteo-panel hidden">
             <p class="nv-eyebrow" data-en="Giveaway closed" data-es="Sorteo finalizado">Sorteo finalizado</p>
-            <p class="nv-sorteo-hello" data-en="Sign-ups closed on December 31, 2026. Winners are announced on Instagram @nuvela.gt." data-es="Las inscripciones cerraron el 31 de diciembre de 2026. Los ganadores se anuncian en Instagram @nuvela.gt.">Las inscripciones cerraron el 31 de diciembre de 2026. Los ganadores se anuncian en Instagram @nuvela.gt.</p>
+            <p class="nv-sorteo-hello" data-en="Sign-ups closed on December 15, 2026 at 7:00 p.m. Winners are announced on Instagram @nuvela.gt." data-es="Las inscripciones cerraron el 15 de diciembre de 2026 a las 7:00 p. m. Los ganadores se anuncian en Instagram @nuvela.gt.">Las inscripciones cerraron el 15 de diciembre de 2026 a las 7:00 p. m. Los ganadores se anuncian en Instagram @nuvela.gt.</p>
           </div>
         </div>
       </div>
@@ -492,7 +506,7 @@
         <h3 class="nv-h2" data-en="Terms and conditions." data-es="Términos y condiciones.">Términos y condiciones.</h3>
         <ol class="nv-rules">
           <li data-en="Organizer: Nuvela (Diseño y Confort, S.A.), Guatemala City." data-es="Organizador: Nuvela (Diseño y Confort, S.A.), Ciudad de Guatemala.">Organizador: Nuvela (Diseño y Confort, S.A.), Ciudad de Guatemala.</li>
-          <li data-en="Period: sign-ups are open until December 31, 2026 at 11:59 p.m. (Guatemala time)." data-es="Vigencia: las inscripciones están abiertas hasta el 31 de diciembre de 2026 a las 23:59 (hora de Guatemala).">Vigencia: las inscripciones están abiertas hasta el 31 de diciembre de 2026 a las 23:59 (hora de Guatemala).</li>
+          <li data-en="Period: sign-ups are open until December 15, 2026 at 7:00 p.m. (Guatemala time)." data-es="Vigencia: las inscripciones están abiertas hasta el 15 de diciembre de 2026 a las 7:00 p. m. (hora de Guatemala).">Vigencia: las inscripciones están abiertas hasta el 15 de diciembre de 2026 a las 7:00 p. m. (hora de Guatemala).</li>
           <li data-en="Who can enter: people aged 18 or older. One sign-up per person; duplicate sign-ups with the same email or phone are not counted." data-es="Quién participa: personas mayores de 18 años. Una inscripción por persona; las inscripciones repetidas con el mismo correo o teléfono no cuentan.">Quién participa: personas mayores de 18 años. Una inscripción por persona; las inscripciones repetidas con el mismo correo o teléfono no cuentan.</li>
           <li data-en="Requirement: follow Nuvela on Instagram (@nuvela.gt). When signing up you give your Instagram username; Nuvela checks that the account follows @nuvela.gt and voids sign-ups that do not. It is also verified before awarding each prize." data-es="Requisito: seguir a Nuvela en Instagram (@nuvela.gt). Al inscribirte indicas tu usuario de Instagram; Nuvela revisa que esa cuenta siga a @nuvela.gt y anula las inscripciones que no cumplan. También se verifica antes de entregar cada premio.">Requisito: seguir a Nuvela en Instagram (@nuvela.gt). Al inscribirte indicas tu usuario de Instagram; Nuvela revisa que esa cuenta siga a @nuvela.gt y anula las inscripciones que no cumplan. También se verifica antes de entregar cada premio.</li>
           <li data-en="Points: 1 point for signing up and 2 points for each person who signs up using your personal link. Referred people must be real, of legal age and with their own details." data-es="Puntos: 1 punto por inscribirte y 2 puntos por cada persona que se inscriba usando tu enlace personal. Las personas referidas deben ser reales, mayores de edad y con sus propios datos.">Puntos: 1 punto por inscribirte y 2 puntos por cada persona que se inscriba usando tu enlace personal. Las personas referidas deben ser reales, mayores de edad y con sus propios datos.</li>
@@ -590,11 +604,11 @@
 
   
   <!-- =================== SCRIPTS =================== -->
-  <script src="/assets/nuvela-app.js?v=20261001"></script>
+  <script src="/assets/nuvela-app.js?v=20261005b"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="/assets/nuvela-immersive.js?v=20261001"></script>
+  <script src="/assets/nuvela-immersive.js?v=20261005b"></script>
 
 
 </body></html>

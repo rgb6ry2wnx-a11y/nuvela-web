@@ -346,7 +346,7 @@
       const targets = document.querySelectorAll('.js-nav-products-list');
       if (!targets.length) return;
       const quizHtml = `
-        <div class="pb-2 mb-1 border-b border-white/10">
+        <div class="border-t border-white/10 mt-2 pt-2">
           <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"/></svg>
             ${currentLang === 'es' ? 'Examen de Productos' : 'Product Quiz'}
@@ -369,11 +369,11 @@
         `;
       }).join('');
       const compareHtml = `
-        <div class="border-t border-white/10 mt-2 pt-2">
+        <div class="pb-1">
           <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">${currentLang === 'es' ? 'Comparar Productos' : 'Compare Products'}</a>
         </div>
       `;
-      const html = quizHtml + compareHtml + groupsHtml;
+      const html = groupsHtml + quizHtml + compareHtml; // primero las categorías; examen y comparar al final
       targets.forEach(el => { el.innerHTML = html; });
     }
 
@@ -1797,13 +1797,28 @@
     }
 
     // ==== Render: quantity stepper + "Añadir al Carrito" on the product detail page ====
+    // Productos sin precio publicado: en lugar de "Añadir al Carrito" se ofrece consultar por WhatsApp.
+    function nvAskUrl(p, variant) {
+      const name = pick(p.name) + (p.variants.length > 1 && variant ? ' (' + variant.name + ')' : '');
+      const text = currentLang === 'es'
+        ? 'Hola, quisiera consultar el precio y la disponibilidad de ' + name + '.'
+        : 'Hello, I would like to ask about the price and availability of ' + name + '.';
+      return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+    }
     function renderPdPurchase() {
       const wrap = document.getElementById('pd-purchase');
       if (!wrap) return;
       const p = PRODUCTS.find(x => x.id === currentProductId);
       if (!p) { wrap.innerHTML = ''; return; }
       const variant = p.variants.find(v => v.name === pdSelectedVariant) || p.variants[0];
-      const subtotal = variant.price ? formatPrice(variant.price * pdQty) : formatPrice(0);
+      if (!variant.price) {
+        wrap.innerHTML = `
+        <a class="btn-gold nv-pd-ask" href="${nvAskUrl(p, variant)}" target="_blank" rel="noopener">${currentLang === 'es' ? 'Consultar por WhatsApp' : 'Ask on WhatsApp'}</a>
+        <p class="text-mist text-sm mt-3">${currentLang === 'es' ? 'Te confirmamos precio y disponibilidad por WhatsApp.' : 'We will confirm price and availability on WhatsApp.'}</p>
+      `;
+        return;
+      }
+      const subtotal = formatPrice(variant.price * pdQty);
       wrap.innerHTML = `
         <div class="flex flex-wrap items-center gap-4">
           <div class="flex items-center border border-pearl">
@@ -1862,7 +1877,7 @@
                     <li class="flex gap-2"><span class="text-gold">◆</span><span>${pick(v.detail)}</span></li>
                     ${p.stats.map(s => `<li class="flex gap-2"><span class="text-gold">◆</span><span><strong class="text-ink">${pick(s.label)}:</strong> ${statVal(s.value)}</span></li>`).join('')}
                   </ul>
-                  <button class="js-add-cart-variant ${v.featured ? 'btn-gold' : 'btn-outline'} mt-8 w-full" data-product-id="${p.id}" data-variant="${v.name}">${currentLang === 'es' ? 'Añadir al Carrito' : 'Add to Cart'}</button>
+                  ${v.price ? `<button class="js-add-cart-variant ${v.featured ? 'btn-gold' : 'btn-outline'} mt-8 w-full" data-product-id="${p.id}" data-variant="${v.name}">${currentLang === 'es' ? 'Añadir al Carrito' : 'Add to Cart'}</button>` : `<a class="${v.featured ? 'btn-gold' : 'btn-outline'} mt-8 w-full text-center" href="${nvAskUrl(p, v)}" target="_blank" rel="noopener">${currentLang === 'es' ? 'Consultar por WhatsApp' : 'Ask on WhatsApp'}</a>`}
                   <button data-page="carrito" class="btn-outline mt-3 w-full">${currentLang === 'es' ? 'Ver mi Carrito' : 'View My Cart'}</button>
                 </div>
               `).join('')}

@@ -114,7 +114,7 @@
 
   
   <!-- Estilos de todo el sitio (un solo archivo compartido por todas las páginas) -->
-  <link rel="stylesheet" href="/assets/nuvela.css?v=20261001">
+  <link rel="stylesheet" href="/assets/nuvela.css?v=20261005b">
   <!-- Meta Pixel Code (el código vive en /assets/nuvela-pixel.js) -->
   <script src="/assets/nuvela-pixel.js?v=20261005"></script>
   <noscript><img height="1" width="1" style="display:none"
@@ -134,8 +134,10 @@
   <canvas id="star-trail-canvas" aria-hidden="true"></canvas>
 
   <!-- =================== TOP BAR =================== -->
-  <div class="hidden md:block w-full bg-ink text-cream text-[0.68rem] tracking-[0.32em] uppercase">
-    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+  <div class="nv-topbar w-full bg-ink text-cream text-[0.68rem] tracking-[0.32em] uppercase">
+    <!-- Celular: versión delgada de una línea -->
+    <p class="nv-topbar-m md:hidden" data-en="Delivery across Guatemala · From Q300 · 10-Year Warranty" data-es="Envíos a todo Guatemala · Desde Q300 · Garantía 10 años">Envíos a todo Guatemala · Desde Q300 · Garantía 10 años</p>
+    <div class="hidden md:flex max-w-7xl mx-auto px-6 py-2 items-center justify-between">
       <span data-en="Nationwide delivery in Guatemala · From Q300" data-es="Envíos a todo Guatemala · Desde Q300">Envíos a todo Guatemala · Desde Q300</span>
       <span class="text-gold-light" data-en="10-Year Warranty · ISO 9001 · OEKO-TEX®" data-es="Garantía 10 años · ISO 9001 · OEKO-TEX®">Garantía 10 años · ISO 9001 · OEKO-TEX®</span>
     </div>
@@ -143,7 +145,7 @@
 
   <!-- =================== NAVBAR =================== -->
   <header id="navbar" class="sticky top-0 z-50 bg-[#0D0D0D] backdrop-blur-md border-b border-white/10 transition-all">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div class="nv-nav-row max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
       <!-- Logo -->
       <a href="/" data-page="home" class="flex items-center">
     <img src="/images/logo-navbar-blanco.png" alt="Nuvela Logo" class="h-10 w-auto md:h-14 lg:h-16">
@@ -162,17 +164,6 @@
           <!-- Subpestaña de productos: aparece al pasar el cursor sobre "Productos" -->
           <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-50">
             <div class="js-nav-products-list bg-[#0D0D0D] border border-white/10 min-w-[260px] max-h-[70vh] overflow-y-auto py-2 shadow-2xl">
-        <div class="pb-2 mb-1 border-b border-white/10">
-          <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"></circle></svg>
-            Examen de Productos
-          </button>
-        </div>
-      
-        <div class="border-t border-white/10 mt-2 pt-2">
-          <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">Comparar Productos</a>
-        </div>
-      
           <div class="nav-cat-section">
             <button type="button" class="js-nav-cat-toggle w-full flex items-center justify-between gap-2 px-5 pt-3 pb-1 text-[0.62rem] tracking-[0.2em] uppercase text-mist hover:text-gold-light transition-colors" aria-expanded="false">
               <span>Colchones</span>
@@ -212,7 +203,18 @@
               <a href="/camastrones/olivia-bed" class="js-view-product nv-abtn block w-full text-left px-5 py-2 text-sm text-cream/90 hover:text-gold hover:bg-white/5 transition-colors" data-product-id="camastron-nuvela">Olivia Bed</a>
             </div>
           </div>
+        
+        <div class="border-t border-white/10 mt-2 pt-2">
+          <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"></circle></svg>
+            Examen de Productos
+          </button>
         </div>
+      
+        <div class="pb-1">
+          <a class="block px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors cursor-pointer" data-page="comparar">Comparar Productos</a>
+        </div>
+      </div>
           </div>
         </div>
         <a href="/linea-hotelera" class="nav-link" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
@@ -249,7 +251,7 @@
           <button id="lang-en" class="lang-btn px-2 py-1 text-mist">EN</button>
         </div>
         <!-- Shop CTA -->
-        <a href="/colchones" data-page="producto" class="nv-abtn hidden md:inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">Comprar</a>
+        <a href="/colchones" data-page="producto" class="nv-abtn nv-nav-buy inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">Comprar</a>
         <!-- Cart icon (always visible, so it's reachable even with the menu closed) -->
         <a href="/carrito" data-page="carrito" class="nv-abtn relative p-2 text-white" aria-label="Carrito">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -282,9 +284,9 @@
     </div>
     <nav class="flex flex-col py-4">
       <a href="/" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
+      <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
       <a href="/sorteo" class="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
       <a href="/historia" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">Historia</a>
-      <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
       <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
       <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
       <a href="/colchon-hibrido" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="tecnologia" data-en="Technology" data-es="Tecnología">Tecnología</a>
@@ -628,11 +630,11 @@
 
   
   <!-- =================== SCRIPTS =================== -->
-  <script src="/assets/nuvela-app.js?v=20261001"></script>
+  <script src="/assets/nuvela-app.js?v=20261005b"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="/assets/nuvela-immersive.js?v=20261001"></script>
+  <script src="/assets/nuvela-immersive.js?v=20261005b"></script>
 
 
 </body></html>
