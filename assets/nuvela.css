@@ -1850,6 +1850,9 @@
       .nv-countdown-grid span { font-size: .5rem; letter-spacing: .12em; }
     }
 
+    /* Tarjetas de categoría: los nombres largos ("Camastrones") se cortan con guion en vez de salirse */
+    #products-filter .js-filter-category p.font-serif { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+
     /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
     /* ================================================================== */

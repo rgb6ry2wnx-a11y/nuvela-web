@@ -503,7 +503,9 @@
       const track = q('#nv-collection-track');
       if (!track || typeof PRODUCTS === 'undefined') return;
       const es = lang() === 'es';
-      const list = PRODUCTS.filter((p) => p.mainImage && !/logosinfondo/.test(p.mainImage));
+      const list = PRODUCTS.filter((p) => p.mainImage && !/logosinfondo/.test(p.mainImage) && !p.coleccion);
+      // Las camas tapizadas (26 modelos) salen como UNA sola tarjeta que lleva a Camastrones.
+      const camas = PRODUCTS.filter((p) => p.coleccion === 'camas');
       // Precio de la portada ("Desde Q…"): siempre igual al precio más bajo del primer colchón del catálogo.
       const hp = q('#nv-hero-price'), pf0 = typeof priceFrom === 'function' && PRODUCTS[0] ? priceFrom(PRODUCTS[0]) : '';
       if (hp && /^Q/.test(pf0)) hp.textContent = pf0;
@@ -523,7 +525,17 @@
               <span class="nv-pcard-price">${price}</span>
             </div>
           </article>`;
-      }).join('') + `
+      }).join('') + (camas.length ? `
+          <article class="nv-pcard js-filter-category" data-category="Camastrones" data-cursor="view">
+            <div class="nv-pcard-media">
+              <span class="nv-pcard-idx">${String(list.length + 1).padStart(2, '0')}</span>
+              <img src="${(camas.find((p) => p.id === 'cama-ys7061') || camas[0]).mainImage}" alt="${es ? 'Camastrón tapizado Nuvela' : 'Nuvela upholstered bed frame'}" loading="lazy" />
+            </div>
+            <div class="nv-pcard-info">
+              <div><p>${es ? 'Camastrones' : 'Bed Frames & Beds'}</p><h3>${es ? 'Camastrones y camas' : 'Bed frames & beds'}</h3></div>
+              <span class="nv-pcard-price">${(es ? 'Desde Q' : 'From Q') + Math.min(...camas.flatMap((p) => p.variants.map((v) => v.price)).filter(Boolean)).toLocaleString('en-US')}</span>
+            </div>
+          </article>` : '') + `
           <article class="nv-pcard nv-pcard-more" data-page="producto" data-cursor="view">
             <div class="nv-pcard-media"><span>${es ? 'Ver catálogo completo →' : 'View full catalog →'}</span></div>
           </article>`;

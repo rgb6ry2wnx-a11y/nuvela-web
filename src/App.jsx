@@ -22,6 +22,75 @@
 //   images/atardecer.jpg
 //   images/base.jpg
 //   images/cajas.jpg
+//   images/cama-ys7001-1.jpg
+//   images/cama-ys7001-2.jpg
+//   images/cama-ys7001-3.jpg
+//   images/cama-ys7005-1.jpg
+//   images/cama-ys7005-2.jpg
+//   images/cama-ys7005-3.jpg
+//   images/cama-ys7005-4.jpg
+//   images/cama-ys7006-1.jpg
+//   images/cama-ys7006-2.jpg
+//   images/cama-ys7006-3.jpg
+//   images/cama-ys7008-1.jpg
+//   images/cama-ys7008-2.jpg
+//   images/cama-ys7008-3.jpg
+//   images/cama-ys7009-1.jpg
+//   images/cama-ys7009-2.jpg
+//   images/cama-ys7009-3.jpg
+//   images/cama-ys7010-1.jpg
+//   images/cama-ys7010-2.jpg
+//   images/cama-ys7010-3.jpg
+//   images/cama-ys7013-1.jpg
+//   images/cama-ys7013-2.jpg
+//   images/cama-ys7018-1.jpg
+//   images/cama-ys7018-2.jpg
+//   images/cama-ys7018-3.jpg
+//   images/cama-ys7018-4.jpg
+//   images/cama-ys7019-1.jpg
+//   images/cama-ys7019-2.jpg
+//   images/cama-ys7019-3.jpg
+//   images/cama-ys7020-1.jpg
+//   images/cama-ys7020-2.jpg
+//   images/cama-ys7021-1.jpg
+//   images/cama-ys7021-2.jpg
+//   images/cama-ys7022-1.jpg
+//   images/cama-ys7022-2.jpg
+//   images/cama-ys7022-3.jpg
+//   images/cama-ys7026-1.jpg
+//   images/cama-ys7026-2.jpg
+//   images/cama-ys7027-1.jpg
+//   images/cama-ys7027-2.jpg
+//   images/cama-ys7028-1.jpg
+//   images/cama-ys7028-2.jpg
+//   images/cama-ys7038-1.jpg
+//   images/cama-ys7038-2.jpg
+//   images/cama-ys7057-1.jpg
+//   images/cama-ys7059-1.jpg
+//   images/cama-ys7059-2.jpg
+//   images/cama-ys7060-1.jpg
+//   images/cama-ys7060-2.jpg
+//   images/cama-ys7061-1.jpg
+//   images/cama-ys7061-2.jpg
+//   images/cama-ys7061-3.jpg
+//   images/cama-ys7062-1.jpg
+//   images/cama-ys7062-2.jpg
+//   images/cama-ys7062-3.jpg
+//   images/cama-ys7063-1.jpg
+//   images/cama-ys7063-2.jpg
+//   images/cama-ys7063-3.jpg
+//   images/cama-ys7065-1.jpg
+//   images/cama-ys7065-2.jpg
+//   images/cama-ys7065-3.jpg
+//   images/cama-ys7066-1.jpg
+//   images/cama-ys7066-2.jpg
+//   images/cama-ys7066-3.jpg
+//   images/cama-ys7068-1.jpg
+//   images/cama-ys7068-2.jpg
+//   images/cama-ys7068-3.jpg
+//   images/cama-ys7069-1.jpg
+//   images/cama-ys7069-2.jpg
+//   images/cama-ys7069-3.jpg
 //   images/cama.jpg
 //   images/colchas.jpg
 //   images/colchon.jpg
@@ -1917,6 +1986,9 @@ const NUVELA_CSS = String.raw`
       .nv-countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
       .nv-countdown-grid span { font-size: .5rem; letter-spacing: .12em; }
     }
+
+    /* Tarjetas de categoría: los nombres largos ("Camastrones") se cortan con guion en vez de salirse */
+    #products-filter .js-filter-category p.font-serif { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
 
     /* ================================================================== */
     /* ================ HOME INMERSIVO (rediseño 1/10/26) =============== */
@@ -7701,7 +7773,7 @@ function startNuvela() {
       },
       {
         id: 'camastron-nuvela',
-        category: { es: 'Camastrones', en: 'Wooden Bed Frames' },
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
         name: { es: 'Olivia Bed', en: 'Olivia Bed' },
         eyebrow: { es: 'Camastrón', en: 'Wooden Bed Frame' },
         tagline: { es: 'Camastrón de madera de Conacaste · Bajo pedido', en: 'Conacaste wood bed frame · Made to order' },
@@ -7719,6 +7791,794 @@ function startNuvela() {
         ],
         benefits: [],
         faqs: [],
+      },
+      // ===== Colección de camas tapizadas (bajo pedido) — datos de productos-camas.js =====
+      {
+        id: "cama-ys7061",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7061", en: "YS7061 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera de doble cojín capitonado, tono marfil.", en: "Double tufted-cushion headboard, in ivory." },
+        description: { es: "Dos cojines capitonados forman una cabecera mullida, ideal para leer o descansar sentado. El tono marfil aporta luz y serenidad a la habitación.", en: "Two tufted cushions form a plush headboard, ideal for reading or resting while sitting up. The ivory tone brings light and calm to the room." },
+        mainImage: "images/cama-ys7061-1.jpg",
+        gallery: ["images/cama-ys7061-1.jpg", "images/cama-ys7061-2.jpg", "images/cama-ys7061-3.jpg"],
+        stats: [
+          { value: { es: "206 × 235 × 102 / 32 cm", en: "206 × 235 × 102 / 32 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13900 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7062",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7062", en: "YS7062 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera lisa de líneas suaves, gris perla.", en: "Plain headboard with soft lines, in pearl grey." },
+        description: { es: "Líneas limpias y una cabecera lisa de perfil suave. Una cama sobria y atemporal que se integra con cualquier estilo de decoración.", en: "Clean lines and a plain, softly profiled headboard. A sober, timeless bed that fits any decorating style." },
+        mainImage: "images/cama-ys7062-1.jpg",
+        gallery: ["images/cama-ys7062-1.jpg", "images/cama-ys7062-2.jpg", "images/cama-ys7062-3.jpg"],
+        stats: [
+          { value: { es: "201 × 227 × 96 / 32 cm", en: "201 × 227 × 96 / 32 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7063",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7063", en: "YS7063 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera de doble panel, negro profundo.", en: "Double-panel headboard, in deep black." },
+        description: { es: "Cabecera de doble panel en negro profundo, para una habitación con presencia y un aire sofisticado.", en: "A double-panel headboard in deep black, for a room with presence and a sophisticated feel." },
+        mainImage: "images/cama-ys7063-1.jpg",
+        gallery: ["images/cama-ys7063-1.jpg", "images/cama-ys7063-2.jpg", "images/cama-ys7063-3.jpg"],
+        stats: [
+          { value: { es: "201 × 230 × 101 / 30 cm", en: "201 × 230 × 101 / 30 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7065",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7065", en: "YS7065 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera ondulada tipo nube, tono mostaza.", en: "Wavy cloud-style headboard, in mustard." },
+        description: { es: "Su cabecera ondulada, inspirada en la forma de una nube, suaviza el espacio y lo llena de calidez con su tono mostaza.", en: "Its wavy, cloud-inspired headboard softens the space and fills it with warmth in a mustard tone." },
+        mainImage: "images/cama-ys7065-1.jpg",
+        gallery: ["images/cama-ys7065-1.jpg", "images/cama-ys7065-2.jpg", "images/cama-ys7065-3.jpg"],
+        stats: [
+          { value: { es: "186 × 218 × 110 / 30 cm", en: "186 × 218 × 110 / 30 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7066",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7066", en: "YS7066 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Tapizado con estampado geométrico en azul.", en: "Upholstery with a blue geometric print." },
+        description: { es: "Un tapizado con estampado geométrico en azul que convierte la cama en la pieza protagonista de la habitación.", en: "Blue geometric-print upholstery that makes the bed the centerpiece of the room." },
+        mainImage: "images/cama-ys7066-1.jpg",
+        gallery: ["images/cama-ys7066-1.jpg", "images/cama-ys7066-2.jpg", "images/cama-ys7066-3.jpg"],
+        stats: [
+          { value: { es: "188 × 219 × 99 / 30 cm", en: "188 × 219 × 99 / 30 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7068",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7068", en: "YS7068 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera acolchada de tres módulos, gris claro.", en: "Three-module padded headboard, in light grey." },
+        description: { es: "Cabecera acolchada de tres módulos que abraza la espalda y aporta un look contemporáneo en gris claro.", en: "A three-module padded headboard that cradles your back and brings a contemporary look in light grey." },
+        mainImage: "images/cama-ys7068-1.jpg",
+        gallery: ["images/cama-ys7068-1.jpg", "images/cama-ys7068-2.jpg", "images/cama-ys7068-3.jpg"],
+        stats: [
+          { value: { es: "216 × 242 × 100 / 30 cm", en: "216 × 242 × 100 / 30 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10900 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13900 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7069",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Camastrón YS7069", en: "YS7069 Bed Frame" },
+        eyebrow: { es: "Camastrón tapizado", en: "Upholstered bed frame" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera curva en tejido texturizado terracota.", en: "Curved headboard in textured terracotta fabric." },
+        description: { es: "Cabecera curva en tejido texturizado terracota, con volumen y personalidad para habitaciones cálidas.", en: "A curved headboard in textured terracotta fabric, with volume and personality for warm rooms." },
+        mainImage: "images/cama-ys7069-1.jpg",
+        gallery: ["images/cama-ys7069-1.jpg", "images/cama-ys7069-2.jpg", "images/cama-ys7069-3.jpg"],
+        stats: [
+          { value: { es: "210 × 247 × 100 / 30 cm", en: "210 × 247 × 100 / 30 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10900 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13900 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7038",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7038", en: "YS7038 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Estructura de rollos acolchados, tono caramelo.", en: "Frame of padded rolls, in caramel." },
+        description: { es: "Una estructura formada por rollos acolchados que rodean el colchón, suave a la vista y al tacto, en un acogedor tono caramelo.", en: "A frame of padded rolls that surround the mattress, soft to the eye and to the touch, in a cozy caramel tone." },
+        mainImage: "images/cama-ys7038-1.jpg",
+        gallery: ["images/cama-ys7038-1.jpg", "images/cama-ys7038-2.jpg"],
+        stats: [
+          { value: { es: "230 × 250 × 90 cm", en: "230 × 250 × 90 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7021",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7021", en: "YS7021 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera envolvente en azul índigo.", en: "Wraparound headboard in indigo blue." },
+        description: { es: "Cabecera envolvente en azul índigo con una silueta moderna y protectora.", en: "A wraparound headboard in indigo blue with a modern, sheltering silhouette." },
+        mainImage: "images/cama-ys7021-1.jpg",
+        gallery: ["images/cama-ys7021-1.jpg", "images/cama-ys7021-2.jpg"],
+        stats: [
+          { value: { es: "196 × 225 × 98 / 40 cm", en: "196 × 225 × 98 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 11490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13990 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7018",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7018", en: "YS7018 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Plataforma por capas con cojines y mesa auxiliar, tono arena.", en: "Layered platform with cushions and a side table, in sand." },
+        description: { es: "Plataforma por capas con cojines de respaldo y mesa auxiliar a juego. Un concepto relajado y elegante en tono arena.", en: "A layered platform with back cushions and a matching side table. A relaxed, elegant concept in sand." },
+        mainImage: "images/cama-ys7018-1.jpg",
+        gallery: ["images/cama-ys7018-1.jpg", "images/cama-ys7018-2.jpg", "images/cama-ys7018-3.jpg", "images/cama-ys7018-4.jpg"],
+        stats: [
+          { value: { es: "195 × 238 × 86 / 50 cm", en: "195 × 238 × 86 / 50 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "55 × 43 × 46 cm", en: "55 × 43 × 46 cm" }, label: { es: "Mesa auxiliar", en: "Side table" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 11490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13990 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7010",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7010", en: "YS7010 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera alta y curvada, verde olivo.", en: "Tall curved headboard, in olive green." },
+        description: { es: "Cabecera alta y curvada en verde olivo que enmarca el descanso con un toque natural y sofisticado.", en: "A tall, curved headboard in olive green that frames your rest with a natural, sophisticated touch." },
+        mainImage: "images/cama-ys7010-1.jpg",
+        gallery: ["images/cama-ys7010-1.jpg", "images/cama-ys7010-2.jpg", "images/cama-ys7010-3.jpg"],
+        stats: [
+          { value: { es: "228 × 245 × 108 / 50 cm", en: "228 × 245 × 108 / 50 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 11490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13990 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7006",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7006", en: "YS7006 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera capitonada en cuadros; en verde olivo y beige.", en: "Square-tufted headboard; in olive green and beige." },
+        description: { es: "Cabecera capitonada en cuadros, un clásico reinterpretado. Disponible en tonos como verde olivo y beige.", en: "A square-tufted headboard, a classic reinterpreted. Available in tones such as olive green and beige." },
+        mainImage: "images/cama-ys7006-1.jpg",
+        gallery: ["images/cama-ys7006-1.jpg", "images/cama-ys7006-2.jpg", "images/cama-ys7006-3.jpg"],
+        stats: [
+          { value: { es: "186 × 223 × 102 / 40 cm", en: "186 × 223 × 102 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 11490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13990 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7001",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7001", en: "YS7001 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera capitonada en cuadros; en tonos arena, blanco y terracota.", en: "Square-tufted headboard; in sand, white and terracotta." },
+        description: { es: "Capitoné en cuadros en cabecera y base para un acabado uniforme y elegante. Disponible en tonos como arena, blanco y terracota.", en: "Square tufting on the headboard and base for a uniform, elegant finish. Available in tones such as sand, white and terracotta." },
+        mainImage: "images/cama-ys7001-1.jpg",
+        gallery: ["images/cama-ys7001-1.jpg", "images/cama-ys7001-2.jpg", "images/cama-ys7001-3.jpg"],
+        stats: [
+          { value: { es: "190 × 230 × 98 / 40 cm", en: "190 × 230 × 98 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7005",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7005", en: "YS7005 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera de doble cojín; en tonos rosa topo y mostaza.", en: "Double-cushion headboard; in dusty pink and mustard." },
+        description: { es: "Cabecera de doble cojín con un aire relajado y acogedor. Disponible en tonos como rosa topo y mostaza.", en: "A double-cushion headboard with a relaxed, welcoming feel. Available in tones such as dusty pink and mustard." },
+        mainImage: "images/cama-ys7005-1.jpg",
+        gallery: ["images/cama-ys7005-1.jpg", "images/cama-ys7005-2.jpg", "images/cama-ys7005-3.jpg", "images/cama-ys7005-4.jpg"],
+        stats: [
+          { value: { es: "186 × 225 × 93 / 40 cm", en: "186 × 225 × 93 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7013",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7013", en: "YS7013 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Base y cabecera en naranja intenso.", en: "Base and headboard in vivid orange." },
+        description: { es: "Base y cabecera en naranja intenso para quienes buscan una pieza de diseño con color y energía.", en: "Base and headboard in vivid orange, for anyone looking for a design piece with color and energy." },
+        mainImage: "images/cama-ys7013-1.jpg",
+        gallery: ["images/cama-ys7013-1.jpg", "images/cama-ys7013-2.jpg"],
+        stats: [
+          { value: { es: "240 × 236 × 123 / 48 cm", en: "240 × 236 × 123 / 48 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 11490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 14390 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7009",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7009", en: "YS7009 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Tapizado en pana gris de textura marcada.", en: "Grey corduroy upholstery with a bold texture." },
+        description: { es: "Tapizado en pana gris de textura marcada, con cabecera alta que aporta calidez y presencia.", en: "Grey corduroy upholstery with a bold texture and a tall headboard that adds warmth and presence." },
+        mainImage: "images/cama-ys7009-1.jpg",
+        gallery: ["images/cama-ys7009-1.jpg", "images/cama-ys7009-2.jpg", "images/cama-ys7009-3.jpg"],
+        stats: [
+          { value: { es: "199 × 232 × 122 / 37 cm", en: "199 × 232 × 122 / 37 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7008",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7008", en: "YS7008 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Pana de canal ancho en gris claro.", en: "Wide-wale corduroy in light grey." },
+        description: { es: "Pana de canal ancho en gris claro, una textura que invita a tocarla y da profundidad a la habitación.", en: "Wide-wale corduroy in light grey, a texture that invites touch and gives the room depth." },
+        mainImage: "images/cama-ys7008-1.jpg",
+        gallery: ["images/cama-ys7008-1.jpg", "images/cama-ys7008-2.jpg", "images/cama-ys7008-3.jpg"],
+        stats: [
+          { value: { es: "182 × 223 × 102 / 42 cm", en: "182 × 223 × 102 / 42 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7019",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7019", en: "YS7019 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera redondeada en gris grafito.", en: "Rounded headboard in graphite grey." },
+        description: { es: "Cabecera redondeada en gris grafito, de líneas suaves y estilo minimalista.", en: "A rounded headboard in graphite grey, with soft lines and a minimalist style." },
+        mainImage: "images/cama-ys7019-1.jpg",
+        gallery: ["images/cama-ys7019-1.jpg", "images/cama-ys7019-2.jpg", "images/cama-ys7019-3.jpg"],
+        stats: [
+          { value: { es: "185 × 226 × 95 / 40 cm", en: "185 × 226 × 95 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7020",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7020", en: "YS7020 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera capitonada en líneas, tono arena.", en: "Channel-tufted headboard, in sand." },
+        description: { es: "Cabecera capitonada en líneas horizontales, en un tono arena luminoso y sereno.", en: "A headboard with horizontal channel tufting, in a bright, serene sand tone." },
+        mainImage: "images/cama-ys7020-1.jpg",
+        gallery: ["images/cama-ys7020-1.jpg", "images/cama-ys7020-2.jpg"],
+        stats: [
+          { value: { es: "190 × 225 × 100 / 40 cm", en: "190 × 225 × 100 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7022",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7022", en: "YS7022 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera curvada en verde musgo.", en: "Curved headboard in moss green." },
+        description: { es: "Cabecera curvada en verde musgo, una propuesta orgánica y sofisticada.", en: "A curved headboard in moss green, an organic and sophisticated choice." },
+        mainImage: "images/cama-ys7022-1.jpg",
+        gallery: ["images/cama-ys7022-1.jpg", "images/cama-ys7022-2.jpg", "images/cama-ys7022-3.jpg"],
+        stats: [
+          { value: { es: "203 × 230 × 93 / 40 cm", en: "203 × 230 × 93 / 40 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7026",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7026", en: "YS7026 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera de cuadros en gris carbón.", en: "Square-panel headboard in charcoal grey." },
+        description: { es: "Cabecera de cuadros en gris carbón, sobria y elegante para habitaciones modernas.", en: "A square-panel headboard in charcoal grey, sober and elegant for modern rooms." },
+        mainImage: "images/cama-ys7026-1.jpg",
+        gallery: ["images/cama-ys7026-1.jpg", "images/cama-ys7026-2.jpg"],
+        stats: [
+          { value: { es: "182 × 216 × 92 / 24 cm", en: "182 × 216 × 92 / 24 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7027",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7027", en: "YS7027 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera redondeada en rosa palo.", en: "Rounded headboard in blush pink." },
+        description: { es: "Cabecera redondeada en rosa palo, delicada y contemporánea. Telas del muestrario 861#.", en: "A rounded headboard in blush pink, delicate and contemporary. Fabrics from swatch book 861#." },
+        mainImage: "images/cama-ys7027-1.jpg",
+        gallery: ["images/cama-ys7027-1.jpg", "images/cama-ys7027-2.jpg"],
+        stats: [
+          { value: { es: "195 × 219 × 92 / 24 cm", en: "195 × 219 × 92 / 24 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Muestrario 861#", en: "Swatch book 861#" }, label: { es: "Telas", en: "Fabrics" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7028",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7028", en: "YS7028 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Cabecera lisa en negro.", en: "Plain headboard in black." },
+        description: { es: "Cabecera lisa en negro, de perfil limpio y elegante. Telas del muestrario 2.5# (pana de canal ancho).", en: "A plain headboard in black, with a clean, elegant profile. Fabrics from swatch book 2.5# (wide-wale corduroy)." },
+        mainImage: "images/cama-ys7028-1.jpg",
+        gallery: ["images/cama-ys7028-1.jpg", "images/cama-ys7028-2.jpg"],
+        stats: [
+          { value: { es: "182 × 216 × 92 / 24 cm", en: "182 × 216 × 92 / 24 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "180 × 200 cm", en: "180 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Tela + espuma comprimible + resortes comprimibles", en: "Fabric + compressible foam + compressible springs" }, label: { es: "Materiales", en: "Materials" } },
+          { value: { es: "Muestrario 2.5#", en: "Swatch book 2.5#" }, label: { es: "Telas", en: "Fabrics" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7060",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama YS7060", en: "YS7060 Bed" },
+        eyebrow: { es: "Cama de memory foam", en: "Memory foam bed" },
+        tagline: { es: "Bajo pedido · Queen y King", en: "Made to order · Queen and King" },
+        cardText: { es: "Tapizado en tejido jacquard blanco y negro.", en: "Upholstered in black-and-white jacquard." },
+        description: { es: "Tapizado en tejido jacquard blanco y negro, con un patrón gráfico que da carácter a la habitación.", en: "Black-and-white jacquard upholstery with a graphic pattern that gives the room character." },
+        mainImage: "images/cama-ys7060-1.jpg",
+        gallery: ["images/cama-ys7060-1.jpg", "images/cama-ys7060-2.jpg"],
+        stats: [
+          { value: { es: "182 × 251 × 96 cm", en: "182 × 251 × 96 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Queen", detail: { es: "Medida Queen · bajo pedido", en: "Queen size · made to order" }, price: 10490 },
+          { name: "King", detail: { es: "Medida King · bajo pedido", en: "King size · made to order" }, price: 13490 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Queen y King. Las medidas que se muestran en cada modelo son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Queen and King. The dimensions shown for each model are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7057",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama infantil YS7057", en: "YS7057 Kids Bed" },
+        eyebrow: { es: "Cama infantil de memory foam", en: "Kids memory foam bed" },
+        tagline: { es: "Bajo pedido · medida infantil", en: "Made to order · kids size" },
+        cardText: { es: "Cama infantil envolvente en tela azul marino, suave al tacto.", en: "Wraparound kids bed in navy blue fabric, soft to the touch." },
+        description: { es: "Un espacio propio y acogedor para los más pequeños. Sus bordes envolventes acolchados delimitan el área de descanso y su funda se retira para lavarla con facilidad.", en: "A cozy space of their own for little ones. Its padded wraparound edges frame the sleeping area, and the cover comes off for easy washing." },
+        mainImage: "images/cama-ys7057-1.jpg",
+        gallery: ["images/cama-ys7057-1.jpg"],
+        stats: [
+          { value: { es: "151 × 233 × 90 cm", en: "151 × 233 × 90 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "120 × 200 cm", en: "120 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Infantil", detail: { es: "Medida infantil · bajo pedido", en: "Kids size · made to order" }, price: 5900 }
+        ],
+        benefits: [{ title: { es: "Tela suave tipo terciopelo", en: "Soft velvet-like fabric" }, text: { es: '', en: '' } }, { title: { es: "Bordes envolventes acolchados", en: "Padded wraparound edges" }, text: { es: '', en: '' } }, { title: { es: "Funda removible y lavable", en: "Removable, washable cover" }, text: { es: '', en: '' } }, { title: { es: "Ligera y fácil de mover", en: "Light and easy to move" }, text: { es: '', en: '' } }],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Medida infantil. Las medidas que se muestran son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Kids size. The dimensions shown are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
+      },
+      {
+        id: "cama-ys7059",
+        coleccion: 'camas', // camas tapizadas: no salen en el carrusel del inicio ni en la línea hotelera
+        category: { es: 'Camastrones', en: 'Bed Frames & Beds' },
+        name: { es: "Cama infantil YS7059", en: "YS7059 Kids Bed" },
+        eyebrow: { es: "Cama infantil de memory foam", en: "Kids memory foam bed" },
+        tagline: { es: "Bajo pedido · medida infantil", en: "Made to order · kids size" },
+        cardText: { es: "Cama infantil con cabecera de orejitas de oso, tono camel.", en: "Kids bed with a bear-ear headboard, in camel." },
+        description: { es: "Una cama infantil con carácter: la cabecera en forma de orejitas de oso convierte la habitación en un lugar cálido y divertido, sin perder la elegancia del tapizado.", en: "A kids bed with character: the bear-ear headboard makes the room warm and playful without losing the elegance of the upholstery." },
+        mainImage: "images/cama-ys7059-1.jpg",
+        gallery: ["images/cama-ys7059-1.jpg", "images/cama-ys7059-2.jpg"],
+        stats: [
+          { value: { es: "146 × 233 × 89 cm", en: "146 × 233 × 89 cm" }, label: { es: "Medidas de referencia", en: "Reference dimensions" } },
+          { value: { es: "120 × 200 cm", en: "120 × 200 cm" }, label: { es: "Colchón compatible (referencia)", en: "Compatible mattress (reference)" } },
+          { value: { es: "Llega comprimida al vacío, en caja", en: "Arrives vacuum-compressed, boxed" }, label: { es: "Entrega", en: "Delivery" } },
+          { value: { es: "Bajo pedido", en: "Made to order" }, label: { es: "Disponibilidad", en: "Availability" } }
+        ],
+        variants: [
+          { name: "Infantil", detail: { es: "Medida infantil · bajo pedido", en: "Kids size · made to order" }, price: 5900 }
+        ],
+        benefits: [],
+        faqs: [
+          { q: { es: "¿Las camas están en existencia?", en: "Are the beds in stock?" }, a: { es: "Todas las camas de esta colección se fabrican bajo pedido. Al confirmar su pedido le indicamos el tiempo de entrega.", en: "Every bed in this collection is made to order. When you confirm your order, we let you know the delivery time." } },
+          { q: { es: "¿Puedo elegir el color de la tela?", en: "Can I choose the fabric color?" }, a: { es: "Sí. Cada modelo se puede pedir en los tonos de nuestros muestrarios. Pídanos el muestrario por WhatsApp o visítenos en el showroom.", en: "Yes. Each model can be ordered in the tones of our swatch books. Ask us for the swatch book on WhatsApp or visit us at the showroom." } },
+          { q: { es: "¿Cómo llega la cama?", en: "How does the bed arrive?" }, a: { es: "La cama viaja comprimida al vacío, en caja. Al abrir el empaque, la estructura recupera su forma.", en: "The bed ships vacuum-compressed, in a box. Once you open the packaging, the frame recovers its shape." } },
+          { q: { es: "¿Incluye colchón?", en: "Is a mattress included?" }, a: { es: "El precio corresponde a la cama. Le recomendamos complementarla con un Colchón Nuvela o Nuvela Diamond de la misma medida.", en: "The price is for the bed. We recommend pairing it with a Colchón Nuvela or Nuvela Diamond in the same size." } },
+          { q: { es: "¿Qué medidas hay?", en: "What sizes are available?" }, a: { es: "Medida infantil. Las medidas que se muestran son de referencia; confirmamos las medidas exactas al hacer su pedido.", en: "Kids size. The dimensions shown are for reference; we confirm the exact dimensions when you place your order." } }
+        ],
       },
     ];
 
@@ -7758,7 +8618,9 @@ function startNuvela() {
         </button>
       `;
       const tiles = quizTile + getCategories().map(c => {
-        const sample = PRODUCTS.find(p => p.category.es === c.es);
+        // Foto fija para la tarjeta de una categoría (si no está aquí, se usa la del primer producto)
+        const CATEGORY_COVER = { 'Camastrones': 'images/cama-ys7022-1.jpg' };
+        const sample = CATEGORY_COVER[c.es] ? { mainImage: CATEGORY_COVER[c.es] } : PRODUCTS.find(p => p.category.es === c.es);
         const count = PRODUCTS.filter(p => p.category.es === c.es).length;
         const isActive = activeCategory === c.es;
         return `
@@ -7793,8 +8655,9 @@ function startNuvela() {
         </div>
       `;
       const groupsHtml = getCategories().map(cat => {
-        const items = PRODUCTS.filter(p => p.category.es === cat.es);
-        if (!items.length) return '';
+        const all = PRODUCTS.filter(p => p.category.es === cat.es);
+        if (!all.length) return '';
+        const items = all.filter(p => !p.coleccion), camas = all.length - items.length;
         return `
           <div class="nav-cat-section">
             <button type="button" class="js-nav-cat-toggle w-full flex items-center justify-between gap-2 px-5 pt-3 pb-1 text-[0.62rem] tracking-[0.2em] uppercase text-mist hover:text-gold-light transition-colors" aria-expanded="false">
@@ -7803,6 +8666,7 @@ function startNuvela() {
             </button>
             <div class="nav-cat-body">
               ${items.map(p => `<button type="button" class="js-view-product block w-full text-left px-5 py-2 text-sm text-cream/90 hover:text-gold hover:bg-white/5 transition-colors" data-product-id="${p.id}">${pick(p.name)}</button>`).join('')}
+              ${camas ? `<button type="button" class="js-filter-category block w-full text-left px-5 py-2 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors" data-category="${cat.es}">${currentLang === 'es' ? 'Camastrones tapizados y camas (' + camas + ') →' : 'Upholstered bed frames & beds (' + camas + ') →'}</button>` : ''}
             </div>
           </div>
         `;
@@ -8259,7 +9123,7 @@ function startNuvela() {
     function renderHotelGrid() {
       const grid = document.getElementById('hotel-products-grid');
       if (!grid) return;
-      const list = PRODUCTS.filter(p => HOTEL_CATEGORIES.includes(p.category.es));
+      const list = PRODUCTS.filter(p => HOTEL_CATEGORIES.includes(p.category.es) && !p.coleccion);
       list.forEach(p => {
         if (p.variants && p.variants.length && !quoteSizeSelection[p.id]) {
           quoteSizeSelection[p.id] = (p.variants.find(v => v.featured) || p.variants[0]).name;
@@ -9433,6 +10297,7 @@ function startNuvela() {
       if (!btn) return;
       e.preventDefault();
       activeCategory = btn.dataset.category;
+      if (!document.querySelector('#page-producto.active') && typeof showPage === 'function') showPage('producto');
       renderCategoryFilters();
       renderProductsGrid();
       setTimeout(initReveal, 50);
@@ -11030,7 +11895,9 @@ function startNuvela() {
       const track = q('#nv-collection-track');
       if (!track || typeof PRODUCTS === 'undefined') return;
       const es = lang() === 'es';
-      const list = PRODUCTS.filter((p) => p.mainImage && !/logosinfondo/.test(p.mainImage));
+      const list = PRODUCTS.filter((p) => p.mainImage && !/logosinfondo/.test(p.mainImage) && !p.coleccion);
+      // Las camas tapizadas (26 modelos) salen como UNA sola tarjeta que lleva a Camastrones.
+      const camas = PRODUCTS.filter((p) => p.coleccion === 'camas');
       // Precio de la portada ("Desde Q…"): siempre igual al precio más bajo del primer colchón del catálogo.
       const hp = q('#nv-hero-price'), pf0 = typeof priceFrom === 'function' && PRODUCTS[0] ? priceFrom(PRODUCTS[0]) : '';
       if (hp && /^Q/.test(pf0)) hp.textContent = pf0;
@@ -11050,7 +11917,17 @@ function startNuvela() {
               <span class="nv-pcard-price">${price}</span>
             </div>
           </article>`;
-      }).join('') + `
+      }).join('') + (camas.length ? `
+          <article class="nv-pcard js-filter-category" data-category="Camastrones" data-cursor="view">
+            <div class="nv-pcard-media">
+              <span class="nv-pcard-idx">${String(list.length + 1).padStart(2, '0')}</span>
+              <img src="${(camas.find((p) => p.id === 'cama-ys7061') || camas[0]).mainImage}" alt="${es ? 'Camastrón tapizado Nuvela' : 'Nuvela upholstered bed frame'}" loading="lazy" />
+            </div>
+            <div class="nv-pcard-info">
+              <div><p>${es ? 'Camastrones' : 'Bed Frames & Beds'}</p><h3>${es ? 'Camastrones y camas' : 'Bed frames & beds'}</h3></div>
+              <span class="nv-pcard-price">${(es ? 'Desde Q' : 'From Q') + Math.min(...camas.flatMap((p) => p.variants.map((v) => v.price)).filter(Boolean)).toLocaleString('en-US')}</span>
+            </div>
+          </article>` : '') + `
           <article class="nv-pcard nv-pcard-more" data-page="producto" data-cursor="view">
             <div class="nv-pcard-media"><span>${es ? 'Ver catálogo completo →' : 'View full catalog →'}</span></div>
           </article>`;
