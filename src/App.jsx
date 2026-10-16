@@ -1313,7 +1313,8 @@ const NUVELA_CSS = String.raw`
 
     /* Equipo (tarjetas que dibuja renderCitaAsesores) */
     .nv-cita-team { padding: clamp(80px, 12vh, 140px) 0; }
-    #cita-calendar-wrap .grid { grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; }
+    /* 5 asesores (16/10/26: entra Daniel M.) → 5 columnas en computadora */
+    #cita-calendar-wrap .grid { grid-template-columns: repeat(5, 1fr) !important; gap: 16px !important; }
     #cita-calendar-wrap .grid > div { background: linear-gradient(170deg, #22201c, var(--nv-black-2)) !important; border: 1px solid rgba(252, 249, 245, .08) !important; border-radius: 22px !important; padding: 28px 18px !important; transition: border-color .5s, transform .5s var(--nv-ease); }
     #cita-calendar-wrap .grid > div:hover { border-color: rgba(205, 174, 85, .45) !important; transform: translateY(-4px); }
     #cita-calendar-wrap .grid > div > div:first-child { width: 64px; height: 64px; background: radial-gradient(circle at 35% 30%, rgba(205,174,85,.4), rgba(205,174,85,.08)) !important; border: 1px solid rgba(205, 174, 85, .55); color: var(--nv-gold-2) !important; font-family: 'Cormorant Garamond', serif !important; font-size: 1.6rem !important; }
@@ -1335,6 +1336,8 @@ const NUVELA_CSS = String.raw`
       .nv-cita-hero { padding: 4vh 0 8vh; }
       .nv-cita-cards { grid-template-columns: 1fr; }
       #cita-calendar-wrap .grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+      /* número impar de asesores: la última tarjeta queda centrada */
+      #cita-calendar-wrap .grid > div:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 6px); }
     }
 
     /* ================================================================== */
@@ -9798,6 +9801,7 @@ function startNuvela() {
       { name: 'Manuel M.', role: { es: 'Ventas', en: 'Sales' } },
       { name: 'Eduardo R.', role: { es: 'Ventas y Asesoría', en: 'Sales & Advisory' } },
       { name: 'Carlo C.', role: { es: 'Ventas', en: 'Sales' } },
+      { name: 'Daniel M.', role: { es: 'Ventas', en: 'Sales' } },
       { name: 'Alvaro L.', role: { es: 'Administración', en: 'Administration' } },
     ];
 
@@ -9818,7 +9822,7 @@ function startNuvela() {
         ? `<a href="${CITA_SHOWROOM_CALENDAR_URL}" target="_blank" rel="noopener" class="btn-gold mt-8 !py-3.5 !px-10 inline-block">${currentLang === 'es' ? 'Ver horarios y agendar' : 'View times and book'}</a>`
         : `<a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener" class="btn-gold mt-8 !py-3.5 !px-10 inline-block">${currentLang === 'es' ? 'Escríbenos por WhatsApp' : 'Message us on WhatsApp'}</a>
            <p class="text-graphite/50 text-[0.65rem] mt-2">${currentLang === 'es' ? 'Calendario próximamente' : 'Calendar coming soon'}</p>`;
-      wrap.innerHTML = `<div class="grid sm:grid-cols-3 gap-6">${cardsHtml}</div><div class="text-center">${ctaHtml}</div>`;
+      wrap.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">${cardsHtml}</div><div class="text-center">${ctaHtml}</div>`;
     }
 
     // ==== Sucursales / Google Maps ====

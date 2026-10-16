@@ -2287,6 +2287,7 @@
       { name: 'Manuel M.', role: { es: 'Ventas', en: 'Sales' } },
       { name: 'Eduardo R.', role: { es: 'Ventas y Asesoría', en: 'Sales & Advisory' } },
       { name: 'Carlo C.', role: { es: 'Ventas', en: 'Sales' } },
+      { name: 'Daniel M.', role: { es: 'Ventas', en: 'Sales' } },
       { name: 'Alvaro L.', role: { es: 'Administración', en: 'Administration' } },
     ];
 
@@ -2307,7 +2308,7 @@
         ? `<a href="${CITA_SHOWROOM_CALENDAR_URL}" target="_blank" rel="noopener" class="btn-gold mt-8 !py-3.5 !px-10 inline-block">${currentLang === 'es' ? 'Ver horarios y agendar' : 'View times and book'}</a>`
         : `<a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noopener" class="btn-gold mt-8 !py-3.5 !px-10 inline-block">${currentLang === 'es' ? 'Escríbenos por WhatsApp' : 'Message us on WhatsApp'}</a>
            <p class="text-graphite/50 text-[0.65rem] mt-2">${currentLang === 'es' ? 'Calendario próximamente' : 'Calendar coming soon'}</p>`;
-      wrap.innerHTML = `<div class="grid sm:grid-cols-3 gap-6">${cardsHtml}</div><div class="text-center">${ctaHtml}</div>`;
+      wrap.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">${cardsHtml}</div><div class="text-center">${ctaHtml}</div>`;
     }
 
     // ==== Sucursales / Google Maps ====
