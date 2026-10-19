@@ -141,9 +141,7 @@
         faqs: [],
       },
       {
-        // Precio real Q550 confirmado por Eduardo — se muestra "Próximamente"
-        // (price: 0) hasta que las fotos estén listas. Cambia price a 550
-        // en la variante de abajo cuando quieras publicarlo.
+        // Precio publicado el 19/10/26 (Eduardo): almohadas Q550.
         id: 'almohada-memory-foam-1',
         category: { es: 'Almohadas', en: 'Pillows' },
         name: { es: 'Ariana', en: 'Ariana' },
@@ -159,15 +157,13 @@
           { value: '40 x 70 x 10 cm', label: { es: 'Medidas', en: 'Dimensions' } },
         ],
         variants: [
-          { name: 'Estándar', detail: { es: '40 x 70 x 10 cm', en: '40 x 70 x 10 cm' }, price: 0 },
+          { name: 'Estándar', detail: { es: '40 x 70 x 10 cm', en: '40 x 70 x 10 cm' }, price: 550 },
         ],
         benefits: [],
         faqs: [],
       },
       {
-        // Precio real Q550 confirmado por Eduardo — se muestra "Próximamente"
-        // (price: 0) hasta que las fotos estén listas. Cambia price a 550
-        // en la variante de abajo cuando quieras publicarlo.
+        // Precio publicado el 19/10/26 (Eduardo): almohadas Q550.
         id: 'almohada-memory-foam-2',
         category: { es: 'Almohadas', en: 'Pillows' },
         name: { es: 'Amanda', en: 'Amanda' },
@@ -186,15 +182,13 @@
           { value: '40 x 70 x 12 cm', label: { es: 'Medidas', en: 'Dimensions' } },
         ],
         variants: [
-          { name: 'Estándar', detail: { es: '40 x 70 x 12 cm', en: '40 x 70 x 12 cm' }, price: 0 },
+          { name: 'Estándar', detail: { es: '40 x 70 x 12 cm', en: '40 x 70 x 12 cm' }, price: 550 },
         ],
         benefits: [],
         faqs: [],
       },
       {
-        // Precio real Q600 confirmado por Eduardo — se muestra "Próximamente"
-        // (price: 0) hasta que las fotos estén listas. Cambia price a 600
-        // en la variante de abajo cuando quieras publicarlo.
+        // Precio publicado el 19/10/26 (Eduardo): almohadas Q550.
         id: 'almohada-plumas',
         category: { es: 'Almohadas', en: 'Pillows' },
         name: { es: 'Almohada de Plumas', en: 'Feather-Style Pillow' },
@@ -213,7 +207,7 @@
           { value: '40 x 74 cm', label: { es: 'Medidas', en: 'Dimensions' } },
         ],
         variants: [
-          { name: 'Estándar', detail: { es: '40 x 74 cm', en: '40 x 74 cm' }, price: 0 },
+          { name: 'Estándar', detail: { es: '40 x 74 cm', en: '40 x 74 cm' }, price: 550 },
         ],
         benefits: [],
         faqs: [],
@@ -245,7 +239,7 @@
         name: { es: 'Cobertor / Protector de Colchón', en: 'Mattress Protector' },
         eyebrow: { es: 'Protector', en: 'Protector' },
         tagline: { es: '', en: '' },
-        cardText: { es: 'Disponible en tamaño Queen (153 x 203 x 30 cm) y King (193 x 203 x 30 cm). Precio próximamente.', en: 'Available in Queen (153 x 203 x 30 cm) and King (193 x 203 x 30 cm) sizes. Price coming soon.' },
+        cardText: { es: 'Disponible en tamaño Queen (153 x 203 x 30 cm) y King (193 x 203 x 30 cm).', en: 'Available in Queen (153 x 203 x 30 cm) and King (193 x 203 x 30 cm) sizes.' },
         description: { es: '', en: '' },
         // Placeholder: usa el logo mientras Eduardo sube las fotos reales del
         // producto. Cambia mainImage/gallery a los archivos reales cuando los
@@ -254,8 +248,8 @@
         gallery: ['/images/logosinfondo.png'],
         stats: [],
         variants: [
-          { name: 'Queen', detail: { es: '153 x 203 x 30 cm', en: '153 x 203 x 30 cm' }, price: 0 },
-          { name: 'King', detail: { es: '193 x 203 x 30 cm', en: '193 x 203 x 30 cm' }, price: 0 },
+          { name: 'Queen', detail: { es: '153 x 203 x 30 cm', en: '153 x 203 x 30 cm' }, price: 790 },
+          { name: 'King', detail: { es: '193 x 203 x 30 cm', en: '193 x 203 x 30 cm' }, price: 790 },
         ],
         benefits: [],
         faqs: [],
