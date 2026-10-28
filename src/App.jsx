@@ -7439,6 +7439,7 @@ function FooterYFlotantes() {
                   {"Privacidad"}
                 </a>
               </li>
+              <li><a href="/politica-de-cambios" className="footer-link hover:text-gold-light cursor-pointer" data-en="Returns &amp; Warranty" data-es="Cambios y garantía">Cambios y garantía</a></li>
             </ul>
             {' '}
           </div>
@@ -9339,14 +9340,15 @@ function startNuvela() {
       if (crumb && crumb.textContent.trim()) return crumb.textContent.trim();
       const page = document.querySelector('main.page.active');
       if (page && page.id === 'page-producto-detalle') { const t = document.getElementById('pd-title'); if (t && t.textContent.trim()) return t.textContent.trim(); }
-      if (!page || page.id === 'page-home') return 'Inicio';
+      if (!page || page.id === 'page-home') return 'información general';
       const h = page.querySelector('h1, h2');
       return h && h.textContent.trim() ? h.textContent.replace(/\s+/g, ' ').trim() : 'Inicio';
     }
     document.addEventListener('click', (e) => {
       const a = e.target.closest && e.target.closest('a[href^="https://wa.me/' + WHATSAPP_NUMBER + '"]');
       if (!a || /[?&]text=/.test(a.getAttribute('href'))) return;
-      a.setAttribute('href', 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hola Nuvela, vengo de la página web. Me interesa: ' + nvPaginaActual()));
+      const tema = a.classList.contains('float-wa') ? 'información general' : nvPaginaActual(); // el botón flotante siempre dice "información general"
+      a.setAttribute('href', 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hola Nuvela, vengo de la página web. Me interesa: ' + tema));
     }, true);
 
     function cartLine(entry) {
