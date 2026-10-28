@@ -9331,6 +9331,23 @@ function startNuvela() {
 
     // ==== Carrito de compras ====
     const WHATSAPP_NUMBER = '50253984599';
+    // Botones de WhatsApp que llevan a Nuvela: si no traen mensaje, se les agrega uno con la página
+    // de origen ("Hola Nuvela, vengo de la página web. Me interesa: ..."). Los que ya traen su propio
+    // mensaje (Imperial, Showroom, Línea Hotelera, pedidos del carrito, etc.) no se tocan.
+    function nvPaginaActual() {
+      const crumb = document.querySelector('.nv-crumbs [aria-current="page"]');
+      if (crumb && crumb.textContent.trim()) return crumb.textContent.trim();
+      const page = document.querySelector('main.page.active');
+      if (page && page.id === 'page-producto-detalle') { const t = document.getElementById('pd-title'); if (t && t.textContent.trim()) return t.textContent.trim(); }
+      if (!page || page.id === 'page-home') return 'Inicio';
+      const h = page.querySelector('h1, h2');
+      return h && h.textContent.trim() ? h.textContent.replace(/\s+/g, ' ').trim() : 'Inicio';
+    }
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="https://wa.me/' + WHATSAPP_NUMBER + '"]');
+      if (!a || /[?&]text=/.test(a.getAttribute('href'))) return;
+      a.setAttribute('href', 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hola Nuvela, vengo de la página web. Me interesa: ' + nvPaginaActual()));
+    }, true);
 
     function cartLine(entry) {
       const p = PRODUCTS.find(x => x.id === entry.productId);
