@@ -822,38 +822,45 @@
         onUpdate: () => { priceEl.textContent = formatPrice(Math.round(priceState.v / 10) * 10); },
         onComplete: () => { priceEl.textContent = formatPrice(v.price); } });
     }
-    // ---- Barra de compra del celular (precio + botón siempre visibles) ----
-    // Aparece solo en celular y solo mientras el botón grande de compra no está en pantalla.
-    const buybar = q('#nv-buybar'), buybarBtn = q('#nv-buybar-btn'), pdPurchase = q('#pd-purchase');
+    // ---- Barra fija del celular en páginas de producto: nombre + "Desde Q…" + "Cotizar por WhatsApp" ----
+    // Aparece (solo en celular) cuando la persona ya pasó la foto y el precio, y se esconde mientras
+    // el botón grande "Añadir al Carrito" está en pantalla para no taparlo.
+    const buybar = q('#nv-buybar'), pdPurchase = q('#pd-purchase');
     function updateBuybar() {
       if (!buybar || typeof PRODUCTS === 'undefined' || typeof currentProductId === 'undefined') return;
       const p = PRODUCTS.find((x) => x.id === currentProductId);
       if (!p) return;
-      const v = p.variants.find((x) => x.name === pdSelectedVariant) || p.variants[0];
       const es = lang() === 'es';
-      q('#nv-buybar-price').textContent = formatPrice(v ? v.price : 0);
-      q('#nv-buybar-size').textContent = p.variants.length > 1 && v ? v.name : pick(p.name);
-      buybarBtn.textContent = v && v.price ? (es ? 'Añadir al Carrito' : 'Add to Cart') : (es ? 'Consultar por WhatsApp' : 'Ask on WhatsApp');
-    }
-    if (buybar && buybarBtn && pdPurchase) {
-      buybarBtn.addEventListener('click', () => {
-        const real = q('.js-pd-add-cart, .nv-pd-ask', pdPurchase);
-        if (!real) return;
-        const esCarrito = real.classList.contains('js-pd-add-cart');
-        real.click(); // hace exactamente lo mismo que el botón grande
-        if (esCarrito) {
-          buybarBtn.textContent = lang() === 'es' ? '✓ Agregado' : '✓ Added';
-          setTimeout(updateBuybar, 1500);
-        }
-      });
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver((entries) => {
-          const fuera = !entries[0].isIntersecting;
-          buybar.classList.toggle('is-on', fuera);
-          buybarBtn.tabIndex = fuera ? 0 : -1;
-          document.body.classList.toggle('nv-buybar-on', fuera && !!q('#page-producto-detalle.active'));
-        }, { threshold: 0.25 }).observe(pdPurchase);
+      const nm = q('#nv-buybar-name'), pr = q('#nv-buybar-price');
+      if (nm) { nm.textContent = pick(p.name); nm.setAttribute('data-es', p.name.es || ''); nm.setAttribute('data-en', p.name.en || p.name.es || ''); }
+      if (pr) {
+        const desde = p.variants.some((v) => v.price) ? priceFrom(p) : '';
+        const t = { es: desde ? 'Desde ' + desde : '', en: desde ? 'From ' + desde : '' };
+        pr.textContent = es ? t.es : t.en; pr.setAttribute('data-es', t.es); pr.setAttribute('data-en', t.en);
       }
+    }
+    if (buybar && 'IntersectionObserver' in window) {
+      const pasar = q('.nv-pd-gallery') || q('#page-medida .nv-ph');
+      let pasado = false, compraVisible = false;
+      const celular = window.matchMedia('(max-width: 1023px)');
+      document.body.classList.add('nv-has-wabar');
+      const aplicar = () => {
+        const on = pasado && !compraVisible && !!q('#page-producto-detalle.active, #page-medida.active');
+        buybar.classList.toggle('is-on', on);
+        buybar.setAttribute('aria-hidden', on ? 'false' : 'true');
+        qa('a, button', buybar).forEach((el) => { el.tabIndex = on ? 0 : -1; });
+        document.body.classList.toggle('nv-buybar-on', on && celular.matches);
+      };
+      if (pasar) new IntersectionObserver((entries) => {
+        const e = entries[entries.length - 1];
+        pasado = !e.isIntersecting && e.boundingClientRect.top < 0;
+        aplicar();
+      }, { threshold: 0 }).observe(pasar);
+      if (pdPurchase) new IntersectionObserver((entries) => {
+        compraVisible = entries[entries.length - 1].isIntersecting;
+        aplicar();
+      }, { threshold: 0.15 }).observe(pdPurchase);
+      if (celular.addEventListener) celular.addEventListener('change', aplicar);
     }
     const pdSizes = q('#pd-sizes');
     if (pdSizes && 'MutationObserver' in window) new MutationObserver(() => { updatePrice(); updateBuybar(); }).observe(pdSizes, { childList: true });

@@ -3921,3 +3921,119 @@
       submitButton.textContent = originalButtonText;
     }
   });
+
+    /* ==================================================================== */
+    /* WhatsApp (29/10/26): botón flotante tipo píldora, burbuja de ayuda    */
+    /* a los 25 s (una vez por visita) y medida elegida en el mensaje.       */
+    /* ==================================================================== */
+    (function nvWaPill() {
+      const pill = document.querySelector('.float-wa.nv-wa-pill');
+      if (!pill) return;
+      const NUM = '50253984599';
+      const idioma = () => (typeof currentLang !== 'undefined' ? currentLang : (document.documentElement.lang || 'es'));
+
+      let burbuja = null, burbujaTapa = false; // burbuja de ayuda (paso 4)
+
+      // 1) El botón aparece después de ~300 px de recorrido (o enseguida si la página es corta) y ya no se va.
+      let visible = false;
+      function mostrar() { if (visible) return; visible = true; pill.classList.add('is-on'); revisar(); }
+      const alBajar = () => { if ((window.scrollY || document.documentElement.scrollTop) > 300) mostrar(); };
+      window.addEventListener('scroll', alBajar, { passive: true });
+      setTimeout(() => { if (document.documentElement.scrollHeight - window.innerHeight < 360) mostrar(); }, 1200);
+      alBajar();
+
+      // 2) Nunca tapa "Añadir al Carrito", botones, formularios ni el menú del celular:
+      //    si quedaría encima de uno de ellos, se aparta un momento y vuelve cuando ya no estorba.
+      const TAPA = '.js-pd-add-cart, .js-add-cart-variant, .nv-pd-ask, #pd-purchase, #pd-sizes, button, .btn-gold, .btn-outline, input, select, textarea';
+      let pend = false;
+      function revisar() {
+        pend = false;
+        if (!visible) return;
+        let tapa = !!document.querySelector('.drawer.open');
+        if (!tapa) {
+          const r = pill.getBoundingClientRect();
+          const pts = [[r.left + 4, r.top + 4], [r.right - 4, r.top + 4], [r.left + 4, r.bottom - 4], [r.right - 4, r.bottom - 4], [r.left + r.width / 2, r.top + r.height / 2]];
+          tapa = pts.some(([x, y]) => (document.elementsFromPoint(x, y) || []).some((el) => !pill.contains(el) && el.closest &&
+            !el.closest('.nv-wa-burbuja, .nv-sorteo-chip, #nv-buybar, #navbar') && el.closest(TAPA)));
+        }
+        pill.classList.toggle('is-away', tapa);
+        // La burbuja tampoco tapa botones: si queda encima de uno, se aparta mientras tanto.
+        if (burbuja) {
+          const r = burbuja.getBoundingClientRect(), pts = [];
+          [0.08, 0.5, 0.92].forEach((fx) => [0.12, 0.5, 0.88].forEach((fy) => pts.push([r.left + r.width * fx, r.top + r.height * fy])));
+          burbujaTapa = pts.some(([x, y]) => (document.elementsFromPoint(x, y) || []).some((el) => el.closest &&
+            !el.closest('.nv-wa-burbuja, .float-wa, .nv-sorteo-chip, #nv-buybar, #navbar') && el.closest(TAPA)));
+        }
+        sincronizarBurbuja();
+      }
+      const pedir = () => { if (!pend) { pend = true; setTimeout(revisar, 120); } };
+      window.addEventListener('scroll', pedir, { passive: true });
+      window.addEventListener('resize', pedir);
+      const drawer = document.getElementById('drawer');
+      if (drawer && 'MutationObserver' in window) new MutationObserver(pedir).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+      if ('MutationObserver' in window) new MutationObserver(() => sincronizarBurbuja()).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+      // 3) Medida elegida: en los colchones, el mensaje dice "…en medida King" si la persona eligió una medida.
+      let medidaClic = false, medidaUrl = null;
+      try { medidaUrl = new URLSearchParams(location.search).get('medida'); } catch (e) { /* navegador antiguo */ }
+      function conMedida(a) {
+        const base = a.getAttribute('data-nv-wa-base');
+        if (!base) return;
+        const v = typeof pdSelectedVariant !== 'undefined' ? pdSelectedVariant : null;
+        const elegida = v && (medidaClic || (medidaUrl && medidaUrl === v));
+        a.setAttribute('href', 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(base + (elegida ? ' en medida ' + v : '')));
+      }
+      const actualizarTodos = () => document.querySelectorAll('a[data-nv-wa-base]').forEach(conMedida);
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest) return;
+        if (e.target.closest('.js-pd-size')) { medidaClic = true; setTimeout(actualizarTodos, 0); }
+        const a = e.target.closest('a[data-nv-wa-base]');
+        if (a) conMedida(a);
+      }, true);
+      setTimeout(actualizarTodos, 800);
+
+      // 4) Burbuja a los 25 segundos, una sola vez por visita (no en /carrito ni en /politica-de-cambios).
+      function sincronizarBurbuja() {
+        if (!burbuja) return;
+        burbuja.classList.toggle('is-away', burbujaTapa || !pill.classList.contains('is-on') || pill.classList.contains('is-away') || document.body.classList.contains('nv-buybar-on'));
+      }
+      function cerrar() {
+        if (!burbuja) return;
+        const b = burbuja; burbuja = null;
+        b.classList.remove('is-on');
+        setTimeout(() => b.remove(), 600);
+      }
+      function abrirBurbuja() {
+        let vista = false;
+        try { vista = sessionStorage.getItem('nv-wa-burbuja') === '1'; } catch (e) { /* modo privado */ }
+        if (vista) return;
+        mostrar();
+        // Espera a que el botón esté a la vista (no escondido por la barra del producto, el menú o un botón).
+        if (pill.classList.contains('is-away') || document.body.classList.contains('nv-buybar-on')) { setTimeout(abrirBurbuja, 2000); return; }
+        try { sessionStorage.setItem('nv-wa-burbuja', '1'); } catch (e) { /* modo privado */ }
+        const es = idioma() !== 'en';
+        burbuja = document.createElement('div');
+        burbuja.className = 'nv-wa-burbuja';
+        burbuja.setAttribute('role', 'status');
+        const a = document.createElement('a');
+        a.className = 'nv-wa-burbuja-txt';
+        a.target = '_blank'; a.rel = 'noopener';
+        a.setAttribute('href', pill.getAttribute('href'));
+        if (pill.hasAttribute('data-nv-wa-base')) a.setAttribute('data-nv-wa-base', pill.getAttribute('data-nv-wa-base'));
+        a.innerHTML = '<span data-es="¿Tiene dudas sobre medidas o precios?" data-en="Questions about sizes or prices?">' + (es ? '¿Tiene dudas sobre medidas o precios?' : 'Questions about sizes or prices?') + '</span> ' +
+          '<b data-es="Le respondemos por WhatsApp" data-en="We will answer you on WhatsApp">' + (es ? 'Le respondemos por WhatsApp' : 'We will answer you on WhatsApp') + '</b>';
+        a.addEventListener('click', () => setTimeout(cerrar, 300));
+        const x = document.createElement('button');
+        x.type = 'button';
+        x.className = 'nv-wa-burbuja-x';
+        x.setAttribute('aria-label', es ? 'Cerrar' : 'Close');
+        x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+        x.addEventListener('click', cerrar);
+        burbuja.append(a, x);
+        document.body.appendChild(burbuja);
+        conMedida(a);
+        revisar();
+        requestAnimationFrame(() => requestAnimationFrame(() => { if (burbuja) burbuja.classList.add('is-on'); sincronizarBurbuja(); }));
+      }
+      if (!/^\/(carrito|politica-de-cambios)(\/|$)/.test(location.pathname)) setTimeout(abrirBurbuja, 25000);
+    })();

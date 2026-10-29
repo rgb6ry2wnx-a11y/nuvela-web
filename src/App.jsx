@@ -2321,7 +2321,83 @@ const NUVELA_CSS = String.raw`
 
     /* Sombra suave detrás del texto del hero para que siempre se lea */
     .nv-hero-copy::before { content: ''; position: absolute; left: 50%; top: 62%; width: min(820px, 92vw); height: 62%; translate: -50% -50%; background: radial-gradient(ellipse at center, rgba(13, 13, 13, .78), rgba(13, 13, 13, 0) 70%); z-index: -1; pointer-events: none; }
-  `;
+  
+    /* ================================================================== */
+    /* WHATSAPP 29/10/26 — botón tipo píldora, burbuja, barra y muestrario */
+    /* ================================================================== */
+    .float-wa.nv-wa-pill { position: fixed; right: 24px; bottom: 24px; z-index: 46; display: inline-flex; align-items: center; gap: 11px; height: 56px; padding: 0 24px 0 9px; border-radius: 999px; background: #B99B3F; color: #fff; font-family: 'Inter', -apple-system, sans-serif; font-weight: 600; font-size: .86rem; letter-spacing: .02em; line-height: 1; white-space: nowrap; text-decoration: none; box-shadow: 0 18px 40px -16px rgba(0, 0, 0, .55), 0 2px 8px -2px rgba(0, 0, 0, .25), inset 0 0 0 1px rgba(255, 255, 255, .16); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(22px) scale(.97); transition: opacity 1.1s cubic-bezier(.22, 1, .36, 1), transform 1.1s cubic-bezier(.22, 1, .36, 1), visibility 0s linear 1.1s, background-color .35s ease, box-shadow .35s ease; }
+    .float-wa.nv-wa-pill.is-on { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
+    .float-wa.nv-wa-pill.is-on.is-away { opacity: 0; pointer-events: none; transform: translateY(10px); transition-duration: .35s; }
+    .float-wa.nv-wa-pill.is-on:hover { background: #A88A33; transform: translateY(-2px); box-shadow: 0 22px 44px -16px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(255, 255, 255, .2); }
+    .float-wa.nv-wa-pill:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    .nv-wa-ico { position: relative; flex: 0 0 auto; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .14); }
+    .nv-wa-ico svg { width: 20px; height: 20px; }
+    /* Puntito verde de WhatsApp */
+    .nv-wa-ico::after { content: ''; position: absolute; top: 1px; right: 1px; width: 10px; height: 10px; border-radius: 50%; background: #25D366; box-shadow: 0 0 0 2px #B99B3F; transition: box-shadow .35s ease; }
+    .float-wa.nv-wa-pill:hover .nv-wa-ico::after { box-shadow: 0 0 0 2px #A88A33; }
+    .nv-wa-mob { display: none; }
+    @media (max-width: 767px) {
+      .float-wa.nv-wa-pill { right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); height: 50px; gap: 8px; padding: 0 18px 0 6px; font-size: .84rem; }
+      .nv-wa-ico { width: 38px; height: 38px; }
+      .nv-wa-desk { display: none; }
+      .nv-wa-mob { display: inline; }
+      /* El aviso del sorteo deja espacio para la píldora */
+      .nv-sorteo-chip { max-width: calc(100vw - 172px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .float-wa.nv-wa-pill, .nv-wa-burbuja { transition-duration: .01s !important; }
+    }
+
+    /* Versión alternativa: fondo verde WhatsApp (se activa con la clase "nv-wa-verde" en <html>) */
+    html.nv-wa-verde .float-wa.nv-wa-pill { background: #25D366; }
+    html.nv-wa-verde .float-wa.nv-wa-pill.is-on:hover { background: #1EBE5A; }
+    html.nv-wa-verde .nv-wa-ico { background: rgba(255, 255, 255, .18); }
+    html.nv-wa-verde .nv-wa-ico::after { display: none; }
+    html.nv-wa-verde .nv-buybar-wa { background: #25D366; }
+
+    /* Burbuja "¿Tiene dudas…?" junto al botón */
+    .nv-wa-burbuja { position: fixed; right: 24px; bottom: 94px; z-index: 47; width: min(300px, calc(100vw - 28px)); border-radius: 18px; background: rgba(13, 13, 13, .96); border: 1px solid rgba(205, 174, 85, .55); color: #FCF9F5; box-shadow: 0 26px 50px -20px rgba(0, 0, 0, .7); opacity: 0; transform: translateY(14px) scale(.98); transform-origin: 85% 100%; transition: opacity .9s cubic-bezier(.22, 1, .36, 1), transform .9s cubic-bezier(.22, 1, .36, 1); }
+    .nv-wa-burbuja.is-on { opacity: 1; transform: none; }
+    .nv-wa-burbuja.is-on.is-away { opacity: 0; pointer-events: none; transform: translateY(8px); transition-duration: .3s; }
+    .nv-wa-burbuja::after { content: ''; position: absolute; right: 34px; bottom: -7px; width: 12px; height: 12px; background: #0d0d0d; border-right: 1px solid rgba(205, 174, 85, .55); border-bottom: 1px solid rgba(205, 174, 85, .55); transform: rotate(45deg); }
+    .nv-wa-burbuja-txt { display: block; padding: 16px 46px 16px 18px; font-family: 'Inter', -apple-system, sans-serif; font-size: .88rem; line-height: 1.45; color: rgba(252, 249, 245, .86); text-decoration: none; }
+    .nv-wa-burbuja-txt b { display: block; margin-top: 4px; color: #D9BE6C; font-weight: 600; }
+    .nv-wa-burbuja-txt:hover b { text-decoration: underline; text-underline-offset: 3px; }
+    .nv-wa-burbuja-x { position: absolute; top: 0; right: 0; width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 0; color: rgba(252, 249, 245, .6); cursor: pointer; border-radius: 0 18px 0 12px; }
+    .nv-wa-burbuja-x:hover { color: #fff; }
+    @media (max-width: 767px) {
+      .nv-wa-burbuja { right: 14px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); width: min(282px, calc(100vw - 28px)); }
+      .nv-wa-burbuja::after { right: 44px; }
+    }
+
+    /* Barra fija del celular en páginas de producto: nombre + "Desde Q…" | "Cotizar por WhatsApp" */
+    @media (max-width: 1023px) {
+      .nv-buybar.nv-wabar { gap: 12px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px)) 18px; transition: transform .7s cubic-bezier(.22, 1, .36, 1); }
+      .nv-wabar p { display: grid; gap: 3px; min-width: 0; margin: 0; }
+      .nv-wabar #nv-buybar-name { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.12rem; line-height: 1.1; letter-spacing: 0; color: #FCF9F5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .nv-wabar #nv-buybar-price { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .02em; color: var(--nv-gold-2, #D9BE6C); font-variant-numeric: tabular-nums; }
+      .nv-wabar #nv-buybar-price:empty { display: none; }
+      .nv-buybar-wa { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px 0 14px; border-radius: 999px; background: #B99B3F; color: #fff !important; font-family: 'Inter', sans-serif; font-weight: 600; font-size: .82rem; letter-spacing: .01em; white-space: nowrap; text-decoration: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
+      .nv-buybar-wa svg { width: 18px; height: 18px; }
+      .nv-buybar-wa span { font-size: inherit !important; color: inherit !important; overflow: visible !important; }
+      /* Mientras la barra está a la vista, el botón flotante se esconde (la barra ya lleva a WhatsApp) */
+      body.nv-buybar-on .float-wa.nv-wa-pill { opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+      body.nv-buybar-on .nv-wa-burbuja { opacity: 0 !important; pointer-events: none !important; }
+      /* Espacio al final de la página para que la barra no tape el pie de página */
+      body.nv-has-wabar footer { padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+    }
+
+    /* Franja del muestrario en /camastrones */
+    .nv-muestrario { display: flex; align-items: center; justify-content: space-between; gap: 22px 40px; margin: 0 0 clamp(2rem, 5vh, 3.2rem); padding: clamp(22px, 3vw, 30px) clamp(22px, 3.4vw, 40px); border-radius: 22px; border: 1px solid rgba(205, 174, 85, .38); background: linear-gradient(120deg, rgba(185, 155, 63, .14), rgba(185, 155, 63, .03) 60%, rgba(255, 255, 255, .02)); }
+    .nv-muestrario p { margin: 0; max-width: 52ch; font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.15rem, 1.6vw, 1.38rem); line-height: 1.45; color: #FCF9F5; }
+    .nv-muestrario-btn { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 24px 0 18px; border-radius: 999px; background: #B99B3F; color: #fff !important; font-family: 'Inter', sans-serif; font-weight: 600; font-size: .84rem; letter-spacing: .03em; white-space: nowrap; text-decoration: none; transition: background-color .3s ease, transform .3s ease; }
+    .nv-muestrario-btn:hover { background: #A88A33; transform: translateY(-1px); }
+    .nv-muestrario-btn svg { width: 19px; height: 19px; }
+    @media (max-width: 767px) {
+      .nv-muestrario { flex-direction: column; align-items: stretch; text-align: left; }
+      .nv-muestrario-btn { width: 100%; }
+    }
+`;
 
 /* Colores y tipografías de Tailwind (igual que el sitio HTML) */
 function applyTailwindConfig() {
@@ -4920,19 +4996,7 @@ function PageProductoDetalle() {
         {' '}
         {/* "Añadir al Carrito" no está en pantalla. La llena y la muestra NV (busca "nv-buybar"). */}
         {' '}
-        <div id="nv-buybar" className="nv-buybar" aria-hidden="true">
-          {' '}
-          <p>
-            <b id="nv-buybar-price">
-            </b>
-            <span id="nv-buybar-size">
-            </span>
-          </p>
-          {' '}
-          <button type="button" id="nv-buybar-btn" className="btn-gold" tabIndex="-1">
-          </button>
-          {' '}
-        </div>
+        <div id="nv-buybar" className="nv-buybar nv-wabar" aria-hidden="true"><p><b id="nv-buybar-name" data-es="" data-en=""></b><span id="nv-buybar-price" data-es="" data-en=""></span></p><a id="nv-buybar-wa" className="nv-buybar-wa" href="https://wa.me/50253984599?text=Hola%20Nuvela%2C%20vengo%20de%20la%20p%C3%A1gina%20web.%20Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener" tabIndex="-1"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg><span data-es="Cotizar por WhatsApp" data-en="Get a quote on WhatsApp">Cotizar por WhatsApp</span></a></div>
         {' '}
       </main>
     </>
@@ -7512,14 +7576,7 @@ function FooterYFlotantes() {
         {' '}
       </footer>
       {/* WhatsApp floating */}
-      <a href="https://wa.me/50253984599" target="_blank" rel="noopener" className="float-wa fixed bottom-6 right-6 z-40 w-14 h-14 bg-gold text-white rounded-full flex items-center justify-center shadow-2xl float" aria-label="WhatsApp">
-        {' '}
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-          <path d="M21 12a9 9 0 1 1-3.5-7.1L21 4l-1.1 3.5A9 9 0 0 1 21 12Z" />
-          <path d="M9 9c0 5 3 8 7 8l-1-3-3-1-1 1c-1 0-3-2-3-3l1-1-1-3-3 0c0 1 0 1 0 2" />
-        </svg>
-        {' '}
-      </a>
+      <a href="https://wa.me/50253984599?text=Hola%20Nuvela%2C%20vengo%20de%20la%20p%C3%A1gina%20web.%20Quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" rel="noopener" className="float-wa nv-wa-pill" aria-label="Escríbanos por WhatsApp"><span className="nv-wa-ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></span><span className="nv-wa-txt nv-wa-desk" data-es="Escríbanos por WhatsApp" data-en="Message us on WhatsApp">Escríbanos por WhatsApp</span><span className="nv-wa-txt nv-wa-mob">WhatsApp</span></a>
     </>
   );
 }
@@ -11367,6 +11424,123 @@ function startNuvela() {
     document.querySelector('.nav-link[data-page="home"]')?.classList.add('active');
   
 
+
+    /* ==================================================================== */
+    /* WhatsApp (29/10/26): botón flotante tipo píldora, burbuja de ayuda    */
+    /* a los 25 s (una vez por visita) y medida elegida en el mensaje.       */
+    /* ==================================================================== */
+    (function nvWaPill() {
+      const pill = document.querySelector('.float-wa.nv-wa-pill');
+      if (!pill) return;
+      const NUM = '50253984599';
+      const idioma = () => (typeof currentLang !== 'undefined' ? currentLang : (document.documentElement.lang || 'es'));
+
+      let burbuja = null, burbujaTapa = false; // burbuja de ayuda (paso 4)
+
+      // 1) El botón aparece después de ~300 px de recorrido (o enseguida si la página es corta) y ya no se va.
+      let visible = false;
+      function mostrar() { if (visible) return; visible = true; pill.classList.add('is-on'); revisar(); }
+      const alBajar = () => { if ((window.scrollY || document.documentElement.scrollTop) > 300) mostrar(); };
+      window.addEventListener('scroll', alBajar, { passive: true });
+      setTimeout(() => { if (document.documentElement.scrollHeight - window.innerHeight < 360) mostrar(); }, 1200);
+      alBajar();
+
+      // 2) Nunca tapa "Añadir al Carrito", botones, formularios ni el menú del celular:
+      //    si quedaría encima de uno de ellos, se aparta un momento y vuelve cuando ya no estorba.
+      const TAPA = '.js-pd-add-cart, .js-add-cart-variant, .nv-pd-ask, #pd-purchase, #pd-sizes, button, .btn-gold, .btn-outline, input, select, textarea';
+      let pend = false;
+      function revisar() {
+        pend = false;
+        if (!visible) return;
+        let tapa = !!document.querySelector('.drawer.open');
+        if (!tapa) {
+          const r = pill.getBoundingClientRect();
+          const pts = [[r.left + 4, r.top + 4], [r.right - 4, r.top + 4], [r.left + 4, r.bottom - 4], [r.right - 4, r.bottom - 4], [r.left + r.width / 2, r.top + r.height / 2]];
+          tapa = pts.some(([x, y]) => (document.elementsFromPoint(x, y) || []).some((el) => !pill.contains(el) && el.closest &&
+            !el.closest('.nv-wa-burbuja, .nv-sorteo-chip, #nv-buybar, #navbar') && el.closest(TAPA)));
+        }
+        pill.classList.toggle('is-away', tapa);
+        // La burbuja tampoco tapa botones: si queda encima de uno, se aparta mientras tanto.
+        if (burbuja) {
+          const r = burbuja.getBoundingClientRect(), pts = [];
+          [0.08, 0.5, 0.92].forEach((fx) => [0.12, 0.5, 0.88].forEach((fy) => pts.push([r.left + r.width * fx, r.top + r.height * fy])));
+          burbujaTapa = pts.some(([x, y]) => (document.elementsFromPoint(x, y) || []).some((el) => el.closest &&
+            !el.closest('.nv-wa-burbuja, .float-wa, .nv-sorteo-chip, #nv-buybar, #navbar') && el.closest(TAPA)));
+        }
+        sincronizarBurbuja();
+      }
+      const pedir = () => { if (!pend) { pend = true; setTimeout(revisar, 120); } };
+      window.addEventListener('scroll', pedir, { passive: true });
+      window.addEventListener('resize', pedir);
+      const drawer = document.getElementById('drawer');
+      if (drawer && 'MutationObserver' in window) new MutationObserver(pedir).observe(drawer, { attributes: true, attributeFilter: ['class'] });
+      if ('MutationObserver' in window) new MutationObserver(() => sincronizarBurbuja()).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+      // 3) Medida elegida: en los colchones, el mensaje dice "…en medida King" si la persona eligió una medida.
+      let medidaClic = false, medidaUrl = null;
+      try { medidaUrl = new URLSearchParams(location.search).get('medida'); } catch (e) { /* navegador antiguo */ }
+      function conMedida(a) {
+        const base = a.getAttribute('data-nv-wa-base');
+        if (!base) return;
+        const v = typeof pdSelectedVariant !== 'undefined' ? pdSelectedVariant : null;
+        const elegida = v && (medidaClic || (medidaUrl && medidaUrl === v));
+        a.setAttribute('href', 'https://wa.me/' + NUM + '?text=' + encodeURIComponent(base + (elegida ? ' en medida ' + v : '')));
+      }
+      const actualizarTodos = () => document.querySelectorAll('a[data-nv-wa-base]').forEach(conMedida);
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest) return;
+        if (e.target.closest('.js-pd-size')) { medidaClic = true; setTimeout(actualizarTodos, 0); }
+        const a = e.target.closest('a[data-nv-wa-base]');
+        if (a) conMedida(a);
+      }, true);
+      setTimeout(actualizarTodos, 800);
+
+      // 4) Burbuja a los 25 segundos, una sola vez por visita (no en /carrito ni en /politica-de-cambios).
+      function sincronizarBurbuja() {
+        if (!burbuja) return;
+        burbuja.classList.toggle('is-away', burbujaTapa || !pill.classList.contains('is-on') || pill.classList.contains('is-away') || document.body.classList.contains('nv-buybar-on'));
+      }
+      function cerrar() {
+        if (!burbuja) return;
+        const b = burbuja; burbuja = null;
+        b.classList.remove('is-on');
+        setTimeout(() => b.remove(), 600);
+      }
+      function abrirBurbuja() {
+        let vista = false;
+        try { vista = sessionStorage.getItem('nv-wa-burbuja') === '1'; } catch (e) { /* modo privado */ }
+        if (vista) return;
+        mostrar();
+        // Espera a que el botón esté a la vista (no escondido por la barra del producto, el menú o un botón).
+        if (pill.classList.contains('is-away') || document.body.classList.contains('nv-buybar-on')) { setTimeout(abrirBurbuja, 2000); return; }
+        try { sessionStorage.setItem('nv-wa-burbuja', '1'); } catch (e) { /* modo privado */ }
+        const es = idioma() !== 'en';
+        burbuja = document.createElement('div');
+        burbuja.className = 'nv-wa-burbuja';
+        burbuja.setAttribute('role', 'status');
+        const a = document.createElement('a');
+        a.className = 'nv-wa-burbuja-txt';
+        a.target = '_blank'; a.rel = 'noopener';
+        a.setAttribute('href', pill.getAttribute('href'));
+        if (pill.hasAttribute('data-nv-wa-base')) a.setAttribute('data-nv-wa-base', pill.getAttribute('data-nv-wa-base'));
+        a.innerHTML = '<span data-es="¿Tiene dudas sobre medidas o precios?" data-en="Questions about sizes or prices?">' + (es ? '¿Tiene dudas sobre medidas o precios?' : 'Questions about sizes or prices?') + '</span> ' +
+          '<b data-es="Le respondemos por WhatsApp" data-en="We will answer you on WhatsApp">' + (es ? 'Le respondemos por WhatsApp' : 'We will answer you on WhatsApp') + '</b>';
+        a.addEventListener('click', () => setTimeout(cerrar, 300));
+        const x = document.createElement('button');
+        x.type = 'button';
+        x.className = 'nv-wa-burbuja-x';
+        x.setAttribute('aria-label', es ? 'Cerrar' : 'Close');
+        x.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+        x.addEventListener('click', cerrar);
+        burbuja.append(a, x);
+        document.body.appendChild(burbuja);
+        conMedida(a);
+        revisar();
+        requestAnimationFrame(() => requestAnimationFrame(() => { if (burbuja) burbuja.classList.add('is-on'); sincronizarBurbuja(); }));
+      }
+      if (!/^\/(carrito|politica-de-cambios)(\/|$)/.test(location.pathname)) setTimeout(abrirBurbuja, 25000);
+    })();
+
   /* ---- Formulario de contacto ---- */
 
   const contactForm = document.getElementById("contactForm");
@@ -12231,38 +12405,45 @@ function startNuvela() {
         onUpdate: () => { priceEl.textContent = formatPrice(Math.round(priceState.v / 10) * 10); },
         onComplete: () => { priceEl.textContent = formatPrice(v.price); } });
     }
-    // ---- Barra de compra del celular (precio + botón siempre visibles) ----
-    // Aparece solo en celular y solo mientras el botón grande de compra no está en pantalla.
-    const buybar = q('#nv-buybar'), buybarBtn = q('#nv-buybar-btn'), pdPurchase = q('#pd-purchase');
+    // ---- Barra fija del celular en páginas de producto: nombre + "Desde Q…" + "Cotizar por WhatsApp" ----
+    // Aparece (solo en celular) cuando la persona ya pasó la foto y el precio, y se esconde mientras
+    // el botón grande "Añadir al Carrito" está en pantalla para no taparlo.
+    const buybar = q('#nv-buybar'), pdPurchase = q('#pd-purchase');
     function updateBuybar() {
       if (!buybar || typeof PRODUCTS === 'undefined' || typeof currentProductId === 'undefined') return;
       const p = PRODUCTS.find((x) => x.id === currentProductId);
       if (!p) return;
-      const v = p.variants.find((x) => x.name === pdSelectedVariant) || p.variants[0];
       const es = lang() === 'es';
-      q('#nv-buybar-price').textContent = formatPrice(v ? v.price : 0);
-      q('#nv-buybar-size').textContent = p.variants.length > 1 && v ? v.name : pick(p.name);
-      buybarBtn.textContent = v && v.price ? (es ? 'Añadir al Carrito' : 'Add to Cart') : (es ? 'Consultar por WhatsApp' : 'Ask on WhatsApp');
-    }
-    if (buybar && buybarBtn && pdPurchase) {
-      buybarBtn.addEventListener('click', () => {
-        const real = q('.js-pd-add-cart, .nv-pd-ask', pdPurchase);
-        if (!real) return;
-        const esCarrito = real.classList.contains('js-pd-add-cart');
-        real.click(); // hace exactamente lo mismo que el botón grande
-        if (esCarrito) {
-          buybarBtn.textContent = lang() === 'es' ? '✓ Agregado' : '✓ Added';
-          setTimeout(updateBuybar, 1500);
-        }
-      });
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver((entries) => {
-          const fuera = !entries[0].isIntersecting;
-          buybar.classList.toggle('is-on', fuera);
-          buybarBtn.tabIndex = fuera ? 0 : -1;
-          document.body.classList.toggle('nv-buybar-on', fuera && !!q('#page-producto-detalle.active'));
-        }, { threshold: 0.25 }).observe(pdPurchase);
+      const nm = q('#nv-buybar-name'), pr = q('#nv-buybar-price');
+      if (nm) { nm.textContent = pick(p.name); nm.setAttribute('data-es', p.name.es || ''); nm.setAttribute('data-en', p.name.en || p.name.es || ''); }
+      if (pr) {
+        const desde = p.variants.some((v) => v.price) ? priceFrom(p) : '';
+        const t = { es: desde ? 'Desde ' + desde : '', en: desde ? 'From ' + desde : '' };
+        pr.textContent = es ? t.es : t.en; pr.setAttribute('data-es', t.es); pr.setAttribute('data-en', t.en);
       }
+    }
+    if (buybar && 'IntersectionObserver' in window) {
+      const pasar = q('.nv-pd-gallery') || q('#page-medida .nv-ph');
+      let pasado = false, compraVisible = false;
+      const celular = window.matchMedia('(max-width: 1023px)');
+      document.body.classList.add('nv-has-wabar');
+      const aplicar = () => {
+        const on = pasado && !compraVisible && !!q('#page-producto-detalle.active, #page-medida.active');
+        buybar.classList.toggle('is-on', on);
+        buybar.setAttribute('aria-hidden', on ? 'false' : 'true');
+        qa('a, button', buybar).forEach((el) => { el.tabIndex = on ? 0 : -1; });
+        document.body.classList.toggle('nv-buybar-on', on && celular.matches);
+      };
+      if (pasar) new IntersectionObserver((entries) => {
+        const e = entries[entries.length - 1];
+        pasado = !e.isIntersecting && e.boundingClientRect.top < 0;
+        aplicar();
+      }, { threshold: 0 }).observe(pasar);
+      if (pdPurchase) new IntersectionObserver((entries) => {
+        compraVisible = entries[entries.length - 1].isIntersecting;
+        aplicar();
+      }, { threshold: 0.15 }).observe(pdPurchase);
+      if (celular.addEventListener) celular.addEventListener('change', aplicar);
     }
     const pdSizes = q('#pd-sizes');
     if (pdSizes && 'MutationObserver' in window) new MutationObserver(() => { updatePrice(); updateBuybar(); }).observe(pdSizes, { childList: true });
