@@ -2098,7 +2098,7 @@ const NUVELA_CSS = String.raw`
     #nv-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
     .nv-hero-photo { position: absolute; left: 50%; bottom: -4%; width: min(1150px, 120vw, 150vh); translate: -50% 0; z-index: 1; perspective: 1200px; }
     .nv-hero-photo img {
-      width: 100%; display: block; opacity: 0;
+      width: 100%; display: block; opacity: 1;
       -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 56%, #000 55%, transparent 100%);
               mask-image: radial-gradient(ellipse 58% 62% at 50% 56%, #000 55%, transparent 100%);
     }
@@ -2114,7 +2114,7 @@ const NUVELA_CSS = String.raw`
     .nv-hero-price b { font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; color: var(--nv-gold-2); margin-left: .35rem; font-variant-numeric: tabular-nums; vertical-align: -.08em; }
     .nv-pcard-price { color: var(--nv-gold-2) !important; font-weight: 600; }
     /* Solo la portada del inicio entra animada; en las demás páginas los botones se ven desde el principio */
-    .nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, #nv-hero .nv-hero-actions > * { opacity: 0; }
+    /* (2/11/26) el hero ya no arranca invisible: ver "INICIO MÁS RÁPIDO" al final */
     .nv-scroll-cue { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(252, 249, 245, .55); }
     .nv-scroll-cue i { width: 1px; height: 44px; background: linear-gradient(var(--nv-gold-2), transparent); transform-origin: top; animation: nvCue 2.2s var(--nv-ease) infinite; }
     @keyframes nvCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
@@ -2396,6 +2396,56 @@ const NUVELA_CSS = String.raw`
     @media (max-width: 767px) {
       .nv-muestrario { flex-direction: column; align-items: stretch; text-align: left; }
       .nv-muestrario-btn { width: 100%; }
+    }
+
+
+    /* ================================================================== */
+    /* INICIO MÁS RÁPIDO + BOTONES DEL HERO ALINEADOS (2/11/26)            */
+    /* ================================================================== */
+    /* La foto del colchón se ve desde el primer momento: solo un acercamiento suave (1.05 → 1). */
+    /* Usa la propiedad "scale" (no "transform") para no chocar con el efecto de scroll de GSAP.  */
+    @keyframes nvHeroZoom { from { scale: 1.05; } to { scale: 1; } }
+    @keyframes nvHeroIn { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+    @keyframes nvHeroFade { from { opacity: 0; } to { opacity: 1; } }
+    .nv-hero-photo picture { display: block; }
+    #nv-hero .nv-hero-photo img { opacity: 1; animation: nvHeroZoom 2.4s cubic-bezier(.22, 1, .36, 1) both; }
+    #nv-hero .nv-hero-eyebrow { animation: nvHeroIn .8s cubic-bezier(.22, 1, .36, 1) .05s both; }
+    #nv-hero .nv-hero-sub { animation: nvHeroIn .8s cubic-bezier(.22, 1, .36, 1) .12s both; }
+    #nv-hero .nv-hero-tagline { animation: nvHeroIn .8s cubic-bezier(.22, 1, .36, 1) .2s both; }
+    /* Los botones solo aparecen con un fundido (sin moverse hacia arriba) */
+    #nv-hero .nv-hero-actions > * { animation: nvHeroFade .8s ease .3s both; }
+    @media (prefers-reduced-motion: reduce) {
+      #nv-hero .nv-hero-photo img, #nv-hero .nv-hero-eyebrow, #nv-hero .nv-hero-sub, #nv-hero .nv-hero-tagline, #nv-hero .nv-hero-actions > * { animation: none; opacity: 1; }
+    }
+    /* Botones "Comprar Ahora" y "Agenda tu Visita": misma línea, misma altura, centrados */
+    #nv-hero .nv-hero-actions { align-items: center; justify-content: center; }
+    #nv-hero .nv-hero-actions .nv-abtn { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 52px; margin: 0; line-height: 1.2; vertical-align: top; }
+    /* En celular: uno debajo del otro, con el mismo ancho */
+    @media (max-width: 640px) {
+      #nv-hero .nv-hero-actions { flex-direction: column; flex-wrap: nowrap; gap: .65rem; }
+      #nv-hero .nv-hero-actions .nv-abtn { width: min(300px, 82vw); min-height: 48px; }
+    }
+
+
+    /* ================================================================== */
+    /* GUÍAS DE /colchones Y /almohadas (2/11/26)                          */
+    /* ================================================================== */
+    .nv-seo-alt { background: #F5F0E9 !important; }
+    .nv-seo-body strong { color: #1C1B19; font-weight: 700; }
+    .nv-seo-body + .nv-size-table, .nv-size-table + .nv-seo-body { margin-top: 1.8rem; }
+    .nv-guide-table > div { grid-template-columns: 1.1fr 2.4fr .8fr .9fr; }
+    .nv-guide-table > div > span:nth-child(3), .nv-guide-table > div > span:nth-child(4) { text-align: right; font-variant-numeric: tabular-nums; }
+    .nv-guide-table > div > span:nth-child(4) { font-weight: 700; color: #8a7226; }
+    .nv-alm-table > div { grid-template-columns: 1fr 1.1fr 1.1fr 1.1fr; }
+    #page-producto .nv-seo-faq { background: #FCF9F5; }
+    /* Datos pendientes de confirmar (solo deben verse en el borrador) */
+    .nv-confirmar { background: #FFE58A; color: #5a4300; padding: 0 .3em; border-radius: 4px; font-size: .85em; font-weight: 600; }
+    @media (max-width: 700px) {
+      .nv-guide-table > div { grid-template-columns: 1fr 1.7fr .9fr; }
+      .nv-guide-table > div > span:nth-child(3) { display: none; }
+      .nv-alm-table > div { grid-template-columns: .9fr 1fr 1fr 1fr; }
+      .nv-alm-table span { padding: .6rem .45rem !important; font-size: .74rem !important; overflow-wrap: anywhere; }
+      .nv-alm-table > div:first-child span { letter-spacing: .06em; overflow-wrap: normal; font-size: .62rem !important; }
     }
 `;
 
@@ -3013,7 +3063,7 @@ function PageHome() {
           {' '}
           <div className="nv-hero-photo" aria-hidden="true">
             {' '}
-            <img src="images/hero-frontal.jpg" alt="Colchón híbrido Nuvela con pillow top y lateral negro, vista frontal" />
+            <picture><source type="image/webp" srcSet="images/hero-frontal.webp" /><img src="images/hero-frontal.jpg" alt="Colchón híbrido Nuvela con pillow top y lateral negro, vista frontal" width="1698" height="926" fetchPriority="high" decoding="async" /></picture>
             {' '}
           </div>
           {' '}
@@ -12139,21 +12189,29 @@ function startNuvela() {
         cur.classList.toggle('is-hover', !view && !!hov);
         if (view) label.textContent = lang() === 'es' ? 'Ver' : 'View';
       });
+      // Botones magnéticos: siguen un poco al mouse y SIEMPRE regresan a su lugar (x:0, y:0)
+      // al salir el mouse, al hacer scroll o al cambiar de pestaña (así no quedan desalineados).
+      const imanes = new Set();
+      const soltar = (m) => gsap.to(m, { x: 0, y: 0, duration: 0.6, ease: 'power3.out', overwrite: true });
+      const soltarTodos = () => imanes.forEach((m) => { if (gsap.getProperty(m, 'x') || gsap.getProperty(m, 'y')) soltar(m); });
       document.addEventListener('pointerover', (e) => {
         const m = e.target.closest('.nv-magnetic');
         if (!m || m._nvMag) return;
         m._nvMag = true;
-        const xT = gsap.quickTo(m, 'x', { duration: 0.6, ease: 'power3' });
-        const yT = gsap.quickTo(m, 'y', { duration: 0.6, ease: 'power3' });
+        imanes.add(m);
         m.addEventListener('pointermove', (ev) => {
           const r = m.getBoundingClientRect();
-          xT((ev.clientX - (r.left + r.width / 2)) * 0.32);
-          yT((ev.clientY - (r.top + r.height / 2)) * 0.32);
+          // centro real del botón (sin contar lo que ya se movió)
+          const cx = r.left + r.width / 2 - (+gsap.getProperty(m, 'x') || 0);
+          const cy = r.top + r.height / 2 - (+gsap.getProperty(m, 'y') || 0);
+          gsap.to(m, { x: (ev.clientX - cx) * 0.25, y: (ev.clientY - cy) * 0.25, duration: 0.6, ease: 'power3.out', overwrite: true });
         });
-        m.addEventListener('pointerleave', () => {
-          gsap.to(m, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, .4)' });
-        });
+        m.addEventListener('pointerleave', () => soltar(m));
+        m.addEventListener('pointercancel', () => soltar(m));
       });
+      window.addEventListener('scroll', soltarTodos, { passive: true });
+      document.addEventListener('visibilitychange', soltarTodos);
+      document.documentElement.addEventListener('mouseleave', soltarTodos);
       // Tarjetas "Por qué Nuvela": inclinación 3D + luz que sigue al mouse
       qa('.nv-tilt').forEach((c) => {
         const rx = gsap.quickTo(c, 'rotationX', { duration: 0.6, ease: 'power3' });
@@ -12888,32 +12946,19 @@ function startNuvela() {
 
     // Animación de entrada del hero
     function heroEnter(quick) {
+      // 2/11/26: la foto y los textos del hero ya NO esperan a JavaScript: se ven desde el
+      // primer momento y su entrada suave la hace el CSS (busca "INICIO MÁS RÁPIDO" en nuvela.css).
+      // Aquí solo se arma el logo NUVELA de partículas doradas.
       if (hero) { if (quick) hero.assembleNow(); else hero.assemble(); }
-      const items = qa('.nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, .nv-hero-actions > *');
-      if (!hasGsap || reduce) { items.concat(qa('.nv-hero-photo img')).forEach((el) => { el.style.opacity = 1; }); return; }
-      gsap.fromTo('.nv-hero-photo img', { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: quick ? 1.2 : 2.6, ease: 'power2.out', delay: quick ? 0 : 0.4 });
-      gsap.fromTo(items, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', stagger: 0.09, delay: quick ? 0.1 : 1.1 });
     }
 
     // Intro de carga
     function intro(done) {
+      // 2/11/26: se quitó la pantalla de carga (#nv-intro) para que no retrase la foto del colchón.
       const el = q('#nv-intro');
-      let seen = false;
-      try { seen = sessionStorage.getItem('nv-intro') === '1'; sessionStorage.setItem('nv-intro', '1'); } catch (e) { /* modo privado */ }
-      if (!el || !hasGsap || reduce) { if (el) el.classList.add('nv-gone'); done(); return; }
-      if (lenis) lenis.stop();
-      const spans = qa('.nv-intro-word span');
-      const num = q('#nv-intro-num');
-      const c = { v: 0 };
-      const dur = seen ? 0.7 : 1.9;
-      gsap.set(spans, { y: 0, yPercent: 110 });
-      gsap.timeline()
-        .to(spans, { yPercent: 0, duration: 1, ease: 'expo.out', stagger: 0.06 })
-        .to('.nv-intro-line i', { scaleX: 1, duration: dur, ease: 'power2.inOut' }, 0.2)
-        .to(c, { v: 100, duration: dur, ease: 'power2.inOut', onUpdate: () => { num.textContent = String(Math.round(c.v)).padStart(3, '0'); } }, 0.2)
-        .to(spans, { yPercent: -110, duration: 0.7, ease: 'expo.in', stagger: 0.03 })
-        .add(() => done(), '-=0.2')
-        .to(el, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.1, ease: 'expo.inOut', onComplete: () => { el.classList.add('nv-gone'); if (lenis) lenis.start(); } }, '-=0.25');
+      if (el) el.classList.add('nv-gone');
+      try { sessionStorage.setItem('nv-intro', '1'); } catch (e) { /* modo privado */ }
+      done();
     }
 
     // ---------- Arranque ----------

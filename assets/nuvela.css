@@ -1961,7 +1961,7 @@
     #nv-hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
     .nv-hero-photo { position: absolute; left: 50%; bottom: -4%; width: min(1150px, 120vw, 150vh); translate: -50% 0; z-index: 1; perspective: 1200px; }
     .nv-hero-photo img {
-      width: 100%; display: block; opacity: 0;
+      width: 100%; display: block; opacity: 1;
       -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 56%, #000 55%, transparent 100%);
               mask-image: radial-gradient(ellipse 58% 62% at 50% 56%, #000 55%, transparent 100%);
     }
@@ -1977,7 +1977,7 @@
     .nv-hero-price b { font-weight: 700; font-size: 1.5rem; letter-spacing: -.02em; color: var(--nv-gold-2); margin-left: .35rem; font-variant-numeric: tabular-nums; vertical-align: -.08em; }
     .nv-pcard-price { color: var(--nv-gold-2) !important; font-weight: 600; }
     /* Solo la portada del inicio entra animada; en las demás páginas los botones se ven desde el principio */
-    .nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, #nv-hero .nv-hero-actions > * { opacity: 0; }
+    /* (2/11/26) el hero ya no arranca invisible: ver "INICIO MÁS RÁPIDO" al final */
     .nv-scroll-cue { position: absolute; bottom: 22px; left: 50%; translate: -50% 0; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: .62rem; letter-spacing: .32em; text-transform: uppercase; color: rgba(252, 249, 245, .55); }
     .nv-scroll-cue i { width: 1px; height: 44px; background: linear-gradient(var(--nv-gold-2), transparent); transform-origin: top; animation: nvCue 2.2s var(--nv-ease) infinite; }
     @keyframes nvCue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
@@ -2319,4 +2319,52 @@
     @media (max-width: 767px) {
       .nv-muestrario { flex-direction: column; align-items: stretch; text-align: left; }
       .nv-muestrario-btn { width: 100%; }
+    }
+
+    /* ================================================================== */
+    /* INICIO MÁS RÁPIDO + BOTONES DEL HERO ALINEADOS (2/11/26)            */
+    /* ================================================================== */
+    /* La foto del colchón se ve desde el primer momento: solo un acercamiento suave (1.05 → 1). */
+    /* Usa la propiedad "scale" (no "transform") para no chocar con el efecto de scroll de GSAP.  */
+    @keyframes nvHeroZoom { from { scale: 1.05; } to { scale: 1; } }
+    @keyframes nvHeroIn { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+    @keyframes nvHeroFade { from { opacity: 0; } to { opacity: 1; } }
+    .nv-hero-photo picture { display: block; }
+    #nv-hero .nv-hero-photo img { opacity: 1; animation: nvHeroZoom 2.4s cubic-bezier(.22, 1, .36, 1) both; }
+    #nv-hero .nv-hero-eyebrow { animation: nvHeroIn .8s cubic-bezier(.22, 1, .36, 1) .05s both; }
+    #nv-hero .nv-hero-sub { animation: nvHeroIn .8s cubic-bezier(.22, 1, .36, 1) .12s both; }
+    #nv-hero .nv-hero-tagline { animation: nvHeroIn .8s cubic-bezier(.22, 1, .36, 1) .2s both; }
+    /* Los botones solo aparecen con un fundido (sin moverse hacia arriba) */
+    #nv-hero .nv-hero-actions > * { animation: nvHeroFade .8s ease .3s both; }
+    @media (prefers-reduced-motion: reduce) {
+      #nv-hero .nv-hero-photo img, #nv-hero .nv-hero-eyebrow, #nv-hero .nv-hero-sub, #nv-hero .nv-hero-tagline, #nv-hero .nv-hero-actions > * { animation: none; opacity: 1; }
+    }
+    /* Botones "Comprar Ahora" y "Agenda tu Visita": misma línea, misma altura, centrados */
+    #nv-hero .nv-hero-actions { align-items: center; justify-content: center; }
+    #nv-hero .nv-hero-actions .nv-abtn { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; min-height: 52px; margin: 0; line-height: 1.2; vertical-align: top; }
+    /* En celular: uno debajo del otro, con el mismo ancho */
+    @media (max-width: 640px) {
+      #nv-hero .nv-hero-actions { flex-direction: column; flex-wrap: nowrap; gap: .65rem; }
+      #nv-hero .nv-hero-actions .nv-abtn { width: min(300px, 82vw); min-height: 48px; }
+    }
+
+    /* ================================================================== */
+    /* GUÍAS DE /colchones Y /almohadas (2/11/26)                          */
+    /* ================================================================== */
+    .nv-seo-alt { background: #F5F0E9 !important; }
+    .nv-seo-body strong { color: #1C1B19; font-weight: 700; }
+    .nv-seo-body + .nv-size-table, .nv-size-table + .nv-seo-body { margin-top: 1.8rem; }
+    .nv-guide-table > div { grid-template-columns: 1.1fr 2.4fr .8fr .9fr; }
+    .nv-guide-table > div > span:nth-child(3), .nv-guide-table > div > span:nth-child(4) { text-align: right; font-variant-numeric: tabular-nums; }
+    .nv-guide-table > div > span:nth-child(4) { font-weight: 700; color: #8a7226; }
+    .nv-alm-table > div { grid-template-columns: 1fr 1.1fr 1.1fr 1.1fr; }
+    #page-producto .nv-seo-faq { background: #FCF9F5; }
+    /* Datos pendientes de confirmar (solo deben verse en el borrador) */
+    .nv-confirmar { background: #FFE58A; color: #5a4300; padding: 0 .3em; border-radius: 4px; font-size: .85em; font-weight: 600; }
+    @media (max-width: 700px) {
+      .nv-guide-table > div { grid-template-columns: 1fr 1.7fr .9fr; }
+      .nv-guide-table > div > span:nth-child(3) { display: none; }
+      .nv-alm-table > div { grid-template-columns: .9fr 1fr 1fr 1fr; }
+      .nv-alm-table span { padding: .6rem .45rem !important; font-size: .74rem !important; overflow-wrap: anywhere; }
+      .nv-alm-table > div:first-child span { letter-spacing: .06em; overflow-wrap: normal; font-size: .62rem !important; }
     }

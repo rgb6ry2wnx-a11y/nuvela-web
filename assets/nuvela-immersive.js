@@ -556,21 +556,29 @@
         cur.classList.toggle('is-hover', !view && !!hov);
         if (view) label.textContent = lang() === 'es' ? 'Ver' : 'View';
       });
+      // Botones magnéticos: siguen un poco al mouse y SIEMPRE regresan a su lugar (x:0, y:0)
+      // al salir el mouse, al hacer scroll o al cambiar de pestaña (así no quedan desalineados).
+      const imanes = new Set();
+      const soltar = (m) => gsap.to(m, { x: 0, y: 0, duration: 0.6, ease: 'power3.out', overwrite: true });
+      const soltarTodos = () => imanes.forEach((m) => { if (gsap.getProperty(m, 'x') || gsap.getProperty(m, 'y')) soltar(m); });
       document.addEventListener('pointerover', (e) => {
         const m = e.target.closest('.nv-magnetic');
         if (!m || m._nvMag) return;
         m._nvMag = true;
-        const xT = gsap.quickTo(m, 'x', { duration: 0.6, ease: 'power3' });
-        const yT = gsap.quickTo(m, 'y', { duration: 0.6, ease: 'power3' });
+        imanes.add(m);
         m.addEventListener('pointermove', (ev) => {
           const r = m.getBoundingClientRect();
-          xT((ev.clientX - (r.left + r.width / 2)) * 0.32);
-          yT((ev.clientY - (r.top + r.height / 2)) * 0.32);
+          // centro real del botón (sin contar lo que ya se movió)
+          const cx = r.left + r.width / 2 - (+gsap.getProperty(m, 'x') || 0);
+          const cy = r.top + r.height / 2 - (+gsap.getProperty(m, 'y') || 0);
+          gsap.to(m, { x: (ev.clientX - cx) * 0.25, y: (ev.clientY - cy) * 0.25, duration: 0.6, ease: 'power3.out', overwrite: true });
         });
-        m.addEventListener('pointerleave', () => {
-          gsap.to(m, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, .4)' });
-        });
+        m.addEventListener('pointerleave', () => soltar(m));
+        m.addEventListener('pointercancel', () => soltar(m));
       });
+      window.addEventListener('scroll', soltarTodos, { passive: true });
+      document.addEventListener('visibilitychange', soltarTodos);
+      document.documentElement.addEventListener('mouseleave', soltarTodos);
       // Tarjetas "Por qué Nuvela": inclinación 3D + luz que sigue al mouse
       qa('.nv-tilt').forEach((c) => {
         const rx = gsap.quickTo(c, 'rotationX', { duration: 0.6, ease: 'power3' });
@@ -1305,32 +1313,19 @@
 
     // Animación de entrada del hero
     function heroEnter(quick) {
+      // 2/11/26: la foto y los textos del hero ya NO esperan a JavaScript: se ven desde el
+      // primer momento y su entrada suave la hace el CSS (busca "INICIO MÁS RÁPIDO" en nuvela.css).
+      // Aquí solo se arma el logo NUVELA de partículas doradas.
       if (hero) { if (quick) hero.assembleNow(); else hero.assemble(); }
-      const items = qa('.nv-hero-eyebrow, .nv-hero-sub, .nv-hero-tagline, .nv-hero-actions > *');
-      if (!hasGsap || reduce) { items.concat(qa('.nv-hero-photo img')).forEach((el) => { el.style.opacity = 1; }); return; }
-      gsap.fromTo('.nv-hero-photo img', { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: quick ? 1.2 : 2.6, ease: 'power2.out', delay: quick ? 0 : 0.4 });
-      gsap.fromTo(items, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out', stagger: 0.09, delay: quick ? 0.1 : 1.1 });
     }
 
     // Intro de carga
     function intro(done) {
+      // 2/11/26: se quitó la pantalla de carga (#nv-intro) para que no retrase la foto del colchón.
       const el = q('#nv-intro');
-      let seen = false;
-      try { seen = sessionStorage.getItem('nv-intro') === '1'; sessionStorage.setItem('nv-intro', '1'); } catch (e) { /* modo privado */ }
-      if (!el || !hasGsap || reduce || seen) { if (el) el.classList.add('nv-gone'); done(); return; }
-      if (lenis) lenis.stop();
-      const spans = qa('.nv-intro-word span');
-      const num = q('#nv-intro-num');
-      const c = { v: 0 };
-      const dur = seen ? 0.7 : 1.9;
-      gsap.set(spans, { y: 0, yPercent: 110 });
-      gsap.timeline()
-        .to(spans, { yPercent: 0, duration: 1, ease: 'expo.out', stagger: 0.06 })
-        .to('.nv-intro-line i', { scaleX: 1, duration: dur, ease: 'power2.inOut' }, 0.2)
-        .to(c, { v: 100, duration: dur, ease: 'power2.inOut', onUpdate: () => { num.textContent = String(Math.round(c.v)).padStart(3, '0'); } }, 0.2)
-        .to(spans, { yPercent: -110, duration: 0.7, ease: 'expo.in', stagger: 0.03 })
-        .add(() => done(), '-=0.2')
-        .to(el, { clipPath: 'inset(0% 0% 100% 0%)', duration: 1.1, ease: 'expo.inOut', onComplete: () => { el.classList.add('nv-gone'); if (lenis) lenis.start(); } }, '-=0.25');
+      if (el) el.classList.add('nv-gone');
+      try { sessionStorage.setItem('nv-intro', '1'); } catch (e) { /* modo privado */ }
+      done();
     }
 
     // ---------- Arranque ----------
