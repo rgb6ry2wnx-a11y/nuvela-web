@@ -1091,7 +1091,7 @@
         <button type="button" id="quiz-tile-btn" class="group relative overflow-hidden aspect-[4/3] sm:aspect-[16/11] bg-ink border border-ink text-left rounded-2xl">
           <div class="absolute inset-0 flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-3 sm:p-5 text-center">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8963E" stroke-width="1.6" class="sm:w-7 sm:h-7"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="17.5" r="0.9" fill="#B8963E" stroke="none"/></svg>
-            <p class="font-serif text-sm sm:text-xl text-white leading-tight">${currentLang === 'es' ? 'Examen de Productos' : 'Product Quiz'}</p>
+            <p class="font-serif text-sm sm:text-xl text-white leading-tight">${currentLang === 'es' ? '¿Cuál es para mí?' : 'Find your match'}</p>
             <p class="text-gold text-[0.55rem] sm:text-[0.65rem] tracking-[0.18em] uppercase">${currentLang === 'es' ? 'Encuentra el tuyo' : 'Find your match'}</p>
           </div>
         </button>
@@ -1129,7 +1129,7 @@
         <div class="border-t border-white/10 mt-2 pt-2">
           <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"/></svg>
-            ${currentLang === 'es' ? 'Examen de Productos' : 'Product Quiz'}
+            ${currentLang === 'es' ? '¿Cuál es para mí?' : 'Find your match'}
           </button>
         </div>
       `;
@@ -1525,7 +1525,7 @@
       if (quizState.phase === 'category' || quizState.phase === 'questions') {
         const q = quizCurrentQuestion();
         if (!q) return;
-        eyebrowEl.textContent = currentLang === 'es' ? 'Examen de Productos' : 'Product Quiz';
+        eyebrowEl.textContent = currentLang === 'es' ? '¿Cuál es para mí?' : 'Find your match';
         footerEl.style.display = '';
         const t = q[currentLang] || q.es;
         const isMulti = !!q.multi;
@@ -1556,7 +1556,7 @@
       }
 
       if (quizState.phase === 'reveal') {
-        eyebrowEl.textContent = currentLang === 'es' ? 'Examen de Productos' : 'Product Quiz';
+        eyebrowEl.textContent = currentLang === 'es' ? '¿Cuál es para mí?' : 'Find your match';
         footerEl.style.display = 'none';
         bodyEl.innerHTML = `
           <div class="text-center py-6">
@@ -2438,6 +2438,7 @@
       script.onerror = () => {
         const wrap = document.getElementById('resenas-wrap');
         if (wrap) renderResenasFallback(wrap);
+        document.querySelectorAll('.js-reviews-mini').forEach(renderReviewsMiniFallback);
       };
       document.head.appendChild(script);
     }
@@ -2480,7 +2481,93 @@
         <p class="text-graphite/50 text-[0.65rem] text-center mt-8">${currentLang === 'es' ? 'Reseñas mostradas a través de Google.' : 'Reviews shown via Google.'}</p>`;
     }
 
+    // ==== Reseñas cortas (13/11/26): inicio y páginas de producto ====
+    // Muestran las 3 mejores reseñas reales de Google (las que tienen texto,
+    // ordenadas por estrellas). Solo se piden a Google cuando el visitante
+    // llega cerca de esa sección, para no gastar consultas de más.
+    function renderReviewsMiniFallback(wrap) {
+      wrap.innerHTML = `
+        <div class="text-center">
+          ${GOOGLE_MAPS_PROFILE_URL ? `<a href="${GOOGLE_MAPS_PROFILE_URL}" target="_blank" rel="noopener" class="btn-outline inline-block">${currentLang === 'es' ? 'Ver opiniones en Google' : 'See reviews on Google'}</a>` : ''}
+        </div>`;
+    }
+
+    function renderReviewsMini(wrap, place) {
+      if (!place) { renderReviewsMiniFallback(wrap); return; }
+      const limit = Number(wrap.dataset.limit) || 3;
+      const reviews = (place.reviews || [])
+        .filter((r) => (r.text || '').trim().length > 20)
+        .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+        .slice(0, limit);
+      if (!reviews.length) { renderReviewsMiniFallback(wrap); return; }
+      const cardsHtml = reviews.map((r) => {
+        const text = (r.text || '').trim();
+        const truncated = text.length > 200 ? text.slice(0, 197).trim() + '…' : text;
+        const initial = escapeHtml((r.author_name || '?').trim().charAt(0).toUpperCase() || '?');
+        const avatar = r.profile_photo_url
+          ? `<img src="${r.profile_photo_url}" alt="" class="w-10 h-10 rounded-full object-cover" referrerpolicy="no-referrer" />`
+          : `<div class="w-10 h-10 rounded-full bg-gold/15 text-gold flex items-center justify-center font-serif text-sm">${initial}</div>`;
+        return `
+          <div class="border border-pearl bg-white p-6 flex flex-col h-full rounded-2xl text-left">
+            <div class="text-gold text-sm tracking-wide">${starString(r.rating)}</div>
+            <p class="text-graphite text-sm mt-3 leading-relaxed flex-1">“${escapeHtml(truncated)}”</p>
+            <div class="flex items-center gap-3 mt-5">
+              ${avatar}
+              <div>
+                <p class="text-sm font-medium text-ink">${escapeHtml(r.author_name || (currentLang === 'es' ? 'Cliente de Google' : 'Google customer'))}</p>
+                <p class="text-graphite text-xs">${escapeHtml(r.relative_time_description || '')}</p>
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+      wrap.innerHTML = `
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-center">
+          <span class="font-serif text-3xl text-ink">${(place.rating || 0).toFixed(1)}</span>
+          <span class="text-gold text-lg tracking-wide">${starString(place.rating)}</span>
+          <span class="text-graphite text-sm">${place.user_ratings_total || 0} ${currentLang === 'es' ? 'reseñas en Google' : 'reviews on Google'}</span>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">${cardsHtml}</div>
+        <div class="text-center mt-8">
+          <a href="/resenas" data-page="resenas" class="nv-abtn btn-outline">${currentLang === 'es' ? 'Ver todas las opiniones' : 'See all reviews'}</a>
+        </div>`;
+    }
+
+    function fetchPlaceDetails(cb) {
+      if (cachedPlaceDetails) { cb(cachedPlaceDetails); return; }
+      if (!GOOGLE_PLACES_API_KEY || !GOOGLE_PLACE_ID) { cb(null); return; }
+      loadGoogleMapsScript(() => {
+        try {
+          const service = new google.maps.places.PlacesService(document.createElement('div'));
+          service.getDetails({ placeId: GOOGLE_PLACE_ID, fields: ['name', 'rating', 'user_ratings_total', 'reviews', 'url'] }, (place, status) => {
+            if (status !== google.maps.places.PlacesServiceStatus.OK || !place) { cb(null); return; }
+            cachedPlaceDetails = place;
+            cb(place);
+          });
+        } catch (e) { cb(null); }
+      });
+    }
+
+    let reviewsMiniObserver = null;
+    function renderReviewsMiniBlocks() {
+      const wraps = document.querySelectorAll('.js-reviews-mini');
+      if (!wraps.length) return;
+      if (cachedPlaceDetails) { wraps.forEach((w) => renderReviewsMini(w, cachedPlaceDetails)); return; }
+      const load = () => fetchPlaceDetails((place) => {
+        document.querySelectorAll('.js-reviews-mini').forEach((w) => renderReviewsMini(w, place));
+      });
+      if (!('IntersectionObserver' in window)) { load(); return; }
+      if (reviewsMiniObserver) return; // ya está esperando
+      reviewsMiniObserver = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          reviewsMiniObserver.disconnect();
+          load();
+        }
+      }, { rootMargin: '600px 0px' });
+      wraps.forEach((w) => reviewsMiniObserver.observe(w));
+    }
+
     function renderGoogleReviews() {
+      renderReviewsMiniBlocks();
       const wrap = document.getElementById('resenas-wrap');
       if (!wrap) return;
       if (!GOOGLE_PLACES_API_KEY || !GOOGLE_PLACE_ID) {
@@ -3114,6 +3201,8 @@
     document.getElementById('burger').addEventListener('click', openDrawer);
     document.getElementById('drawer-close').addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
+    // 13/11/26: "¿Cuál es para mí?" dentro del menú del celular cierra el menú y abre el examen
+    drawer.addEventListener('click', (e) => { if (e.target.closest('.js-nav-quiz-btn')) closeDrawer(); });
 
     // ==== FAQ accordion (delegated — works for static AND product FAQs) ====
     document.addEventListener('click', (e) => {
@@ -3794,8 +3883,32 @@
         if (markHandled) localStorage.setItem('nuvela-lead-popup-shown', '1');
       }
 
-      // 5.2 s: espera a que termine la intro animada del home nuevo
-      setTimeout(openPopup, 5200);
+      // 13/11/26 (Eduardo): ya no sale apenas abre la página. Aparece a los
+      // 30 segundos o cuando el visitante ya bajó a la mitad de la página
+      // (lo que pase primero). Nunca encima del examen, el menú o el carrito.
+      // Para probarlo rápido: agrega ?popup al final de la dirección.
+      let leadShown = false;
+      function maybeOpenPopup() {
+        if (leadShown) return;
+        const busy = ['quiz-overlay'].some((id) => {
+          const el = document.getElementById(id);
+          return el && !el.classList.contains('hidden');
+        }) || !!(document.getElementById('drawer') && document.getElementById('drawer').classList.contains('open'));
+        if (busy) { setTimeout(maybeOpenPopup, 4000); return; }
+        leadShown = true;
+        window.removeEventListener('scroll', onLeadScroll);
+        openPopup();
+      }
+      function onLeadScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (max > 0 && window.scrollY / max >= 0.5) maybeOpenPopup();
+      }
+      if (forcePopup) {
+        setTimeout(maybeOpenPopup, 1500);
+      } else {
+        setTimeout(maybeOpenPopup, 30000);
+        window.addEventListener('scroll', onLeadScroll, { passive: true });
+      }
 
       closeBtn.addEventListener('click', () => closePopup(true));
       backdrop.addEventListener('click', () => closePopup(true));

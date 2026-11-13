@@ -181,7 +181,6 @@
       <!-- Consolidado: se dejan visibles solo los enlaces de mayor uso/conversión; -->
       <!-- el resto vive en las subpestañas "Productos" y "Más" para aligerar el menú. -->
       <nav class="hidden lg:flex items-center gap-9">
-        <a href="/" class="nav-link" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
         <div class="relative group">
           <a href="/colchones" class="nav-link inline-flex items-center gap-1" data-page="producto">
             <span data-en="Products" data-es="Productos">Productos</span>
@@ -237,7 +236,7 @@
         <div class="border-t border-white/10 mt-2 pt-2">
           <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"></circle></svg>
-            Examen de Productos
+            ¿Cuál es para mí?
           </button>
         </div>
       
@@ -251,7 +250,6 @@
         <!-- Eduardo pidio quitar el link de texto "Mi Carrito" de aqui --
              quedaba duplicado con el icono del carrito que ya esta siempre
              visible a la derecha (ver boton con id="cart-badge" mas abajo). -->
-        <a href="/showroom" class="nav-link" data-page="cita" data-en="Book an Appointment" data-es="Agenda tu Cita">Agenda tu Cita</a>
         <a href="/sorteo" class="nav-link nv-nav-sorteo" data-page="sorteo" data-en="Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
         <div class="relative group">
           <a class="nav-link inline-flex items-center gap-1 cursor-default">
@@ -280,6 +278,8 @@
           <span class="text-mist">/</span>
           <button id="lang-en" class="lang-btn px-2 py-1 text-mist">EN</button>
         </div>
+        <!-- Agenda tu Visita: botón siempre visible en computadora (13/11/26) -->
+        <a href="/showroom" data-page="cita" class="nv-abtn nv-nav-visit" data-en="Book a Visit" data-es="Agenda tu Visita">Agenda tu Visita</a>
         <!-- Shop CTA -->
         <a href="/colchones" data-page="producto" class="nv-abtn nv-nav-buy inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">Comprar</a>
         <!-- Cart icon (always visible, so it's reachable even with the menu closed) -->
@@ -315,15 +315,16 @@
     <nav class="flex flex-col py-4">
       <a href="/" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
       <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
+      <button type="button" class="js-nav-quiz-btn drawer-link w-full text-left px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium text-gold" data-en="Find my match" data-es="¿Cuál es para mí?">¿Cuál es para mí?</button>
+      <a href="/showroom" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="cita" data-en="Book a Visit" data-es="Agenda tu Visita">Agenda tu Visita</a>
+      <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
+      <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
+      <a href="/resenas" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="resenas" data-en="Reviews" data-es="Reseñas">Reseñas</a>
+      <a href="/carrito" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium flex items-center justify-between" data-page="carrito"><span data-en="My Cart" data-es="Mi Carrito">Mi Carrito</span><span id="cart-badge-drawer" class="hidden min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[0.6rem] font-bold flex items-center justify-center leading-none">0</span></a>
       <a href="/sorteo" class="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
       <a href="/historia" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">Historia</a>
-      <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
-      <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
       <a href="/colchon-hibrido" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="tecnologia" data-en="Technology" data-es="Tecnología">Tecnología</a>
-      <a href="/carrito" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium flex items-center justify-between" data-page="carrito"><span data-en="My Cart" data-es="Mi Carrito">Mi Carrito</span><span id="cart-badge-drawer" class="hidden min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[0.6rem] font-bold flex items-center justify-center leading-none">0</span></a>
       <a href="/envios" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="entregas" data-en="Delivery" data-es="Entregas">Entregas</a>
-      <a href="/showroom" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="cita" data-en="Book an Appointment" data-es="Agenda tu Cita">Agenda tu Cita</a>
-      <a href="/resenas" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="resenas" data-en="Reviews" data-es="Reseñas">Reseñas</a>
       <a href="/preguntas-frecuentes" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="faq" data-en="FAQ" data-es="FAQ">FAQ</a>
       <a href="/contacto" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="contacto" data-en="Contact" data-es="Contáctanos">Contáctanos</a>
     </nav>
@@ -528,6 +529,63 @@
       </div>
     </section>
 
+    <!-- POR QUÉ NUVELA (13/11/26: subida justo después de La Colección) — tarjetas con luz dorada que sigue al mouse -->
+    <section id="nv-why" class="nv-dark">
+      <div class="nv-wrap">
+        <div class="nv-why-head">
+          <p class="nv-eyebrow" data-en="Why Nuvela" data-es="Por qué Nuvela">Por qué Nuvela</p>
+          <h2 class="nv-h2" data-en="Compare the specs,&lt;br/&gt;not just the price." data-es="Compara las especificaciones,&lt;br/&gt;no solo el precio.">Compara las especificaciones,<br>no solo el precio.</h2>
+        </div>
+        <div class="nv-why-grid">
+          <article class="nv-card nv-tilt">
+            <span class="nv-card-num">01</span>
+            <h3 data-en="Visible hybrid technology" data-es="Tecnología híbrida a la vista">Tecnología híbrida a la vista</h3>
+            <p data-en="Encapsulated springs + memory foam. We show you what's inside, layer by layer." data-es="Resortes encapsulados + memory foam. Te enseñamos lo que hay adentro, capa por capa.">Resortes encapsulados + memory foam. Te enseñamos lo que hay adentro, capa por capa.</p>
+          </article>
+          <article class="nv-card nv-tilt">
+            <span class="nv-card-num">02</span>
+            <h3 data-en="Rest as a couple" data-es="Descanso en pareja">Descanso en pareja</h3>
+            <p data-en="Independent springs mean less motion transfer when your partner turns over." data-es="Resortes independientes: menos movimiento cuando tu pareja cambia de posición.">Resortes independientes: menos movimiento cuando tu pareja cambia de posición.</p>
+          </article>
+          <article class="nv-card nv-tilt">
+            <span class="nv-card-num">03</span>
+            <h3 data-en="10-year warranty" data-es="Garantía de 10 años">Garantía de 10 años</h3>
+            <p data-en="A decade of coverage against manufacturing defects." data-es="Una década de cobertura por defectos de fabricación.">Una década de cobertura por defectos de fabricación.</p>
+          </article>
+          <article class="nv-card nv-tilt">
+            <span class="nv-card-num">04</span>
+            <h3 data-en="Italian design" data-es="Diseño italiano">Diseño italiano</h3>
+            <p data-en="Warm white pillow top, black side panel with zipper and the embroidered gold logo." data-es="Pillow top blanco cálido, lateral negro con zipper y el logo dorado bordado.">Pillow top blanco cálido, lateral negro con zipper y el logo dorado bordado.</p>
+          </article>
+          <article class="nv-card nv-tilt">
+            <span class="nv-card-num">05</span>
+            <h3 data-en="Delivery across Guatemala" data-es="Envío a todo Guatemala">Envío a todo Guatemala</h3>
+            <p data-en="Home delivery in Guatemala City; we also ship to the rest of the country." data-es="A domicilio en la Ciudad de Guatemala; también enviamos al interior del país.">A domicilio en la Ciudad de Guatemala; también enviamos al interior del país.</p>
+          </article>
+          <article class="nv-card nv-tilt">
+            <span class="nv-card-num">06</span>
+            <h3 data-en="Try it in person" data-es="Pruébalo en persona">Pruébalo en persona</h3>
+            <p data-en="Private showroom in Zone 9, by appointment." data-es="Showroom privado en Zona 9, con cita previa.">Showroom privado en Zona 9, con cita previa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- AYUDA PARA ELEGIR (13/11/26): abre el examen "¿Cuál es para mí?" -->
+    <section id="nv-help" class="nv-light nv-sec-tight">
+      <div class="nv-wrap nv-band-inner">
+        <div>
+          <p class="nv-eyebrow" data-en="Not sure which one?" data-es="¿No sabes cuál elegir?">¿No sabes cuál elegir?</p>
+          <h2 class="nv-h2" data-en="We'll help you&lt;br/&gt;in one minute." data-es="Te ayudamos&lt;br/&gt;en un minuto.">Te ayudamos<br>en un minuto.</h2>
+          <p class="nv-lead" data-en="Answer a few quick questions about how you sleep and we'll recommend the mattress or pillow that fits you best." data-es="Responde unas preguntas rápidas sobre cómo duermes y te recomendamos el colchón o la almohada que mejor te queda.">Responde unas preguntas rápidas sobre cómo duermes y te recomendamos el colchón o la almohada que mejor te queda.</p>
+        </div>
+        <div class="nv-hero-actions nv-band-actions">
+          <button type="button" class="js-nav-quiz-btn btn-gold" data-en="Find my match" data-es="¿Cuál es para mí?">¿Cuál es para mí?</button>
+          <a href="/comparar" data-page="comparar" class="nv-abtn btn-outline" data-en="Compare products" data-es="Comparar productos">Comparar productos</a>
+        </div>
+      </div>
+    </section>
+
     <!-- 2. MANIFIESTO — las palabras se encienden mientras haces scroll, -->
     <!-- sobre ondas doradas generativas (cambian con el mouse).           -->
     <section id="nv-manifesto" class="nv-dark">
@@ -634,61 +692,55 @@
       </div>
     </section>
 
-    <!-- 7. MARQUESINA — texto gigante que acelera con la velocidad del scroll -->
-    <section id="nv-marquee" class="nv-dark" aria-hidden="true">
-      <div class="nv-marquee-row" data-dir="-1"><div class="nv-marquee-inner">
-        <span>Duerme Bien Siempre</span><em>✦</em><span>Italian Design</span><em>✦</em><span>Garantía 10 años</span><em>✦</em><span>Resortes encapsulados</span><em>✦</em><span>Duerme Bien Siempre</span><em>✦</em><span>Italian Design</span><em>✦</em><span>Garantía 10 años</span><em>✦</em><span>Resortes encapsulados</span><em>✦</em>
-      </div></div>
-    </section>
-
-    <!-- 8. POR QUÉ NUVELA — tarjetas con luz dorada que sigue al mouse -->
-    <section id="nv-why" class="nv-dark">
-      <div class="nv-wrap">
-        <div class="nv-why-head">
-          <p class="nv-eyebrow" data-en="Why Nuvela" data-es="Por qué Nuvela">Por qué Nuvela</p>
-          <h2 class="nv-h2" data-en="Compare the specs,&lt;br/&gt;not just the price." data-es="Compara las especificaciones,&lt;br/&gt;no solo el precio.">Compara las especificaciones,<br>no solo el precio.</h2>
-        </div>
-        <div class="nv-why-grid">
-          <article class="nv-card nv-tilt">
-            <span class="nv-card-num">01</span>
-            <h3 data-en="Visible hybrid technology" data-es="Tecnología híbrida a la vista">Tecnología híbrida a la vista</h3>
-            <p data-en="Encapsulated springs + memory foam. We show you what's inside, layer by layer." data-es="Resortes encapsulados + memory foam. Te enseñamos lo que hay adentro, capa por capa.">Resortes encapsulados + memory foam. Te enseñamos lo que hay adentro, capa por capa.</p>
-          </article>
-          <article class="nv-card nv-tilt">
-            <span class="nv-card-num">02</span>
-            <h3 data-en="Rest as a couple" data-es="Descanso en pareja">Descanso en pareja</h3>
-            <p data-en="Independent springs mean less motion transfer when your partner turns over." data-es="Resortes independientes: menos movimiento cuando tu pareja cambia de posición.">Resortes independientes: menos movimiento cuando tu pareja cambia de posición.</p>
-          </article>
-          <article class="nv-card nv-tilt">
-            <span class="nv-card-num">03</span>
-            <h3 data-en="10-year warranty" data-es="Garantía de 10 años">Garantía de 10 años</h3>
-            <p data-en="A decade of coverage against manufacturing defects." data-es="Una década de cobertura por defectos de fabricación.">Una década de cobertura por defectos de fabricación.</p>
-          </article>
-          <article class="nv-card nv-tilt">
-            <span class="nv-card-num">04</span>
-            <h3 data-en="Italian design" data-es="Diseño italiano">Diseño italiano</h3>
-            <p data-en="Warm white pillow top, black side panel with zipper and the embroidered gold logo." data-es="Pillow top blanco cálido, lateral negro con zipper y el logo dorado bordado.">Pillow top blanco cálido, lateral negro con zipper y el logo dorado bordado.</p>
-          </article>
-          <article class="nv-card nv-tilt">
-            <span class="nv-card-num">05</span>
-            <h3 data-en="Delivery across Guatemala" data-es="Envío a todo Guatemala">Envío a todo Guatemala</h3>
-            <p data-en="Home delivery in Guatemala City; we also ship to the rest of the country." data-es="A domicilio en la Ciudad de Guatemala; también enviamos al interior del país.">A domicilio en la Ciudad de Guatemala; también enviamos al interior del país.</p>
-          </article>
-          <article class="nv-card nv-tilt">
-            <span class="nv-card-num">06</span>
-            <h3 data-en="Try it in person" data-es="Pruébalo en persona">Pruébalo en persona</h3>
-            <p data-en="Private showroom in Zone 9, by appointment." data-es="Showroom privado en Zona 9, con cita previa.">Showroom privado en Zona 9, con cita previa.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- 9. TESTIMONIO — la cita se enciende palabra por palabra -->
     <section id="nv-voice" class="nv-dark">
       <div class="nv-wrap nv-voice-inner">
         <span class="nv-quote-mark" aria-hidden="true">“</span>
         <blockquote class="nv-split nv-voice-text" data-nv-es="La primera noche confirmé mi compra porque logré *descansar* como debería. Nuvela no solo es un colchón — es *tecnología.*" data-nv-en="The first night confirmed my purchase — I finally *rested* the way I should. Nuvela isn't just a mattress — it's *technology.*"></blockquote>
         <p class="nv-eyebrow nv-voice-name">Paulina E. · King · <span data-en="Guatemala City" data-es="Ciudad de Guatemala">Ciudad de Guatemala</span></p>
+      </div>
+    </section>
+
+    <!-- OPINIONES DE GOOGLE (13/11/26): 3 reseñas reales, cargadas de Google -->
+    <section id="nv-reviews" class="nv-light nv-sec-tight">
+      <div class="nv-wrap">
+        <div class="nv-reviews-head">
+          <p class="nv-eyebrow" data-en="Customer reviews" data-es="Opiniones de clientes">Opiniones de clientes</p>
+          <h2 class="nv-h2" data-en="From people who&lt;br/&gt;already sleep on Nuvela." data-es="Lo que dicen quienes&lt;br/&gt;ya duermen en Nuvela.">Lo que dicen quienes<br>ya duermen en Nuvela.</h2>
+        </div>
+        <div class="js-reviews-mini nv-reviews-mini" data-limit="3"></div>
+      </div>
+    </section>
+
+    <!-- SHOWROOM (13/11/26): probar en persona es lo que más cierra ventas -->
+    <section id="nv-showroom" class="nv-dark nv-cta-band">
+      <div class="nv-wrap">
+        <p class="nv-eyebrow" data-en="Private showroom · Zone 9" data-es="Showroom privado · Zona 9">Showroom privado · Zona 9</p>
+        <h2 class="nv-h2" data-en="Try it before&lt;br/&gt;you decide." data-es="Pruébalo antes&lt;br/&gt;de decidir.">Pruébalo antes<br>de decidir.</h2>
+        <p class="nv-lead nv-center-lead" data-en="Lie down on the Colchón Nuvela and the Nuvela Diamond, try the pillows and get your questions answered in person." data-es="Acuéstate en el Colchón Nuvela y el Nuvela Diamond, prueba las almohadas y resuelve tus dudas en persona.">Acuéstate en el Colchón Nuvela y el Nuvela Diamond, prueba las almohadas y resuelve tus dudas en persona.</p>
+        <ul class="nv-showroom-facts">
+          <li><b data-en="Address" data-es="Dirección">Dirección</b><span>1A Avenida 8-74, Zona 9, Ciudad de Guatemala</span></li>
+          <li><b data-en="Hours" data-es="Horario">Horario</b><span data-en="Monday to Saturday · 11:00 – 17:00" data-es="Lunes a sábado · 11:00 – 17:00">Lunes a sábado · 11:00 – 17:00</span></li>
+          <li><b data-en="By appointment" data-es="Con cita previa">Con cita previa</b><span data-en="30-minute visits, just for you." data-es="Visitas de 30 minutos, solo para ti.">Visitas de 30 minutos, solo para ti.</span></li>
+        </ul>
+        <div class="nv-hero-actions">
+          <a href="/showroom" data-page="cita" class="nv-abtn btn-gold nv-magnetic" data-en="Book your visit" data-es="Agenda tu Visita">Agenda tu Visita</a>
+          <a href="https://maps.app.goo.gl/7jxuZavDRfuQANMd8" target="_blank" rel="noopener" class="nv-btn-ghost nv-magnetic" data-en="Get directions" data-es="Cómo llegar">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- LÍNEA HOTELERA (13/11/26): franja corta para hoteles y Airbnb -->
+    <section id="nv-hotel-band" class="nv-light nv-sec-tight">
+      <div class="nv-wrap nv-band-inner">
+        <div>
+          <p class="nv-eyebrow" data-en="Hotel line" data-es="Línea hotelera">Línea hotelera</p>
+          <h2 class="nv-h2" data-en="Hotel, Airbnb&lt;br/&gt;or project?" data-es="¿Tienes un hotel,&lt;br/&gt;Airbnb o proyecto?">¿Tienes un hotel,<br>Airbnb o proyecto?</h2>
+          <p class="nv-lead" data-en="Volume pricing, custom sizes, scheduled deliveries and a 10-year warranty." data-es="Precios por volumen, medidas a la carta, entregas programadas y 10 años de garantía.">Precios por volumen, medidas a la carta, entregas programadas y 10 años de garantía.</p>
+        </div>
+        <div class="nv-hero-actions nv-band-actions">
+          <a href="/linea-hotelera" data-page="linea-hotelera" class="nv-abtn btn-gold" data-en="See the hotel line" data-es="Ver línea hotelera">Ver línea hotelera</a>
+        </div>
       </div>
     </section>
 
@@ -714,20 +766,6 @@
     </section>
 
     <!-- 11. CIERRE — ondas generativas que reaccionan al mouse -->
-        <!-- Bloque de texto para Google (SEO) -->
-    <section class="nv-light nv-sec nv-seo">
-      <div class="nv-wrap">
-        <p class="nv-eyebrow">Colchones en Guatemala</p>
-        <h2 class="nv-h2">Colchones premium con<br>diseño italiano.</h2>
-        <div class="nv-seo-body"><p>Nuvela es una marca guatemalteca de colchones premium. Nuestros colchones son híbridos: combinan resortes encapsulados individualmente con capas de memory foam y una tela Ice Cooling fresca al tacto. Fabricamos dos modelos: el <a href="/colchones/colchon-nuvela">Colchón Nuvela</a>, de 30 cm de altura y firmeza 7/10, y el <a href="/colchones/nuvela-diamond">Nuvela Diamond</a>, de 35 cm de altura, firmeza 6/10 y pillow top acolchado.</p>
-<p>Los dos modelos están disponibles en las cuatro medidas más usadas en Guatemala: <a href="/colchones/colchon-imperial">Imperial</a> (0.97 × 1.91 m), <a href="/colchones/colchon-matrimonial">Matrimonial</a> (1.37 × 1.91 m), <a href="/colchones/colchon-queen">Queen</a> (1.52 × 2.03 m) y <a href="/colchones/colchon-king">King</a> (1.93 × 2.03 m). Los precios del Colchón Nuvela van de Q4,900 a Q7,900 y todos incluyen 10 años de garantía por defectos de fabricación.</p>
-<p>Además de colchones, tenemos <a href="/almohadas">almohadas de memory foam</a>, <a href="/accesorios-para-cama">duvets y protectores</a>, y <a href="/camastrones">camastrones de madera de Conacaste</a> hechos bajo pedido. Para hoteles, Airbnb y proyectos de remodelación contamos con una <a href="/linea-hotelera">línea hotelera</a> con precios por volumen.</p>
-<p>Hacemos <a href="/envios">envíos a todo Guatemala</a> desde Q300. Y si prefieres probar antes de comprar, te esperamos en nuestro <a href="/showroom">showroom privado en la 1A Avenida 8-74, Zona 9, Ciudad de Guatemala</a>, de lunes a sábado de 11:00 a 17:00, con cita previa.</p></div>
-        
-        <ul class="nv-seo-links"><li><a href="/colchones">Ver colchones</a></li><li><a href="/colchon-hibrido">Tecnología híbrida</a></li><li><a href="/showroom">Visitar el showroom</a></li><li><a href="/resenas">Opiniones de clientes</a></li><li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li><li><a href="/contacto">Contacto</a></li></ul>
-      </div>
-    </section>
-
     <section id="nv-final" class="nv-dark">
       <canvas id="nv-final-canvas" aria-hidden="true"></canvas>
       <div class="nv-final-inner">
@@ -738,6 +776,20 @@
           <a href="https://wa.me/50253984599?text=Hola%20Nuvela%2C%20vengo%20de%20la%20p%C3%A1gina%20web.%20Me%20interesa%3A%20informaci%C3%B3n%20general" target="_blank" rel="noopener" class="nv-btn-ghost nv-magnetic">WhatsApp</a>
           <a href="/colchones" data-page="producto" class="nv-abtn nv-btn-ghost nv-magnetic" data-en="View Products" data-es="Ver Productos">Ver Productos</a>
         </div>
+      </div>
+    </section>
+
+    <!-- Bloque de texto para Google (SEO) — 13/11/26: movido después del cierre -->
+    <section class="nv-light nv-sec nv-seo">
+      <div class="nv-wrap">
+        <p class="nv-eyebrow">Colchones en Guatemala</p>
+        <h2 class="nv-h2">Colchones premium con<br>diseño italiano.</h2>
+        <div class="nv-seo-body"><p>Nuvela es una marca guatemalteca de colchones premium. Nuestros colchones son híbridos: combinan resortes encapsulados individualmente con capas de memory foam y una tela Ice Cooling fresca al tacto. Fabricamos dos modelos: el <a href="/colchones/colchon-nuvela">Colchón Nuvela</a>, de 30 cm de altura y firmeza 7/10, y el <a href="/colchones/nuvela-diamond">Nuvela Diamond</a>, de 35 cm de altura, firmeza 6/10 y pillow top acolchado.</p>
+<p>Los dos modelos están disponibles en las cuatro medidas más usadas en Guatemala: <a href="/colchones/colchon-imperial">Imperial</a> (0.97 × 1.91 m), <a href="/colchones/colchon-matrimonial">Matrimonial</a> (1.37 × 1.91 m), <a href="/colchones/colchon-queen">Queen</a> (1.52 × 2.03 m) y <a href="/colchones/colchon-king">King</a> (1.93 × 2.03 m). Los precios del Colchón Nuvela van de Q4,900 a Q7,900 y todos incluyen 10 años de garantía por defectos de fabricación.</p>
+<p>Además de colchones, tenemos <a href="/almohadas">almohadas de memory foam</a>, <a href="/accesorios-para-cama">duvets y protectores</a>, y <a href="/camastrones">camastrones de madera de Conacaste</a> hechos bajo pedido. Para hoteles, Airbnb y proyectos de remodelación contamos con una <a href="/linea-hotelera">línea hotelera</a> con precios por volumen.</p>
+<p>Hacemos <a href="/envios">envíos a todo Guatemala</a> desde Q300. Y si prefieres probar antes de comprar, te esperamos en nuestro <a href="/showroom">showroom privado en la 1A Avenida 8-74, Zona 9, Ciudad de Guatemala</a>, de lunes a sábado de 11:00 a 17:00, con cita previa.</p></div>
+        
+        <ul class="nv-seo-links"><li><a href="/colchones">Ver colchones</a></li><li><a href="/colchon-hibrido">Tecnología híbrida</a></li><li><a href="/showroom">Visitar el showroom</a></li><li><a href="/resenas">Opiniones de clientes</a></li><li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li><li><a href="/contacto">Contacto</a></li></ul>
       </div>
     </section>
 

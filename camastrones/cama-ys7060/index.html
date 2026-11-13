@@ -242,7 +242,6 @@
       <!-- Consolidado: se dejan visibles solo los enlaces de mayor uso/conversión; -->
       <!-- el resto vive en las subpestañas "Productos" y "Más" para aligerar el menú. -->
       <nav class="hidden lg:flex items-center gap-9">
-        <a href="/" class="nav-link" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
         <div class="relative group">
           <a href="/colchones" class="nav-link inline-flex items-center gap-1" data-page="producto">
             <span data-en="Products" data-es="Productos">Productos</span>
@@ -298,7 +297,7 @@
         <div class="border-t border-white/10 mt-2 pt-2">
           <button type="button" class="js-nav-quiz-btn w-full text-left px-5 py-2.5 text-sm text-gold hover:text-gold-light hover:bg-white/5 transition-colors flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="flex-shrink-0"><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.33c-.86.34-1.4 1.2-1.4 2.17v.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17.5" r="0.9" fill="currentColor" stroke="none"></circle></svg>
-            Examen de Productos
+            ¿Cuál es para mí?
           </button>
         </div>
       
@@ -312,7 +311,6 @@
         <!-- Eduardo pidio quitar el link de texto "Mi Carrito" de aqui --
              quedaba duplicado con el icono del carrito que ya esta siempre
              visible a la derecha (ver boton con id="cart-badge" mas abajo). -->
-        <a href="/showroom" class="nav-link" data-page="cita" data-en="Book an Appointment" data-es="Agenda tu Cita">Agenda tu Cita</a>
         <a href="/sorteo" class="nav-link nv-nav-sorteo" data-page="sorteo" data-en="Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
         <div class="relative group">
           <a class="nav-link inline-flex items-center gap-1 cursor-default">
@@ -341,6 +339,8 @@
           <span class="text-mist">/</span>
           <button id="lang-en" class="lang-btn px-2 py-1 text-mist">EN</button>
         </div>
+        <!-- Agenda tu Visita: botón siempre visible en computadora (13/11/26) -->
+        <a href="/showroom" data-page="cita" class="nv-abtn nv-nav-visit" data-en="Book a Visit" data-es="Agenda tu Visita">Agenda tu Visita</a>
         <!-- Shop CTA -->
         <a href="/colchones" data-page="producto" class="nv-abtn nv-nav-buy inline-flex btn-gold !py-2.5 !px-5 !text-[0.7rem]" data-en="Shop Now" data-es="Comprar">Comprar</a>
         <!-- Cart icon (always visible, so it's reachable even with the menu closed) -->
@@ -376,15 +376,16 @@
     <nav class="flex flex-col py-4">
       <a href="/" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
       <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
+      <button type="button" class="js-nav-quiz-btn drawer-link w-full text-left px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium text-gold" data-en="Find my match" data-es="¿Cuál es para mí?">¿Cuál es para mí?</button>
+      <a href="/showroom" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="cita" data-en="Book a Visit" data-es="Agenda tu Visita">Agenda tu Visita</a>
+      <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
+      <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
+      <a href="/resenas" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="resenas" data-en="Reviews" data-es="Reseñas">Reseñas</a>
+      <a href="/carrito" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium flex items-center justify-between" data-page="carrito"><span data-en="My Cart" data-es="Mi Carrito">Mi Carrito</span><span id="cart-badge-drawer" class="hidden min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[0.6rem] font-bold flex items-center justify-center leading-none">0</span></a>
       <a href="/sorteo" class="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
       <a href="/historia" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">Historia</a>
-      <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
-      <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
       <a href="/colchon-hibrido" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="tecnologia" data-en="Technology" data-es="Tecnología">Tecnología</a>
-      <a href="/carrito" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium flex items-center justify-between" data-page="carrito"><span data-en="My Cart" data-es="Mi Carrito">Mi Carrito</span><span id="cart-badge-drawer" class="hidden min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[0.6rem] font-bold flex items-center justify-center leading-none">0</span></a>
       <a href="/envios" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="entregas" data-en="Delivery" data-es="Entregas">Entregas</a>
-      <a href="/showroom" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="cita" data-en="Book an Appointment" data-es="Agenda tu Cita">Agenda tu Cita</a>
-      <a href="/resenas" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="resenas" data-en="Reviews" data-es="Reseñas">Reseñas</a>
       <a href="/preguntas-frecuentes" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="faq" data-en="FAQ" data-es="FAQ">FAQ</a>
       <a href="/contacto" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="contacto" data-en="Contact" data-es="Contáctanos">Contáctanos</a>
     </nav>
@@ -488,8 +489,6 @@
   <main id="page-producto-detalle" class="page active">
     <section class="nv-pd-top bg-cream pt-6 md:pt-9 pb-12 md:pb-20">
       <div class="max-w-7xl mx-auto px-6">
-        <a href="/camastrones" data-page="producto" class="nv-abtn link-gold nv-pd-back mb-4 md:mb-7" data-en="← Back to Products" data-es="← Volver a Productos">← Volver a Productos</a>
-
         <div class="nv-pd-grid grid lg:grid-cols-2 gap-8 md:gap-16 items-start">
           <!-- Gallery -->
           <div class="nv-pd-gallery reveal">
@@ -546,7 +545,7 @@
             </div>
 
             <div class="flex flex-wrap gap-4 mt-6">
-              <a href="/contacto" data-page="contacto" class="nv-abtn btn-outline w-full sm:w-auto" data-en="Contact Concierge" data-es="Hablar con Concierge">Hablar con Concierge</a>
+              <a href="https://wa.me/50253984599?text=Hola%20Nuvela%2C%20vengo%20de%20la%20p%C3%A1gina%20web.%20Me%20interesa%20la%20Cama%20YS7060%20y%20quiero%20ver%20el%20muestrario%20de%20telas" target="_blank" rel="noopener" class="nv-abtn btn-outline w-full sm:w-auto" data-en="Questions? Message us on WhatsApp" data-es="¿Dudas? Escríbenos por WhatsApp">¿Dudas? Escríbenos por WhatsApp</a>
             </div>
             <!-- Confianza junto al botón de compra (garantía solo se muestra en colchones: lo decide NV) -->
             <ul class="nv-trust">
@@ -598,8 +597,9 @@
     </section>
 
     <!-- SPECS TABLE -->
-    <!-- Igual: plegada por defecto en móvil, siempre visible en escritorio. -->
-    <section class="py-14 md:py-24 bg-cream">
+    <!-- 13/11/26: oculta porque repetía las medidas que ya salen arriba en "Presentaciones". -->
+    <!-- Para volver a mostrarla, quita la palabra "hidden" de la siguiente línea. -->
+    <section class="hidden py-14 md:py-24 bg-cream">
       <div class="max-w-5xl mx-auto px-6">
         <div class="mobile-collapse-section reveal">
           <button type="button" class="js-mobile-collapse-toggle mobile-collapse-toggle w-full flex flex-col items-center text-center cursor-pointer md:cursor-default" aria-expanded="false">
@@ -625,6 +625,18 @@
             <p class="text-mist text-xs mt-4 italic" data-en="* Dimensions in meters. ±1–3 cm variation due to upholstery materials." data-es="* Medidas en metros. Variación ±1–3 cm por materiales acolchonados.">* Medidas en metros. Variación ±1–3 cm por materiales acolchonados.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- OPINIONES (13/11/26): reseñas reales de Google, justo antes de las preguntas -->
+    <section id="pd-reviews-section" class="py-14 md:py-24 bg-cream">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center reveal">
+          <p class="eyebrow" data-en="Reviews" data-es="Opiniones">Opiniones</p>
+          <span class="gold-rule gold-rule-center mt-4"></span>
+          <h3 class="font-serif text-4xl text-ink mt-8" data-en="What our customers say." data-es="Lo que dicen nuestros clientes.">Lo que dicen nuestros clientes.</h3>
+        </div>
+        <div class="js-reviews-mini mt-12" data-limit="3"></div>
       </div>
     </section>
 

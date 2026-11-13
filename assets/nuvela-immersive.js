@@ -738,7 +738,9 @@
           .to(stage, { scale: mobile ? 0.9 : 0.92, duration: 1.6, ease: 'expo.inOut' }, 1.32)
           .to('.nv-hot', { opacity: 1, duration: 0.6, stagger: 0.08 }, 2.6);
         // --- Marquesina: acelera con la velocidad del scroll
+        // 13/11/26: la marquesina se quitó del inicio; este bloque solo corre si existe.
         const rows = qa('.nv-marquee-row');
+        if (rows.length) {
         const tweens = rows.map((row) => {
           const inner = q('.nv-marquee-inner', row);
           const dir = Number(row.dataset.dir);
@@ -751,6 +753,7 @@
             tweens.forEach((tw) => gsap.to(tw, { timeScale: v, duration: 0.2, overwrite: true, onComplete: () => gsap.to(tw, { timeScale: 1, duration: 1.2 }) }));
           },
         });
+        }
 
         // --- Títulos que suben al aparecer
         qa('#nv-springs .nv-springs-copy > *, #nv-why .nv-why-head > *, #nv-gallery .nv-gallery-head > *, #nv-final .nv-final-inner > *').forEach((el) => {
