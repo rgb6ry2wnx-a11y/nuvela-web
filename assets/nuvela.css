@@ -2454,3 +2454,27 @@
     .nv-guide-model:hover .nv-card-more { transform: translateX(4px); }
     .nv-guide .nv-cta-band .nv-eyebrow { color: var(--nv-gold-2); }
     .nv-guide .nv-cta-band .nv-lead { color: rgba(252, 249, 245, .72); }
+    /* Guía: "8 señales" como línea de tiempo (13/11/26) */
+    .nv-tl-wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 100px); align-items: start; }
+    .nv-tl-intro { position: sticky; top: 130px; }
+    .nv-tl-cta { justify-content: flex-start; margin-top: 2rem; }
+    .nv-tl { list-style: none; margin: 0; padding: 0; position: relative; }
+    .nv-tl::before { content: ''; position: absolute; left: 27px; top: 10px; bottom: 30px; width: 2px; background: linear-gradient(180deg, var(--nv-gold-d) 0%, rgba(142, 116, 48, .18) 100%); }
+    .nv-tl li { position: relative; padding: 0 0 2.4rem 86px; min-height: 56px; }
+    .nv-tl li:last-child { padding-bottom: 0; }
+    .nv-tl-dot { position: absolute; left: 0; top: -6px; width: 56px; height: 56px; border-radius: 50%; background: var(--nv-white); border: 2px solid var(--nv-gold-d); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; letter-spacing: -.02em; color: var(--nv-gold-d); box-shadow: 0 12px 26px -16px rgba(142, 116, 48, .7); transition: background .35s, color .35s, transform .35s var(--nv-ease); }
+    .nv-tl li:hover .nv-tl-dot { background: var(--nv-gold-d); color: #fff; transform: scale(1.06); }
+    .nv-tl h4 { font-size: 1.2rem; font-weight: 700; color: var(--nv-ink); letter-spacing: -.015em; }
+    .nv-tl p { margin-top: .4rem; font-size: .98rem; line-height: 1.6; max-width: 34rem; }
+    @media (max-width: 900px) {
+      .nv-tl-wrap { grid-template-columns: 1fr; }
+      .nv-tl-intro { position: static; }
+      .nv-tl::before { left: 21px; }
+      .nv-tl li { padding-left: 64px; padding-bottom: 2rem; }
+      .nv-tl-dot { width: 44px; height: 44px; font-size: .88rem; top: -4px; }
+      .nv-tl h4 { font-size: 1.06rem; }
+    }
+    .nv-tl-intro .nv-h2 { font-size: clamp(2.1rem, 3.3vw, 3.3rem); }
+    /* Guía: foto aspiracional del colchón en durabilidad (13/11/26) */
+    .nv-guide-photo { aspect-ratio: 4 / 4.4; }
+    .nv-guide-photo img { object-position: center 45%; }
