@@ -2395,3 +2395,18 @@
     .js-reviews-mini .grid > div { background: var(--nv-white) !important; border: 1px solid var(--nv-line) !important; box-shadow: 0 30px 60px -45px rgba(28, 27, 25, .45); }
     .js-reviews-mini .btn-outline { color: var(--nv-ink) !important; border-color: rgba(28, 27, 25, .35) !important; }
     .js-reviews-mini .btn-outline:hover { color: #fff !important; border-color: var(--nv-gold) !important; }
+    /* "Por qué Nuvela": cada tarjeta es un enlace a su página (13/11/26) */
+    .nv-card-link { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+    .nv-card-more { display: inline-flex; align-items: center; margin-top: 1.1rem; font-size: .82rem; font-weight: 600; color: var(--nv-gold-d); transition: transform .35s var(--nv-ease); }
+    .nv-card-link:hover .nv-card-more { transform: translateX(4px); }
+    .nv-card-link:focus-visible { outline: 2px solid var(--nv-gold-d); outline-offset: 3px; }
+    /* "¿No sabes cuál elegir?": fondo dorado para separarla de "Por qué Nuvela" y darle protagonismo (13/11/26) */
+    #nv-help { background: radial-gradient(ellipse at 85% 20%, rgba(255, 248, 225, .55), transparent 55%), linear-gradient(135deg, #D8BE7A 0%, #C9A955 55%, #B99B3F 100%) !important; }
+    #nv-help .nv-eyebrow { color: #4A3B12 !important; }
+    #nv-help .nv-h2 { color: #1C1B19 !important; }
+    #nv-help .nv-lead { color: rgba(28, 27, 25, .78) !important; }
+    #nv-help .btn-gold { background: #1C1B19 !important; border-color: #1C1B19 !important; color: #fff !important; }
+    #nv-help .btn-gold::before { background: #000 !important; }
+    #nv-help .btn-outline { color: #1C1B19 !important; border-color: rgba(28, 27, 25, .55) !important; background: transparent !important; }
+    #nv-help .btn-outline:hover { color: #fff !important; border-color: #1C1B19 !important; }
+    #nv-help .btn-outline::before { background: #1C1B19 !important; }
