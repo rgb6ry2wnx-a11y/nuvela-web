@@ -2057,6 +2057,7 @@
       if (err) err.classList.add('hidden');
       const text = buildWhatsAppOrderText();
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+      nvTrack('pedido_whatsapp');
       window.open(url, '_blank', 'noopener');
     }
 
@@ -2229,6 +2230,7 @@
       if (err) err.classList.add('hidden');
       const text = buildWhatsAppQuoteText();
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+      nvTrack('cotizacion_hotel_whatsapp');
       window.open(url, '_blank', 'noopener');
     }
 
@@ -3952,12 +3954,35 @@
           console.warn('Nuvela: falta configurar LEADS_WEBHOOK_URL para guardar los leads en Google Sheets.');
         }
 
+        nvTrack('generate_lead', { metodo: 'popup' });
         formWrap.classList.add('hidden');
         successEl.classList.remove('hidden');
         localStorage.setItem('nuvela-lead-popup-shown', '1');
         setTimeout(() => closePopup(false), 2500);
       });
     }
+
+    // ==== Medición de contactos para Google Analytics (13/11/26) ====
+    // Manda eventos a Google Analytics (vía la etiqueta GTM-TW4CVRPN):
+    //   clic_whatsapp, clic_telefono, clic_correo  → al tocar esos enlaces
+    //   generate_lead                              → popup de correo enviado
+    //   pedido_whatsapp / cotizacion_hotel_whatsapp → carrito y línea hotelera
+    // Si la etiqueta de Google no cargó (bloqueador, sin internet) no pasa nada.
+    function nvTrack(evento, datos) {
+      try {
+        const info = Object.assign({ pagina: window.location.pathname }, datos || {});
+        if (typeof window.gtag === 'function') window.gtag('event', evento, info);
+      } catch (e) {}
+    }
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest && e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      const boton = (link.textContent || link.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 60);
+      if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href)) nvTrack('clic_whatsapp', { boton });
+      else if (href.indexOf('tel:') === 0) nvTrack('clic_telefono', { boton });
+      else if (href.indexOf('mailto:') === 0) nvTrack('clic_correo', { boton });
+    }, true);
 
     // ==== Init ====
     // Recupera carrito / cotización / comparador guardados en el navegador.
