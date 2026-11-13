@@ -6,7 +6,7 @@
     const NV_PRODUCT = document.body.dataset.nvProduct || null;
     // Sitio multi-página: cada "página" ahora es una dirección propia.
     const NV_ROUTES = {"home": "/", "producto": "/colchones", "precios": "/colchones", "linea-hotelera": "/linea-hotelera", "cita": "/showroom", "historia": "/historia", "tecnologia": "/colchon-hibrido", "entregas": "/envios", "resenas": "/resenas", "faq": "/preguntas-frecuentes", "contacto": "/contacto", "comparar": "/comparar", "carrito": "/carrito", "privacidad": "/privacidad", "sorteo": "/sorteo"};
-    const NV_PRODUCT_URLS = {"nuvela-clasico": "/colchones/colchon-nuvela", "nuvela-hotel": "/colchones/nuvela-diamond", "almohada-memory-foam-1": "/almohadas/ariana", "almohada-memory-foam-2": "/almohadas/amanda", "almohada-plumas": "/almohadas/almohada-de-plumas", "duvet-nuvela": "/accesorios-para-cama/duvet-nuvela", "protector-colchon": "/accesorios-para-cama/protector-de-colchon", "camastron-nuvela": "/camastrones/olivia-bed", "cama-ys7061": "/camastrones/cama-ys7061", "cama-ys7062": "/camastrones/cama-ys7062", "cama-ys7063": "/camastrones/cama-ys7063", "cama-ys7065": "/camastrones/cama-ys7065", "cama-ys7066": "/camastrones/cama-ys7066", "cama-ys7068": "/camastrones/cama-ys7068", "cama-ys7069": "/camastrones/cama-ys7069", "cama-ys7038": "/camastrones/cama-ys7038", "cama-ys7021": "/camastrones/cama-ys7021", "cama-ys7018": "/camastrones/cama-ys7018", "cama-ys7010": "/camastrones/cama-ys7010", "cama-ys7006": "/camastrones/cama-ys7006", "cama-ys7001": "/camastrones/cama-ys7001", "cama-ys7005": "/camastrones/cama-ys7005", "cama-ys7013": "/camastrones/cama-ys7013", "cama-ys7009": "/camastrones/cama-ys7009", "cama-ys7008": "/camastrones/cama-ys7008", "cama-ys7019": "/camastrones/cama-ys7019", "cama-ys7020": "/camastrones/cama-ys7020", "cama-ys7022": "/camastrones/cama-ys7022", "cama-ys7026": "/camastrones/cama-ys7026", "cama-ys7027": "/camastrones/cama-ys7027", "cama-ys7028": "/camastrones/cama-ys7028", "cama-ys7060": "/camastrones/cama-ys7060", "cama-ys7057": "/camastrones/cama-ys7057", "cama-ys7059": "/camastrones/cama-ys7059"};
+    const NV_PRODUCT_URLS = {"nuvela-clasico": "/colchones/colchon-nuvela", "nuvela-hotel": "/colchones/nuvela-diamond", "almohada-memory-foam-1": "/almohadas/ariana", "almohada-memory-foam-2": "/almohadas/amanda", "almohada-plumas": "/almohadas/alessandra", "duvet-nuvela": "/accesorios-para-cama/duvet-nuvela", "protector-colchon": "/accesorios-para-cama/protector-de-colchon", "camastron-nuvela": "/camastrones/olivia-bed", "cama-ys7061": "/camastrones/cama-ys7061", "cama-ys7062": "/camastrones/cama-ys7062", "cama-ys7063": "/camastrones/cama-ys7063", "cama-ys7065": "/camastrones/cama-ys7065", "cama-ys7066": "/camastrones/cama-ys7066", "cama-ys7068": "/camastrones/cama-ys7068", "cama-ys7069": "/camastrones/cama-ys7069", "cama-ys7038": "/camastrones/cama-ys7038", "cama-ys7021": "/camastrones/cama-ys7021", "cama-ys7018": "/camastrones/cama-ys7018", "cama-ys7010": "/camastrones/cama-ys7010", "cama-ys7006": "/camastrones/cama-ys7006", "cama-ys7001": "/camastrones/cama-ys7001", "cama-ys7005": "/camastrones/cama-ys7005", "cama-ys7013": "/camastrones/cama-ys7013", "cama-ys7009": "/camastrones/cama-ys7009", "cama-ys7008": "/camastrones/cama-ys7008", "cama-ys7019": "/camastrones/cama-ys7019", "cama-ys7020": "/camastrones/cama-ys7020", "cama-ys7022": "/camastrones/cama-ys7022", "cama-ys7026": "/camastrones/cama-ys7026", "cama-ys7027": "/camastrones/cama-ys7027", "cama-ys7028": "/camastrones/cama-ys7028", "cama-ys7060": "/camastrones/cama-ys7060", "cama-ys7057": "/camastrones/cama-ys7057", "cama-ys7059": "/camastrones/cama-ys7059"};
     const NV_CAT_URLS = {"Colchones": "/colchones", "Almohadas": "/almohadas", "Accesorios para Cama": "/accesorios-para-cama", "Camastrones": "/camastrones"};
     function nvProductUrl(id) { return NV_PRODUCT_URLS[id] || '/colchones'; }
     function nvSafe(fn) { try { fn(); } catch (e) { console.warn('[Nuvela]', e); } }
@@ -171,11 +171,9 @@
         tagline: { es: 'Memory foam hidrofílico · Densidad 75–80D', en: 'Hydrophilic memory foam · 75–80D density' },
         cardText: { es: 'Almohada de memory foam hidrofílico, densidad 75–80D, con funda exterior tipo malla y cierre.', en: 'Hydrophilic memory foam pillow, 75–80D density, with a zip mesh outer cover.' },
         description: { es: '', en: '' },
-        // Placeholder: usa el logo mientras Eduardo sube las fotos reales del
-        // producto. Cambia mainImage/gallery a los archivos reales cuando los
-        // tengas listos.
-        mainImage: '/images/logosinfondo.png',
-        gallery: ['/images/logosinfondo.png'],
+        // 13/11/26 (Eduardo): mismas fotos que Ariana (por fuera son iguales).
+        mainImage: '/images/almohada-amanda-principal.jpg',
+        gallery: ['/images/almohada-amanda-principal.jpg', '/images/almohada-amanda-vista-2.jpg'],
         stats: [
           { value: '75–80D', label: { es: 'Densidad', en: 'Density' } },
           { value: { es: 'Memory foam hidrofílico', en: 'Hydrophilic memory foam' }, label: { es: 'Material', en: 'Material' } },
@@ -191,16 +189,14 @@
         // Precio publicado el 19/10/26 (Eduardo): almohadas Q550.
         id: 'almohada-plumas',
         category: { es: 'Almohadas', en: 'Pillows' },
-        name: { es: 'Almohada de Plumas', en: 'Feather-Style Pillow' },
+        name: { es: 'Alessandra', en: 'Alessandra' },
         eyebrow: { es: 'Almohada', en: 'Pillow' },
         tagline: { es: 'Núcleo para hotelería · Relleno de microfibra 1000 g', en: 'Hotel-grade core · 1000g microfiber fill' },
         cardText: { es: 'Núcleo de almohada para hotelería con relleno de microfibra de 1000 gramos y funda 100% de algodón.', en: 'Hotel-grade pillow core with 1000-gram microfiber filling and a 100% cotton fabric cover.' },
         description: { es: '', en: '' },
-        // Placeholder: usa el logo mientras Eduardo sube las fotos reales del
-        // producto. Cambia mainImage/gallery a los archivos reales cuando los
-        // tengas listos.
-        mainImage: '/images/logosinfondo.png',
-        gallery: ['/images/logosinfondo.png'],
+        // Fotos reales subidas el 13/11/26 (Eduardo).
+        mainImage: '/images/almohada-alessandra-principal.jpg',
+        gallery: ['/images/almohada-alessandra-principal.jpg', '/images/almohada-alessandra-vista-2.jpg', '/images/almohada-alessandra-vista-3.jpg'],
         stats: [
           { value: '1000 g', label: { es: 'Relleno (microfibra)', en: 'Fill (microfiber)' } },
           { value: { es: '100% algodón', en: '100% cotton' }, label: { es: 'Tela', en: 'Fabric' } },
@@ -1377,8 +1373,8 @@
         en: 'Amanda is your best match: higher-density (75–80D) hydrophilic memory foam with extra height and stronger neck support for side sleeping.',
       },
       'almohada-plumas': {
-        es: 'La Almohada de Plumas es tu mejor opción: sensación suave y esponjada de bajo perfil, ideal si duermes boca abajo.',
-        en: 'The Feather-Style Pillow is your best match: a soft, fluffy, low-profile feel that suits stomach sleepers best.',
+        es: 'Alessandra es tu mejor opción: sensación suave y esponjada de bajo perfil, ideal si duermes boca abajo.',
+        en: 'Alessandra is your best match: a soft, fluffy, low-profile feel that suits stomach sleepers best.',
       },
       'duvet-nuvela': {
         es: 'El Duvet Nuvela en tu talla es la opción perfecta para tu cama.',
@@ -3208,9 +3204,9 @@
     // producto del sitio — el listener delegado ya existente se encarga).
     //
     // Solo se incluyen productos con foto real (mainImage propia, no el
-    // logo de relleno): Colchón Nuvela, Nuvela Diamond, Duvet, Ariana
-    // (almohada) y Olivia Bed (camastrón). "Amanda" (almohada), la
-    // Almohada de Plumas y el Protector de Colchón todavía usan el logo
+    // logo de relleno): Colchón Nuvela, Nuvela Diamond, Duvet, Ariana,
+    // Amanda y Alessandra (almohadas) y Olivia Bed (camastrón). El
+    // Protector de Colchón todavía usa el logo
     // como imagen de relleno — se agregan aquí automáticamente en cuanto
     // Eduardo suba sus fotos reales a esos productos en PRODUCTS.
     const MORPH_PRODUCT_IDS = [
@@ -3218,6 +3214,8 @@
       'nuvela-hotel',
       'duvet-nuvela',
       'almohada-memory-foam-1',
+      'almohada-memory-foam-2',
+      'almohada-plumas',
       'camastron-nuvela',
     ];
     let MORPH_TOTAL = 0;

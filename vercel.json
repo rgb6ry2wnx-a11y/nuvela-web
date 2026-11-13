@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/almohadas/almohada-de-plumas",
+      "destination": "/almohadas/alessandra",
+      "statusCode": 301
+    },
+    {
       "source": "/:path*",
       "has": [
         {
