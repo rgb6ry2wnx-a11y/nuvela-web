@@ -246,29 +246,48 @@
   <!-- Mobile drawer -->
   <div id="drawer" class="drawer fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white z-[60] shadow-2xl overflow-y-auto">
     <div class="p-6 flex items-center justify-between border-b border-pearl">
-      <img src="/images/logo-navbar-negro.png" alt="Nuvela" class="h-14 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <a href="/" aria-label="Inicio"><img src="/images/logo-menu-celular.png" alt="Nuvela" class="w-auto" style="height:56px"></a>
       <div class="flex-col" style="display:none;">
         <span class="wordmark text-ink text-lg">NUVELA</span>
         <span class="wordmark-sub mt-0.5">Italian Design</span>
       </div>
       <button id="drawer-close" class="text-2xl text-ink leading-none">×</button>
     </div>
-    <nav class="flex flex-col py-4">
-      <a href="/" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="home" data-en="Home" data-es="Inicio">Inicio</a>
-      <a href="/colchones" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="producto" data-en="Products" data-es="Productos">Productos</a>
-      <button type="button" class="js-nav-quiz-btn drawer-link w-full text-left px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium text-gold" data-en="Find my match" data-es="¿Cuál es para mí?">¿Cuál es para mí?</button>
+    <!-- Menú del celular (13/11/26): agrupado en carpetas que se abren y cierran -->
+    <nav class="flex flex-col py-2 nv-drawer-nav">
+      <details class="nv-dgroup">
+        <summary class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium nv-dsum"><span data-en="Products" data-es="Productos">Productos</span><i class="nv-dchev" aria-hidden="true"></i></summary>
+        <div class="nv-dsub">
+          <a href="/colchones" data-page="producto" data-en="Mattresses" data-es="Colchones">Colchones</a>
+          <a href="/almohadas" data-en="Pillows" data-es="Almohadas">Almohadas</a>
+          <a href="/accesorios-para-cama" data-en="Bedding accessories" data-es="Accesorios para cama">Accesorios para cama</a>
+          <a href="/camastrones" data-en="Bed frames" data-es="Camastrones y camas">Camastrones y camas</a>
+          <a href="/comparar" data-page="comparar" data-en="Compare products" data-es="Comparar productos">Comparar productos</a>
+        </div>
+      </details>
+      <button type="button" class="js-nav-quiz-btn drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium w-full text-left text-gold" data-en="Find my match" data-es="¿Cuál es para mí?">¿Cuál es para mí?</button>
       <a href="/showroom" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="cita" data-en="Book a Visit" data-es="Agenda tu Visita">Agenda tu Visita</a>
-      <a href="/comparar" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="comparar" data-en="Compare Products" data-es="Comparar Productos">Comparar Productos</a>
       <a href="/linea-hotelera" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="linea-hotelera" data-en="Hotel Line" data-es="Línea para Hoteles">Línea para Hoteles</a>
-      <a href="/resenas" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="resenas" data-en="Reviews" data-es="Reseñas">Reseñas</a>
       <a href="/carrito" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium flex items-center justify-between" data-page="carrito"><span data-en="My Cart" data-es="Mi Carrito">Mi Carrito</span><span id="cart-badge-drawer" class="hidden min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[0.6rem] font-bold flex items-center justify-center leading-none">0</span></a>
       <a href="/sorteo" class="drawer-link nv-drawer-sorteo px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="sorteo" data-en="Nuvela Giveaway" data-es="Sorteo Nuvela">Sorteo Nuvela</a>
-      <a href="/historia" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="historia" data-en="Story" data-es="Historia">Historia</a>
-      <a href="/colchon-hibrido" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="tecnologia" data-en="Technology" data-es="Tecnología">Tecnología</a>
-      <a href="/guia-colchon-hibrido-vs-espuma" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-en="Guide: hybrid vs. foam" data-es="Guía: híbrido vs. espuma">Guía: híbrido vs. espuma</a>
-      <a href="/envios" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="entregas" data-en="Delivery" data-es="Entregas">Entregas</a>
-      <a href="/preguntas-frecuentes" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="faq" data-en="FAQ" data-es="FAQ">FAQ</a>
-      <a href="/contacto" class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium" data-page="contacto" data-en="Contact" data-es="Contáctanos">Contáctanos</a>
+      <details class="nv-dgroup">
+        <summary class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium nv-dsum"><span data-en="About Nuvela" data-es="Conoce Nuvela">Conoce Nuvela</span><i class="nv-dchev" aria-hidden="true"></i></summary>
+        <div class="nv-dsub">
+          <a href="/historia" data-page="historia" data-en="Story" data-es="Historia">Historia</a>
+          <a href="/colchon-hibrido" data-page="tecnologia" data-en="Technology" data-es="Tecnología">Tecnología</a>
+          <a href="/guia-colchon-hibrido-vs-espuma" data-en="Guide: hybrid vs. foam" data-es="Guía: híbrido vs. espuma">Guía: híbrido vs. espuma</a>
+          <a href="/resenas" data-page="resenas" data-en="Reviews" data-es="Reseñas">Reseñas</a>
+        </div>
+      </details>
+      <details class="nv-dgroup">
+        <summary class="drawer-link px-6 py-4 border-b border-pearl text-sm tracking-[0.22em] uppercase font-medium nv-dsum"><span data-en="Help" data-es="Ayuda">Ayuda</span><i class="nv-dchev" aria-hidden="true"></i></summary>
+        <div class="nv-dsub">
+          <a href="/envios" data-page="entregas" data-en="Delivery" data-es="Entregas">Entregas</a>
+          <a href="/preguntas-frecuentes" data-page="faq" data-en="FAQ" data-es="Preguntas frecuentes">Preguntas frecuentes</a>
+          <a href="/politica-de-cambios" data-en="Returns & warranty" data-es="Cambios y garantía">Cambios y garantía</a>
+          <a href="/contacto" data-page="contacto" data-en="Contact" data-es="Contáctanos">Contáctanos</a>
+        </div>
+      </details>
     </nav>
     <div class="p-6 flex items-center gap-4 border-t border-pearl">
       <span class="text-xs tracking-[0.2em] uppercase text-mist" data-en="Language" data-es="Idioma">Idioma</span>
